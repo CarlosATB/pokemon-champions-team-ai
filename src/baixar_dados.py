@@ -259,7 +259,7 @@ def processar_golpes(base_ts: str, mod_ts: str, aprendiveis: set[str]) -> dict:
 
 
 def processar_itens(base_ts: str, mod_ts: str) -> dict:
-    """Itens legais no Champions e as Pedras Mega (item -> Pokémon e Mega).
+    """Itens legais no Champions e as Pedras Mega (item -> Pokémon e Mega(s)).
 
     Um item é legal quando não está marcado como isNonstandard (ou o mod
     do Champions tira essa marca com isNonstandard: null).
@@ -276,9 +276,14 @@ def processar_itens(base_ts: str, mod_ts: str) -> dict:
             continue
         nome = _campo(bloco, "name")
         legais[item_id] = nome
-        pedra = re.search(r'megaStone: \{ "(.+?)": "(.+?)" \}', bloco)
+        # megaStone: { "Charizard": "Charizard-Mega-Y" } -> Pokémon e a Mega dele.
+        # Algumas pedras servem a mais de uma forma (Meowsticite: Meowstic-M e
+        # Meowstic-F): "pokemon"/"mega" são a primeira; "megas" lista todas.
+        pedra = re.search(r"megaStone: \{(.*?)\}", bloco, re.DOTALL)
         if pedra:
-            pedras_mega[item_id] = {"pokemon": to_id(pedra.group(1)), "mega": to_id(pedra.group(2))}
+            pares = re.findall(r'"(.+?)": "(.+?)"', pedra.group(1))
+            pedras_mega[item_id] = {"pokemon": to_id(pares[0][0]), "mega": to_id(pares[0][1]),
+                                    "megas": [to_id(mega) for _, mega in pares]}
     return {"legais": legais, "pedras_mega": pedras_mega}
 
 

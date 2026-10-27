@@ -72,7 +72,7 @@ def validar_time(time: list[dict]) -> list[dict]:
             if item_id not in itens["legais"]:
                 erro(f"O item {membro['item']} ({nome}) não existe no Pokémon Champions.")
             pedra = itens["pedras_mega"].get(item_id)
-            if pedra and membro["forma"] != pedra["mega"]:
+            if pedra and membro["forma"] not in pedra["megas"]:
                 aviso(f"{nome} segura {membro['item']}, que é a Pedra Mega de outro Pokémon.")
         if pokemon.get(membro["forma"], {}).get("mega"):
             megas.append(nome)

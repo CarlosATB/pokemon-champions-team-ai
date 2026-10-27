@@ -47,7 +47,7 @@ def pokemon_aleatorio(time: list[str], sorteio=random) -> str:
 def pedra_da_mega(pokemon_id: str) -> str | None:
     """Pedra Mega que esta forma Mega precisa segurar (None se não for Mega)."""
     for item_id, pedra in dados.carregar_itens()["pedras_mega"].items():
-        if pedra["mega"] == pokemon_id:
+        if pokemon_id in pedra["megas"]:
             return item_id
     return None
 
