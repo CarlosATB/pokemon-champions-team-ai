@@ -43,7 +43,7 @@ def test_time_montado_vai_para_a_analise():
 
 
 def test_montagem_recomendada_cabe_nos_seletores():
-    membro = montar_time([{"especie": "Incineroar", "item": "", "habilidade": "", "golpes": []}])[0]
+    membro = montar_time([{"especie": "Incineroar", "item": "", "habilidade": "", "natureza": "", "golpes": []}])[0]
     montagem = montagem_recomendada("incineroar", sugerir_para_pokemon(membro))
     assert montagem["item"] in opcoes_de_itens("incineroar")
     assert montagem["habilidade"] == "intimidate"
@@ -54,7 +54,7 @@ def test_montagem_recomendada_cabe_nos_seletores():
 def test_montagem_da_mega_nao_troca_a_habilidade():
     # A habilidade da Mega (Adaptability) não é uma opção do Beedrill normal.
     membro = montar_time([{"especie": "Beedrill", "item": "Beedrillite",
-                           "habilidade": "", "golpes": []}])[0]
+                           "habilidade": "", "natureza": "", "golpes": []}])[0]
     montagem = montagem_recomendada("beedrill", sugerir_para_pokemon(membro))
     assert montagem["item"] == "beedrillite" and montagem["habilidade"] is None
     assert "poisonjab" in montagem["golpes"]
