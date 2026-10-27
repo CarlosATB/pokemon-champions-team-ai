@@ -8,11 +8,11 @@ regulamentação ou o mês das estatísticas mudar em src/config.py:
     python -m src.baixar_dados legais     # só a lista de Pokémon legais
     python -m src.baixar_dados pokeapi    # só tipos e status base
     python -m src.baixar_dados smogon     # só as estatísticas de uso
-    python -m src.baixar_dados golpes     # só golpes, movepool e itens
+    python -m src.baixar_dados golpes     # só golpes, movepool, itens e habilidades
 
 São três fontes:
 1. Pokémon Showdown -> quais Pokémon (e Megas) são legais na regulamentação,
-                       e também golpes, movepool e itens do Champions.
+                       e também golpes, movepool, itens e nomes das habilidades do Champions.
 2. PokéAPI          -> tipos, status base e habilidades de cada Pokémon legal.
 3. Smogon           -> estatísticas de uso: habilidades, itens, golpes,
                        EVs e parceiros mais usados por cada Pokémon.
@@ -280,8 +280,14 @@ def processar_itens(base_ts: str, mod_ts: str) -> dict:
     return {"legais": legais, "pedras_mega": pedras_mega}
 
 
+def processar_habilidades(base_ts: str) -> dict[str, str]:
+    """{habilidade_id: nome}, só para mostrar o nome bonito ("Grassy Surge")."""
+    return {habilidade_id: _campo(bloco, "name")
+            for habilidade_id, bloco in _blocos_ts(base_ts).items() if _campo(bloco, "name")}
+
+
 def baixar_golpes() -> None:
-    print("Baixando golpes, movepool e itens do Champions (Showdown)...")
+    print("Baixando golpes, movepool, itens e habilidades do Champions (Showdown)...")
 
     def texto(url):
         resposta = requests.get(url, timeout=TIMEOUT)
@@ -310,8 +316,12 @@ def baixar_golpes() -> None:
         texto(config.showdown_url("items.ts")),
     )
     salvar_json(itens, config.ITENS_FILE)
+
+    habilidades = processar_habilidades(texto(config.showdown_url("abilities.ts", mod=None)))
+    salvar_json(habilidades, config.HABILIDADES_FILE)
     print(f"  {len(movepool)} Pokémon com movepool, {len(golpes)} golpes, "
-          f"{len(itens['legais'])} itens ({len(itens['pedras_mega'])} Pedras Mega)")
+          f"{len(itens['legais'])} itens ({len(itens['pedras_mega'])} Pedras Mega), "
+          f"{len(habilidades)} habilidades")
 
 
 # ---------------------------------------------------------------------------

@@ -5,6 +5,7 @@ from pathlib import Path
 
 from src.baixar_dados import (
     processar_golpes,
+    processar_habilidades,
     processar_itens,
     processar_legais,
     processar_movepool,
@@ -96,3 +97,13 @@ def test_processar_itens_e_pedras_mega():
     itens = processar_itens(base, mod)
     assert set(itens["legais"]) == {"charizarditey", "sitrusberry"}
     assert itens["pedras_mega"]["charizarditey"] == {"pokemon": "charizard", "mega": "charizardmegay"}
+
+
+def test_processar_habilidades():
+    texto = (
+        "export const Abilities = {\n"
+        "\tgrassysurge: {\n\t\tonStart(source) {},\n\t\tflags: {},\n"
+        "\t\tname: \"Grassy Surge\",\n\t\trating: 4,\n\t},\n"
+        "};\n"
+    )
+    assert processar_habilidades(texto) == {"grassysurge": "Grassy Surge"}

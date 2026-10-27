@@ -95,3 +95,4 @@ USO_FILE = PROCESSED_DATA_DIR / "uso.json"           # estatísticas de uso (Smo
 GOLPES_FILE = PROCESSED_DATA_DIR / "golpes.json"     # tipo, categoria e poder dos golpes
 MOVEPOOL_FILE = PROCESSED_DATA_DIR / "movepool.json" # golpes que cada Pokémon aprende
 ITENS_FILE = PROCESSED_DATA_DIR / "itens.json"       # itens legais e Pedras Mega
+HABILIDADES_FILE = PROCESSED_DATA_DIR / "habilidades.json"  # nome bonito das habilidades
