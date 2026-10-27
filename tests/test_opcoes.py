@@ -43,7 +43,8 @@ def test_time_montado_vai_para_a_analise():
 
 
 def test_montagem_recomendada_cabe_nos_seletores():
-    membro = montar_time([{"especie": "Incineroar", "item": "", "habilidade": "", "natureza": "", "golpes": []}])[0]
+    membro = montar_time([{"especie": "Incineroar", "item": "", "habilidade": "",
+                           "natureza": "", "golpes": []}])[0]
     montagem = montagem_recomendada("incineroar", sugerir_para_pokemon(membro))
     assert montagem["item"] in opcoes_de_itens("incineroar")
     assert montagem["habilidade"] == "intimidate"
