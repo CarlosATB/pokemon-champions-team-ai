@@ -112,14 +112,14 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 - [~] Confirmar qual regulamentação do Champions usar — configurado M-C (`gen9championsvgc2026regmc`, dados de 2026-09), válida até 2/dez/2026; conferir se surge uma nova antes da entrega
 
 ### Fase 1 — Dados
-- [~] Script que baixa as estatísticas do Smogon (Champions VGC) do mês mais recente — `src/baixar_dados.py` pronto e testado com um exemplo; falta rodar no PC (a nuvem não acessa smogon.com) para gerar `data/processed/uso.json`
+- [x] Script que baixa as estatísticas do Smogon (Champions VGC) do mês mais recente — `data/processed/uso.json` (2026-09, 1.631.943 batalhas, 316 Pokémon). Rodar no PC: a nuvem não acessa smogon.com
 - [x] Script que baixa tipos e status base da PokéAPI — `data/processed/pokemon.json` (349 Pokémon/formas)
 - [x] Tabela de efetividade de tipos (18×18) — `src/tipos.py`, conferida com a tabela do Showdown
 - [x] Lista de Pokémon e Megas legais na regulamentação — `data/processed/legais.json` (349, sendo 80 Megas), tirada do mod `champions` do Pokémon Showdown
-- [~] Padronização de nomes entre as fontes (Smogon × PokéAPI, formas e Megas) — `src/nomes.py` (id + 23 exceções da PokéAPI); falta confirmar com os nomes reais do Smogon (teste `test_nomes_do_smogon_batem_com_os_legais`)
+- [x] Padronização de nomes entre as fontes (Smogon × PokéAPI, formas e Megas) — `src/nomes.py` (id + 23 exceções da PokéAPI); todos os nomes do Smogon batem com os legais
 - [x] Listas de golpes/habilidades por função de duplas (speed control, Fake Out, redirecionamento etc.) — `src/funcoes_duplas.py`
-- [~] Dados salvos localmente (cache em JSON) para o site não depender de download ao vivo — `legais.json` e `pokemon.json` prontos; falta `uso.json`
-- [~] Testes básicos: dados carregam e nomes batem — 19 passando; 1 é pulado até existir `uso.json`
+- [x] Dados salvos localmente (cache em JSON) para o site não depender de download ao vivo — `legais.json`, `pokemon.json` e `uso.json`
+- [x] Testes básicos: dados carregam e nomes batem — 20 passando
 - [ ] Movepool do Champions (learnsets do Showdown) para validar golpes — necessário na Fase 2/3
 
 ### Fase 2 — Análise do time
@@ -175,4 +175,4 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 |---|---|
 | 27/10/2026 | Projeto planejado: conceito, formato (Champions duplas), módulos, fontes de dados, Streamlit Cloud e nome do repositório definidos. Nenhum código ainda. |
 | 27/10/2026 | Fase 0 quase concluída: estrutura de pastas, `src/config.py` (Reg. M-C), `app.py` inicial, README, testes (4 passando). Falta: conta no Streamlit Cloud e confirmar prazo. |
-| 27/10/2026 | Fase 0 mergeada (PR #1). Fase 1 em andamento (branch `fase-1-dados`): script de download, tabela de tipos, lista de legais (349), dados da PokéAPI, nomes, funções de duplas e testes (19 passando). Falta baixar as estatísticas do Smogon no PC do Carlos. |
+| 27/10/2026 | Fase 0 mergeada (PR #1). Fase 1 em andamento (branch `fase-1-dados`): script de download, tabela de tipos, lista de legais (349), dados da PokéAPI, nomes, funções de duplas e testes (19 passando). Estatísticas do Smogon baixadas no PC do Carlos (2026-09, 1,6 mi de batalhas, 316 Pokémon); 20 testes passando. Falta só o movepool do Champions (item novo). |
