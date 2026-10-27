@@ -103,8 +103,19 @@ def dano_recebido(tipo_golpe: str, tipos: list[str], habilidade: str) -> float:
     return multiplicador
 
 
+def golpes_mais_usados(pokemon_id: str) -> list[str]:
+    """Golpes que pelo menos USO_MINIMO_DO_GOLPE % dos jogadores usam com ele."""
+    info = dados.carregar_uso()["pokemon"].get(pokemon_id, {})
+    return [g for g, porcentagem in info.get("golpes", {}).items()
+            if porcentagem >= USO_MINIMO_DO_GOLPE]
+
+
 def ataques_do_membro(membro: dict) -> set[str]:
+    """Tipos de ataque do Pokémon. Sem golpes de ataque escolhidos, supomos os
+    golpes mais usados com ele nas batalhas (a Mega, se ele segura a Pedra Mega)."""
     golpes_ids = [to_id(g) for g in membro["golpes"]]
+    if not golpes_de_ataque(golpes_ids, habilidade_de(membro)):
+        golpes_ids = golpes_mais_usados(membro["forma"]) or golpes_mais_usados(membro["id"])
     return tipos_de_ataque(golpes_ids, habilidade_de(membro), tipos_de(membro))
 
 
@@ -189,7 +200,8 @@ def ameacas_do_meta(time: list[dict], quantos: int = 5) -> list[dict]:
 
     Para cada um dos Pokémon mais usados (com os golpes que ele costuma usar):
       - acerta: quantos do nosso time ele acerta com dano dobrado (ou mais);
-      - respostas: quantos do nosso time acertam ELE com dano dobrado.
+      - respostas: quantos do nosso time acertam ELE com dano dobrado
+        (quem ainda não tem golpes conta com os golpes mais usados com ele).
     Nota da ameaça = acerta - respostas. Quanto maior, pior para nós.
     """
     pokemon = dados.carregar_pokemon()
@@ -203,8 +215,7 @@ def ameacas_do_meta(time: list[dict], quantos: int = 5) -> list[dict]:
             continue
         tipos_meta = pokemon[meta_id]["tipos"]
         habilidade_meta = next(iter(info["habilidades"]), "")
-        golpes_meta = [g for g, porcentagem in info["golpes"].items()
-                       if porcentagem >= USO_MINIMO_DO_GOLPE]
+        golpes_meta = golpes_mais_usados(meta_id)
         ataques_meta = tipos_de_ataque(golpes_meta, habilidade_meta, tipos_meta)
 
         acerta = [m["especie"] for m in time

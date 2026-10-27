@@ -172,7 +172,8 @@ if time:
 
     with aba_ameacas:
         st.caption("Entre os 30 Pokémon mais usados: quem acerta muitos do seu time com dano "
-                   "dobrado e quase não é acertado de volta. Nota = acerta − respostas.")
+                   "dobrado e quase não é acertado de volta. Nota = acerta − respostas. "
+                   "Pokémon sem golpes contam com os golpes mais usados com ele.")
         st.dataframe([{
             "Pokémon": a["nome"],
             "Uso (%)": a["uso"],

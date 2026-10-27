@@ -155,7 +155,8 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 - [x] A tabela mostra o golpe e quem usa (ex.: Planta — 2x — Poison Jab (Beedrill))
 - [x] Pokémon sem golpes de ataque não entra na conta e aparece num aviso; sem nenhum golpe no time, as dicas de cobertura não aparecem
 - [x] Botão "Montar com esta recomendação" em Recomendações → Por Pokémon: preenche o card com o item, a habilidade e os 4 golpes mais usados (`opcoes.montagem_recomendada`); só para o time da aba "Montar o time"
-- [x] Testes — 5 novos (`test_analise.py`, `test_dicas.py` e `test_opcoes.py`); 70 passando no total
+- [x] Ameaças do meta: um Pokémon do time sem golpes de ataque conta com os golpes mais usados com ele (antes, com os próprios tipos)
+- [x] Testes — 6 novos (`test_analise.py`, `test_dicas.py` e `test_opcoes.py`); 71 passando no total
 
 ### Fase 4 — Interface (Streamlit)
 - [ ] Tela de entrada do time — a base já existe (Fase 3.1); falta: imagem do Pokémon, visual estilo teambuilder, tirar "Colar do Showdown" e trocar por Importar/Exportar
@@ -196,4 +197,4 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 | 27/10/2026 | Fase 1 mergeada (PR #2). Fase 2 feita na branch `fase-2-analise`: golpes/movepool/itens do Champions, leitor do time do Showdown, validação das regras, fraquezas, cobertura, funções de duplas, ameaças do meta, dicas e 4 times de exemplo; análise já aparece no `app.py`. 48 testes passando. Limitações: Weather Ball/Terrain Pulse contam como Normal; só as habilidades defensivas mais comuns. |
 | 27/10/2026 | Fase 2 mergeada (PR #3) e site publicado no Streamlit Cloud. Fase 3 feita na branch `fase-3-recomendacao`: `src/recomendacao.py` (habilidade/item/golpes/EVs por frequência, item único, parceiros por confiança/lift, substitutos = co-ocorrência + fraquezas), explicação do porquê e seção "3. Recomendações" no `app.py`; link do site no README. 61 testes passando. |
 | 27/10/2026 | Fase 3 mergeada (PR #4). Fase 3.1 a pedido do Carlos: aba "Montar o time" com item, habilidade e golpes em cards (`src/opcoes.py`, `montar_time` no leitor). 65 testes passando. |
-| 27/10/2026 | Fase 3.2 a pedido do Carlos: cobertura ofensiva só com os golpes de ataque escolhidos, mostrando "golpe (Pokémon)", e botão que monta o Pokémon com a recomendação. 70 testes passando. |
+| 27/10/2026 | Fase 3.2 a pedido do Carlos: cobertura ofensiva só com os golpes de ataque escolhidos, mostrando "golpe (Pokémon)", botão que monta o Pokémon com a recomendação, e ameaças do meta supondo os golpes mais usados de quem não tem golpes. 71 testes passando. |

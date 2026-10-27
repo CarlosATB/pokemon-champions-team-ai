@@ -3,7 +3,7 @@
 from apoio import precisa_dados, time_exemplo
 
 from src.analise import (
-    analisar, cobertura_ofensiva, dano_recebido, funcoes_do_time, golpes_de_ataque,
+    analisar, ataques_do_membro, cobertura_ofensiva, dano_recebido, funcoes_do_time, golpes_de_ataque,
     matriz_defensiva, tipos_de_ataque,
 )
 from src.leitor import ler_time, montar_time, time_de_nomes
@@ -82,6 +82,16 @@ def test_ameacas_ordenadas_pela_nota():
     notas = [a["nota"] for a in ameacas]
     assert notas == sorted(notas, reverse=True) and min(notas) > 0
     assert "Milotic" in [a["nome"] for a in ameacas]  # Gelo + Água contra dragões
+
+
+def test_ameacas_supoem_os_golpes_mais_usados_de_quem_nao_tem_golpes():
+    beedrill = {"especie": "Beedrill", "item": "Beedrillite", "habilidade": "",
+                "natureza": "", "golpes": []}
+    # Sem golpes: os mais usados pelo Beedrill-Mega (Drill Run é de Terra), não só os tipos dele.
+    assert "Ground" in ataques_do_membro(montar_time([beedrill])[0])
+    # Com golpes escolhidos, valem os golpes escolhidos.
+    com_golpe = montar_time([{**beedrill, "golpes": ["Poison Jab"]}])[0]
+    assert ataques_do_membro(com_golpe) == {"Poison"}
 
 
 def test_pokemon_desconhecido_fica_de_fora():
