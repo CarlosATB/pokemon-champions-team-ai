@@ -1,0 +1,7 @@
+# Tema escuro, parecido com o teambuilder do Showdown.
+[theme]
+base = "dark"
+primaryColor = "#e3350d"
+backgroundColor = "#1b1b1f"
+secondaryBackgroundColor = "#2c2c31"
+textColor = "#f0f0f0"

@@ -42,6 +42,8 @@ SPECIES_CLAUSE = True  # não pode repetir espécie
 ITEM_CLAUSE = True     # não pode repetir item
 MAX_MEGA_PER_BATTLE = 1  # só uma Mega Evolução por batalha
 HAS_TERA = False       # o Champions não tem Terastalização
+EV_MAX = 32            # pontos de status (os "EVs" do Champions): até 32 em cada status...
+EV_TOTAL = 66          # ...e até 66 somando todos
 
 # ---------------------------------------------------------------------------
 # Fontes de dados
@@ -50,6 +52,9 @@ HAS_TERA = False       # o Champions não tem Terastalização
 SMOGON_STATS_BASE = "https://www.smogon.com/stats"
 POKEAPI_BASE = "https://pokeapi.co/api/v2"
 SHOWDOWN_GITHUB_BASE = "https://raw.githubusercontent.com/smogon/pokemon-showdown/master"
+# Imagens: espelhos da PokéAPI no GitHub (funcionam até de onde a pokeapi.co é bloqueada).
+POKEAPI_INDICE_BASE = "https://raw.githubusercontent.com/PokeAPI/api-data/master/data/api/v2"
+SPRITES_BASE = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites"
 
 
 def smogon_chaos_url(
@@ -96,3 +101,5 @@ GOLPES_FILE = PROCESSED_DATA_DIR / "golpes.json"     # tipo, categoria e poder d
 MOVEPOOL_FILE = PROCESSED_DATA_DIR / "movepool.json" # golpes que cada Pokémon aprende
 ITENS_FILE = PROCESSED_DATA_DIR / "itens.json"       # itens legais e Pedras Mega
 HABILIDADES_FILE = PROCESSED_DATA_DIR / "habilidades.json"  # nome bonito das habilidades
+SPRITES_DIR = DATA_DIR / "sprites"           # imagem de cada Pokémon ({id}.png)
+ITEM_SPRITES_DIR = SPRITES_DIR / "itens"     # ícone de cada item ({id}.png)

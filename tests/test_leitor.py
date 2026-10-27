@@ -17,6 +17,7 @@ def test_le_um_pokemon_completo():
     assert membro["item"] == "Sitrus Berry"
     assert membro["habilidade"] == "Intimidate"
     assert membro["natureza"] == "Careful"
+    assert membro["evs"] == {"HP": 32, "SpD": 32}
     assert membro["golpes"] == ["Fake Out", "Parting Shot", "Flare Blitz", "Protect"]
 
 

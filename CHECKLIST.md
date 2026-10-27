@@ -161,12 +161,16 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 - [x] Testes — 8 novos (`test_analise.py`, `test_dicas.py`, `test_opcoes.py` e `test_recomendacao.py`); 73 passando no total
 
 ### Fase 4 — Interface (Streamlit)
-- [ ] Tela de entrada do time — a base já existe (Fase 3.1); falta: imagem do Pokémon, visual estilo teambuilder, tirar "Colar do Showdown" e trocar por Importar/Exportar
-- [ ] Exibição da análise (tabela/gráfico de fraquezas, funções, ameaças)
-- [~] Exibição das recomendações por Pokémon — primeira versão na Fase 3 (expanders + tabelas); melhorar o visual
-- [ ] Botão para importar/exportar time no formato do Showdown
-- [~] Times de exemplo prontos para a demonstração — 4 times no seletor do app; revisar/ajustar para o roteiro
-- [~] Mensagens de erro amigáveis (nome errado, Pokémon ilegal) — já mostradas na análise ("Você quis dizer...?"); falta revisar o visual
+- [x] Tela de entrada do time — **4.1**: "Montar o time" é a única tela (`src/tela_montar.py`); 6 cards (2×3) no estilo do teambuilder: Pokémon no topo, imagem com os tipos (etiquetas coloridas) ao lado, item com ícone embaixo, 4 golpes (com etiqueta do tipo) e habilidade à direita; tema escuro (`.streamlit/config.toml`, `src/visual.py`)
+- [x] Imagens dos Pokémon (349) e ícones dos itens (165) salvos em `data/sprites/` (`python -m src.baixar_dados imagens`, PokéAPI pelo GitHub): o site não depende de internet para mostrar as imagens
+- [x] Botão do dado (Pokémon aleatório entre os 60 mais usados, já montado com a recomendação, sem repetir espécie nem 2ª Mega) e botão de ajustes (natureza e pontos de status, até 32 cada e 66 no total)
+- [x] Botão para importar/exportar time no formato do Showdown — **4.1**: aba "Colar do Showdown" removida; Importar (cola o texto ou carrega um time de exemplo → preenche os cards, avisa o que não entrou) e Exportar (texto pronto para o Showdown; Mega sai como forma normal + Pedra Mega) — `src/importar_exportar.py`
+- [x] "Montar com esta recomendação" também preenche natureza e pontos de status
+- [x] Testes — `tests/test_importar_exportar.py` (6 testes) + EVs no leitor; 79 passando
+- [ ] Exibição da análise (tabela/gráfico de fraquezas, funções, ameaças) — 4.2
+- [~] Exibição das recomendações por Pokémon — primeira versão na Fase 3 (expanders + tabelas); melhorar o visual — 4.2
+- [~] Times de exemplo prontos para a demonstração — 4 times, agora em Importar → Time de exemplo; revisar/ajustar para o roteiro — 4.2
+- [~] Mensagens de erro amigáveis (nome errado, Pokémon ilegal) — o Importar já avisa em português ("Você quis dizer...?"); falta revisar as da análise — 4.2
 
 ### Fase 5 — Publicação e testes
 - [x] Deploy no Streamlit Community Cloud funcionando — https://pokemon-champions-team-ai.streamlit.app/ (atualiza a cada merge na `main`)
@@ -200,3 +204,4 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 | 27/10/2026 | Fase 2 mergeada (PR #3) e site publicado no Streamlit Cloud. Fase 3 feita na branch `fase-3-recomendacao`: `src/recomendacao.py` (habilidade/item/golpes/EVs por frequência, item único, parceiros por confiança/lift, substitutos = co-ocorrência + fraquezas), explicação do porquê e seção "3. Recomendações" no `app.py`; link do site no README. 61 testes passando. |
 | 27/10/2026 | Fase 3 mergeada (PR #4). Fase 3.1 a pedido do Carlos: aba "Montar o time" com item, habilidade e golpes em cards (`src/opcoes.py`, `montar_time` no leitor). 65 testes passando. |
 | 27/10/2026 | Fase 3.2 a pedido do Carlos: cobertura ofensiva só com os golpes de ataque escolhidos, mostrando "golpe (Pokémon)", botão que monta o Pokémon com a recomendação, e ameaças do meta supondo os golpes mais usados de quem não tem golpes; Mega já vem com a Pedra Mega travada; substitutos levam em conta as funções que faltam e explicam o porquê. 73 testes passando. |
+| 27/10/2026 | Fase 4.1 (branch `fase-4-montar-o-time`): "Montar o time" virou a única tela de entrada, com cards no estilo do teambuilder (imagem, tipos coloridos, ícone do item, tema escuro), dado, ajustes de natureza/EVs e botões Importar/Exportar no lugar da aba "Colar do Showdown". Imagens salvas em `data/sprites/`. 79 testes passando. Próximo: 4.2 (análise, recomendações, mensagens e times de exemplo). |
