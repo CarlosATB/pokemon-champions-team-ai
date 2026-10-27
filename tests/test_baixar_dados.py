@@ -3,7 +3,14 @@
 import json
 from pathlib import Path
 
-from src.baixar_dados import processar_legais, processar_pokeapi, processar_smogon
+from src.baixar_dados import (
+    processar_golpes,
+    processar_itens,
+    processar_legais,
+    processar_movepool,
+    processar_pokeapi,
+    processar_smogon,
+)
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
@@ -49,3 +56,43 @@ def test_processar_smogon():
     assert "" not in incineroar["golpes"]         # slot vazio é ignorado
     # Parceiros viram id, para bater com o resto dos dados.
     assert incineroar["parceiros"] == {"rillaboom": 40.0, "indeedeef": 10.0}
+
+
+def test_processar_golpes_aplica_o_mod_do_champions():
+    base = (
+        "export const Moves = {\n"
+        "\tfakeout: {\n\t\tname: \"Fake Out\",\n\t\ttype: \"Normal\",\n\t\tcategory: \"Physical\",\n"
+        "\t\tbasePower: 40,\n\t\tsecondary: {\n\t\t\tchance: 100,\n\t\t},\n\t\ttarget: \"normal\",\n\t},\n"
+        "\theatwave: {\n\t\tname: \"Heat Wave\",\n\t\ttype: \"Fire\",\n\t\tcategory: \"Special\",\n"
+        "\t\tbasePower: 95,\n\t\ttarget: \"allAdjacentFoes\",\n\t},\n"
+        "};\n"
+    )
+    mod = "export const Moves = {\n\theatwave: {\n\t\tinherit: true,\n\t\tbasePower: 100,\n\t},\n};\n"
+    golpes = processar_golpes(base, mod, {"fakeout", "heatwave"})
+    assert golpes["fakeout"] == {"nome": "Fake Out", "tipo": "Normal", "categoria": "Physical",
+                                 "poder": 40, "alvo": "normal"}
+    assert golpes["heatwave"]["poder"] == 100  # o Champions mudou o poder
+
+
+def test_processar_movepool():
+    texto = (
+        "export const Learnsets = {\n"
+        "\tincineroar: {\n\t\tlearnset: {\n\t\t\tfakeout: [\"9M\"],\n\t\t\tprotect: [\"9M\"],\n\t\t},\n\t},\n"
+        "};\n"
+    )
+    assert processar_movepool(texto) == {"incineroar": ["fakeout", "protect"]}
+
+
+def test_processar_itens_e_pedras_mega():
+    base = (
+        "export const Items = {\n"
+        "\tcharizarditey: {\n\t\tname: \"Charizardite Y\",\n"
+        "\t\tmegaStone: { \"Charizard\": \"Charizard-Mega-Y\" },\n\t},\n"
+        "\teviolite: {\n\t\tname: \"Eviolite\",\n\t},\n"
+        "\tsitrusberry: {\n\t\tname: \"Sitrus Berry\",\n\t},\n"
+        "};\n"
+    )
+    mod = "export const Items = {\n\teviolite: {\n\t\tinherit: true,\n\t\tisNonstandard: \"Past\",\n\t},\n};\n"
+    itens = processar_itens(base, mod)
+    assert set(itens["legais"]) == {"charizarditey", "sitrusberry"}
+    assert itens["pedras_mega"]["charizarditey"] == {"pokemon": "charizard", "mega": "charizardmegay"}

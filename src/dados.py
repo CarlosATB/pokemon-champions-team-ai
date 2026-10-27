@@ -39,6 +39,37 @@ def carregar_uso() -> dict:
     return _ler(config.USO_FILE)
 
 
+@lru_cache
+def carregar_golpes() -> dict:
+    """golpe_id -> {nome, tipo, categoria, poder, alvo}"""
+    return _ler(config.GOLPES_FILE)
+
+
+@lru_cache
+def carregar_movepool() -> dict:
+    """pokemon_id -> [golpes que ele aprende no Champions]"""
+    return _ler(config.MOVEPOOL_FILE)
+
+
+@lru_cache
+def carregar_itens() -> dict:
+    """{legais: {item_id: nome}, pedras_mega: {item_id: {pokemon, mega}}}"""
+    return _ler(config.ITENS_FILE)
+
+
+def id_do_pokemon(nome: str) -> str:
+    """id de um Pokémon escrito como no Showdown ("Indeedee-F") ou como na
+    PokéAPI ("Indeedee-Female"). Se não achar, devolve o id do nome mesmo."""
+    pokemon = carregar_pokemon()
+    pokemon_id = to_id(nome)
+    if pokemon_id in pokemon:
+        return pokemon_id
+    for outro_id, info in pokemon.items():
+        if to_id(info["nome"]) == pokemon_id:
+            return outro_id
+    return pokemon_id
+
+
 def buscar_pokemon(nome: str) -> dict | None:
     """Acha um Pokémon pelo nome, em qualquer grafia: "Indeedee-F", "indeedee f"..."""
     return carregar_pokemon().get(to_id(nome))

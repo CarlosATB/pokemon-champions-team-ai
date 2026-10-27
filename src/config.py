@@ -67,6 +67,17 @@ def showdown_legalidade_url(mod: str = SHOWDOWN_MOD) -> str:
     return f"{SHOWDOWN_GITHUB_BASE}/data/mods/{mod}/formats-data.ts"
 
 
+def showdown_url(arquivo: str, mod: str | None = SHOWDOWN_MOD) -> str:
+    """URL de um arquivo de dados do Showdown (ex.: "moves.ts").
+
+    Com mod: a versão do Champions (só o que muda em relação ao jogo base).
+    Com mod=None: a versão base, com todos os detalhes.
+    """
+    if mod is None:
+        return f"{SHOWDOWN_GITHUB_BASE}/data/{arquivo}"
+    return f"{SHOWDOWN_GITHUB_BASE}/data/mods/{mod}/{arquivo}"
+
+
 # ---------------------------------------------------------------------------
 # Pastas do projeto
 # ---------------------------------------------------------------------------
@@ -81,3 +92,6 @@ PROCESSED_DATA_DIR = DATA_DIR / "processed"  # dados limpos, usados pelo app
 LEGAIS_FILE = PROCESSED_DATA_DIR / "legais.json"     # ids legais na regulamentação
 POKEMON_FILE = PROCESSED_DATA_DIR / "pokemon.json"   # tipos e status base (PokéAPI)
 USO_FILE = PROCESSED_DATA_DIR / "uso.json"           # estatísticas de uso (Smogon)
+GOLPES_FILE = PROCESSED_DATA_DIR / "golpes.json"     # tipo, categoria e poder dos golpes
+MOVEPOOL_FILE = PROCESSED_DATA_DIR / "movepool.json" # golpes que cada Pokémon aprende
+ITENS_FILE = PROCESSED_DATA_DIR / "itens.json"       # itens legais e Pedras Mega

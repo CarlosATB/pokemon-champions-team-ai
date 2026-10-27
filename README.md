@@ -33,7 +33,12 @@ pokemon-champions-team-ai/
 │   ├── dados.py        # lê o cache em JSON (usado pelo resto do projeto)
 │   ├── nomes.py        # padroniza os nomes entre as fontes
 │   ├── tipos.py        # tabela de efetividade de tipos 18 × 18
-│   └── funcoes_duplas.py # golpes/habilidades de cada função de duplas
+│   ├── funcoes_duplas.py # golpes/habilidades de cada função de duplas
+│   ├── leitor.py       # lê o time colado do Showdown (botão Export)
+│   ├── validacao.py    # confere as regras do formato (espécie/item repetido, Megas...)
+│   ├── analise.py      # fraquezas, cobertura ofensiva, funções e ameaças do meta
+│   ├── dicas.py        # transforma a análise em dicas em texto
+│   └── times_exemplo.py # times prontos para testes e demonstração
 ├── data/
 │   ├── raw/            # dados baixados (Smogon, PokéAPI)
 │   └── processed/      # dados tratados usados pelo app

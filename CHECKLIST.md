@@ -121,17 +121,18 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 - [x] Listas de golpes/habilidades por função de duplas (speed control, Fake Out, redirecionamento etc.) — `src/funcoes_duplas.py`
 - [x] Dados salvos localmente (cache em JSON) para o site não depender de download ao vivo — `legais.json`, `pokemon.json` e `uso.json`
 - [x] Testes básicos: dados carregam e nomes batem — 20 passando
-- [ ] Movepool do Champions (learnsets do Showdown) para validar golpes — necessário na Fase 2/3
+- [x] Movepool do Champions (learnsets do Showdown) para validar golpes — `data/processed/movepool.json` (257 Pokémon), mais `golpes.json` (510 golpes: tipo, categoria, poder, alvo) e `itens.json` (166 itens legais, 80 Pedras Mega). Baixados com `python -m src.baixar_dados golpes` (funciona da nuvem: só usa o GitHub do Showdown)
 
 ### Fase 2 — Análise do time
-- [ ] Leitura do time (colar no formato export do Showdown e/ou escolher na lista)
-- [ ] Validação das regras (espécie/item repetido, Pokémon fora da regulamentação, aviso de várias Megas)
-- [ ] Matriz de fraquezas e resistências do time
-- [ ] Cobertura ofensiva (quais tipos o time não acerta bem)
-- [ ] Checagem de funções de duplas
-- [ ] Ameaças do meta: top Pokémon mais usados contra o time
-- [ ] Geração de dicas em texto claro ("seu time não tem controle de velocidade")
-- [ ] Testes com 3 a 5 times de exemplo
+- [x] Leitura do time (colar no formato export do Showdown e/ou escolher na lista) — `src/leitor.py`; Pedra Mega vira a forma Mega; aceita apelido/gênero
+- [x] Validação das regras (espécie/item repetido, Pokémon fora da regulamentação, aviso de várias Megas) — `src/validacao.py`; também item fora do jogo, mais de 4 golpes, golpe que o Pokémon não aprende, nome errado com sugestão
+- [x] Matriz de fraquezas e resistências do time — `src/analise.py`; conta habilidades (Levitate, Flash Fire, Thick Fat...) e tipos da Mega
+- [x] Cobertura ofensiva (quais tipos o time não acerta bem) — usa os golpes de ataque (Pixilate/Aerilate mudam o tipo); sem golpes, usa os tipos do próprio Pokémon
+- [x] Checagem de funções de duplas — `funcoes_do_time`, com as listas de `src/funcoes_duplas.py`
+- [x] Ameaças do meta: top Pokémon mais usados contra o time — entre os 30 mais usados, nota = quantos do time ele acerta com dano dobrado − quantos do time o acertam
+- [x] Geração de dicas em texto claro ("seu time não tem controle de velocidade") — `src/dicas.py` (regras SE/ENTÃO, níveis alerta/atenção/ok)
+- [x] Testes com 3 a 5 times de exemplo — 4 times em `src/times_exemplo.py` (3 do meta + 1 com problemas de propósito); 48 testes passando
+- [x] Análise ligada no `app.py` (colar/escolher time, erros, dicas e 4 abas de tabelas) — adiantamento da Fase 4
 
 ### Fase 3 — Sistema de Recomendação
 - [ ] Sugestão de habilidade, item, golpes e natureza/EVs por Pokémon (por frequência de uso)
@@ -146,8 +147,8 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 - [ ] Exibição da análise (tabela/gráfico de fraquezas, funções, ameaças)
 - [ ] Exibição das recomendações por Pokémon
 - [ ] Botão para importar/exportar time no formato do Showdown
-- [ ] Times de exemplo prontos para a demonstração
-- [ ] Mensagens de erro amigáveis (nome errado, Pokémon ilegal)
+- [~] Times de exemplo prontos para a demonstração — 4 times no seletor do app; revisar/ajustar para o roteiro
+- [~] Mensagens de erro amigáveis (nome errado, Pokémon ilegal) — já mostradas na análise ("Você quis dizer...?"); falta revisar o visual
 
 ### Fase 5 — Publicação e testes
 - [ ] Deploy no Streamlit Community Cloud funcionando
@@ -177,3 +178,4 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 | 27/10/2026 | Projeto planejado: conceito, formato (Champions duplas), módulos, fontes de dados, Streamlit Cloud e nome do repositório definidos. Nenhum código ainda. |
 | 27/10/2026 | Fase 0 quase concluída: estrutura de pastas, `src/config.py` (Reg. M-C), `app.py` inicial, README, testes (4 passando). Falta: conta no Streamlit Cloud e confirmar prazo. |
 | 27/10/2026 | Fase 0 mergeada (PR #1). Fase 1 em andamento (branch `fase-1-dados`): script de download, tabela de tipos, lista de legais (349), dados da PokéAPI, nomes, funções de duplas e testes (19 passando). Estatísticas do Smogon baixadas no PC do Carlos (2026-09, 1,6 mi de batalhas, 316 Pokémon); 20 testes passando. Falta só o movepool do Champions (item novo). |
+| 27/10/2026 | Fase 1 mergeada (PR #2). Fase 2 feita na branch `fase-2-analise`: golpes/movepool/itens do Champions, leitor do time do Showdown, validação das regras, fraquezas, cobertura, funções de duplas, ameaças do meta, dicas e 4 times de exemplo; análise já aparece no `app.py`. 48 testes passando. Limitações: Weather Ball/Terrain Pulse contam como Normal; só as habilidades defensivas mais comuns. |

@@ -1,0 +1,71 @@
+"""Análise do time: fraquezas, cobertura, funções e ameaças."""
+
+from apoio import precisa_dados, time_exemplo
+
+from src.analise import (
+    analisar, cobertura_ofensiva, dano_recebido, funcoes_do_time,
+    matriz_defensiva, tipos_de_ataque,
+)
+from src.leitor import ler_time, time_de_nomes
+
+pytestmark = precisa_dados
+
+
+def linha_do_tipo(matriz, tipo):
+    return next(linha for linha in matriz if linha["tipo"] == tipo)
+
+
+def test_habilidade_muda_o_dano_recebido():
+    assert dano_recebido("Ground", ["Dragon"], "") == 1
+    assert dano_recebido("Ground", ["Dragon"], "levitate") == 0
+    assert dano_recebido("Ice", ["Dragon", "Flying"], "thickfat") == 2  # 4x vira 2x
+
+
+def test_pixilate_transforma_golpe_normal_em_fada():
+    assert tipos_de_ataque(["hypervoice"], "pixilate", ["Fairy"]) == {"Fairy"}
+    assert tipos_de_ataque(["hypervoice"], "", ["Fairy"]) == {"Normal"}
+    # Golpe de status não conta como ataque; sem ataques, usa os próprios tipos.
+    assert tipos_de_ataque(["protect"], "", ["Fire", "Dark"]) == {"Fire", "Dark"}
+
+
+def test_time_de_dragoes_e_fraco_a_gelo():
+    gelo = linha_do_tipo(matriz_defensiva(time_exemplo("Time com problemas")), "Ice")
+    # Garchomp, Garchomp (2), Salamence (Mega), Dragonite e Rillaboom.
+    assert len(gelo["fracos"]) == 5
+    assert gelo["resistem"] == [] and gelo["imunes"] == []
+
+
+def test_mega_usa_os_tipos_da_mega():
+    # Charizard é Fogo/Voador (imune a Terra); a Mega X é Fogo/Dragão (toma dobrado).
+    normal = ler_time("Charizard @ Sitrus Berry\n- Heat Wave")
+    mega_x = ler_time("Charizard @ Charizardite X\n- Heat Wave")
+    assert linha_do_tipo(matriz_defensiva(normal), "Ground")["dano"]["Charizard"] == 0
+    assert linha_do_tipo(matriz_defensiva(mega_x), "Ground")["dano"]["Charizard"] == 2
+
+
+def test_cobertura_tem_os_18_tipos():
+    cobertura = cobertura_ofensiva(time_exemplo("Meta"))
+    assert len(cobertura) == 18
+    agua = next(c for c in cobertura if c["tipo"] == "Water")
+    assert agua["melhor"] == 2 and "Rillaboom" in agua["quem"]
+
+
+def test_funcoes_de_duplas():
+    funcoes = funcoes_do_time(time_exemplo("Meta"))
+    assert funcoes["fake_out"] == ["Rillaboom", "Incineroar"]
+    assert funcoes["redirecionamento"] == ["Indeedee-F"]
+    # Salamence Mega troca Intimidate por Aerilate.
+    assert funcoes["intimidate"] == ["Incineroar"]
+
+
+def test_ameacas_ordenadas_pela_nota():
+    ameacas = analisar(time_exemplo("Time com problemas"))["ameacas"]
+    assert 1 <= len(ameacas) <= 5
+    notas = [a["nota"] for a in ameacas]
+    assert notas == sorted(notas, reverse=True) and min(notas) > 0
+    assert "Milotic" in [a["nome"] for a in ameacas]  # Gelo + Água contra dragões
+
+
+def test_pokemon_desconhecido_fica_de_fora():
+    analise = analisar(time_de_nomes(["Rillaboom", "Pokémon Inventado"]))
+    assert list(linha_do_tipo(analise["defesa"], "Fire")["dano"]) == ["Rillaboom"]
