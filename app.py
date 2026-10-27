@@ -15,7 +15,8 @@ from src import config, dados
 from src.analise import analisar
 from src.dicas import gerar_dicas
 from src.funcoes_duplas import FUNCOES
-from src.leitor import ler_time, time_de_nomes
+from src.leitor import ler_time, montar_time
+from src.opcoes import opcoes_de_golpes, opcoes_de_habilidades, opcoes_de_itens
 from src.recomendacao import (PESO_FRAQUEZAS, PESO_PARCERIA, recomendar_time, sugerir_parceiros,
                               sugerir_substitutos)
 from src.tipos import TIPOS_PT
@@ -40,7 +41,55 @@ st.caption(
 # ---------------------------------------------------------------------------
 
 st.header("1. Seu time")
-aba_colar, aba_lista = st.tabs(["Colar do Showdown", "Escolher da lista"])
+aba_montar, aba_colar = st.tabs(["Montar o time", "Colar do Showdown"])
+
+with aba_montar:
+    uso_por_id = dados.carregar_uso()["pokemon"]
+    pokemon_por_id = dados.carregar_pokemon()
+    # Nome como no Showdown quando existe ("Indeedee-F"); senão, o da PokéAPI.
+    nome_por_id = {pid: uso_por_id.get(pid, info)["nome"] for pid, info in pokemon_por_id.items()
+                   if pid in dados.carregar_legais() and not info["forma_de_batalha"]}
+    ids_ordenados = sorted(nome_por_id, key=nome_por_id.get)
+    itens_por_id = dados.carregar_itens()["legais"]
+    golpes_por_id = dados.carregar_golpes()
+    habilidades_por_id = dados.carregar_habilidades()
+
+    def nome_do_golpe(golpe_id):
+        golpe = golpes_por_id[golpe_id]
+        return f"{golpe['nome']} · {TIPOS_PT[golpe['tipo']]}"
+
+    st.caption("As opções de item, habilidade e golpes vêm ordenadas pelo uso: "
+               "as primeiras são as que os jogadores mais usam com aquele Pokémon.")
+    montados = []
+    for vaga in range(config.TEAM_SIZE):
+        if vaga % 2 == 0:  # uma linha com 2 cards: grade de 2 colunas x 3 linhas
+            colunas = st.columns(2)
+        with colunas[vaga % 2].container(border=True):
+            pid = st.selectbox(f"Pokémon {vaga + 1}", [None] + ids_ordenados, key=f"especie_{vaga}",
+                               format_func=lambda p: "(vazio)" if p is None else nome_por_id[p])
+            if pid is None:
+                continue
+            st.caption(" / ".join(TIPOS_PT[t] for t in pokemon_por_id[pid]["tipos"]))
+            esquerda, direita = st.columns(2)
+            with esquerda:
+                # A chave inclui o Pokémon: ao trocar de Pokémon, os seletores recomeçam.
+                item = st.selectbox("Item", [None] + opcoes_de_itens(pid), key=f"item_{vaga}_{pid}",
+                                    format_func=lambda i: "(nenhum)" if i is None else itens_por_id[i])
+                habilidade = st.selectbox("Habilidade", opcoes_de_habilidades(pid),
+                                          key=f"habilidade_{vaga}_{pid}",
+                                          format_func=lambda h: habilidades_por_id.get(h, h))
+            with direita:
+                golpes = [st.selectbox(f"Golpe {n + 1}", [None] + opcoes_de_golpes(pid),
+                                       key=f"golpe_{vaga}_{n}_{pid}",
+                                       format_func=lambda g: "(nenhum)" if g is None else nome_do_golpe(g))
+                          for n in range(4)]
+            montados.append({
+                "especie": nome_por_id[pid],
+                "item": itens_por_id[item] if item else "",
+                "habilidade": habilidades_por_id.get(habilidade, habilidade or ""),
+                "natureza": "",
+                "golpes": [golpes_por_id[g]["nome"] for g in golpes if g],
+            })
 
 with aba_colar:
     exemplo = st.selectbox("Carregar um time de exemplo", ["(colar o meu)"] + list(TIMES_EXEMPLO))
@@ -50,17 +99,8 @@ with aba_colar:
         height=300,
     )
 
-with aba_lista:
-    uso_por_id = dados.carregar_uso()["pokemon"]
-    # Nome como no Showdown quando existe ("Indeedee-F"); senão, o da PokéAPI.
-    opcoes = sorted(uso_por_id.get(pid, info)["nome"] for pid, info in dados.carregar_pokemon().items()
-                    if pid in dados.carregar_legais() and not info["forma_de_batalha"])
-    escolhidos = st.multiselect("Escolha até 6 Pokémon", opcoes, max_selections=config.TEAM_SIZE)
-    st.caption("Sem golpes, a análise usa só os tipos. Para ver funções de duplas e "
-               "cobertura completa, cole o time com os golpes.")
-
-# A lista tem prioridade se algo foi escolhido nela.
-time = time_de_nomes(escolhidos) if escolhidos else ler_time(texto) if texto.strip() else []
+# O time montado tem prioridade se algo foi escolhido nele.
+time = montar_time(montados) if montados else ler_time(texto) if texto.strip() else []
 
 # ---------------------------------------------------------------------------
 # Resultado da análise

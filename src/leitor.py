@@ -97,3 +97,9 @@ def time_de_nomes(nomes: list[str]) -> list[dict]:
         completar({"especie": nome, "item": "", "habilidade": "", "natureza": "", "golpes": []})
         for nome in nomes
     ])
+
+
+def montar_time(membros: list[dict]) -> list[dict]:
+    """Time vindo da tela "Montar o time": cada membro já tem espécie, item,
+    habilidade e golpes escolhidos nos seletores (com os nomes do Showdown)."""
+    return _nomes_unicos([completar(dict(membro)) for membro in membros])
