@@ -23,7 +23,7 @@ from src import dados
 from src.analise import (
     dano_recebido, golpes_mais_usados, habilidade_de, matriz_defensiva, tipos_de,
 )
-from src.dicas import FUNCOES_ESSENCIAIS, _lista
+from src.dicas import FUNCOES_ESSENCIAIS, juntar_nomes
 from src.funcoes_duplas import FUNCOES, funcoes_do_pokemon
 from src.nomes import to_id
 from src.tipos import TIPOS_PT
@@ -308,7 +308,7 @@ def escolher_quem_sai(time: list[dict]) -> tuple[dict, str]:
     tipos = [TIPOS_PT[t] for t in fraco_a(sai)]
     empatados = [m for m in time if len(fraco_a(m)) == len(tipos)]
     if tipos:
-        motivo = f"{sai['especie']} é fraco a {_lista(tipos)}, que já preocupam o time."
+        motivo = f"{sai['especie']} é fraco a {juntar_nomes(tipos)}, que já preocupam o time."
         if len(empatados) > 1:
             motivo += " Entre os empatados, é o que menos aparece junto com os outros nas batalhas."
     else:
@@ -348,10 +348,10 @@ def _porque_do_substituto(linha: dict) -> str:
             # "Fake Out" já diz tudo; "controle de velocidade (Tailwind)" mostra o golpe.
             partes.append(nome if to_id(nome) == to_id(como) else f"{nome.lower()} ({como})")
         verbo = "falta" if len(partes) == 1 else "faltam"
-        frases.append(f"Traz {_lista(partes)}, que {verbo} no time.")
+        frases.append(f"Traz {juntar_nomes(partes)}, que {verbo} no time.")
     if linha["cobre"]:
         verbo = "preocupa" if len(linha["cobre"]) == 1 else "preocupam"
-        frases.append(f"Resiste a {_lista([TIPOS_PT[t] for t in linha['cobre']])}, "
+        frases.append(f"Resiste a {juntar_nomes([TIPOS_PT[t] for t in linha['cobre']])}, "
                       f"que hoje {verbo} o time.")
     if linha["melhor_parceiro"]:
         parceiro, pct = linha["melhor_parceiro"]

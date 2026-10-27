@@ -16,7 +16,7 @@ from src.tipos import TIPOS, TIPOS_PT, multiplicador
 FUNCOES_ESSENCIAIS = ["controle_velocidade", "protecao", "golpe_em_area"]
 
 
-def _lista(nomes: list[str], conectivo: str = "e") -> str:
+def juntar_nomes(nomes: list[str], conectivo: str = "e") -> str:
     """["A", "B", "C"] -> "A, B e C" """
     return nomes[0] if len(nomes) == 1 else ", ".join(nomes[:-1]) + f" {conectivo} " + nomes[-1]
 
@@ -57,12 +57,12 @@ def gerar_dicas(time: list[dict], analise: dict) -> list[dict]:
         if fracos >= 3 and seguram == 0:
             dica("alerta",
                  f"{fracos} de {total} Pokémon tomam dano dobrado de **{tipo}** e ninguém resiste. "
-                 f"Um Pokémon de tipo {_lista(tipos_que_resistem(linha['tipo']), 'ou')} ajudaria.")
+                 f"Um Pokémon de tipo {juntar_nomes(tipos_que_resistem(linha['tipo']), 'ou')} ajudaria.")
         elif fracos >= 3 and fracos > seguram:
             quem = linha["resistem"] + linha["imunes"]
             dica("atencao",
                  f"{fracos} de {total} Pokémon são fracos a **{tipo}** "
-                 f"e só {_lista(quem)} {_verbo(quem, 'segura', 'seguram')}.")
+                 f"e só {juntar_nomes(quem)} {_verbo(quem, 'segura', 'seguram')}.")
 
     # 2. Cobertura ofensiva: tipos que os golpes do time não acertam bem.
     #    Sem nenhum golpe de ataque escolhido, não dá para saber.
@@ -70,11 +70,11 @@ def gerar_dicas(time: list[dict], analise: dict) -> list[dict]:
     mal_cobertos = [TIPOS_PT[c["tipo"]] for c in analise["cobertura"] if c["melhor"] < 1]
     alguem_ataca = len(analise["sem_ataques"]) < len(time)
     if alguem_ataca and mal_cobertos:
-        dica("alerta", f"O time não tem golpe que cause dano normal em **{_lista(mal_cobertos)}**: "
+        dica("alerta", f"O time não tem golpe que cause dano normal em **{juntar_nomes(mal_cobertos)}**: "
                        "todos os seus ataques são resistidos por esses tipos.")
     if alguem_ataca and len(sem_dano_dobrado) > 6:
         dica("atencao", f"Cobertura ofensiva estreita: nenhum golpe acerta com dano dobrado "
-                        f"{_lista(sem_dano_dobrado)}.")
+                        f"{juntar_nomes(sem_dano_dobrado)}.")
     elif alguem_ataca and not sem_dano_dobrado:
         dica("ok", "Cobertura ofensiva completa: o time acerta todos os tipos com dano dobrado.")
 
@@ -83,7 +83,7 @@ def gerar_dicas(time: list[dict], analise: dict) -> list[dict]:
     for chave, funcao in FUNCOES.items():
         quem = analise["funcoes"][chave]
         if quem:
-            dica("ok", f"{funcao['nome']}: {_lista(quem)}.")
+            dica("ok", f"{funcao['nome']}: {juntar_nomes(quem)}.")
         elif sem_golpes and funcao["golpes"]:
             continue  # sem os golpes não dá para saber
         elif chave in FUNCOES_ESSENCIAIS:
@@ -96,13 +96,13 @@ def gerar_dicas(time: list[dict], analise: dict) -> list[dict]:
     if not sem_golpes and analise["funcoes"]["protecao"]:
         sem_protecao = [m["especie"] for m in time if m["especie"] not in analise["funcoes"]["protecao"]]
         if len(sem_protecao) >= 3:
-            dica("atencao", f"{_lista(sem_protecao)} não têm Protect/Detect. "
+            dica("atencao", f"{juntar_nomes(sem_protecao)} não têm Protect/Detect. "
                             "Em duplas, quase todo Pokémon carrega um golpe de proteção.")
 
     # 4. Ameaças do meta.
     for ameaca in analise["ameacas"][:3]:
         quem = ameaca["respostas"]
-        respostas = (f"só {_lista(quem)} o {_verbo(quem, 'acerta', 'acertam')} com dano dobrado"
+        respostas = (f"só {juntar_nomes(quem)} o {_verbo(quem, 'acerta', 'acertam')} com dano dobrado"
                      if ameaca["respostas"] else "ninguém do time o acerta com dano dobrado")
         dica("alerta" if not ameaca["respostas"] else "atencao",
              f"**{ameaca['nome']}** ({ameaca['uso']:.0f}% dos times) acerta "

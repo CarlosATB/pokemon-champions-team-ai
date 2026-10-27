@@ -177,8 +177,9 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 ### Fase 5 — Publicação e testes
 - [x] Deploy no Streamlit Community Cloud funcionando — https://pokemon-champions-team-ai.streamlit.app/ (atualiza a cada merge na `main`)
 - [x] Link do site no README
-- [ ] Teste completo no site publicado (não só local)
-- [ ] Revisão do código: nomes claros, comentários nos trechos que serão mostrados
+- [ ] Teste completo no site publicado (não só local) — a nuvem do Claude não acessa o streamlit.app; o Carlos testa pelo navegador (roteiro no PR da Fase 5)
+- [~] Revisão do código: nomes claros, comentários nos trechos que serão mostrados — 1ª passada feita (`app.py` só com as 3 partes, uma tela por arquivo, `_lista` → `juntar_nomes`, docstrings antigas corrigidas); revisar de novo quando o roteiro da Fase 7 definir quais trechos mostrar
+- [x] Meowsticite: Pedra Mega que serve a duas formas (Meowstic-M e Meowstic-F) agora é lida (`megas` em `itens.json`; 81 Pedras Mega)
 
 ### Fase 6 — Algoritmo Genético (opcional)
 - [ ] Função de "nota" do time (cobertura + funções + sinergia)
@@ -208,3 +209,4 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 | 27/10/2026 | Fase 3.2 a pedido do Carlos: cobertura ofensiva só com os golpes de ataque escolhidos, mostrando "golpe (Pokémon)", botão que monta o Pokémon com a recomendação, e ameaças do meta supondo os golpes mais usados de quem não tem golpes; Mega já vem com a Pedra Mega travada; substitutos levam em conta as funções que faltam e explicam o porquê. 73 testes passando. |
 | 27/10/2026 | Fase 4.1 (branch `fase-4-montar-o-time`): "Montar o time" virou a única tela de entrada, com cards no estilo do teambuilder (imagem, tipos coloridos, ícone do item, tema escuro), dado, ajustes de natureza/EVs e botões Importar/Exportar no lugar da aba "Colar do Showdown". Imagens salvas em `data/sprites/`. 79 testes passando. Próximo: 4.2 (análise, recomendações, mensagens e times de exemplo). |
 | 27/10/2026 | Fase 4.2 (branch `fase-4-2-analise`, em cima da 4.1): análise com resumo em números, dicas em 3 colunas, etiquetas de tipo, funções e ameaças em cartões; recomendações com imagens e botões que levam a sugestão para os cards (adicionar parceiro, trocar Pokémon); times de exemplo com EVs + "Começo de time"; mensagens revisadas. `app.py` ficou só com as 3 partes. 81 testes passando. Fase 4 concluída; próximo: Fase 5 (teste completo no site publicado e revisão do código). |
+| 27/10/2026 | PRs #7 e #8 mergeados: Fase 4 concluída. Fase 5 (branch `fase-5-revisao`): Meowsticite corrigida (Pedras Mega com mais de uma forma), 1ª revisão do código. Falta o teste completo no site publicado (pelo Carlos). 81 testes passando. |

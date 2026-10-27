@@ -53,7 +53,7 @@ def carregar_movepool() -> dict:
 
 @lru_cache
 def carregar_itens() -> dict:
-    """{legais: {item_id: nome}, pedras_mega: {item_id: {pokemon, mega}}}"""
+    """{legais: {item_id: nome}, pedras_mega: {item_id: {pokemon, mega, megas}}}"""
     return _ler(config.ITENS_FILE)
 
 

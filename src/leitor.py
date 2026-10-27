@@ -101,7 +101,7 @@ def _nomes_unicos(time: list[dict]) -> list[dict]:
 
 
 def time_de_nomes(nomes: list[str]) -> list[dict]:
-    """Monta um time só com os nomes (sem item/golpes), para quem escolhe da lista.
+    """Monta um time só com os nomes (sem item/golpes). Usado nos testes.
 
     Golpes e habilidade ficam vazios: a análise de tipos funciona, mas a de
     funções de duplas e cobertura ofensiva precisa dos golpes.

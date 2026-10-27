@@ -91,12 +91,17 @@ def test_processar_itens_e_pedras_mega():
         "\t\tmegaStone: { \"Charizard\": \"Charizard-Mega-Y\" },\n\t},\n"
         "\teviolite: {\n\t\tname: \"Eviolite\",\n\t},\n"
         "\tsitrusberry: {\n\t\tname: \"Sitrus Berry\",\n\t},\n"
+        "\tmeowsticite: {\n\t\tname: \"Meowsticite\",\n\t\tmegaStone: {\n"
+        "\t\t\t\"Meowstic\": \"Meowstic-M-Mega\",\n\t\t\t\"Meowstic-F\": \"Meowstic-F-Mega\",\n"
+        "\t\t},\n\t},\n"
         "};\n"
     )
     mod = "export const Items = {\n\teviolite: {\n\t\tinherit: true,\n\t\tisNonstandard: \"Past\",\n\t},\n};\n"
     itens = processar_itens(base, mod)
-    assert set(itens["legais"]) == {"charizarditey", "sitrusberry"}
-    assert itens["pedras_mega"]["charizarditey"] == {"pokemon": "charizard", "mega": "charizardmegay"}
+    assert set(itens["legais"]) == {"charizarditey", "sitrusberry", "meowsticite"}
+    assert itens["pedras_mega"]["charizarditey"] == {
+        "pokemon": "charizard", "mega": "charizardmegay", "megas": ["charizardmegay"]}
+    assert itens["pedras_mega"]["meowsticite"]["megas"] == ["meowsticmmega", "meowsticfmega"]
 
 
 def test_processar_habilidades():

@@ -170,323 +170,571 @@
  "pedras_mega": {
   "abomasite": {
    "pokemon": "abomasnow",
-   "mega": "abomasnowmega"
+   "mega": "abomasnowmega",
+   "megas": [
+    "abomasnowmega"
+   ]
   },
   "absolite": {
    "pokemon": "absol",
-   "mega": "absolmega"
+   "mega": "absolmega",
+   "megas": [
+    "absolmega"
+   ]
   },
   "absolitez": {
    "pokemon": "absol",
-   "mega": "absolmegaz"
+   "mega": "absolmegaz",
+   "megas": [
+    "absolmegaz"
+   ]
   },
   "aerodactylite": {
    "pokemon": "aerodactyl",
-   "mega": "aerodactylmega"
+   "mega": "aerodactylmega",
+   "megas": [
+    "aerodactylmega"
+   ]
   },
   "aggronite": {
    "pokemon": "aggron",
-   "mega": "aggronmega"
+   "mega": "aggronmega",
+   "megas": [
+    "aggronmega"
+   ]
   },
   "alakazite": {
    "pokemon": "alakazam",
-   "mega": "alakazammega"
+   "mega": "alakazammega",
+   "megas": [
+    "alakazammega"
+   ]
   },
   "altarianite": {
    "pokemon": "altaria",
-   "mega": "altariamega"
+   "mega": "altariamega",
+   "megas": [
+    "altariamega"
+   ]
   },
   "ampharosite": {
    "pokemon": "ampharos",
-   "mega": "ampharosmega"
+   "mega": "ampharosmega",
+   "megas": [
+    "ampharosmega"
+   ]
   },
   "audinite": {
    "pokemon": "audino",
-   "mega": "audinomega"
+   "mega": "audinomega",
+   "megas": [
+    "audinomega"
+   ]
   },
   "banettite": {
    "pokemon": "banette",
-   "mega": "banettemega"
+   "mega": "banettemega",
+   "megas": [
+    "banettemega"
+   ]
   },
   "barbaracite": {
    "pokemon": "barbaracle",
-   "mega": "barbaraclemega"
+   "mega": "barbaraclemega",
+   "megas": [
+    "barbaraclemega"
+   ]
   },
   "baxcalibrite": {
    "pokemon": "baxcalibur",
-   "mega": "baxcaliburmega"
+   "mega": "baxcaliburmega",
+   "megas": [
+    "baxcaliburmega"
+   ]
   },
   "beedrillite": {
    "pokemon": "beedrill",
-   "mega": "beedrillmega"
+   "mega": "beedrillmega",
+   "megas": [
+    "beedrillmega"
+   ]
   },
   "blastoisinite": {
    "pokemon": "blastoise",
-   "mega": "blastoisemega"
+   "mega": "blastoisemega",
+   "megas": [
+    "blastoisemega"
+   ]
   },
   "blazikenite": {
    "pokemon": "blaziken",
-   "mega": "blazikenmega"
+   "mega": "blazikenmega",
+   "megas": [
+    "blazikenmega"
+   ]
   },
   "cameruptite": {
    "pokemon": "camerupt",
-   "mega": "cameruptmega"
+   "mega": "cameruptmega",
+   "megas": [
+    "cameruptmega"
+   ]
   },
   "chandelurite": {
    "pokemon": "chandelure",
-   "mega": "chandeluremega"
+   "mega": "chandeluremega",
+   "megas": [
+    "chandeluremega"
+   ]
   },
   "charizarditex": {
    "pokemon": "charizard",
-   "mega": "charizardmegax"
+   "mega": "charizardmegax",
+   "megas": [
+    "charizardmegax"
+   ]
   },
   "charizarditey": {
    "pokemon": "charizard",
-   "mega": "charizardmegay"
+   "mega": "charizardmegay",
+   "megas": [
+    "charizardmegay"
+   ]
   },
   "chesnaughtite": {
    "pokemon": "chesnaught",
-   "mega": "chesnaughtmega"
+   "mega": "chesnaughtmega",
+   "megas": [
+    "chesnaughtmega"
+   ]
   },
   "chimechite": {
    "pokemon": "chimecho",
-   "mega": "chimechomega"
+   "mega": "chimechomega",
+   "megas": [
+    "chimechomega"
+   ]
   },
   "clefablite": {
    "pokemon": "clefable",
-   "mega": "clefablemega"
+   "mega": "clefablemega",
+   "megas": [
+    "clefablemega"
+   ]
   },
   "crabominite": {
    "pokemon": "crabominable",
-   "mega": "crabominablemega"
+   "mega": "crabominablemega",
+   "megas": [
+    "crabominablemega"
+   ]
   },
   "delphoxite": {
    "pokemon": "delphox",
-   "mega": "delphoxmega"
+   "mega": "delphoxmega",
+   "megas": [
+    "delphoxmega"
+   ]
   },
   "dragalgite": {
    "pokemon": "dragalge",
-   "mega": "dragalgemega"
+   "mega": "dragalgemega",
+   "megas": [
+    "dragalgemega"
+   ]
   },
   "dragoninite": {
    "pokemon": "dragonite",
-   "mega": "dragonitemega"
+   "mega": "dragonitemega",
+   "megas": [
+    "dragonitemega"
+   ]
   },
   "drampanite": {
    "pokemon": "drampa",
-   "mega": "drampamega"
+   "mega": "drampamega",
+   "megas": [
+    "drampamega"
+   ]
   },
   "eelektrossite": {
    "pokemon": "eelektross",
-   "mega": "eelektrossmega"
+   "mega": "eelektrossmega",
+   "megas": [
+    "eelektrossmega"
+   ]
   },
   "emboarite": {
    "pokemon": "emboar",
-   "mega": "emboarmega"
+   "mega": "emboarmega",
+   "megas": [
+    "emboarmega"
+   ]
   },
   "excadrite": {
    "pokemon": "excadrill",
-   "mega": "excadrillmega"
+   "mega": "excadrillmega",
+   "megas": [
+    "excadrillmega"
+   ]
   },
   "falinksite": {
    "pokemon": "falinks",
-   "mega": "falinksmega"
+   "mega": "falinksmega",
+   "megas": [
+    "falinksmega"
+   ]
   },
   "feraligite": {
    "pokemon": "feraligatr",
-   "mega": "feraligatrmega"
+   "mega": "feraligatrmega",
+   "megas": [
+    "feraligatrmega"
+   ]
   },
   "floettite": {
    "pokemon": "floetteeternal",
-   "mega": "floettemega"
+   "mega": "floettemega",
+   "megas": [
+    "floettemega"
+   ]
   },
   "froslassite": {
    "pokemon": "froslass",
-   "mega": "froslassmega"
+   "mega": "froslassmega",
+   "megas": [
+    "froslassmega"
+   ]
   },
   "galladite": {
    "pokemon": "gallade",
-   "mega": "gallademega"
+   "mega": "gallademega",
+   "megas": [
+    "gallademega"
+   ]
   },
   "garchompite": {
    "pokemon": "garchomp",
-   "mega": "garchompmega"
+   "mega": "garchompmega",
+   "megas": [
+    "garchompmega"
+   ]
   },
   "garchompitez": {
    "pokemon": "garchomp",
-   "mega": "garchompmegaz"
+   "mega": "garchompmegaz",
+   "megas": [
+    "garchompmegaz"
+   ]
   },
   "gardevoirite": {
    "pokemon": "gardevoir",
-   "mega": "gardevoirmega"
+   "mega": "gardevoirmega",
+   "megas": [
+    "gardevoirmega"
+   ]
   },
   "gengarite": {
    "pokemon": "gengar",
-   "mega": "gengarmega"
+   "mega": "gengarmega",
+   "megas": [
+    "gengarmega"
+   ]
   },
   "glalitite": {
    "pokemon": "glalie",
-   "mega": "glaliemega"
+   "mega": "glaliemega",
+   "megas": [
+    "glaliemega"
+   ]
   },
   "glimmoranite": {
    "pokemon": "glimmora",
-   "mega": "glimmoramega"
+   "mega": "glimmoramega",
+   "megas": [
+    "glimmoramega"
+   ]
   },
   "golisopite": {
    "pokemon": "golisopod",
-   "mega": "golisopodmega"
+   "mega": "golisopodmega",
+   "megas": [
+    "golisopodmega"
+   ]
   },
   "golurkite": {
    "pokemon": "golurk",
-   "mega": "golurkmega"
+   "mega": "golurkmega",
+   "megas": [
+    "golurkmega"
+   ]
   },
   "greninjite": {
    "pokemon": "greninja",
-   "mega": "greninjamega"
+   "mega": "greninjamega",
+   "megas": [
+    "greninjamega"
+   ]
   },
   "gyaradosite": {
    "pokemon": "gyarados",
-   "mega": "gyaradosmega"
+   "mega": "gyaradosmega",
+   "megas": [
+    "gyaradosmega"
+   ]
   },
   "hawluchanite": {
    "pokemon": "hawlucha",
-   "mega": "hawluchamega"
+   "mega": "hawluchamega",
+   "megas": [
+    "hawluchamega"
+   ]
   },
   "heracronite": {
    "pokemon": "heracross",
-   "mega": "heracrossmega"
+   "mega": "heracrossmega",
+   "megas": [
+    "heracrossmega"
+   ]
   },
   "houndoominite": {
    "pokemon": "houndoom",
-   "mega": "houndoommega"
+   "mega": "houndoommega",
+   "megas": [
+    "houndoommega"
+   ]
   },
   "kangaskhanite": {
    "pokemon": "kangaskhan",
-   "mega": "kangaskhanmega"
+   "mega": "kangaskhanmega",
+   "megas": [
+    "kangaskhanmega"
+   ]
   },
   "lopunnite": {
    "pokemon": "lopunny",
-   "mega": "lopunnymega"
+   "mega": "lopunnymega",
+   "megas": [
+    "lopunnymega"
+   ]
   },
   "lucarionite": {
    "pokemon": "lucario",
-   "mega": "lucariomega"
+   "mega": "lucariomega",
+   "megas": [
+    "lucariomega"
+   ]
   },
   "lucarionitez": {
    "pokemon": "lucario",
-   "mega": "lucariomegaz"
+   "mega": "lucariomegaz",
+   "megas": [
+    "lucariomegaz"
+   ]
   },
   "malamarite": {
    "pokemon": "malamar",
-   "mega": "malamarmega"
+   "mega": "malamarmega",
+   "megas": [
+    "malamarmega"
+   ]
   },
   "manectite": {
    "pokemon": "manectric",
-   "mega": "manectricmega"
+   "mega": "manectricmega",
+   "megas": [
+    "manectricmega"
+   ]
   },
   "mawilite": {
    "pokemon": "mawile",
-   "mega": "mawilemega"
+   "mega": "mawilemega",
+   "megas": [
+    "mawilemega"
+   ]
   },
   "medichamite": {
    "pokemon": "medicham",
-   "mega": "medichammega"
+   "mega": "medichammega",
+   "megas": [
+    "medichammega"
+   ]
   },
   "meganiumite": {
    "pokemon": "meganium",
-   "mega": "meganiummega"
+   "mega": "meganiummega",
+   "megas": [
+    "meganiummega"
+   ]
+  },
+  "meowsticite": {
+   "pokemon": "meowstic",
+   "mega": "meowsticmmega",
+   "megas": [
+    "meowsticmmega",
+    "meowsticfmega"
+   ]
   },
   "metagrossite": {
    "pokemon": "metagross",
-   "mega": "metagrossmega"
+   "mega": "metagrossmega",
+   "megas": [
+    "metagrossmega"
+   ]
   },
   "pidgeotite": {
    "pokemon": "pidgeot",
-   "mega": "pidgeotmega"
+   "mega": "pidgeotmega",
+   "megas": [
+    "pidgeotmega"
+   ]
   },
   "pinsirite": {
    "pokemon": "pinsir",
-   "mega": "pinsirmega"
+   "mega": "pinsirmega",
+   "megas": [
+    "pinsirmega"
+   ]
   },
   "pyroarite": {
    "pokemon": "pyroar",
-   "mega": "pyroarmega"
+   "mega": "pyroarmega",
+   "megas": [
+    "pyroarmega"
+   ]
   },
   "raichunitex": {
    "pokemon": "raichu",
-   "mega": "raichumegax"
+   "mega": "raichumegax",
+   "megas": [
+    "raichumegax"
+   ]
   },
   "raichunitey": {
    "pokemon": "raichu",
-   "mega": "raichumegay"
+   "mega": "raichumegay",
+   "megas": [
+    "raichumegay"
+   ]
   },
   "sablenite": {
    "pokemon": "sableye",
-   "mega": "sableyemega"
+   "mega": "sableyemega",
+   "megas": [
+    "sableyemega"
+   ]
   },
   "salamencite": {
    "pokemon": "salamence",
-   "mega": "salamencemega"
+   "mega": "salamencemega",
+   "megas": [
+    "salamencemega"
+   ]
   },
   "sceptilite": {
    "pokemon": "sceptile",
-   "mega": "sceptilemega"
+   "mega": "sceptilemega",
+   "megas": [
+    "sceptilemega"
+   ]
   },
   "scizorite": {
    "pokemon": "scizor",
-   "mega": "scizormega"
+   "mega": "scizormega",
+   "megas": [
+    "scizormega"
+   ]
   },
   "scolipite": {
    "pokemon": "scolipede",
-   "mega": "scolipedemega"
+   "mega": "scolipedemega",
+   "megas": [
+    "scolipedemega"
+   ]
   },
   "scovillainite": {
    "pokemon": "scovillain",
-   "mega": "scovillainmega"
+   "mega": "scovillainmega",
+   "megas": [
+    "scovillainmega"
+   ]
   },
   "scraftinite": {
    "pokemon": "scrafty",
-   "mega": "scraftymega"
+   "mega": "scraftymega",
+   "megas": [
+    "scraftymega"
+   ]
   },
   "sharpedonite": {
    "pokemon": "sharpedo",
-   "mega": "sharpedomega"
+   "mega": "sharpedomega",
+   "megas": [
+    "sharpedomega"
+   ]
   },
   "skarmorite": {
    "pokemon": "skarmory",
-   "mega": "skarmorymega"
+   "mega": "skarmorymega",
+   "megas": [
+    "skarmorymega"
+   ]
   },
   "slowbronite": {
    "pokemon": "slowbro",
-   "mega": "slowbromega"
+   "mega": "slowbromega",
+   "megas": [
+    "slowbromega"
+   ]
   },
   "staraptite": {
    "pokemon": "staraptor",
-   "mega": "staraptormega"
+   "mega": "staraptormega",
+   "megas": [
+    "staraptormega"
+   ]
   },
   "starminite": {
    "pokemon": "starmie",
-   "mega": "starmiemega"
+   "mega": "starmiemega",
+   "megas": [
+    "starmiemega"
+   ]
   },
   "steelixite": {
    "pokemon": "steelix",
-   "mega": "steelixmega"
+   "mega": "steelixmega",
+   "megas": [
+    "steelixmega"
+   ]
   },
   "swampertite": {
    "pokemon": "swampert",
-   "mega": "swampertmega"
+   "mega": "swampertmega",
+   "megas": [
+    "swampertmega"
+   ]
   },
   "tyranitarite": {
    "pokemon": "tyranitar",
-   "mega": "tyranitarmega"
+   "mega": "tyranitarmega",
+   "megas": [
+    "tyranitarmega"
+   ]
   },
   "venusaurite": {
    "pokemon": "venusaur",
-   "mega": "venusaurmega"
+   "mega": "venusaurmega",
+   "megas": [
+    "venusaurmega"
+   ]
   },
   "victreebelite": {
    "pokemon": "victreebel",
-   "mega": "victreebelmega"
+   "mega": "victreebelmega",
+   "megas": [
+    "victreebelmega"
+   ]
   }
  }
 }
