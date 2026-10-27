@@ -237,6 +237,17 @@ def ameacas_do_meta(time: list[dict], quantos: int = 5) -> list[dict]:
     return [a for a in ameacas if a["nota"] > 0][:quantos]
 
 
+def tipos_perigosos(analise: dict) -> list[dict]:
+    """Tipos de golpe a que 2 ou mais são fracos e que poucos seguram."""
+    perigosos = []
+    for linha in analise["defesa"]:
+        fracos = len(linha["fracos"])
+        seguram = len(linha["resistem"]) + len(linha["imunes"])
+        if fracos >= 2 and fracos > seguram:
+            perigosos.append({"tipo": linha["tipo"], "fracos": fracos, "seguram": seguram})
+    return sorted(perigosos, key=lambda p: p["fracos"] - p["seguram"], reverse=True)
+
+
 def analisar(time: list[dict]) -> dict:
     """Roda as quatro análises de uma vez (só com os Pokémon reconhecidos)."""
     time = [m for m in time if m["id"] in dados.carregar_pokemon()]

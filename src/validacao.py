@@ -3,7 +3,8 @@ Validação das regras do formato (duplas do Pokémon Champions).
 
 Cada problema vira uma mensagem com um nível:
     "erro"  -> o time não pode ser usado assim (ex.: item repetido);
-    "aviso" -> pode ser usado, mas vale conferir (ex.: duas Pedras Mega).
+    "aviso" -> pode ser usado, mas vale conferir (ex.: duas Pedras Mega);
+    "info"  -> só informação (ex.: o time ainda não tem 6 Pokémon).
 """
 
 import difflib
@@ -37,8 +38,10 @@ def validar_time(time: list[dict]) -> list[dict]:
     # Tamanho do time: leva 6, escolhe 4.
     if len(time) > config.TEAM_SIZE:
         erro(f"O time tem {len(time)} Pokémon; o máximo é {config.TEAM_SIZE}.")
-    elif len(time) < config.TEAM_SIZE:
-        aviso(f"O time tem {len(time)} Pokémon; o normal é levar {config.TEAM_SIZE}.")
+    elif len(time) < config.TEAM_SIZE:  # não é erro: o time ainda está sendo montado
+        problemas.append({"nivel": "info", "mensagem":
+                          f"O time tem {len(time)} de {config.TEAM_SIZE} Pokémon: a análise "
+                          "considera só estes. Complete os cards para ela ficar completa."})
 
     especies_vistas = {}
     itens_vistos = {}

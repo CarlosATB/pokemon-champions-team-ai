@@ -167,10 +167,12 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 - [x] Botão para importar/exportar time no formato do Showdown — **4.1**: aba "Colar do Showdown" removida; Importar (cola o texto ou carrega um time de exemplo → preenche os cards, avisa o que não entrou) e Exportar (texto pronto para o Showdown; Mega sai como forma normal + Pedra Mega) — `src/importar_exportar.py`
 - [x] "Montar com esta recomendação" também preenche natureza e pontos de status
 - [x] Testes — `tests/test_importar_exportar.py` (6 testes) + EVs no leitor; 79 passando
-- [ ] Exibição da análise (tabela/gráfico de fraquezas, funções, ameaças) — 4.2
-- [~] Exibição das recomendações por Pokémon — primeira versão na Fase 3 (expanders + tabelas); melhorar o visual — 4.2
-- [~] Times de exemplo prontos para a demonstração — 4 times, agora em Importar → Time de exemplo; revisar/ajustar para o roteiro — 4.2
-- [~] Mensagens de erro amigáveis (nome errado, Pokémon ilegal) — o Importar já avisa em português ("Você quis dizer...?"); falta revisar as da análise — 4.2
+- [x] Exibição da análise — **4.2** (`src/tela_analise.py`): erros das regras numa caixa só; 4 números de resumo (tipos perigosos, tipos que acerta forte, funções, maior ameaça); dicas em 3 colunas (problemas / pode melhorar / pontos fortes); tipos perigosos e tipos sem dano dobrado em etiquetas coloridas; funções de duplas em cartões ✅/❌; ameaças do meta em cartões com imagem
+- [x] Exibição das recomendações — **4.2** (`src/tela_recomendacoes.py`): uma aba por Pokémon com a imagem; parceiros em cartões com botão "Adicionar ao time" (primeiro card vazio, já montado); substitutos em cartões com botão "Colocar no lugar de X"
+- [x] Times de exemplo prontos para a demonstração — **4.2**: os 3 do meta agora têm EVs (os mais usados); novo "Começo de time (3 Pokémon)" para mostrar a IA completando o time; todos importam sem avisos (teste)
+- [x] Mensagens de erro amigáveis — o Importar avisa em português ("Você quis dizer...?"); na análise, erros agrupados numa caixa e "time incompleto" virou informação (azul), não aviso — **4.2**
+- [x] "Sobre os dados": tabela dos 20 mais usados com nomes bonitos (antes mostrava ids como `grassysurge`) — **4.2**
+- [x] Testes — **4.2**: `tipos_perigosos`, time incompleto e times de exemplo; 81 passando
 
 ### Fase 5 — Publicação e testes
 - [x] Deploy no Streamlit Community Cloud funcionando — https://pokemon-champions-team-ai.streamlit.app/ (atualiza a cada merge na `main`)
@@ -205,3 +207,4 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 | 27/10/2026 | Fase 3 mergeada (PR #4). Fase 3.1 a pedido do Carlos: aba "Montar o time" com item, habilidade e golpes em cards (`src/opcoes.py`, `montar_time` no leitor). 65 testes passando. |
 | 27/10/2026 | Fase 3.2 a pedido do Carlos: cobertura ofensiva só com os golpes de ataque escolhidos, mostrando "golpe (Pokémon)", botão que monta o Pokémon com a recomendação, e ameaças do meta supondo os golpes mais usados de quem não tem golpes; Mega já vem com a Pedra Mega travada; substitutos levam em conta as funções que faltam e explicam o porquê. 73 testes passando. |
 | 27/10/2026 | Fase 4.1 (branch `fase-4-montar-o-time`): "Montar o time" virou a única tela de entrada, com cards no estilo do teambuilder (imagem, tipos coloridos, ícone do item, tema escuro), dado, ajustes de natureza/EVs e botões Importar/Exportar no lugar da aba "Colar do Showdown". Imagens salvas em `data/sprites/`. 79 testes passando. Próximo: 4.2 (análise, recomendações, mensagens e times de exemplo). |
+| 27/10/2026 | Fase 4.2 (branch `fase-4-2-analise`, em cima da 4.1): análise com resumo em números, dicas em 3 colunas, etiquetas de tipo, funções e ameaças em cartões; recomendações com imagens e botões que levam a sugestão para os cards (adicionar parceiro, trocar Pokémon); times de exemplo com EVs + "Começo de time"; mensagens revisadas. `app.py` ficou só com as 3 partes. 81 testes passando. Fase 4 concluída; próximo: Fase 5 (teste completo no site publicado e revisão do código). |

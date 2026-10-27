@@ -4,26 +4,21 @@ Pokémon Champions Team AI — interface (Streamlit).
 Para rodar localmente:
     streamlit run app.py
 
-1. Seu time      -> src/tela_montar.py (6 cards, Importar/Exportar do Showdown)
-2. Análise       -> src/analise.py, src/dicas.py, src/validacao.py
-3. Recomendações -> src/recomendacao.py (habilidade, item, golpes, EVs, parceiros e substitutos)
+A página tem três partes, cada uma desenhada por um arquivo de src/:
+1. Seu time      -> tela_montar.py        (6 cards, dado, Importar/Exportar do Showdown)
+2. Análise       -> tela_analise.py       (usa analise.py, dicas.py e validacao.py)
+3. Recomendações -> tela_recomendacoes.py (usa recomendacao.py: o Sistema de Recomendação)
 """
 
-import pandas as pd
 import streamlit as st
 
 from src import config, dados
-from src.analise import analisar
-from src.dicas import gerar_dicas
-from src.funcoes_duplas import FUNCOES
 from src.leitor import montar_time
-from src.opcoes import montagem_recomendada
-from src.recomendacao import (PESO_FRAQUEZAS, PESO_FUNCOES, PESO_PARCERIA, recomendar_time,
-                              sugerir_parceiros,
-                              sugerir_substitutos)
+from src.recomendacao import nome_da_habilidade, nome_do_item, nome_do_pokemon
+from src.tela_analise import mostrar_analise
+from src.tela_montar import tela_montar_o_time
+from src.tela_recomendacoes import mostrar_recomendacoes
 from src.tipos import TIPOS_PT
-from src.tela_montar import preencher_card, tela_montar_o_time
-from src.validacao import validar_time
 from src.visual import CSS
 
 st.set_page_config(
@@ -39,202 +34,41 @@ st.caption(
     f"{config.REGULATION_NAME} · dados de uso de {config.STATS_MONTH}"
 )
 
-
-# ---------------------------------------------------------------------------
-# Entrada do time
-# ---------------------------------------------------------------------------
-
 st.header("1. Seu time")
-montados = tela_montar_o_time()
-time = montar_time(montados)
-
-# ---------------------------------------------------------------------------
-# Resultado da análise
-# ---------------------------------------------------------------------------
+time = montar_time(tela_montar_o_time())
 
 if time:
     st.header("2. Análise")
-
-    problemas = validar_time(time)
-    for problema in problemas:
-        if problema["nivel"] == "erro":
-            st.error(problema["mensagem"], icon="⛔")
-        else:
-            st.warning(problema["mensagem"], icon="⚠️")
-
-    analise = analisar(time)
-    time_ok = [m for m in time if m["id"] in dados.carregar_pokemon()]
-    nomes = [m["especie"] for m in time_ok]
-
-    st.subheader("Dicas")
-    icones = {"alerta": "🔴", "atencao": "🟡", "ok": "🟢"}
-    dicas = gerar_dicas(time_ok, analise)
-    for nivel in ["alerta", "atencao", "ok"]:  # problemas primeiro
-        for dica in dicas:
-            if dica["nivel"] == nivel:
-                st.markdown(f"{icones[nivel]} {dica['texto']}")
-
-    texto_dano = {4: "4x", 2: "2x", 1: "", 0.5: "½", 0.25: "¼", 0: "0"}
-    aba_def, aba_of, aba_func, aba_ameacas = st.tabs(
-        ["Fraquezas e resistências", "Cobertura ofensiva", "Funções de duplas", "Ameaças do meta"])
-
-    with aba_def:
-        st.caption("Dano que cada Pokémon toma de cada tipo de golpe "
-                   "(já contando habilidades como Levitate e a forma Mega).")
-        cores = {"4x": "#e74c3c", "2x": "#f5b7b1", "½": "#a9dfbf", "¼": "#52be80", "0": "#5dade2"}
-        linhas = []
-        for linha in analise["defesa"]:
-            celulas = {nome: texto_dano.get(x, f"{x}x") for nome, x in linha["dano"].items()}
-            linhas.append({"Tipo do golpe": TIPOS_PT[linha["tipo"]], **celulas,
-                           "Fracos": len(linha["fracos"]),
-                           "Resistem/imunes": len(linha["resistem"]) + len(linha["imunes"])})
-        tabela = pd.DataFrame(linhas).style.map(
-            lambda v: f"background-color: {cores[v]}; color: black" if v in cores else "",
-            subset=nomes)
-        st.dataframe(tabela, hide_index=True, width="stretch", height=670)
-
-    with aba_of:
-        st.caption("O melhor dano que o time causa em cada tipo, só com os golpes de ataque "
-                   "escolhidos. Em cada linha: o golpe e quem usa.")
-        if analise["sem_ataques"]:
-            st.warning(f"Sem golpes de ataque (não entram na conta): "
-                       f"{', '.join(analise['sem_ataques'])}.")
-        if len(analise["sem_ataques"]) < len(time_ok):
-            st.dataframe([{
-                "Tipo do alvo": TIPOS_PT[c["tipo"]],
-                "Melhor dano": texto_dano.get(c["melhor"], f"{c['melhor']}x") or "1x",
-                "Golpes (quem usa)": ", ".join(c["quem"]) if c["melhor"] >= 2 else "-",
-            } for c in analise["cobertura"]], hide_index=True, width="stretch", height=670)
-
-    with aba_func:
-        st.dataframe([{
-            "Função": funcao["nome"],
-            "Quem faz": ", ".join(analise["funcoes"][chave]) or "ninguém",
-            "Para que serve": funcao["descricao"],
-        } for chave, funcao in FUNCOES.items()], hide_index=True, width="stretch")
-
-    with aba_ameacas:
-        st.caption("Entre os 30 Pokémon mais usados: quem acerta muitos do seu time com dano "
-                   "dobrado e quase não é acertado de volta. Nota = acerta − respostas. "
-                   "Pokémon sem golpes contam com os golpes mais usados com ele.")
-        st.dataframe([{
-            "Pokémon": a["nome"],
-            "Uso (%)": a["uso"],
-            "Ataca com": ", ".join(TIPOS_PT[t] for t in a["tipos_ataque"]),
-            "Acerta forte": ", ".join(a["acerta"]),
-            "Suas respostas": ", ".join(a["respostas"]) or "nenhuma",
-            "Nota": a["nota"],
-        } for a in analise["ameacas"]], hide_index=True, width="stretch")
+    time_ok = mostrar_analise(time)
+    if time_ok:
+        st.header("3. Recomendações")
+        mostrar_recomendacoes(time_ok)
+else:
+    st.info("Monte o time nos cards acima (ou use 📥 Importar → Time de exemplo) "
+            "para ver a análise e as recomendações.")
 
 # ---------------------------------------------------------------------------
-# Recomendações (Fase 3)
+# Sobre os dados
 # ---------------------------------------------------------------------------
-
-if time and time_ok:
-    st.header("3. Recomendações")
-    st.caption("Baseadas no que os jogadores mais usam nas batalhas reais "
-               "(\"quem usa X também usa Y\"). ✅ = você já usa.")
-    aba_pokemon, aba_parceiros, aba_trocas = st.tabs(
-        ["Por Pokémon", "Parceiros", "Trocar um Pokémon"])
-
-    def marca(voce_usa):
-        return " ✅" if voce_usa else ""
-
-    with aba_pokemon:
-        for membro, sugestao in zip(time_ok, recomendar_time(time_ok)):
-            with st.expander(sugestao["especie"]):
-                if not sugestao["tem_dados"]:
-                    st.info(sugestao["porque"])
-                    continue
-                montagem = montagem_recomendada(membro["id"], sugestao)
-                st.button("Montar com esta recomendação", key=f"montar_{membro['vaga']}",
-                          on_click=preencher_card,
-                          args=(membro["vaga"], {"pokemon": membro["id"], **montagem}),
-                          help="Preenche o card deste Pokémon com o item, a habilidade, "
-                               "os 4 golpes, a natureza e os pontos de status mais usados.")
-                hab, item, golpes, spread = (sugestao["habilidade"], sugestao["item"],
-                                             sugestao["golpes"], sugestao["natureza_evs"])
-                col1, col2 = st.columns(2)
-                with col1:
-                    st.markdown(f"**Habilidade:** {hab['nome']}{marca(hab['voce_usa'])}")
-                    st.caption(hab["porque"])
-                    melhor = item["melhor"]["nome"] if item["melhor"] else "-"
-                    st.markdown(f"**Item:** {melhor}{marca(item['voce_usa'])}")
-                    st.caption(item["porque"])
-                    st.markdown(f"**Natureza:** {spread['natureza']}{marca(spread['voce_usa'])}  \n"
-                                f"**EVs:** {spread['evs']}")
-                    st.caption(spread["porque"])
-                with col2:
-                    st.markdown("**Golpes mais usados**")
-                    st.dataframe([{"Golpe": g["nome"] + marca(g["voce_usa"]), "Uso (%)": g["uso"]}
-                                  for g in golpes["lista"]], hide_index=True, width="stretch")
-                    st.caption(golpes["porque"])
-
-    with aba_parceiros:
-        st.caption("Quem mais aparece junto com o seu time. Confiança = % dos times com os "
-                   "seus Pokémon que também têm ele (média). Lift > 1 = combinam mais que o acaso.")
-        st.dataframe([{
-            "Pokémon": p["nome"],
-            "Confiança (%)": p["confianca"],
-            "Uso geral (%)": p["suporte"],
-            "Lift": p["lift"],
-            "Por quê": p["porque"],
-        } for p in sugerir_parceiros(time_ok, quantos=8)], hide_index=True, width="stretch")
-
-    with aba_trocas:
-        if len(time_ok) < 2:
-            st.info("Coloque pelo menos 2 Pokémon para sugerir trocas.")
-        else:
-            automatico = "(a IA escolhe)"
-            escolha = st.selectbox("Quem sai do time?", [automatico] + [m["especie"] for m in time_ok])
-            sai = None if escolha == automatico else next(m for m in time_ok if m["especie"] == escolha)
-            trocas = sugerir_substitutos(time_ok, sai)
-            st.markdown(f"**Sai: {trocas['sai']}.** {trocas['motivo']}")
-            if trocas["fraquezas"]:
-                st.markdown("Fraquezas do time sem ele: " + ", ".join(trocas["fraquezas"]))
-            if trocas["faltam"]:
-                st.markdown("Funções de duplas que faltam sem ele: " + ", ".join(trocas["faltam"]))
-            st.caption(f"Nota (0 a 100) = {PESO_PARCERIA:.0%} co-ocorrência com quem fica + "
-                       f"{PESO_FRAQUEZAS:.0%} quantas dessas fraquezas ele resiste + "
-                       f"{PESO_FUNCOES:.0%} quantas dessas funções ele traz (com os golpes mais "
-                       "usados com ele). Pelo menos 1 sugerido traz cada função essencial que falta.")
-            st.dataframe([{
-                "Pokémon": s["nome"],
-                "Nota": s["nota"],
-                "Traz": ", ".join(s["traz"]) or "-",
-                "Resiste a": ", ".join(s["cobre"]) or "-",
-                "Por quê": s["porque"],
-            } for s in trocas["substitutos"]], hide_index=True, width="stretch")
 
 st.divider()
-st.subheader("Dados carregados")
-try:
-    uso = dados.carregar_uso()
+st.subheader("Sobre os dados")
+uso = dados.carregar_uso()
+col1, col2, col3 = st.columns(3)
+col1.metric("Batalhas analisadas", f"{uso['batalhas']:,}".replace(",", "."))
+col2.metric("Pokémon com estatísticas", len(uso["pokemon"]))
+col3.metric("Pokémon/formas legais", len(dados.carregar_legais()))
+
+with st.expander("Os 20 Pokémon mais usados"):
     pokemon = dados.carregar_pokemon()
-except FileNotFoundError as erro:
-    st.warning(str(erro))
-else:
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Batalhas analisadas", f"{uso['batalhas']:,}".replace(",", "."))
-    col2.metric("Pokémon com estatísticas", len(uso["pokemon"]))
-    col3.metric("Pokémon/formas legais", len(dados.carregar_legais()))
-
-    def nome_de(pokemon_id):
-        return uso["pokemon"].get(pokemon_id, {}).get("nome", pokemon_id)
-
-    st.markdown("**Os 20 Pokémon mais usados**")
-    linhas = []
-    for pokemon_id, info in list(uso["pokemon"].items())[:20]:
-        tipos = pokemon.get(pokemon_id, {}).get("tipos", [])
-        linhas.append({
-            "Pokémon": info["nome"],
-            "Uso (%)": info["uso"],
-            "Tipos": " / ".join(TIPOS_PT[t] for t in tipos),
-            "Habilidade mais usada": next(iter(info["habilidades"]), "-"),
-            "Item mais usado": next(iter(info["itens"]), "-"),
-            "Parceiro mais comum": nome_de(next(iter(info["parceiros"]), "-")),
-        })
-    st.dataframe(linhas, hide_index=True, width="stretch")
+    st.dataframe([{
+        "Pokémon": info["nome"],
+        "Uso (%)": info["uso"],
+        "Tipos": " / ".join(TIPOS_PT[t] for t in pokemon.get(pokemon_id, {}).get("tipos", [])),
+        "Habilidade mais usada": nome_da_habilidade(next(iter(info["habilidades"]), "-")),
+        "Item mais usado": nome_do_item(next(iter(info["itens"]), "-")),
+        "Parceiro mais comum": nome_do_pokemon(next(iter(info["parceiros"]), "-")),
+    } for pokemon_id, info in list(uso["pokemon"].items())[:20]], hide_index=True, width="stretch")
 
 with st.expander("Regras do formato consideradas"):
     st.markdown(
@@ -242,6 +76,7 @@ with st.expander("Regras do formato consideradas"):
 - Nível {config.LEVEL}; leva {config.TEAM_SIZE} e escolhe {config.PICK_SIZE}.
 - Não pode repetir espécie nem item.
 - Até {config.MAX_MEGA_PER_BATTLE} Mega Evolução por batalha. Sem Terastalização.
+- Pontos de status (EVs): até {config.EV_MAX} em cada, {config.EV_TOTAL} no total.
 - Formato no Showdown: `{config.FORMAT_ID}`
 """
     )
