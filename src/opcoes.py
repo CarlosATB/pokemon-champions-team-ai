@@ -20,8 +20,22 @@ def _ordenar(ids: list[str], mais_usados: dict, nome) -> list[str]:
     return primeiros + resto
 
 
+def pedra_da_mega(pokemon_id: str) -> str | None:
+    """Pedra Mega que esta forma Mega precisa segurar (None se não for Mega)."""
+    for item_id, pedra in dados.carregar_itens()["pedras_mega"].items():
+        if pedra["mega"] == pokemon_id:
+            return item_id
+    return None
+
+
 def opcoes_de_itens(pokemon_id: str) -> list[str]:
-    """ids dos itens legais, sem Pedras Mega de outros Pokémon."""
+    """ids dos itens legais, sem Pedras Mega de outros Pokémon.
+
+    Uma Mega (ex.: Beedrill-Mega) só pode segurar a própria Pedra Mega.
+    """
+    pedra = pedra_da_mega(pokemon_id)
+    if pedra:
+        return [pedra]
     itens = dados.carregar_itens()
     especie = dados.carregar_pokemon().get(pokemon_id, {}).get("especie_base", pokemon_id)
     validos = [i for i in itens["legais"]

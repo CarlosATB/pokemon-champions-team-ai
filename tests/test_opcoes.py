@@ -5,7 +5,7 @@ from apoio import precisa_dados
 from src.analise import analisar
 from src.leitor import montar_time
 from src.opcoes import (
-    montagem_recomendada, opcoes_de_golpes, opcoes_de_habilidades, opcoes_de_itens,
+    montagem_recomendada, opcoes_de_golpes, opcoes_de_habilidades, opcoes_de_itens, pedra_da_mega,
 )
 from src.recomendacao import sugerir_para_pokemon
 from src.validacao import tem_erro, validar_time
@@ -59,3 +59,10 @@ def test_montagem_da_mega_nao_troca_a_habilidade():
     montagem = montagem_recomendada("beedrill", sugerir_para_pokemon(membro))
     assert montagem["item"] == "beedrillite" and montagem["habilidade"] is None
     assert "poisonjab" in montagem["golpes"]
+
+
+def test_mega_so_pode_segurar_a_propria_pedra():
+    assert opcoes_de_itens("beedrillmega") == ["beedrillite"]
+    assert opcoes_de_itens("aggronmega") == ["aggronite"]
+    assert pedra_da_mega("beedrill") is None  # a forma normal escolhe qualquer item
+    assert "beedrillite" in opcoes_de_itens("beedrill")

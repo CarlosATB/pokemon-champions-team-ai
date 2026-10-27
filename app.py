@@ -17,7 +17,7 @@ from src.dicas import gerar_dicas
 from src.funcoes_duplas import FUNCOES
 from src.leitor import ler_time, montar_time
 from src.opcoes import (
-    montagem_recomendada, opcoes_de_golpes, opcoes_de_habilidades, opcoes_de_itens,
+    montagem_recomendada, opcoes_de_golpes, opcoes_de_habilidades, opcoes_de_itens, pedra_da_mega,
 )
 from src.recomendacao import (PESO_FRAQUEZAS, PESO_PARCERIA, recomendar_time, sugerir_parceiros,
                               sugerir_substitutos)
@@ -75,8 +75,15 @@ with aba_montar:
             esquerda, direita = st.columns(2)
             with esquerda:
                 # A chave inclui o Pokémon: ao trocar de Pokémon, os seletores recomeçam.
-                item = st.selectbox("Item", [None] + opcoes_de_itens(pid), key=f"item_{vaga}_{pid}",
-                                    format_func=lambda i: "(nenhum)" if i is None else itens_por_id[i])
+                pedra = pedra_da_mega(pid)
+                if pedra:  # a Mega já vem com a Pedra Mega dela, travada
+                    item = st.selectbox("Item", [pedra], key=f"item_{vaga}_{pid}", disabled=True,
+                                        format_func=itens_por_id.get,
+                                        help="Para Mega Evoluir, ela precisa segurar esta pedra.")
+                else:
+                    item = st.selectbox(
+                        "Item", [None] + opcoes_de_itens(pid), key=f"item_{vaga}_{pid}",
+                        format_func=lambda i: "(nenhum)" if i is None else itens_por_id[i])
                 habilidade = st.selectbox("Habilidade", opcoes_de_habilidades(pid),
                                           key=f"habilidade_{vaga}_{pid}",
                                           format_func=lambda h: habilidades_por_id.get(h, h))
