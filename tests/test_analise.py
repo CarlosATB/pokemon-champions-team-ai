@@ -3,6 +3,7 @@
 from apoio import precisa_dados, time_exemplo
 
 from src.analise import (
+    tipos_perigosos,
     analisar, ataques_do_membro, cobertura_ofensiva, dano_recebido, funcoes_do_time, golpes_de_ataque,
     matriz_defensiva, tipos_de_ataque,
 )
@@ -97,3 +98,10 @@ def test_ameacas_supoem_os_golpes_mais_usados_de_quem_nao_tem_golpes():
 def test_pokemon_desconhecido_fica_de_fora():
     analise = analisar(time_de_nomes(["Rillaboom", "Pokémon Inventado"]))
     assert list(linha_do_tipo(analise["defesa"], "Fire")["dano"]) == ["Rillaboom"]
+
+
+def test_tipos_perigosos():
+    perigosos = tipos_perigosos(analisar(time_exemplo("Time com problemas")))
+    tipos = [p["tipo"] for p in perigosos]
+    assert tipos[0] == "Ice"  # 4 dragões/voadores fracos a Gelo
+    assert all(p["fracos"] >= 2 and p["fracos"] > p["seguram"] for p in perigosos)

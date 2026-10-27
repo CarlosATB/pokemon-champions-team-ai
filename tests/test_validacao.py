@@ -48,3 +48,9 @@ def test_item_fora_do_jogo_e_golpes_demais():
 def test_golpe_que_o_pokemon_nao_aprende():
     time = ler_time("Incineroar @ Sitrus Berry\n- Surf")
     assert any("não aprende Surf" in m for m in mensagens(time))
+
+
+def test_time_incompleto_e_so_informacao():
+    problemas = validar_time(time_exemplo("Começo de time"))
+    assert [p["nivel"] for p in problemas] == ["info"]
+    assert "3 de 6" in problemas[0]["mensagem"]

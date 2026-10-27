@@ -2,8 +2,10 @@
 Times de exemplo, no formato de exportação do Showdown.
 
 Usados nos testes e na demonstração (dá para escolher no site).
-Os três primeiros seguem o meta; o último foi montado COM problemas de
-propósito, para mostrar a IA encontrando erros e fraquezas.
+Os três primeiros seguem o meta (natureza e EVs = os mais usados);
+"Time com problemas" foi montado COM problemas de propósito, para mostrar a IA
+encontrando erros e fraquezas; "Começo de time" tem só 3 Pokémon, para mostrar
+a IA completando o time (Parceiros -> Adicionar ao time, ou o dado).
 """
 
 TIMES_EXEMPLO = {
@@ -11,6 +13,7 @@ TIMES_EXEMPLO = {
 Rillaboom @ Miracle Seed
 Ability: Grassy Surge
 Level: 50
+EVs: 32 HP / 32 Atk / 2 SpD
 Adamant Nature
 - Fake Out
 - Grassy Glide
@@ -20,6 +23,7 @@ Adamant Nature
 Incineroar @ Sitrus Berry
 Ability: Intimidate
 Level: 50
+EVs: 32 HP / 14 Def / 20 SpD
 Careful Nature
 - Fake Out
 - Parting Shot
@@ -29,6 +33,7 @@ Careful Nature
 Sneasler @ White Herb
 Ability: Unburden
 Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
 Jolly Nature
 - Close Combat
 - Dire Claw
@@ -38,6 +43,7 @@ Jolly Nature
 Salamence @ Salamencite
 Ability: Intimidate
 Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
 Modest Nature
 - Hyper Voice
 - Draco Meteor
@@ -47,6 +53,7 @@ Modest Nature
 Indeedee-F @ Rocky Helmet
 Ability: Psychic Surge
 Level: 50
+EVs: 32 HP / 32 Def / 2 SpD
 Bold Nature
 - Follow Me
 - Trick Room
@@ -56,6 +63,7 @@ Bold Nature
 Kingambit @ Black Glasses
 Ability: Defiant
 Level: 50
+EVs: 32 HP / 32 Atk / 2 SpD
 Adamant Nature
 - Kowtow Cleave
 - Sucker Punch
@@ -66,6 +74,7 @@ Adamant Nature
 Pelipper @ Focus Sash
 Ability: Drizzle
 Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
 Modest Nature
 - Hurricane
 - Weather Ball
@@ -75,6 +84,7 @@ Modest Nature
 Basculegion @ Choice Scarf
 Ability: Swift Swim
 Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
 Adamant Nature
 - Last Respects
 - Wave Crash
@@ -84,6 +94,7 @@ Adamant Nature
 Archaludon @ Leftovers
 Ability: Stamina
 Level: 50
+EVs: 32 HP / 1 SpA / 29 SpD / 4 Spe
 Modest Nature
 - Electro Shot
 - Dragon Pulse
@@ -93,6 +104,7 @@ Modest Nature
 Milotic @ Sitrus Berry
 Ability: Competitive
 Level: 50
+EVs: 32 HP / 32 Def / 2 SpA
 Bold Nature
 - Scald
 - Ice Beam
@@ -102,6 +114,7 @@ Bold Nature
 Rillaboom @ Miracle Seed
 Ability: Grassy Surge
 Level: 50
+EVs: 32 HP / 32 Atk / 2 SpD
 Adamant Nature
 - Fake Out
 - Grassy Glide
@@ -111,6 +124,7 @@ Adamant Nature
 Kingambit @ Black Glasses
 Ability: Defiant
 Level: 50
+EVs: 32 HP / 32 Atk / 2 SpD
 Adamant Nature
 - Kowtow Cleave
 - Sucker Punch
@@ -121,6 +135,7 @@ Adamant Nature
 Charizard @ Charizardite Y
 Ability: Blaze
 Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
 Timid Nature
 - Heat Wave
 - Solar Beam
@@ -130,6 +145,7 @@ Timid Nature
 Torkoal @ Charcoal
 Ability: Drought
 Level: 50
+EVs: 32 HP / 32 SpA / 2 SpD
 Quiet Nature
 - Eruption
 - Heat Wave
@@ -139,6 +155,7 @@ Quiet Nature
 Farigiraf @ Sitrus Berry
 Ability: Armor Tail
 Level: 50
+EVs: 32 HP / 32 Def / 2 SpD
 Relaxed Nature
 - Trick Room
 - Psychic
@@ -148,6 +165,7 @@ Relaxed Nature
 Sinistcha @ Colbur Berry
 Ability: Hospitality
 Level: 50
+EVs: 32 HP / 32 Def / 2 SpA
 Relaxed Nature
 - Matcha Gotcha
 - Rage Powder
@@ -157,6 +175,7 @@ Relaxed Nature
 Garchomp @ Life Orb
 Ability: Rough Skin
 Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
 Jolly Nature
 - Dragon Claw
 - Earthquake
@@ -166,6 +185,7 @@ Jolly Nature
 Whimsicott @ Focus Sash
 Ability: Prankster
 Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
 Timid Nature
 - Tailwind
 - Moonblast
@@ -214,5 +234,36 @@ Ability: Rough Skin
 - Earthquake
 - Rock Slide
 - Fire Fang
+""",
+    "Começo de time (3 Pokémon, para completar)": """
+Incineroar @ Sitrus Berry
+Ability: Intimidate
+Level: 50
+EVs: 32 HP / 14 Def / 20 SpD
+Careful Nature
+- Fake Out
+- Parting Shot
+- Flare Blitz
+- Protect
+
+Garchomp @ Choice Scarf
+Ability: Rough Skin
+Level: 50
+EVs: 2 HP / 32 Atk / 32 Spe
+Jolly Nature
+- Earthquake
+- Dragon Claw
+- Rock Slide
+- Stomping Tantrum
+
+Gholdengo @ Life Orb
+Ability: Good as Gold
+Level: 50
+EVs: 2 HP / 32 SpA / 32 Spe
+Modest Nature
+- Make It Rain
+- Shadow Ball
+- Nasty Plot
+- Protect
 """,
 }

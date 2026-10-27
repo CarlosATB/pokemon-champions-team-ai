@@ -4,6 +4,7 @@ Visual do site: cores dos tipos, etiquetas coloridas e o CSS dos cards.
 Só aparência; nenhuma regra de IA mora aqui.
 """
 
+from src import config
 from src.tipos import TIPOS_PT
 
 # Cor oficial de cada tipo (a mesma que os jogos e os sites de Pokémon usam).
@@ -27,6 +28,12 @@ def etiqueta_tipo(tipo: str, pequena: bool = False) -> str:
 
 def etiquetas(tipos: list[str]) -> str:
     return " ".join(etiqueta_tipo(t) for t in tipos)
+
+
+def imagem(pokemon_id: str) -> str | None:
+    """Caminho da imagem do Pokémon (None se não houver)."""
+    caminho = config.SPRITES_DIR / f"{pokemon_id}.png"
+    return str(caminho) if caminho.exists() else None
 
 
 # CSS colocado uma vez no topo da página (st.markdown com unsafe_allow_html).
@@ -53,7 +60,7 @@ CSS = """
 }
 .tipo.pequena { min-width: 0; width: 100%; font-size: 0.7rem; padding: 2px 4px; }
 /* Imagens em pixel art: aumentar sem borrar */
-[class*="st-key-card_"] img { image-rendering: pixelated; }
+[data-testid="stImage"] img { image-rendering: pixelated; }
 .vazio { color: #8a8a93; font-size: 0.85rem; text-align: center; padding: 30px 0; }
 </style>
 """

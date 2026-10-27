@@ -4,7 +4,7 @@ import random
 
 from apoio import precisa_dados
 
-from src import config, dados
+from src import dados
 from src.importar_exportar import exportar, importar
 from src.leitor import ler_time
 from src.opcoes import pokemon_aleatorio
@@ -33,10 +33,10 @@ def test_importar_avisa_o_que_ficou_de_fora():
     assert "Bolinha" in texto and "Levitate" in texto and "Surf" in texto
 
 
-def test_todos_os_times_de_exemplo_importam():
+def test_todos_os_times_de_exemplo_importam_sem_avisos():
     for nome, texto in TIMES_EXEMPLO.items():
-        cards, _ = importar(texto)
-        assert len(cards) == config.TEAM_SIZE, nome
+        cards, avisos = importar(texto)
+        assert len(cards) == len(ler_time(texto)) and avisos == [], nome
 
 
 def test_exportar_e_importar_de_novo_da_o_mesmo_time():
