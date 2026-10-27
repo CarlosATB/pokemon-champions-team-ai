@@ -4,14 +4,21 @@ Pokémon Champions Team AI — interface (Streamlit).
 Para rodar localmente:
     streamlit run app.py
 
-Por enquanto esta é só a página inicial. As partes de análise e recomendação
-serão ligadas aqui nas próximas fases.
+Fase 2: análise do time (colar do Showdown ou escolher na lista).
+A recomendação (Fase 3) será ligada aqui depois.
 """
 
+import pandas as pd
 import streamlit as st
 
 from src import config, dados
+from src.analise import analisar
+from src.dicas import gerar_dicas
+from src.funcoes_duplas import FUNCOES
+from src.leitor import ler_time, time_de_nomes
 from src.tipos import TIPOS_PT
+from src.times_exemplo import TIMES_EXEMPLO
+from src.validacao import validar_time
 
 st.set_page_config(
     page_title="Pokémon Champions Team AI",
@@ -25,19 +32,107 @@ st.caption(
     f"{config.REGULATION_NAME} · dados de uso de {config.STATS_MONTH}"
 )
 
-st.info("🚧 Em construção. As próximas versões vão trazer a análise do time e as recomendações.")
 
-st.subheader("O que esta IA vai fazer")
-st.markdown(
-    """
-- **Analisar o seu time:** fraquezas por tipo, cobertura ofensiva e funções de duplas
-  (controle de velocidade, Fake Out, Intimidate, redirecionamento, proteção).
-- **Recomendar melhorias:** habilidades, itens, golpes e parceiros com base em dados
-  reais de milhares de batalhas.
-- **Explicar o porquê** de cada sugestão.
-"""
-)
+# ---------------------------------------------------------------------------
+# Entrada do time
+# ---------------------------------------------------------------------------
 
+st.header("1. Seu time")
+aba_colar, aba_lista = st.tabs(["Colar do Showdown", "Escolher da lista"])
+
+with aba_colar:
+    exemplo = st.selectbox("Carregar um time de exemplo", ["(colar o meu)"] + list(TIMES_EXEMPLO))
+    texto = st.text_area(
+        "Cole aqui o time exportado do Pokémon Showdown (botão Export)",
+        value=TIMES_EXEMPLO.get(exemplo, "").strip(),
+        height=300,
+    )
+
+with aba_lista:
+    uso_por_id = dados.carregar_uso()["pokemon"]
+    # Nome como no Showdown quando existe ("Indeedee-F"); senão, o da PokéAPI.
+    opcoes = sorted(uso_por_id.get(pid, info)["nome"] for pid, info in dados.carregar_pokemon().items()
+                    if pid in dados.carregar_legais() and not info["forma_de_batalha"])
+    escolhidos = st.multiselect("Escolha até 6 Pokémon", opcoes, max_selections=config.TEAM_SIZE)
+    st.caption("Sem golpes, a análise usa só os tipos. Para ver funções de duplas e "
+               "cobertura completa, cole o time com os golpes.")
+
+# A lista tem prioridade se algo foi escolhido nela.
+time = time_de_nomes(escolhidos) if escolhidos else ler_time(texto) if texto.strip() else []
+
+# ---------------------------------------------------------------------------
+# Resultado da análise
+# ---------------------------------------------------------------------------
+
+if time:
+    st.header("2. Análise")
+
+    problemas = validar_time(time)
+    for problema in problemas:
+        if problema["nivel"] == "erro":
+            st.error(problema["mensagem"], icon="⛔")
+        else:
+            st.warning(problema["mensagem"], icon="⚠️")
+
+    analise = analisar(time)
+    time_ok = [m for m in time if m["id"] in dados.carregar_pokemon()]
+    nomes = [m["especie"] for m in time_ok]
+
+    st.subheader("Dicas")
+    icones = {"alerta": "🔴", "atencao": "🟡", "ok": "🟢"}
+    dicas = gerar_dicas(time_ok, analise)
+    for nivel in ["alerta", "atencao", "ok"]:  # problemas primeiro
+        for dica in dicas:
+            if dica["nivel"] == nivel:
+                st.markdown(f"{icones[nivel]} {dica['texto']}")
+
+    texto_dano = {4: "4x", 2: "2x", 1: "", 0.5: "½", 0.25: "¼", 0: "0"}
+    aba_def, aba_of, aba_func, aba_ameacas = st.tabs(
+        ["Fraquezas e resistências", "Cobertura ofensiva", "Funções de duplas", "Ameaças do meta"])
+
+    with aba_def:
+        st.caption("Dano que cada Pokémon toma de cada tipo de golpe "
+                   "(já contando habilidades como Levitate e a forma Mega).")
+        cores = {"4x": "#e74c3c", "2x": "#f5b7b1", "½": "#a9dfbf", "¼": "#52be80", "0": "#5dade2"}
+        linhas = []
+        for linha in analise["defesa"]:
+            celulas = {nome: texto_dano.get(x, f"{x}x") for nome, x in linha["dano"].items()}
+            linhas.append({"Tipo do golpe": TIPOS_PT[linha["tipo"]], **celulas,
+                           "Fracos": len(linha["fracos"]),
+                           "Resistem/imunes": len(linha["resistem"]) + len(linha["imunes"])})
+        tabela = pd.DataFrame(linhas).style.map(
+            lambda v: f"background-color: {cores[v]}; color: black" if v in cores else "",
+            subset=nomes)
+        st.dataframe(tabela, hide_index=True, width="stretch", height=670)
+
+    with aba_of:
+        st.caption("O melhor dano que o time causa em cada tipo, com os golpes de ataque do time.")
+        st.dataframe([{
+            "Tipo do alvo": TIPOS_PT[c["tipo"]],
+            "Melhor dano": texto_dano.get(c["melhor"], f"{c['melhor']}x") or "1x",
+            "Quem acerta": ", ".join(c["quem"]) if c["melhor"] >= 2 else "-",
+        } for c in analise["cobertura"]], hide_index=True, width="stretch", height=670)
+
+    with aba_func:
+        st.dataframe([{
+            "Função": funcao["nome"],
+            "Quem faz": ", ".join(analise["funcoes"][chave]) or "ninguém",
+            "Para que serve": funcao["descricao"],
+        } for chave, funcao in FUNCOES.items()], hide_index=True, width="stretch")
+
+    with aba_ameacas:
+        st.caption("Entre os 30 Pokémon mais usados: quem acerta muitos do seu time com dano "
+                   "dobrado e quase não é acertado de volta. Nota = acerta − respostas.")
+        st.dataframe([{
+            "Pokémon": a["nome"],
+            "Uso (%)": a["uso"],
+            "Ataca com": ", ".join(TIPOS_PT[t] for t in a["tipos_ataque"]),
+            "Acerta forte": ", ".join(a["acerta"]),
+            "Suas respostas": ", ".join(a["respostas"]) or "nenhuma",
+            "Nota": a["nota"],
+        } for a in analise["ameacas"]], hide_index=True, width="stretch")
+
+st.divider()
 st.subheader("Dados carregados")
 try:
     uso = dados.carregar_uso()

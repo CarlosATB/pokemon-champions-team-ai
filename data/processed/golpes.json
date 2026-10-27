@@ -1,0 +1,3572 @@
+{
+ "accelerock": {
+  "nome": "Accelerock",
+  "tipo": "Rock",
+  "categoria": "Physical",
+  "poder": 40,
+  "alvo": "normal"
+ },
+ "acidarmor": {
+  "nome": "Acid Armor",
+  "tipo": "Poison",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "acidspray": {
+  "nome": "Acid Spray",
+  "tipo": "Poison",
+  "categoria": "Special",
+  "poder": 40,
+  "alvo": "normal"
+ },
+ "acrobatics": {
+  "nome": "Acrobatics",
+  "tipo": "Flying",
+  "categoria": "Physical",
+  "poder": 55,
+  "alvo": "any"
+ },
+ "acupressure": {
+  "nome": "Acupressure",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "adjacentAllyOrSelf"
+ },
+ "aerialace": {
+  "nome": "Aerial Ace",
+  "tipo": "Flying",
+  "categoria": "Physical",
+  "poder": 60,
+  "alvo": "any"
+ },
+ "afteryou": {
+  "nome": "After You",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "agility": {
+  "nome": "Agility",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "aircutter": {
+  "nome": "Air Cutter",
+  "tipo": "Flying",
+  "categoria": "Special",
+  "poder": 60,
+  "alvo": "allAdjacentFoes"
+ },
+ "airslash": {
+  "nome": "Air Slash",
+  "tipo": "Flying",
+  "categoria": "Special",
+  "poder": 75,
+  "alvo": "any"
+ },
+ "alluringvoice": {
+  "nome": "Alluring Voice",
+  "tipo": "Fairy",
+  "categoria": "Special",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "allyswitch": {
+  "nome": "Ally Switch",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "amnesia": {
+  "nome": "Amnesia",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "ancientpower": {
+  "nome": "Ancient Power",
+  "tipo": "Rock",
+  "categoria": "Special",
+  "poder": 60,
+  "alvo": "normal"
+ },
+ "appleacid": {
+  "nome": "Apple Acid",
+  "tipo": "Grass",
+  "categoria": "Special",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "aquacutter": {
+  "nome": "Aqua Cutter",
+  "tipo": "Water",
+  "categoria": "Physical",
+  "poder": 70,
+  "alvo": "normal"
+ },
+ "aquajet": {
+  "nome": "Aqua Jet",
+  "tipo": "Water",
+  "categoria": "Physical",
+  "poder": 40,
+  "alvo": "normal"
+ },
+ "aquaring": {
+  "nome": "Aqua Ring",
+  "tipo": "Water",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "aquastep": {
+  "nome": "Aqua Step",
+  "tipo": "Water",
+  "categoria": "Physical",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "aquatail": {
+  "nome": "Aqua Tail",
+  "tipo": "Water",
+  "categoria": "Physical",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "armorcannon": {
+  "nome": "Armor Cannon",
+  "tipo": "Fire",
+  "categoria": "Special",
+  "poder": 120,
+  "alvo": "normal"
+ },
+ "aromaticmist": {
+  "nome": "Aromatic Mist",
+  "tipo": "Fairy",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "adjacentAlly"
+ },
+ "assurance": {
+  "nome": "Assurance",
+  "tipo": "Dark",
+  "categoria": "Physical",
+  "poder": 60,
+  "alvo": "normal"
+ },
+ "attract": {
+  "nome": "Attract",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "aurasphere": {
+  "nome": "Aura Sphere",
+  "tipo": "Fighting",
+  "categoria": "Special",
+  "poder": 80,
+  "alvo": "any"
+ },
+ "aurawheel": {
+  "nome": "Aura Wheel",
+  "tipo": "Electric",
+  "categoria": "Physical",
+  "poder": 110,
+  "alvo": "normal"
+ },
+ "auroraveil": {
+  "nome": "Aurora Veil",
+  "tipo": "Ice",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "allySide"
+ },
+ "avalanche": {
+  "nome": "Avalanche",
+  "tipo": "Ice",
+  "categoria": "Physical",
+  "poder": 60,
+  "alvo": "normal"
+ },
+ "axekick": {
+  "nome": "Axe Kick",
+  "tipo": "Fighting",
+  "categoria": "Physical",
+  "poder": 120,
+  "alvo": "normal"
+ },
+ "babydolleyes": {
+  "nome": "Baby-Doll Eyes",
+  "tipo": "Fairy",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "banefulbunker": {
+  "nome": "Baneful Bunker",
+  "tipo": "Poison",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "barbbarrage": {
+  "nome": "Barb Barrage",
+  "tipo": "Poison",
+  "categoria": "Physical",
+  "poder": 60,
+  "alvo": "normal"
+ },
+ "batonpass": {
+  "nome": "Baton Pass",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "beakblast": {
+  "nome": "Beak Blast",
+  "tipo": "Flying",
+  "categoria": "Physical",
+  "poder": 120,
+  "alvo": "normal"
+ },
+ "beatup": {
+  "nome": "Beat Up",
+  "tipo": "Dark",
+  "categoria": "Physical",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "belch": {
+  "nome": "Belch",
+  "tipo": "Poison",
+  "categoria": "Special",
+  "poder": 120,
+  "alvo": "normal"
+ },
+ "bellydrum": {
+  "nome": "Belly Drum",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "bind": {
+  "nome": "Bind",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 15,
+  "alvo": "normal"
+ },
+ "bite": {
+  "nome": "Bite",
+  "tipo": "Dark",
+  "categoria": "Physical",
+  "poder": 60,
+  "alvo": "normal"
+ },
+ "bitterblade": {
+  "nome": "Bitter Blade",
+  "tipo": "Fire",
+  "categoria": "Physical",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "bittermalice": {
+  "nome": "Bitter Malice",
+  "tipo": "Ghost",
+  "categoria": "Special",
+  "poder": 75,
+  "alvo": "normal"
+ },
+ "blastburn": {
+  "nome": "Blast Burn",
+  "tipo": "Fire",
+  "categoria": "Special",
+  "poder": 150,
+  "alvo": "normal"
+ },
+ "blazekick": {
+  "nome": "Blaze Kick",
+  "tipo": "Fire",
+  "categoria": "Physical",
+  "poder": 85,
+  "alvo": "normal"
+ },
+ "blizzard": {
+  "nome": "Blizzard",
+  "tipo": "Ice",
+  "categoria": "Special",
+  "poder": 110,
+  "alvo": "allAdjacentFoes"
+ },
+ "block": {
+  "nome": "Block",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "bodypress": {
+  "nome": "Body Press",
+  "tipo": "Fighting",
+  "categoria": "Physical",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "bodyslam": {
+  "nome": "Body Slam",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 85,
+  "alvo": "normal"
+ },
+ "bonerush": {
+  "nome": "Bone Rush",
+  "tipo": "Ground",
+  "categoria": "Physical",
+  "poder": 30,
+  "alvo": "normal"
+ },
+ "boomburst": {
+  "nome": "Boomburst",
+  "tipo": "Normal",
+  "categoria": "Special",
+  "poder": 140,
+  "alvo": "allAdjacent"
+ },
+ "bounce": {
+  "nome": "Bounce",
+  "tipo": "Flying",
+  "categoria": "Physical",
+  "poder": 85,
+  "alvo": "any"
+ },
+ "bravebird": {
+  "nome": "Brave Bird",
+  "tipo": "Flying",
+  "categoria": "Physical",
+  "poder": 120,
+  "alvo": "any"
+ },
+ "breakingswipe": {
+  "nome": "Breaking Swipe",
+  "tipo": "Dragon",
+  "categoria": "Physical",
+  "poder": 60,
+  "alvo": "allAdjacentFoes"
+ },
+ "brickbreak": {
+  "nome": "Brick Break",
+  "tipo": "Fighting",
+  "categoria": "Physical",
+  "poder": 75,
+  "alvo": "normal"
+ },
+ "brutalswing": {
+  "nome": "Brutal Swing",
+  "tipo": "Dark",
+  "categoria": "Physical",
+  "poder": 60,
+  "alvo": "allAdjacent"
+ },
+ "bugbite": {
+  "nome": "Bug Bite",
+  "tipo": "Bug",
+  "categoria": "Physical",
+  "poder": 60,
+  "alvo": "normal"
+ },
+ "bugbuzz": {
+  "nome": "Bug Buzz",
+  "tipo": "Bug",
+  "categoria": "Special",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "bulkup": {
+  "nome": "Bulk Up",
+  "tipo": "Fighting",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "bulldoze": {
+  "nome": "Bulldoze",
+  "tipo": "Ground",
+  "categoria": "Physical",
+  "poder": 60,
+  "alvo": "allAdjacent"
+ },
+ "bulletpunch": {
+  "nome": "Bullet Punch",
+  "tipo": "Steel",
+  "categoria": "Physical",
+  "poder": 40,
+  "alvo": "normal"
+ },
+ "bulletseed": {
+  "nome": "Bullet Seed",
+  "tipo": "Grass",
+  "categoria": "Physical",
+  "poder": 25,
+  "alvo": "normal"
+ },
+ "burningjealousy": {
+  "nome": "Burning Jealousy",
+  "tipo": "Fire",
+  "categoria": "Special",
+  "poder": 70,
+  "alvo": "allAdjacentFoes"
+ },
+ "burnup": {
+  "nome": "Burn Up",
+  "tipo": "Fire",
+  "categoria": "Special",
+  "poder": 130,
+  "alvo": "normal"
+ },
+ "calmmind": {
+  "nome": "Calm Mind",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "ceaselessedge": {
+  "nome": "Ceaseless Edge",
+  "tipo": "Dark",
+  "categoria": "Physical",
+  "poder": 65,
+  "alvo": "normal"
+ },
+ "charge": {
+  "nome": "Charge",
+  "tipo": "Electric",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "chargebeam": {
+  "nome": "Charge Beam",
+  "tipo": "Electric",
+  "categoria": "Special",
+  "poder": 50,
+  "alvo": "normal"
+ },
+ "charm": {
+  "nome": "Charm",
+  "tipo": "Fairy",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "chillingwater": {
+  "nome": "Chilling Water",
+  "tipo": "Water",
+  "categoria": "Special",
+  "poder": 50,
+  "alvo": "normal"
+ },
+ "chillyreception": {
+  "nome": "Chilly Reception",
+  "tipo": "Ice",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "all"
+ },
+ "circlethrow": {
+  "nome": "Circle Throw",
+  "tipo": "Fighting",
+  "categoria": "Physical",
+  "poder": 60,
+  "alvo": "normal"
+ },
+ "clangingscales": {
+  "nome": "Clanging Scales",
+  "tipo": "Dragon",
+  "categoria": "Special",
+  "poder": 110,
+  "alvo": "allAdjacentFoes"
+ },
+ "clangoroussoul": {
+  "nome": "Clangorous Soul",
+  "tipo": "Dragon",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "clearsmog": {
+  "nome": "Clear Smog",
+  "tipo": "Poison",
+  "categoria": "Special",
+  "poder": 50,
+  "alvo": "normal"
+ },
+ "closecombat": {
+  "nome": "Close Combat",
+  "tipo": "Fighting",
+  "categoria": "Physical",
+  "poder": 120,
+  "alvo": "normal"
+ },
+ "coaching": {
+  "nome": "Coaching",
+  "tipo": "Fighting",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "adjacentAlly"
+ },
+ "coil": {
+  "nome": "Coil",
+  "tipo": "Poison",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "comeuppance": {
+  "nome": "Comeuppance",
+  "tipo": "Dark",
+  "categoria": "Physical",
+  "poder": 0,
+  "alvo": "scripted"
+ },
+ "confuseray": {
+  "nome": "Confuse Ray",
+  "tipo": "Ghost",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "copycat": {
+  "nome": "Copycat",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "corrosivegas": {
+  "nome": "Corrosive Gas",
+  "tipo": "Poison",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "allAdjacent"
+ },
+ "cosmicpower": {
+  "nome": "Cosmic Power",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "cottonguard": {
+  "nome": "Cotton Guard",
+  "tipo": "Grass",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "cottonspore": {
+  "nome": "Cotton Spore",
+  "tipo": "Grass",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "allAdjacentFoes"
+ },
+ "counter": {
+  "nome": "Counter",
+  "tipo": "Fighting",
+  "categoria": "Physical",
+  "poder": 0,
+  "alvo": "scripted"
+ },
+ "courtchange": {
+  "nome": "Court Change",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "all"
+ },
+ "covet": {
+  "nome": "Covet",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 60,
+  "alvo": "normal"
+ },
+ "crabhammer": {
+  "nome": "Crabhammer",
+  "tipo": "Water",
+  "categoria": "Physical",
+  "poder": 100,
+  "alvo": "normal"
+ },
+ "crosschop": {
+  "nome": "Cross Chop",
+  "tipo": "Fighting",
+  "categoria": "Physical",
+  "poder": 100,
+  "alvo": "normal"
+ },
+ "crosspoison": {
+  "nome": "Cross Poison",
+  "tipo": "Poison",
+  "categoria": "Physical",
+  "poder": 70,
+  "alvo": "normal"
+ },
+ "crunch": {
+  "nome": "Crunch",
+  "tipo": "Dark",
+  "categoria": "Physical",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "crushclaw": {
+  "nome": "Crush Claw",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 75,
+  "alvo": "normal"
+ },
+ "curse": {
+  "nome": "Curse",
+  "tipo": "Ghost",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "darkestlariat": {
+  "nome": "Darkest Lariat",
+  "tipo": "Dark",
+  "categoria": "Physical",
+  "poder": 85,
+  "alvo": "normal"
+ },
+ "darkpulse": {
+  "nome": "Dark Pulse",
+  "tipo": "Dark",
+  "categoria": "Special",
+  "poder": 80,
+  "alvo": "any"
+ },
+ "dazzlinggleam": {
+  "nome": "Dazzling Gleam",
+  "tipo": "Fairy",
+  "categoria": "Special",
+  "poder": 80,
+  "alvo": "allAdjacentFoes"
+ },
+ "decorate": {
+  "nome": "Decorate",
+  "tipo": "Fairy",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "defog": {
+  "nome": "Defog",
+  "tipo": "Flying",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "destinybond": {
+  "nome": "Destiny Bond",
+  "tipo": "Ghost",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "detect": {
+  "nome": "Detect",
+  "tipo": "Fighting",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "dig": {
+  "nome": "Dig",
+  "tipo": "Ground",
+  "categoria": "Physical",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "direclaw": {
+  "nome": "Dire Claw",
+  "tipo": "Poison",
+  "categoria": "Physical",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "disable": {
+  "nome": "Disable",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "discharge": {
+  "nome": "Discharge",
+  "tipo": "Electric",
+  "categoria": "Special",
+  "poder": 80,
+  "alvo": "allAdjacent"
+ },
+ "dive": {
+  "nome": "Dive",
+  "tipo": "Water",
+  "categoria": "Physical",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "doubleedge": {
+  "nome": "Double-Edge",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 120,
+  "alvo": "normal"
+ },
+ "doublehit": {
+  "nome": "Double Hit",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 35,
+  "alvo": "normal"
+ },
+ "doubleshock": {
+  "nome": "Double Shock",
+  "tipo": "Electric",
+  "categoria": "Physical",
+  "poder": 120,
+  "alvo": "normal"
+ },
+ "doubleteam": {
+  "nome": "Double Team",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "dracometeor": {
+  "nome": "Draco Meteor",
+  "tipo": "Dragon",
+  "categoria": "Special",
+  "poder": 130,
+  "alvo": "normal"
+ },
+ "dragoncheer": {
+  "nome": "Dragon Cheer",
+  "tipo": "Dragon",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "adjacentAlly"
+ },
+ "dragonclaw": {
+  "nome": "Dragon Claw",
+  "tipo": "Dragon",
+  "categoria": "Physical",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "dragondance": {
+  "nome": "Dragon Dance",
+  "tipo": "Dragon",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "dragondarts": {
+  "nome": "Dragon Darts",
+  "tipo": "Dragon",
+  "categoria": "Physical",
+  "poder": 50,
+  "alvo": "normal"
+ },
+ "dragonpulse": {
+  "nome": "Dragon Pulse",
+  "tipo": "Dragon",
+  "categoria": "Special",
+  "poder": 85,
+  "alvo": "any"
+ },
+ "dragonrush": {
+  "nome": "Dragon Rush",
+  "tipo": "Dragon",
+  "categoria": "Physical",
+  "poder": 100,
+  "alvo": "normal"
+ },
+ "dragontail": {
+  "nome": "Dragon Tail",
+  "tipo": "Dragon",
+  "categoria": "Physical",
+  "poder": 60,
+  "alvo": "normal"
+ },
+ "drainingkiss": {
+  "nome": "Draining Kiss",
+  "tipo": "Fairy",
+  "categoria": "Special",
+  "poder": 50,
+  "alvo": "normal"
+ },
+ "drainpunch": {
+  "nome": "Drain Punch",
+  "tipo": "Fighting",
+  "categoria": "Physical",
+  "poder": 75,
+  "alvo": "normal"
+ },
+ "drillpeck": {
+  "nome": "Drill Peck",
+  "tipo": "Flying",
+  "categoria": "Physical",
+  "poder": 80,
+  "alvo": "any"
+ },
+ "drillrun": {
+  "nome": "Drill Run",
+  "tipo": "Ground",
+  "categoria": "Physical",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "drumbeating": {
+  "nome": "Drum Beating",
+  "tipo": "Grass",
+  "categoria": "Physical",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "dualwingbeat": {
+  "nome": "Dual Wingbeat",
+  "tipo": "Flying",
+  "categoria": "Physical",
+  "poder": 40,
+  "alvo": "normal"
+ },
+ "dynamicpunch": {
+  "nome": "Dynamic Punch",
+  "tipo": "Fighting",
+  "categoria": "Physical",
+  "poder": 100,
+  "alvo": "normal"
+ },
+ "earthpower": {
+  "nome": "Earth Power",
+  "tipo": "Ground",
+  "categoria": "Special",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "earthquake": {
+  "nome": "Earthquake",
+  "tipo": "Ground",
+  "categoria": "Physical",
+  "poder": 100,
+  "alvo": "allAdjacent"
+ },
+ "eerieimpulse": {
+  "nome": "Eerie Impulse",
+  "tipo": "Electric",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "eeriespell": {
+  "nome": "Eerie Spell",
+  "tipo": "Psychic",
+  "categoria": "Special",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "electricterrain": {
+  "nome": "Electric Terrain",
+  "tipo": "Electric",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "all"
+ },
+ "electrify": {
+  "nome": "Electrify",
+  "tipo": "Electric",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "electroball": {
+  "nome": "Electro Ball",
+  "tipo": "Electric",
+  "categoria": "Special",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "electroshot": {
+  "nome": "Electro Shot",
+  "tipo": "Electric",
+  "categoria": "Special",
+  "poder": 130,
+  "alvo": "normal"
+ },
+ "electroweb": {
+  "nome": "Electroweb",
+  "tipo": "Electric",
+  "categoria": "Special",
+  "poder": 55,
+  "alvo": "allAdjacentFoes"
+ },
+ "encore": {
+  "nome": "Encore",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "endeavor": {
+  "nome": "Endeavor",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "endure": {
+  "nome": "Endure",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "energyball": {
+  "nome": "Energy Ball",
+  "tipo": "Grass",
+  "categoria": "Special",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "entrainment": {
+  "nome": "Entrainment",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "eruption": {
+  "nome": "Eruption",
+  "tipo": "Fire",
+  "categoria": "Special",
+  "poder": 150,
+  "alvo": "allAdjacentFoes"
+ },
+ "expandingforce": {
+  "nome": "Expanding Force",
+  "tipo": "Psychic",
+  "categoria": "Special",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "explosion": {
+  "nome": "Explosion",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 250,
+  "alvo": "allAdjacent"
+ },
+ "extrasensory": {
+  "nome": "Extrasensory",
+  "tipo": "Psychic",
+  "categoria": "Special",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "extremespeed": {
+  "nome": "Extreme Speed",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "facade": {
+  "nome": "Facade",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 70,
+  "alvo": "normal"
+ },
+ "fairylock": {
+  "nome": "Fairy Lock",
+  "tipo": "Fairy",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "all"
+ },
+ "fakeout": {
+  "nome": "Fake Out",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 40,
+  "alvo": "normal"
+ },
+ "faketears": {
+  "nome": "Fake Tears",
+  "tipo": "Dark",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "featherdance": {
+  "nome": "Feather Dance",
+  "tipo": "Flying",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "feint": {
+  "nome": "Feint",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 30,
+  "alvo": "normal"
+ },
+ "fellstinger": {
+  "nome": "Fell Stinger",
+  "tipo": "Bug",
+  "categoria": "Physical",
+  "poder": 50,
+  "alvo": "normal"
+ },
+ "ficklebeam": {
+  "nome": "Fickle Beam",
+  "tipo": "Dragon",
+  "categoria": "Special",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "fierydance": {
+  "nome": "Fiery Dance",
+  "tipo": "Fire",
+  "categoria": "Special",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "finalgambit": {
+  "nome": "Final Gambit",
+  "tipo": "Fighting",
+  "categoria": "Special",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "fireblast": {
+  "nome": "Fire Blast",
+  "tipo": "Fire",
+  "categoria": "Special",
+  "poder": 110,
+  "alvo": "normal"
+ },
+ "firefang": {
+  "nome": "Fire Fang",
+  "tipo": "Fire",
+  "categoria": "Physical",
+  "poder": 65,
+  "alvo": "normal"
+ },
+ "firelash": {
+  "nome": "Fire Lash",
+  "tipo": "Fire",
+  "categoria": "Physical",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "firepunch": {
+  "nome": "Fire Punch",
+  "tipo": "Fire",
+  "categoria": "Physical",
+  "poder": 75,
+  "alvo": "normal"
+ },
+ "firespin": {
+  "nome": "Fire Spin",
+  "tipo": "Fire",
+  "categoria": "Special",
+  "poder": 35,
+  "alvo": "normal"
+ },
+ "firstimpression": {
+  "nome": "First Impression",
+  "tipo": "Bug",
+  "categoria": "Physical",
+  "poder": 100,
+  "alvo": "normal"
+ },
+ "fissure": {
+  "nome": "Fissure",
+  "tipo": "Ground",
+  "categoria": "Physical",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "flail": {
+  "nome": "Flail",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "flamecharge": {
+  "nome": "Flame Charge",
+  "tipo": "Fire",
+  "categoria": "Physical",
+  "poder": 50,
+  "alvo": "normal"
+ },
+ "flamethrower": {
+  "nome": "Flamethrower",
+  "tipo": "Fire",
+  "categoria": "Special",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "flareblitz": {
+  "nome": "Flare Blitz",
+  "tipo": "Fire",
+  "categoria": "Physical",
+  "poder": 120,
+  "alvo": "normal"
+ },
+ "flashcannon": {
+  "nome": "Flash Cannon",
+  "tipo": "Steel",
+  "categoria": "Special",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "flatter": {
+  "nome": "Flatter",
+  "tipo": "Dark",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "fling": {
+  "nome": "Fling",
+  "tipo": "Dark",
+  "categoria": "Physical",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "flipturn": {
+  "nome": "Flip Turn",
+  "tipo": "Water",
+  "categoria": "Physical",
+  "poder": 60,
+  "alvo": "normal"
+ },
+ "flowertrick": {
+  "nome": "Flower Trick",
+  "tipo": "Grass",
+  "categoria": "Physical",
+  "poder": 70,
+  "alvo": "normal"
+ },
+ "fly": {
+  "nome": "Fly",
+  "tipo": "Flying",
+  "categoria": "Physical",
+  "poder": 90,
+  "alvo": "any"
+ },
+ "flyingpress": {
+  "nome": "Flying Press",
+  "tipo": "Fighting",
+  "categoria": "Physical",
+  "poder": 100,
+  "alvo": "any"
+ },
+ "focusblast": {
+  "nome": "Focus Blast",
+  "tipo": "Fighting",
+  "categoria": "Special",
+  "poder": 120,
+  "alvo": "normal"
+ },
+ "focusenergy": {
+  "nome": "Focus Energy",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "focuspunch": {
+  "nome": "Focus Punch",
+  "tipo": "Fighting",
+  "categoria": "Physical",
+  "poder": 150,
+  "alvo": "normal"
+ },
+ "followme": {
+  "nome": "Follow Me",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "forestscurse": {
+  "nome": "Forest's Curse",
+  "tipo": "Grass",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "foulplay": {
+  "nome": "Foul Play",
+  "tipo": "Dark",
+  "categoria": "Physical",
+  "poder": 95,
+  "alvo": "normal"
+ },
+ "freezedry": {
+  "nome": "Freeze-Dry",
+  "tipo": "Ice",
+  "categoria": "Special",
+  "poder": 70,
+  "alvo": "normal"
+ },
+ "frenzyplant": {
+  "nome": "Frenzy Plant",
+  "tipo": "Grass",
+  "categoria": "Special",
+  "poder": 150,
+  "alvo": "normal"
+ },
+ "frostbreath": {
+  "nome": "Frost Breath",
+  "tipo": "Ice",
+  "categoria": "Special",
+  "poder": 60,
+  "alvo": "normal"
+ },
+ "futuresight": {
+  "nome": "Future Sight",
+  "tipo": "Psychic",
+  "categoria": "Special",
+  "poder": 120,
+  "alvo": "normal"
+ },
+ "gastroacid": {
+  "nome": "Gastro Acid",
+  "tipo": "Poison",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "gigadrain": {
+  "nome": "Giga Drain",
+  "tipo": "Grass",
+  "categoria": "Special",
+  "poder": 75,
+  "alvo": "normal"
+ },
+ "gigaimpact": {
+  "nome": "Giga Impact",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 150,
+  "alvo": "normal"
+ },
+ "gigatonhammer": {
+  "nome": "Gigaton Hammer",
+  "tipo": "Steel",
+  "categoria": "Physical",
+  "poder": 160,
+  "alvo": "normal"
+ },
+ "glaiverush": {
+  "nome": "Glaive Rush",
+  "tipo": "Dragon",
+  "categoria": "Physical",
+  "poder": 120,
+  "alvo": "normal"
+ },
+ "glare": {
+  "nome": "Glare",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "grassknot": {
+  "nome": "Grass Knot",
+  "tipo": "Grass",
+  "categoria": "Special",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "grassyglide": {
+  "nome": "Grassy Glide",
+  "tipo": "Grass",
+  "categoria": "Physical",
+  "poder": 55,
+  "alvo": "normal"
+ },
+ "grassyterrain": {
+  "nome": "Grassy Terrain",
+  "tipo": "Grass",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "all"
+ },
+ "gravapple": {
+  "nome": "Grav Apple",
+  "tipo": "Grass",
+  "categoria": "Physical",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "gravity": {
+  "nome": "Gravity",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "all"
+ },
+ "growth": {
+  "nome": "Growth",
+  "tipo": "Grass",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "guardsplit": {
+  "nome": "Guard Split",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "guardswap": {
+  "nome": "Guard Swap",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "guillotine": {
+  "nome": "Guillotine",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "gunkshot": {
+  "nome": "Gunk Shot",
+  "tipo": "Poison",
+  "categoria": "Physical",
+  "poder": 120,
+  "alvo": "normal"
+ },
+ "gyroball": {
+  "nome": "Gyro Ball",
+  "tipo": "Steel",
+  "categoria": "Physical",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "hammerarm": {
+  "nome": "Hammer Arm",
+  "tipo": "Fighting",
+  "categoria": "Physical",
+  "poder": 100,
+  "alvo": "normal"
+ },
+ "hardpress": {
+  "nome": "Hard Press",
+  "tipo": "Steel",
+  "categoria": "Physical",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "haze": {
+  "nome": "Haze",
+  "tipo": "Ice",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "all"
+ },
+ "headlongrush": {
+  "nome": "Headlong Rush",
+  "tipo": "Ground",
+  "categoria": "Physical",
+  "poder": 120,
+  "alvo": "normal"
+ },
+ "headsmash": {
+  "nome": "Head Smash",
+  "tipo": "Rock",
+  "categoria": "Physical",
+  "poder": 150,
+  "alvo": "normal"
+ },
+ "healbell": {
+  "nome": "Heal Bell",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "allyTeam"
+ },
+ "healingwish": {
+  "nome": "Healing Wish",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "healpulse": {
+  "nome": "Heal Pulse",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "any"
+ },
+ "heatcrash": {
+  "nome": "Heat Crash",
+  "tipo": "Fire",
+  "categoria": "Physical",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "heatwave": {
+  "nome": "Heat Wave",
+  "tipo": "Fire",
+  "categoria": "Special",
+  "poder": 95,
+  "alvo": "allAdjacentFoes"
+ },
+ "heavyslam": {
+  "nome": "Heavy Slam",
+  "tipo": "Steel",
+  "categoria": "Physical",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "helpinghand": {
+  "nome": "Helping Hand",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "adjacentAlly"
+ },
+ "hex": {
+  "nome": "Hex",
+  "tipo": "Ghost",
+  "categoria": "Special",
+  "poder": 65,
+  "alvo": "normal"
+ },
+ "highhorsepower": {
+  "nome": "High Horsepower",
+  "tipo": "Ground",
+  "categoria": "Physical",
+  "poder": 95,
+  "alvo": "normal"
+ },
+ "highjumpkick": {
+  "nome": "High Jump Kick",
+  "tipo": "Fighting",
+  "categoria": "Physical",
+  "poder": 130,
+  "alvo": "normal"
+ },
+ "horndrill": {
+  "nome": "Horn Drill",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "hornleech": {
+  "nome": "Horn Leech",
+  "tipo": "Grass",
+  "categoria": "Physical",
+  "poder": 75,
+  "alvo": "normal"
+ },
+ "howl": {
+  "nome": "Howl",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "allies"
+ },
+ "hurricane": {
+  "nome": "Hurricane",
+  "tipo": "Flying",
+  "categoria": "Special",
+  "poder": 110,
+  "alvo": "any"
+ },
+ "hydrocannon": {
+  "nome": "Hydro Cannon",
+  "tipo": "Water",
+  "categoria": "Special",
+  "poder": 150,
+  "alvo": "normal"
+ },
+ "hydropump": {
+  "nome": "Hydro Pump",
+  "tipo": "Water",
+  "categoria": "Special",
+  "poder": 110,
+  "alvo": "normal"
+ },
+ "hyperbeam": {
+  "nome": "Hyper Beam",
+  "tipo": "Normal",
+  "categoria": "Special",
+  "poder": 150,
+  "alvo": "normal"
+ },
+ "hypervoice": {
+  "nome": "Hyper Voice",
+  "tipo": "Normal",
+  "categoria": "Special",
+  "poder": 90,
+  "alvo": "allAdjacentFoes"
+ },
+ "hypnosis": {
+  "nome": "Hypnosis",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "icebeam": {
+  "nome": "Ice Beam",
+  "tipo": "Ice",
+  "categoria": "Special",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "icefang": {
+  "nome": "Ice Fang",
+  "tipo": "Ice",
+  "categoria": "Physical",
+  "poder": 65,
+  "alvo": "normal"
+ },
+ "icehammer": {
+  "nome": "Ice Hammer",
+  "tipo": "Ice",
+  "categoria": "Physical",
+  "poder": 100,
+  "alvo": "normal"
+ },
+ "icepunch": {
+  "nome": "Ice Punch",
+  "tipo": "Ice",
+  "categoria": "Physical",
+  "poder": 75,
+  "alvo": "normal"
+ },
+ "iceshard": {
+  "nome": "Ice Shard",
+  "tipo": "Ice",
+  "categoria": "Physical",
+  "poder": 40,
+  "alvo": "normal"
+ },
+ "icespinner": {
+  "nome": "Ice Spinner",
+  "tipo": "Ice",
+  "categoria": "Physical",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "iciclecrash": {
+  "nome": "Icicle Crash",
+  "tipo": "Ice",
+  "categoria": "Physical",
+  "poder": 85,
+  "alvo": "normal"
+ },
+ "iciclespear": {
+  "nome": "Icicle Spear",
+  "tipo": "Ice",
+  "categoria": "Physical",
+  "poder": 25,
+  "alvo": "normal"
+ },
+ "icywind": {
+  "nome": "Icy Wind",
+  "tipo": "Ice",
+  "categoria": "Special",
+  "poder": 55,
+  "alvo": "allAdjacentFoes"
+ },
+ "imprison": {
+  "nome": "Imprison",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "infernalparade": {
+  "nome": "Infernal Parade",
+  "tipo": "Ghost",
+  "categoria": "Special",
+  "poder": 65,
+  "alvo": "normal"
+ },
+ "inferno": {
+  "nome": "Inferno",
+  "tipo": "Fire",
+  "categoria": "Special",
+  "poder": 100,
+  "alvo": "normal"
+ },
+ "infestation": {
+  "nome": "Infestation",
+  "tipo": "Bug",
+  "categoria": "Special",
+  "poder": 20,
+  "alvo": "normal"
+ },
+ "ingrain": {
+  "nome": "Ingrain",
+  "tipo": "Grass",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "instruct": {
+  "nome": "Instruct",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "irondefense": {
+  "nome": "Iron Defense",
+  "tipo": "Steel",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "ironhead": {
+  "nome": "Iron Head",
+  "tipo": "Steel",
+  "categoria": "Physical",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "irontail": {
+  "nome": "Iron Tail",
+  "tipo": "Steel",
+  "categoria": "Physical",
+  "poder": 100,
+  "alvo": "normal"
+ },
+ "jawlock": {
+  "nome": "Jaw Lock",
+  "tipo": "Dark",
+  "categoria": "Physical",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "jetpunch": {
+  "nome": "Jet Punch",
+  "tipo": "Water",
+  "categoria": "Physical",
+  "poder": 60,
+  "alvo": "normal"
+ },
+ "kingsshield": {
+  "nome": "King's Shield",
+  "tipo": "Steel",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "knockoff": {
+  "nome": "Knock Off",
+  "tipo": "Dark",
+  "categoria": "Physical",
+  "poder": 65,
+  "alvo": "normal"
+ },
+ "kowtowcleave": {
+  "nome": "Kowtow Cleave",
+  "tipo": "Dark",
+  "categoria": "Physical",
+  "poder": 85,
+  "alvo": "normal"
+ },
+ "lashout": {
+  "nome": "Lash Out",
+  "tipo": "Dark",
+  "categoria": "Physical",
+  "poder": 75,
+  "alvo": "normal"
+ },
+ "lastresort": {
+  "nome": "Last Resort",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 140,
+  "alvo": "normal"
+ },
+ "lastrespects": {
+  "nome": "Last Respects",
+  "tipo": "Ghost",
+  "categoria": "Physical",
+  "poder": 50,
+  "alvo": "normal"
+ },
+ "lavaplume": {
+  "nome": "Lava Plume",
+  "tipo": "Fire",
+  "categoria": "Special",
+  "poder": 80,
+  "alvo": "allAdjacent"
+ },
+ "leafblade": {
+  "nome": "Leaf Blade",
+  "tipo": "Grass",
+  "categoria": "Physical",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "leafstorm": {
+  "nome": "Leaf Storm",
+  "tipo": "Grass",
+  "categoria": "Special",
+  "poder": 130,
+  "alvo": "normal"
+ },
+ "leechlife": {
+  "nome": "Leech Life",
+  "tipo": "Bug",
+  "categoria": "Physical",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "leechseed": {
+  "nome": "Leech Seed",
+  "tipo": "Grass",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "lifedew": {
+  "nome": "Life Dew",
+  "tipo": "Water",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "allies"
+ },
+ "lightofruin": {
+  "nome": "Light of Ruin",
+  "tipo": "Fairy",
+  "categoria": "Special",
+  "poder": 140,
+  "alvo": "normal"
+ },
+ "lightscreen": {
+  "nome": "Light Screen",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "allySide"
+ },
+ "liquidation": {
+  "nome": "Liquidation",
+  "tipo": "Water",
+  "categoria": "Physical",
+  "poder": 85,
+  "alvo": "normal"
+ },
+ "lockon": {
+  "nome": "Lock-On",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "lowkick": {
+  "nome": "Low Kick",
+  "tipo": "Fighting",
+  "categoria": "Physical",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "lowsweep": {
+  "nome": "Low Sweep",
+  "tipo": "Fighting",
+  "categoria": "Physical",
+  "poder": 65,
+  "alvo": "normal"
+ },
+ "luminacrash": {
+  "nome": "Lumina Crash",
+  "tipo": "Psychic",
+  "categoria": "Special",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "lunge": {
+  "nome": "Lunge",
+  "tipo": "Bug",
+  "categoria": "Physical",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "machpunch": {
+  "nome": "Mach Punch",
+  "tipo": "Fighting",
+  "categoria": "Physical",
+  "poder": 40,
+  "alvo": "normal"
+ },
+ "magicpowder": {
+  "nome": "Magic Powder",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "magicroom": {
+  "nome": "Magic Room",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "all"
+ },
+ "magneticflux": {
+  "nome": "Magnetic Flux",
+  "tipo": "Electric",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "allySide"
+ },
+ "magnetrise": {
+  "nome": "Magnet Rise",
+  "tipo": "Electric",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "makeitrain": {
+  "nome": "Make It Rain",
+  "tipo": "Steel",
+  "categoria": "Special",
+  "poder": 120,
+  "alvo": "allAdjacentFoes"
+ },
+ "matchagotcha": {
+  "nome": "Matcha Gotcha",
+  "tipo": "Grass",
+  "categoria": "Special",
+  "poder": 80,
+  "alvo": "allAdjacentFoes"
+ },
+ "meanlook": {
+  "nome": "Mean Look",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "megahorn": {
+  "nome": "Megahorn",
+  "tipo": "Bug",
+  "categoria": "Physical",
+  "poder": 120,
+  "alvo": "normal"
+ },
+ "megakick": {
+  "nome": "Mega Kick",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 120,
+  "alvo": "normal"
+ },
+ "memento": {
+  "nome": "Memento",
+  "tipo": "Dark",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "metalburst": {
+  "nome": "Metal Burst",
+  "tipo": "Steel",
+  "categoria": "Physical",
+  "poder": 0,
+  "alvo": "scripted"
+ },
+ "metalsound": {
+  "nome": "Metal Sound",
+  "tipo": "Steel",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "meteorassault": {
+  "nome": "Meteor Assault",
+  "tipo": "Fighting",
+  "categoria": "Physical",
+  "poder": 170,
+  "alvo": "normal"
+ },
+ "meteorbeam": {
+  "nome": "Meteor Beam",
+  "tipo": "Rock",
+  "categoria": "Special",
+  "poder": 120,
+  "alvo": "normal"
+ },
+ "meteormash": {
+  "nome": "Meteor Mash",
+  "tipo": "Steel",
+  "categoria": "Physical",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "milkdrink": {
+  "nome": "Milk Drink",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "adjacentAllyOrSelf"
+ },
+ "minimize": {
+  "nome": "Minimize",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "mirrorcoat": {
+  "nome": "Mirror Coat",
+  "tipo": "Psychic",
+  "categoria": "Special",
+  "poder": 0,
+  "alvo": "scripted"
+ },
+ "mistyexplosion": {
+  "nome": "Misty Explosion",
+  "tipo": "Fairy",
+  "categoria": "Special",
+  "poder": 100,
+  "alvo": "allAdjacent"
+ },
+ "mistyterrain": {
+  "nome": "Misty Terrain",
+  "tipo": "Fairy",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "all"
+ },
+ "moonblast": {
+  "nome": "Moonblast",
+  "tipo": "Fairy",
+  "categoria": "Special",
+  "poder": 95,
+  "alvo": "normal"
+ },
+ "moonlight": {
+  "nome": "Moonlight",
+  "tipo": "Fairy",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "morningsun": {
+  "nome": "Morning Sun",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "mortalspin": {
+  "nome": "Mortal Spin",
+  "tipo": "Poison",
+  "categoria": "Physical",
+  "poder": 30,
+  "alvo": "allAdjacentFoes"
+ },
+ "mountaingale": {
+  "nome": "Mountain Gale",
+  "tipo": "Ice",
+  "categoria": "Physical",
+  "poder": 120,
+  "alvo": "normal"
+ },
+ "muddywater": {
+  "nome": "Muddy Water",
+  "tipo": "Water",
+  "categoria": "Special",
+  "poder": 90,
+  "alvo": "allAdjacentFoes"
+ },
+ "mudshot": {
+  "nome": "Mud Shot",
+  "tipo": "Ground",
+  "categoria": "Special",
+  "poder": 55,
+  "alvo": "normal"
+ },
+ "mudslap": {
+  "nome": "Mud-Slap",
+  "tipo": "Ground",
+  "categoria": "Special",
+  "poder": 20,
+  "alvo": "normal"
+ },
+ "mysticalfire": {
+  "nome": "Mystical Fire",
+  "tipo": "Fire",
+  "categoria": "Special",
+  "poder": 75,
+  "alvo": "normal"
+ },
+ "nastyplot": {
+  "nome": "Nasty Plot",
+  "tipo": "Dark",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "nightdaze": {
+  "nome": "Night Daze",
+  "tipo": "Dark",
+  "categoria": "Special",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "nightshade": {
+  "nome": "Night Shade",
+  "tipo": "Ghost",
+  "categoria": "Special",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "nightslash": {
+  "nome": "Night Slash",
+  "tipo": "Dark",
+  "categoria": "Physical",
+  "poder": 70,
+  "alvo": "normal"
+ },
+ "nobleroar": {
+  "nome": "Noble Roar",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "noretreat": {
+  "nome": "No Retreat",
+  "tipo": "Fighting",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "nuzzle": {
+  "nome": "Nuzzle",
+  "tipo": "Electric",
+  "categoria": "Physical",
+  "poder": 20,
+  "alvo": "normal"
+ },
+ "octolock": {
+  "nome": "Octolock",
+  "tipo": "Fighting",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "outrage": {
+  "nome": "Outrage",
+  "tipo": "Dragon",
+  "categoria": "Physical",
+  "poder": 120,
+  "alvo": "randomNormal"
+ },
+ "overdrive": {
+  "nome": "Overdrive",
+  "tipo": "Electric",
+  "categoria": "Special",
+  "poder": 80,
+  "alvo": "allAdjacentFoes"
+ },
+ "overheat": {
+  "nome": "Overheat",
+  "tipo": "Fire",
+  "categoria": "Special",
+  "poder": 130,
+  "alvo": "normal"
+ },
+ "painsplit": {
+  "nome": "Pain Split",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "paraboliccharge": {
+  "nome": "Parabolic Charge",
+  "tipo": "Electric",
+  "categoria": "Special",
+  "poder": 65,
+  "alvo": "allAdjacent"
+ },
+ "partingshot": {
+  "nome": "Parting Shot",
+  "tipo": "Dark",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "payback": {
+  "nome": "Payback",
+  "tipo": "Dark",
+  "categoria": "Physical",
+  "poder": 50,
+  "alvo": "normal"
+ },
+ "perishsong": {
+  "nome": "Perish Song",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "all"
+ },
+ "petalblizzard": {
+  "nome": "Petal Blizzard",
+  "tipo": "Grass",
+  "categoria": "Physical",
+  "poder": 90,
+  "alvo": "allAdjacent"
+ },
+ "petaldance": {
+  "nome": "Petal Dance",
+  "tipo": "Grass",
+  "categoria": "Special",
+  "poder": 120,
+  "alvo": "randomNormal"
+ },
+ "phantomforce": {
+  "nome": "Phantom Force",
+  "tipo": "Ghost",
+  "categoria": "Physical",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "pinmissile": {
+  "nome": "Pin Missile",
+  "tipo": "Bug",
+  "categoria": "Physical",
+  "poder": 25,
+  "alvo": "normal"
+ },
+ "playrough": {
+  "nome": "Play Rough",
+  "tipo": "Fairy",
+  "categoria": "Physical",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "pluck": {
+  "nome": "Pluck",
+  "tipo": "Flying",
+  "categoria": "Physical",
+  "poder": 60,
+  "alvo": "any"
+ },
+ "poisonfang": {
+  "nome": "Poison Fang",
+  "tipo": "Poison",
+  "categoria": "Physical",
+  "poder": 50,
+  "alvo": "normal"
+ },
+ "poisonjab": {
+  "nome": "Poison Jab",
+  "tipo": "Poison",
+  "categoria": "Physical",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "poisonpowder": {
+  "nome": "Poison Powder",
+  "tipo": "Poison",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "pollenpuff": {
+  "nome": "Pollen Puff",
+  "tipo": "Bug",
+  "categoria": "Special",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "poltergeist": {
+  "nome": "Poltergeist",
+  "tipo": "Ghost",
+  "categoria": "Physical",
+  "poder": 110,
+  "alvo": "normal"
+ },
+ "populationbomb": {
+  "nome": "Population Bomb",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 20,
+  "alvo": "normal"
+ },
+ "pounce": {
+  "nome": "Pounce",
+  "tipo": "Bug",
+  "categoria": "Physical",
+  "poder": 50,
+  "alvo": "normal"
+ },
+ "powergem": {
+  "nome": "Power Gem",
+  "tipo": "Rock",
+  "categoria": "Special",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "powersplit": {
+  "nome": "Power Split",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "powerswap": {
+  "nome": "Power Swap",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "powertrick": {
+  "nome": "Power Trick",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "powertrip": {
+  "nome": "Power Trip",
+  "tipo": "Dark",
+  "categoria": "Physical",
+  "poder": 20,
+  "alvo": "normal"
+ },
+ "powerwhip": {
+  "nome": "Power Whip",
+  "tipo": "Grass",
+  "categoria": "Physical",
+  "poder": 120,
+  "alvo": "normal"
+ },
+ "protect": {
+  "nome": "Protect",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "psychic": {
+  "nome": "Psychic",
+  "tipo": "Psychic",
+  "categoria": "Special",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "psychicfangs": {
+  "nome": "Psychic Fangs",
+  "tipo": "Psychic",
+  "categoria": "Physical",
+  "poder": 85,
+  "alvo": "normal"
+ },
+ "psychicnoise": {
+  "nome": "Psychic Noise",
+  "tipo": "Psychic",
+  "categoria": "Special",
+  "poder": 75,
+  "alvo": "normal"
+ },
+ "psychicterrain": {
+  "nome": "Psychic Terrain",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "all"
+ },
+ "psychocut": {
+  "nome": "Psycho Cut",
+  "tipo": "Psychic",
+  "categoria": "Physical",
+  "poder": 70,
+  "alvo": "normal"
+ },
+ "psychup": {
+  "nome": "Psych Up",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "psyshieldbash": {
+  "nome": "Psyshield Bash",
+  "tipo": "Psychic",
+  "categoria": "Physical",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "psyshock": {
+  "nome": "Psyshock",
+  "tipo": "Psychic",
+  "categoria": "Special",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "pyroball": {
+  "nome": "Pyro Ball",
+  "tipo": "Fire",
+  "categoria": "Physical",
+  "poder": 120,
+  "alvo": "normal"
+ },
+ "quash": {
+  "nome": "Quash",
+  "tipo": "Dark",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "quickattack": {
+  "nome": "Quick Attack",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 40,
+  "alvo": "normal"
+ },
+ "quickguard": {
+  "nome": "Quick Guard",
+  "tipo": "Fighting",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "allySide"
+ },
+ "quiverdance": {
+  "nome": "Quiver Dance",
+  "tipo": "Bug",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "ragefist": {
+  "nome": "Rage Fist",
+  "tipo": "Ghost",
+  "categoria": "Physical",
+  "poder": 50,
+  "alvo": "normal"
+ },
+ "ragepowder": {
+  "nome": "Rage Powder",
+  "tipo": "Bug",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "ragingbull": {
+  "nome": "Raging Bull",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "ragingfury": {
+  "nome": "Raging Fury",
+  "tipo": "Fire",
+  "categoria": "Physical",
+  "poder": 120,
+  "alvo": "randomNormal"
+ },
+ "raindance": {
+  "nome": "Rain Dance",
+  "tipo": "Water",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "all"
+ },
+ "rapidspin": {
+  "nome": "Rapid Spin",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 50,
+  "alvo": "normal"
+ },
+ "razorshell": {
+  "nome": "Razor Shell",
+  "tipo": "Water",
+  "categoria": "Physical",
+  "poder": 75,
+  "alvo": "normal"
+ },
+ "recover": {
+  "nome": "Recover",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "recycle": {
+  "nome": "Recycle",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "reflect": {
+  "nome": "Reflect",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "allySide"
+ },
+ "reflecttype": {
+  "nome": "Reflect Type",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "rest": {
+  "nome": "Rest",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "reversal": {
+  "nome": "Reversal",
+  "tipo": "Fighting",
+  "categoria": "Physical",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "revivalblessing": {
+  "nome": "Revival Blessing",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "risingvoltage": {
+  "nome": "Rising Voltage",
+  "tipo": "Electric",
+  "categoria": "Special",
+  "poder": 70,
+  "alvo": "normal"
+ },
+ "roar": {
+  "nome": "Roar",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "rockblast": {
+  "nome": "Rock Blast",
+  "tipo": "Rock",
+  "categoria": "Physical",
+  "poder": 25,
+  "alvo": "normal"
+ },
+ "rockpolish": {
+  "nome": "Rock Polish",
+  "tipo": "Rock",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "rockslide": {
+  "nome": "Rock Slide",
+  "tipo": "Rock",
+  "categoria": "Physical",
+  "poder": 75,
+  "alvo": "allAdjacentFoes"
+ },
+ "rocktomb": {
+  "nome": "Rock Tomb",
+  "tipo": "Rock",
+  "categoria": "Physical",
+  "poder": 60,
+  "alvo": "normal"
+ },
+ "rockwrecker": {
+  "nome": "Rock Wrecker",
+  "tipo": "Rock",
+  "categoria": "Physical",
+  "poder": 150,
+  "alvo": "normal"
+ },
+ "roleplay": {
+  "nome": "Role Play",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "roost": {
+  "nome": "Roost",
+  "tipo": "Flying",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "round": {
+  "nome": "Round",
+  "tipo": "Normal",
+  "categoria": "Special",
+  "poder": 60,
+  "alvo": "normal"
+ },
+ "sacredsword": {
+  "nome": "Sacred Sword",
+  "tipo": "Fighting",
+  "categoria": "Physical",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "safeguard": {
+  "nome": "Safeguard",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "allySide"
+ },
+ "saltcure": {
+  "nome": "Salt Cure",
+  "tipo": "Rock",
+  "categoria": "Physical",
+  "poder": 40,
+  "alvo": "normal"
+ },
+ "sandstorm": {
+  "nome": "Sandstorm",
+  "tipo": "Rock",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "all"
+ },
+ "sandtomb": {
+  "nome": "Sand Tomb",
+  "tipo": "Ground",
+  "categoria": "Physical",
+  "poder": 35,
+  "alvo": "normal"
+ },
+ "scald": {
+  "nome": "Scald",
+  "tipo": "Water",
+  "categoria": "Special",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "scaleshot": {
+  "nome": "Scale Shot",
+  "tipo": "Dragon",
+  "categoria": "Physical",
+  "poder": 25,
+  "alvo": "normal"
+ },
+ "scaryface": {
+  "nome": "Scary Face",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "scorchingsands": {
+  "nome": "Scorching Sands",
+  "tipo": "Ground",
+  "categoria": "Special",
+  "poder": 70,
+  "alvo": "normal"
+ },
+ "screech": {
+  "nome": "Screech",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "seedbomb": {
+  "nome": "Seed Bomb",
+  "tipo": "Grass",
+  "categoria": "Physical",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "seismictoss": {
+  "nome": "Seismic Toss",
+  "tipo": "Fighting",
+  "categoria": "Physical",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "selfdestruct": {
+  "nome": "Self-Destruct",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 200,
+  "alvo": "allAdjacent"
+ },
+ "shadowball": {
+  "nome": "Shadow Ball",
+  "tipo": "Ghost",
+  "categoria": "Special",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "shadowclaw": {
+  "nome": "Shadow Claw",
+  "tipo": "Ghost",
+  "categoria": "Physical",
+  "poder": 70,
+  "alvo": "normal"
+ },
+ "shadowpunch": {
+  "nome": "Shadow Punch",
+  "tipo": "Ghost",
+  "categoria": "Physical",
+  "poder": 60,
+  "alvo": "normal"
+ },
+ "shadowsneak": {
+  "nome": "Shadow Sneak",
+  "tipo": "Ghost",
+  "categoria": "Physical",
+  "poder": 40,
+  "alvo": "normal"
+ },
+ "shedtail": {
+  "nome": "Shed Tail",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "sheercold": {
+  "nome": "Sheer Cold",
+  "tipo": "Ice",
+  "categoria": "Special",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "shellsidearm": {
+  "nome": "Shell Side Arm",
+  "tipo": "Poison",
+  "categoria": "Special",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "shellsmash": {
+  "nome": "Shell Smash",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "shelter": {
+  "nome": "Shelter",
+  "tipo": "Steel",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "shiftgear": {
+  "nome": "Shift Gear",
+  "tipo": "Steel",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "simplebeam": {
+  "nome": "Simple Beam",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "sing": {
+  "nome": "Sing",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "skillswap": {
+  "nome": "Skill Swap",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "skittersmack": {
+  "nome": "Skitter Smack",
+  "tipo": "Bug",
+  "categoria": "Physical",
+  "poder": 70,
+  "alvo": "normal"
+ },
+ "skyattack": {
+  "nome": "Sky Attack",
+  "tipo": "Flying",
+  "categoria": "Physical",
+  "poder": 140,
+  "alvo": "any"
+ },
+ "slackoff": {
+  "nome": "Slack Off",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "slash": {
+  "nome": "Slash",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "sleeppowder": {
+  "nome": "Sleep Powder",
+  "tipo": "Grass",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "sleeptalk": {
+  "nome": "Sleep Talk",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "sludgebomb": {
+  "nome": "Sludge Bomb",
+  "tipo": "Poison",
+  "categoria": "Special",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "sludgewave": {
+  "nome": "Sludge Wave",
+  "tipo": "Poison",
+  "categoria": "Special",
+  "poder": 95,
+  "alvo": "allAdjacent"
+ },
+ "smackdown": {
+  "nome": "Smack Down",
+  "tipo": "Rock",
+  "categoria": "Physical",
+  "poder": 50,
+  "alvo": "normal"
+ },
+ "smartstrike": {
+  "nome": "Smart Strike",
+  "tipo": "Steel",
+  "categoria": "Physical",
+  "poder": 70,
+  "alvo": "normal"
+ },
+ "snaptrap": {
+  "nome": "Snap Trap",
+  "tipo": "Steel",
+  "categoria": "Physical",
+  "poder": 35,
+  "alvo": "normal"
+ },
+ "snarl": {
+  "nome": "Snarl",
+  "tipo": "Dark",
+  "categoria": "Special",
+  "poder": 55,
+  "alvo": "allAdjacentFoes"
+ },
+ "snipeshot": {
+  "nome": "Snipe Shot",
+  "tipo": "Water",
+  "categoria": "Special",
+  "poder": 85,
+  "alvo": "normal"
+ },
+ "snore": {
+  "nome": "Snore",
+  "tipo": "Normal",
+  "categoria": "Special",
+  "poder": 50,
+  "alvo": "normal"
+ },
+ "snowscape": {
+  "nome": "Snowscape",
+  "tipo": "Ice",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "all"
+ },
+ "soak": {
+  "nome": "Soak",
+  "tipo": "Water",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "solarbeam": {
+  "nome": "Solar Beam",
+  "tipo": "Grass",
+  "categoria": "Special",
+  "poder": 120,
+  "alvo": "normal"
+ },
+ "solarblade": {
+  "nome": "Solar Blade",
+  "tipo": "Grass",
+  "categoria": "Physical",
+  "poder": 125,
+  "alvo": "normal"
+ },
+ "sparklingaria": {
+  "nome": "Sparkling Aria",
+  "tipo": "Water",
+  "categoria": "Special",
+  "poder": 90,
+  "alvo": "allAdjacent"
+ },
+ "speedswap": {
+  "nome": "Speed Swap",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "spicyextract": {
+  "nome": "Spicy Extract",
+  "tipo": "Grass",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "spikes": {
+  "nome": "Spikes",
+  "tipo": "Ground",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "foeSide"
+ },
+ "spikyshield": {
+  "nome": "Spiky Shield",
+  "tipo": "Grass",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "spiritbreak": {
+  "nome": "Spirit Break",
+  "tipo": "Fairy",
+  "categoria": "Physical",
+  "poder": 75,
+  "alvo": "normal"
+ },
+ "spiritshackle": {
+  "nome": "Spirit Shackle",
+  "tipo": "Ghost",
+  "categoria": "Physical",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "spite": {
+  "nome": "Spite",
+  "tipo": "Ghost",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "spitup": {
+  "nome": "Spit Up",
+  "tipo": "Normal",
+  "categoria": "Special",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "stealthrock": {
+  "nome": "Stealth Rock",
+  "tipo": "Rock",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "foeSide"
+ },
+ "steelbeam": {
+  "nome": "Steel Beam",
+  "tipo": "Steel",
+  "categoria": "Special",
+  "poder": 140,
+  "alvo": "normal"
+ },
+ "steelroller": {
+  "nome": "Steel Roller",
+  "tipo": "Steel",
+  "categoria": "Physical",
+  "poder": 130,
+  "alvo": "normal"
+ },
+ "steelwing": {
+  "nome": "Steel Wing",
+  "tipo": "Steel",
+  "categoria": "Physical",
+  "poder": 70,
+  "alvo": "normal"
+ },
+ "stickyweb": {
+  "nome": "Sticky Web",
+  "tipo": "Bug",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "foeSide"
+ },
+ "stockpile": {
+  "nome": "Stockpile",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "stompingtantrum": {
+  "nome": "Stomping Tantrum",
+  "tipo": "Ground",
+  "categoria": "Physical",
+  "poder": 75,
+  "alvo": "normal"
+ },
+ "stoneaxe": {
+  "nome": "Stone Axe",
+  "tipo": "Rock",
+  "categoria": "Physical",
+  "poder": 65,
+  "alvo": "normal"
+ },
+ "stoneedge": {
+  "nome": "Stone Edge",
+  "tipo": "Rock",
+  "categoria": "Physical",
+  "poder": 100,
+  "alvo": "normal"
+ },
+ "storedpower": {
+  "nome": "Stored Power",
+  "tipo": "Psychic",
+  "categoria": "Special",
+  "poder": 20,
+  "alvo": "normal"
+ },
+ "stormthrow": {
+  "nome": "Storm Throw",
+  "tipo": "Fighting",
+  "categoria": "Physical",
+  "poder": 60,
+  "alvo": "normal"
+ },
+ "strengthsap": {
+  "nome": "Strength Sap",
+  "tipo": "Grass",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "stringshot": {
+  "nome": "String Shot",
+  "tipo": "Bug",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "allAdjacentFoes"
+ },
+ "strugglebug": {
+  "nome": "Struggle Bug",
+  "tipo": "Bug",
+  "categoria": "Special",
+  "poder": 50,
+  "alvo": "allAdjacentFoes"
+ },
+ "stuffcheeks": {
+  "nome": "Stuff Cheeks",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "stunspore": {
+  "nome": "Stun Spore",
+  "tipo": "Grass",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "substitute": {
+  "nome": "Substitute",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "suckerpunch": {
+  "nome": "Sucker Punch",
+  "tipo": "Dark",
+  "categoria": "Physical",
+  "poder": 70,
+  "alvo": "normal"
+ },
+ "sunnyday": {
+  "nome": "Sunny Day",
+  "tipo": "Fire",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "all"
+ },
+ "supercellslam": {
+  "nome": "Supercell Slam",
+  "tipo": "Electric",
+  "categoria": "Physical",
+  "poder": 100,
+  "alvo": "normal"
+ },
+ "superfang": {
+  "nome": "Super Fang",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "superpower": {
+  "nome": "Superpower",
+  "tipo": "Fighting",
+  "categoria": "Physical",
+  "poder": 120,
+  "alvo": "normal"
+ },
+ "surf": {
+  "nome": "Surf",
+  "tipo": "Water",
+  "categoria": "Special",
+  "poder": 90,
+  "alvo": "allAdjacent"
+ },
+ "swagger": {
+  "nome": "Swagger",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "swallow": {
+  "nome": "Swallow",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "sweetkiss": {
+  "nome": "Sweet Kiss",
+  "tipo": "Fairy",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "sweetscent": {
+  "nome": "Sweet Scent",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "allAdjacentFoes"
+ },
+ "switcheroo": {
+  "nome": "Switcheroo",
+  "tipo": "Dark",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "swordsdance": {
+  "nome": "Swords Dance",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "synthesis": {
+  "nome": "Synthesis",
+  "tipo": "Grass",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "syrupbomb": {
+  "nome": "Syrup Bomb",
+  "tipo": "Grass",
+  "categoria": "Special",
+  "poder": 60,
+  "alvo": "normal"
+ },
+ "tailslap": {
+  "nome": "Tail Slap",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 25,
+  "alvo": "normal"
+ },
+ "tailwind": {
+  "nome": "Tailwind",
+  "tipo": "Flying",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "allySide"
+ },
+ "taunt": {
+  "nome": "Taunt",
+  "tipo": "Dark",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "tearfullook": {
+  "nome": "Tearful Look",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "teatime": {
+  "nome": "Teatime",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "all"
+ },
+ "teeterdance": {
+  "nome": "Teeter Dance",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "allAdjacent"
+ },
+ "temperflare": {
+  "nome": "Temper Flare",
+  "tipo": "Fire",
+  "categoria": "Physical",
+  "poder": 75,
+  "alvo": "normal"
+ },
+ "terrainpulse": {
+  "nome": "Terrain Pulse",
+  "tipo": "Normal",
+  "categoria": "Special",
+  "poder": 50,
+  "alvo": "normal"
+ },
+ "thief": {
+  "nome": "Thief",
+  "tipo": "Dark",
+  "categoria": "Physical",
+  "poder": 60,
+  "alvo": "normal"
+ },
+ "thrash": {
+  "nome": "Thrash",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 120,
+  "alvo": "randomNormal"
+ },
+ "throatchop": {
+  "nome": "Throat Chop",
+  "tipo": "Dark",
+  "categoria": "Physical",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "thunder": {
+  "nome": "Thunder",
+  "tipo": "Electric",
+  "categoria": "Special",
+  "poder": 110,
+  "alvo": "normal"
+ },
+ "thunderbolt": {
+  "nome": "Thunderbolt",
+  "tipo": "Electric",
+  "categoria": "Special",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "thunderfang": {
+  "nome": "Thunder Fang",
+  "tipo": "Electric",
+  "categoria": "Physical",
+  "poder": 65,
+  "alvo": "normal"
+ },
+ "thunderpunch": {
+  "nome": "Thunder Punch",
+  "tipo": "Electric",
+  "categoria": "Physical",
+  "poder": 75,
+  "alvo": "normal"
+ },
+ "thunderwave": {
+  "nome": "Thunder Wave",
+  "tipo": "Electric",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "tickle": {
+  "nome": "Tickle",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "tidyup": {
+  "nome": "Tidy Up",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "topsyturvy": {
+  "nome": "Topsy-Turvy",
+  "tipo": "Dark",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "torchsong": {
+  "nome": "Torch Song",
+  "tipo": "Fire",
+  "categoria": "Special",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "torment": {
+  "nome": "Torment",
+  "tipo": "Dark",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "toxic": {
+  "nome": "Toxic",
+  "tipo": "Poison",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "toxicspikes": {
+  "nome": "Toxic Spikes",
+  "tipo": "Poison",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "foeSide"
+ },
+ "toxicthread": {
+  "nome": "Toxic Thread",
+  "tipo": "Poison",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "trailblaze": {
+  "nome": "Trailblaze",
+  "tipo": "Grass",
+  "categoria": "Physical",
+  "poder": 50,
+  "alvo": "normal"
+ },
+ "transform": {
+  "nome": "Transform",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "triattack": {
+  "nome": "Tri Attack",
+  "tipo": "Normal",
+  "categoria": "Special",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "trick": {
+  "nome": "Trick",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "trickortreat": {
+  "nome": "Trick-or-Treat",
+  "tipo": "Ghost",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "trickroom": {
+  "nome": "Trick Room",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "all"
+ },
+ "triplearrows": {
+  "nome": "Triple Arrows",
+  "tipo": "Fighting",
+  "categoria": "Physical",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "tripleaxel": {
+  "nome": "Triple Axel",
+  "tipo": "Ice",
+  "categoria": "Physical",
+  "poder": 20,
+  "alvo": "normal"
+ },
+ "tropkick": {
+  "nome": "Trop Kick",
+  "tipo": "Grass",
+  "categoria": "Physical",
+  "poder": 85,
+  "alvo": "normal"
+ },
+ "twinbeam": {
+  "nome": "Twin Beam",
+  "tipo": "Psychic",
+  "categoria": "Special",
+  "poder": 40,
+  "alvo": "normal"
+ },
+ "upperhand": {
+  "nome": "Upper Hand",
+  "tipo": "Fighting",
+  "categoria": "Physical",
+  "poder": 65,
+  "alvo": "normal"
+ },
+ "uproar": {
+  "nome": "Uproar",
+  "tipo": "Normal",
+  "categoria": "Special",
+  "poder": 90,
+  "alvo": "randomNormal"
+ },
+ "uturn": {
+  "nome": "U-turn",
+  "tipo": "Bug",
+  "categoria": "Physical",
+  "poder": 70,
+  "alvo": "normal"
+ },
+ "vacuumwave": {
+  "nome": "Vacuum Wave",
+  "tipo": "Fighting",
+  "categoria": "Special",
+  "poder": 40,
+  "alvo": "normal"
+ },
+ "venoshock": {
+  "nome": "Venoshock",
+  "tipo": "Poison",
+  "categoria": "Special",
+  "poder": 65,
+  "alvo": "normal"
+ },
+ "voltswitch": {
+  "nome": "Volt Switch",
+  "tipo": "Electric",
+  "categoria": "Special",
+  "poder": 70,
+  "alvo": "normal"
+ },
+ "volttackle": {
+  "nome": "Volt Tackle",
+  "tipo": "Electric",
+  "categoria": "Physical",
+  "poder": 120,
+  "alvo": "normal"
+ },
+ "waterfall": {
+  "nome": "Waterfall",
+  "tipo": "Water",
+  "categoria": "Physical",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "waterpulse": {
+  "nome": "Water Pulse",
+  "tipo": "Water",
+  "categoria": "Special",
+  "poder": 60,
+  "alvo": "any"
+ },
+ "watershuriken": {
+  "nome": "Water Shuriken",
+  "tipo": "Water",
+  "categoria": "Special",
+  "poder": 15,
+  "alvo": "normal"
+ },
+ "waterspout": {
+  "nome": "Water Spout",
+  "tipo": "Water",
+  "categoria": "Special",
+  "poder": 150,
+  "alvo": "allAdjacentFoes"
+ },
+ "wavecrash": {
+  "nome": "Wave Crash",
+  "tipo": "Water",
+  "categoria": "Physical",
+  "poder": 120,
+  "alvo": "normal"
+ },
+ "weatherball": {
+  "nome": "Weather Ball",
+  "tipo": "Normal",
+  "categoria": "Special",
+  "poder": 50,
+  "alvo": "normal"
+ },
+ "whirlpool": {
+  "nome": "Whirlpool",
+  "tipo": "Water",
+  "categoria": "Special",
+  "poder": 35,
+  "alvo": "normal"
+ },
+ "whirlwind": {
+  "nome": "Whirlwind",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "wideguard": {
+  "nome": "Wide Guard",
+  "tipo": "Rock",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "allySide"
+ },
+ "wildcharge": {
+  "nome": "Wild Charge",
+  "tipo": "Electric",
+  "categoria": "Physical",
+  "poder": 90,
+  "alvo": "normal"
+ },
+ "willowisp": {
+  "nome": "Will-O-Wisp",
+  "tipo": "Fire",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "wish": {
+  "nome": "Wish",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "self"
+ },
+ "wonderroom": {
+  "nome": "Wonder Room",
+  "tipo": "Psychic",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "all"
+ },
+ "woodhammer": {
+  "nome": "Wood Hammer",
+  "tipo": "Grass",
+  "categoria": "Physical",
+  "poder": 120,
+  "alvo": "normal"
+ },
+ "worryseed": {
+  "nome": "Worry Seed",
+  "tipo": "Grass",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "wrap": {
+  "nome": "Wrap",
+  "tipo": "Normal",
+  "categoria": "Physical",
+  "poder": 15,
+  "alvo": "normal"
+ },
+ "xscissor": {
+  "nome": "X-Scissor",
+  "tipo": "Bug",
+  "categoria": "Physical",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "yawn": {
+  "nome": "Yawn",
+  "tipo": "Normal",
+  "categoria": "Status",
+  "poder": 0,
+  "alvo": "normal"
+ },
+ "zapcannon": {
+  "nome": "Zap Cannon",
+  "tipo": "Electric",
+  "categoria": "Special",
+  "poder": 120,
+  "alvo": "normal"
+ },
+ "zenheadbutt": {
+  "nome": "Zen Headbutt",
+  "tipo": "Psychic",
+  "categoria": "Physical",
+  "poder": 80,
+  "alvo": "normal"
+ },
+ "zingzap": {
+  "nome": "Zing Zap",
+  "tipo": "Electric",
+  "categoria": "Physical",
+  "poder": 80,
+  "alvo": "normal"
+ }
+}

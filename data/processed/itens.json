@@ -1,0 +1,492 @@
+{
+ "legais": {
+  "abomasite": "Abomasite",
+  "absolite": "Absolite",
+  "absolitez": "Absolite Z",
+  "aerodactylite": "Aerodactylite",
+  "aggronite": "Aggronite",
+  "airballoon": "Air Balloon",
+  "alakazite": "Alakazite",
+  "altarianite": "Altarianite",
+  "ampharosite": "Ampharosite",
+  "aspearberry": "Aspear Berry",
+  "audinite": "Audinite",
+  "babiriberry": "Babiri Berry",
+  "banettite": "Banettite",
+  "barbaracite": "Barbaracite",
+  "baxcalibrite": "Baxcalibrite",
+  "beedrillite": "Beedrillite",
+  "bigroot": "Big Root",
+  "bindingband": "Binding Band",
+  "blackbelt": "Black Belt",
+  "blackglasses": "Black Glasses",
+  "blastoisinite": "Blastoisinite",
+  "blazikenite": "Blazikenite",
+  "brightpowder": "Bright Powder",
+  "cameruptite": "Cameruptite",
+  "chandelurite": "Chandelurite",
+  "charcoal": "Charcoal",
+  "charizarditex": "Charizardite X",
+  "charizarditey": "Charizardite Y",
+  "chartiberry": "Charti Berry",
+  "cheriberry": "Cheri Berry",
+  "chesnaughtite": "Chesnaughtite",
+  "chestoberry": "Chesto Berry",
+  "chilanberry": "Chilan Berry",
+  "chimechite": "Chimechite",
+  "choicescarf": "Choice Scarf",
+  "chopleberry": "Chople Berry",
+  "clefablite": "Clefablite",
+  "cobaberry": "Coba Berry",
+  "colburberry": "Colbur Berry",
+  "crabominite": "Crabominite",
+  "damprock": "Damp Rock",
+  "delphoxite": "Delphoxite",
+  "dragalgite": "Dragalgite",
+  "dragonfang": "Dragon Fang",
+  "dragoninite": "Dragoninite",
+  "drampanite": "Drampanite",
+  "eelektrossite": "Eelektrossite",
+  "ejectbutton": "Eject Button",
+  "electricseed": "Electric Seed",
+  "emboarite": "Emboarite",
+  "excadrite": "Excadrite",
+  "expertbelt": "Expert Belt",
+  "fairyfeather": "Fairy Feather",
+  "falinksite": "Falinksite",
+  "feraligite": "Feraligite",
+  "floettite": "Floettite",
+  "focusband": "Focus Band",
+  "focussash": "Focus Sash",
+  "froslassite": "Froslassite",
+  "galladite": "Galladite",
+  "garchompite": "Garchompite",
+  "garchompitez": "Garchompite Z",
+  "gardevoirite": "Gardevoirite",
+  "gengarite": "Gengarite",
+  "glalitite": "Glalitite",
+  "glimmoranite": "Glimmoranite",
+  "golisopite": "Golisopite",
+  "golurkite": "Golurkite",
+  "grassyseed": "Grassy Seed",
+  "greninjite": "Greninjite",
+  "gyaradosite": "Gyaradosite",
+  "habanberry": "Haban Berry",
+  "hardstone": "Hard Stone",
+  "hawluchanite": "Hawluchanite",
+  "heatrock": "Heat Rock",
+  "heracronite": "Heracronite",
+  "houndoominite": "Houndoominite",
+  "icyrock": "Icy Rock",
+  "ironball": "Iron Ball",
+  "kangaskhanite": "Kangaskhanite",
+  "kasibberry": "Kasib Berry",
+  "kebiaberry": "Kebia Berry",
+  "kingsrock": "King's Rock",
+  "leek": "Leek",
+  "leftovers": "Leftovers",
+  "leppaberry": "Leppa Berry",
+  "lifeorb": "Life Orb",
+  "lightball": "Light Ball",
+  "lightclay": "Light Clay",
+  "lopunnite": "Lopunnite",
+  "lucarionite": "Lucarionite",
+  "lucarionitez": "Lucarionite Z",
+  "lumberry": "Lum Berry",
+  "magnet": "Magnet",
+  "malamarite": "Malamarite",
+  "manectite": "Manectite",
+  "mawilite": "Mawilite",
+  "medichamite": "Medichamite",
+  "meganiumite": "Meganiumite",
+  "mentalherb": "Mental Herb",
+  "meowsticite": "Meowsticite",
+  "metagrossite": "Metagrossite",
+  "metalcoat": "Metal Coat",
+  "metronome": "Metronome",
+  "miracleseed": "Miracle Seed",
+  "mistyseed": "Misty Seed",
+  "muscleband": "Muscle Band",
+  "mysticwater": "Mystic Water",
+  "nevermeltice": "Never-Melt Ice",
+  "normalgem": "Normal Gem",
+  "occaberry": "Occa Berry",
+  "oranberry": "Oran Berry",
+  "passhoberry": "Passho Berry",
+  "payapaberry": "Payapa Berry",
+  "pechaberry": "Pecha Berry",
+  "persimberry": "Persim Berry",
+  "pidgeotite": "Pidgeotite",
+  "pinsirite": "Pinsirite",
+  "poisonbarb": "Poison Barb",
+  "psychicseed": "Psychic Seed",
+  "pyroarite": "Pyroarite",
+  "quickclaw": "Quick Claw",
+  "raichunitex": "Raichunite X",
+  "raichunitey": "Raichunite Y",
+  "rawstberry": "Rawst Berry",
+  "redcard": "Red Card",
+  "rindoberry": "Rindo Berry",
+  "rockyhelmet": "Rocky Helmet",
+  "roseliberry": "Roseli Berry",
+  "sablenite": "Sablenite",
+  "salamencite": "Salamencite",
+  "sceptilite": "Sceptilite",
+  "scizorite": "Scizorite",
+  "scolipite": "Scolipite",
+  "scopelens": "Scope Lens",
+  "scovillainite": "Scovillainite",
+  "scraftinite": "Scraftinite",
+  "sharpbeak": "Sharp Beak",
+  "sharpedonite": "Sharpedonite",
+  "shedshell": "Shed Shell",
+  "shellbell": "Shell Bell",
+  "shucaberry": "Shuca Berry",
+  "silkscarf": "Silk Scarf",
+  "silverpowder": "Silver Powder",
+  "sitrusberry": "Sitrus Berry",
+  "skarmorite": "Skarmorite",
+  "slowbronite": "Slowbronite",
+  "smoothrock": "Smooth Rock",
+  "softsand": "Soft Sand",
+  "spelltag": "Spell Tag",
+  "staraptite": "Staraptite",
+  "starminite": "Starminite",
+  "steelixite": "Steelixite",
+  "swampertite": "Swampertite",
+  "tangaberry": "Tanga Berry",
+  "terrainextender": "Terrain Extender",
+  "twistedspoon": "Twisted Spoon",
+  "tyranitarite": "Tyranitarite",
+  "venusaurite": "Venusaurite",
+  "victreebelite": "Victreebelite",
+  "wacanberry": "Wacan Berry",
+  "whiteherb": "White Herb",
+  "widelens": "Wide Lens",
+  "wiseglasses": "Wise Glasses",
+  "yacheberry": "Yache Berry",
+  "zoomlens": "Zoom Lens"
+ },
+ "pedras_mega": {
+  "abomasite": {
+   "pokemon": "abomasnow",
+   "mega": "abomasnowmega"
+  },
+  "absolite": {
+   "pokemon": "absol",
+   "mega": "absolmega"
+  },
+  "absolitez": {
+   "pokemon": "absol",
+   "mega": "absolmegaz"
+  },
+  "aerodactylite": {
+   "pokemon": "aerodactyl",
+   "mega": "aerodactylmega"
+  },
+  "aggronite": {
+   "pokemon": "aggron",
+   "mega": "aggronmega"
+  },
+  "alakazite": {
+   "pokemon": "alakazam",
+   "mega": "alakazammega"
+  },
+  "altarianite": {
+   "pokemon": "altaria",
+   "mega": "altariamega"
+  },
+  "ampharosite": {
+   "pokemon": "ampharos",
+   "mega": "ampharosmega"
+  },
+  "audinite": {
+   "pokemon": "audino",
+   "mega": "audinomega"
+  },
+  "banettite": {
+   "pokemon": "banette",
+   "mega": "banettemega"
+  },
+  "barbaracite": {
+   "pokemon": "barbaracle",
+   "mega": "barbaraclemega"
+  },
+  "baxcalibrite": {
+   "pokemon": "baxcalibur",
+   "mega": "baxcaliburmega"
+  },
+  "beedrillite": {
+   "pokemon": "beedrill",
+   "mega": "beedrillmega"
+  },
+  "blastoisinite": {
+   "pokemon": "blastoise",
+   "mega": "blastoisemega"
+  },
+  "blazikenite": {
+   "pokemon": "blaziken",
+   "mega": "blazikenmega"
+  },
+  "cameruptite": {
+   "pokemon": "camerupt",
+   "mega": "cameruptmega"
+  },
+  "chandelurite": {
+   "pokemon": "chandelure",
+   "mega": "chandeluremega"
+  },
+  "charizarditex": {
+   "pokemon": "charizard",
+   "mega": "charizardmegax"
+  },
+  "charizarditey": {
+   "pokemon": "charizard",
+   "mega": "charizardmegay"
+  },
+  "chesnaughtite": {
+   "pokemon": "chesnaught",
+   "mega": "chesnaughtmega"
+  },
+  "chimechite": {
+   "pokemon": "chimecho",
+   "mega": "chimechomega"
+  },
+  "clefablite": {
+   "pokemon": "clefable",
+   "mega": "clefablemega"
+  },
+  "crabominite": {
+   "pokemon": "crabominable",
+   "mega": "crabominablemega"
+  },
+  "delphoxite": {
+   "pokemon": "delphox",
+   "mega": "delphoxmega"
+  },
+  "dragalgite": {
+   "pokemon": "dragalge",
+   "mega": "dragalgemega"
+  },
+  "dragoninite": {
+   "pokemon": "dragonite",
+   "mega": "dragonitemega"
+  },
+  "drampanite": {
+   "pokemon": "drampa",
+   "mega": "drampamega"
+  },
+  "eelektrossite": {
+   "pokemon": "eelektross",
+   "mega": "eelektrossmega"
+  },
+  "emboarite": {
+   "pokemon": "emboar",
+   "mega": "emboarmega"
+  },
+  "excadrite": {
+   "pokemon": "excadrill",
+   "mega": "excadrillmega"
+  },
+  "falinksite": {
+   "pokemon": "falinks",
+   "mega": "falinksmega"
+  },
+  "feraligite": {
+   "pokemon": "feraligatr",
+   "mega": "feraligatrmega"
+  },
+  "floettite": {
+   "pokemon": "floetteeternal",
+   "mega": "floettemega"
+  },
+  "froslassite": {
+   "pokemon": "froslass",
+   "mega": "froslassmega"
+  },
+  "galladite": {
+   "pokemon": "gallade",
+   "mega": "gallademega"
+  },
+  "garchompite": {
+   "pokemon": "garchomp",
+   "mega": "garchompmega"
+  },
+  "garchompitez": {
+   "pokemon": "garchomp",
+   "mega": "garchompmegaz"
+  },
+  "gardevoirite": {
+   "pokemon": "gardevoir",
+   "mega": "gardevoirmega"
+  },
+  "gengarite": {
+   "pokemon": "gengar",
+   "mega": "gengarmega"
+  },
+  "glalitite": {
+   "pokemon": "glalie",
+   "mega": "glaliemega"
+  },
+  "glimmoranite": {
+   "pokemon": "glimmora",
+   "mega": "glimmoramega"
+  },
+  "golisopite": {
+   "pokemon": "golisopod",
+   "mega": "golisopodmega"
+  },
+  "golurkite": {
+   "pokemon": "golurk",
+   "mega": "golurkmega"
+  },
+  "greninjite": {
+   "pokemon": "greninja",
+   "mega": "greninjamega"
+  },
+  "gyaradosite": {
+   "pokemon": "gyarados",
+   "mega": "gyaradosmega"
+  },
+  "hawluchanite": {
+   "pokemon": "hawlucha",
+   "mega": "hawluchamega"
+  },
+  "heracronite": {
+   "pokemon": "heracross",
+   "mega": "heracrossmega"
+  },
+  "houndoominite": {
+   "pokemon": "houndoom",
+   "mega": "houndoommega"
+  },
+  "kangaskhanite": {
+   "pokemon": "kangaskhan",
+   "mega": "kangaskhanmega"
+  },
+  "lopunnite": {
+   "pokemon": "lopunny",
+   "mega": "lopunnymega"
+  },
+  "lucarionite": {
+   "pokemon": "lucario",
+   "mega": "lucariomega"
+  },
+  "lucarionitez": {
+   "pokemon": "lucario",
+   "mega": "lucariomegaz"
+  },
+  "malamarite": {
+   "pokemon": "malamar",
+   "mega": "malamarmega"
+  },
+  "manectite": {
+   "pokemon": "manectric",
+   "mega": "manectricmega"
+  },
+  "mawilite": {
+   "pokemon": "mawile",
+   "mega": "mawilemega"
+  },
+  "medichamite": {
+   "pokemon": "medicham",
+   "mega": "medichammega"
+  },
+  "meganiumite": {
+   "pokemon": "meganium",
+   "mega": "meganiummega"
+  },
+  "metagrossite": {
+   "pokemon": "metagross",
+   "mega": "metagrossmega"
+  },
+  "pidgeotite": {
+   "pokemon": "pidgeot",
+   "mega": "pidgeotmega"
+  },
+  "pinsirite": {
+   "pokemon": "pinsir",
+   "mega": "pinsirmega"
+  },
+  "pyroarite": {
+   "pokemon": "pyroar",
+   "mega": "pyroarmega"
+  },
+  "raichunitex": {
+   "pokemon": "raichu",
+   "mega": "raichumegax"
+  },
+  "raichunitey": {
+   "pokemon": "raichu",
+   "mega": "raichumegay"
+  },
+  "sablenite": {
+   "pokemon": "sableye",
+   "mega": "sableyemega"
+  },
+  "salamencite": {
+   "pokemon": "salamence",
+   "mega": "salamencemega"
+  },
+  "sceptilite": {
+   "pokemon": "sceptile",
+   "mega": "sceptilemega"
+  },
+  "scizorite": {
+   "pokemon": "scizor",
+   "mega": "scizormega"
+  },
+  "scolipite": {
+   "pokemon": "scolipede",
+   "mega": "scolipedemega"
+  },
+  "scovillainite": {
+   "pokemon": "scovillain",
+   "mega": "scovillainmega"
+  },
+  "scraftinite": {
+   "pokemon": "scrafty",
+   "mega": "scraftymega"
+  },
+  "sharpedonite": {
+   "pokemon": "sharpedo",
+   "mega": "sharpedomega"
+  },
+  "skarmorite": {
+   "pokemon": "skarmory",
+   "mega": "skarmorymega"
+  },
+  "slowbronite": {
+   "pokemon": "slowbro",
+   "mega": "slowbromega"
+  },
+  "staraptite": {
+   "pokemon": "staraptor",
+   "mega": "staraptormega"
+  },
+  "starminite": {
+   "pokemon": "starmie",
+   "mega": "starmiemega"
+  },
+  "steelixite": {
+   "pokemon": "steelix",
+   "mega": "steelixmega"
+  },
+  "swampertite": {
+   "pokemon": "swampert",
+   "mega": "swampertmega"
+  },
+  "tyranitarite": {
+   "pokemon": "tyranitar",
+   "mega": "tyranitarmega"
+  },
+  "venusaurite": {
+   "pokemon": "venusaur",
+   "mega": "venusaurmega"
+  },
+  "victreebelite": {
+   "pokemon": "victreebel",
+   "mega": "victreebelmega"
+  }
+ }
+}

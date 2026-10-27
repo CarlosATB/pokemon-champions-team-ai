@@ -8,9 +8,11 @@ regulamentação ou o mês das estatísticas mudar em src/config.py:
     python -m src.baixar_dados legais     # só a lista de Pokémon legais
     python -m src.baixar_dados pokeapi    # só tipos e status base
     python -m src.baixar_dados smogon     # só as estatísticas de uso
+    python -m src.baixar_dados golpes     # só golpes, movepool e itens
 
 São três fontes:
-1. Pokémon Showdown -> quais Pokémon (e Megas) são legais na regulamentação.
+1. Pokémon Showdown -> quais Pokémon (e Megas) são legais na regulamentação,
+                       e também golpes, movepool e itens do Champions.
 2. PokéAPI          -> tipos, status base e habilidades de cada Pokémon legal.
 3. Smogon           -> estatísticas de uso: habilidades, itens, golpes,
                        EVs e parceiros mais usados por cada Pokémon.
@@ -196,6 +198,123 @@ def baixar_smogon() -> dict:
 
 
 # ---------------------------------------------------------------------------
+# 4. Golpes, movepool e itens (Pokémon Showdown)
+# ---------------------------------------------------------------------------
+# Os arquivos do Showdown são código TypeScript, com um bloco por golpe/item:
+#     fakeout: {
+#         name: "Fake Out",
+#         type: "Normal",
+#         ...
+#     },
+# O mod do Champions só lista o que MUDA em relação ao jogo base
+# (ex.: um golpe com outro poder). Então lemos o base e aplicamos o mod por cima.
+
+def _blocos_ts(texto_ts: str) -> dict[str, str]:
+    """{id: conteúdo do bloco} de um arquivo .ts do Showdown."""
+    blocos = re.findall(r'^\t"?(\w+)"?: \{(.*?)^\t\},', texto_ts, re.MULTILINE | re.DOTALL)
+    return dict(blocos)
+
+
+def _campo(bloco: str, nome: str) -> str | None:
+    """Valor de um campo do primeiro nível do bloco (ex.: type: "Fire" -> "Fire")."""
+    achado = re.search(rf"^\t\t{nome}: (.*?),$", bloco, re.MULTILINE)
+    return achado.group(1).strip('"') if achado else None
+
+
+def processar_movepool(learnsets_ts: str) -> dict[str, list[str]]:
+    """Lê o learnsets.ts do mod: {pokemon_id: [golpes que ele aprende]}.
+
+    Megas não têm lista própria: usam a da forma normal (ver src/analise).
+    """
+    blocos = re.findall(
+        r"^\t(\w+): \{\n\t\tlearnset: \{(.*?)^\t\t\}", learnsets_ts, re.MULTILINE | re.DOTALL
+    )
+    return {pokemon_id: re.findall(r"^\t\t\t(\w+):", golpes, re.MULTILINE)
+            for pokemon_id, golpes in blocos}
+
+
+def processar_golpes(base_ts: str, mod_ts: str, aprendiveis: set[str]) -> dict:
+    """{golpe_id: {nome, tipo, categoria, poder, alvo}} dos golpes do Champions.
+
+    Só entram os golpes que algum Pokémon aprende (`aprendiveis`).
+    """
+    base = _blocos_ts(base_ts)
+    mod = _blocos_ts(mod_ts)
+    golpes = {}
+    for golpe_id in sorted(aprendiveis):
+        if golpe_id not in base:
+            continue
+        info = {}
+        for campo, chave in [("name", "nome"), ("type", "tipo"), ("category", "categoria"),
+                             ("basePower", "poder"), ("target", "alvo")]:
+            valor = _campo(base[golpe_id], campo)
+            if golpe_id in mod and _campo(mod[golpe_id], campo) is not None:
+                valor = _campo(mod[golpe_id], campo)  # o Champions mudou este campo
+            info[chave] = valor
+        info["poder"] = int(info["poder"] or 0)
+        golpes[golpe_id] = info
+    return golpes
+
+
+def processar_itens(base_ts: str, mod_ts: str) -> dict:
+    """Itens legais no Champions e as Pedras Mega (item -> Pokémon e Mega).
+
+    Um item é legal quando não está marcado como isNonstandard (ou o mod
+    do Champions tira essa marca com isNonstandard: null).
+    """
+    base = _blocos_ts(base_ts)
+    mod = _blocos_ts(mod_ts)
+    legais = {}
+    pedras_mega = {}
+    for item_id, bloco in base.items():
+        fora = _campo(bloco, "isNonstandard")
+        if item_id in mod and _campo(mod[item_id], "isNonstandard") is not None:
+            fora = _campo(mod[item_id], "isNonstandard")
+        if fora not in (None, "null"):
+            continue
+        nome = _campo(bloco, "name")
+        legais[item_id] = nome
+        pedra = re.search(r'megaStone: \{ "(.+?)": "(.+?)" \}', bloco)
+        if pedra:
+            pedras_mega[item_id] = {"pokemon": to_id(pedra.group(1)), "mega": to_id(pedra.group(2))}
+    return {"legais": legais, "pedras_mega": pedras_mega}
+
+
+def baixar_golpes() -> None:
+    print("Baixando golpes, movepool e itens do Champions (Showdown)...")
+
+    def texto(url):
+        resposta = requests.get(url, timeout=TIMEOUT)
+        resposta.raise_for_status()
+        return resposta.text
+
+    movepool = processar_movepool(texto(config.showdown_url("learnsets.ts")))
+    salvar_json(movepool, config.MOVEPOOL_FILE)
+
+    aprendiveis = {golpe for golpes in movepool.values() for golpe in golpes}
+    if config.USO_FILE.exists():
+        # Golpes que aparecem nas batalhas mas faltam no movepool (ex.: golpes de
+        # evento, como o Light of Ruin da Floette Eterna) também precisam de dados.
+        with open(config.USO_FILE, encoding="utf-8") as arquivo:
+            uso = json.load(arquivo)
+        aprendiveis |= {golpe for info in uso["pokemon"].values() for golpe in info["golpes"]}
+    golpes = processar_golpes(
+        texto(config.showdown_url("moves.ts", mod=None)),
+        texto(config.showdown_url("moves.ts")),
+        aprendiveis,
+    )
+    salvar_json(golpes, config.GOLPES_FILE)
+
+    itens = processar_itens(
+        texto(config.showdown_url("items.ts", mod=None)),
+        texto(config.showdown_url("items.ts")),
+    )
+    salvar_json(itens, config.ITENS_FILE)
+    print(f"  {len(movepool)} Pokémon com movepool, {len(golpes)} golpes, "
+          f"{len(itens['legais'])} itens ({len(itens['pedras_mega'])} Pedras Mega)")
+
+
+# ---------------------------------------------------------------------------
 
 def main(etapa: str = "tudo") -> None:
     if etapa in ("legais", "tudo"):
@@ -207,6 +326,8 @@ def main(etapa: str = "tudo") -> None:
         baixar_pokeapi(legais)
     if etapa in ("smogon", "tudo"):
         baixar_smogon()
+    if etapa in ("golpes", "tudo"):
+        baixar_golpes()
     print("Pronto!")
 
 
