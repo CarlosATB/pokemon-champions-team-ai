@@ -143,8 +143,15 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 - [x] Testes com os times de exemplo — `tests/test_recomendacao.py` (12 testes); 61 testes passando no total
 - [x] Recomendações ligadas no `app.py` (seção "3. Recomendações": Por Pokémon, Parceiros, Trocar um Pokémon) — adiantamento da Fase 4
 
+### Fase 3.1 — Montar o time (item, habilidade e golpes)
+- [x] Aba "Escolher da lista" renomeada para "Montar o time" e colocada antes de "Colar do Showdown"
+- [x] 6 cards (2×3): Pokémon (com os tipos), item, habilidade e 4 golpes (com o tipo de cada golpe)
+- [x] Opções ordenadas pelo uso (`src/opcoes.py`); golpes do movepool do Champions; sem Pedra Mega de outro Pokémon
+- [x] Time montado vai para a análise e as recomendações (`leitor.montar_time`)
+- [x] Testes — `tests/test_opcoes.py` (4 testes); 65 passando no total
+
 ### Fase 4 — Interface (Streamlit)
-- [~] Tela de entrada do time — aba "Montar o time" (primeira) com 6 cards (2×3): Pokémon, tipos, item, habilidade e 4 golpes, opções ordenadas pelo uso (`src/opcoes.py`). Falta: imagem do Pokémon, visual estilo teambuilder, tirar "Colar do Showdown" e trocar por Importar/Exportar
+- [ ] Tela de entrada do time — a base já existe (Fase 3.1); falta: imagem do Pokémon, visual estilo teambuilder, tirar "Colar do Showdown" e trocar por Importar/Exportar
 - [ ] Exibição da análise (tabela/gráfico de fraquezas, funções, ameaças)
 - [~] Exibição das recomendações por Pokémon — primeira versão na Fase 3 (expanders + tabelas); melhorar o visual
 - [ ] Botão para importar/exportar time no formato do Showdown
@@ -181,4 +188,4 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 | 27/10/2026 | Fase 0 mergeada (PR #1). Fase 1 em andamento (branch `fase-1-dados`): script de download, tabela de tipos, lista de legais (349), dados da PokéAPI, nomes, funções de duplas e testes (19 passando). Estatísticas do Smogon baixadas no PC do Carlos (2026-09, 1,6 mi de batalhas, 316 Pokémon); 20 testes passando. Falta só o movepool do Champions (item novo). |
 | 27/10/2026 | Fase 1 mergeada (PR #2). Fase 2 feita na branch `fase-2-analise`: golpes/movepool/itens do Champions, leitor do time do Showdown, validação das regras, fraquezas, cobertura, funções de duplas, ameaças do meta, dicas e 4 times de exemplo; análise já aparece no `app.py`. 48 testes passando. Limitações: Weather Ball/Terrain Pulse contam como Normal; só as habilidades defensivas mais comuns. |
 | 27/10/2026 | Fase 2 mergeada (PR #3) e site publicado no Streamlit Cloud. Fase 3 feita na branch `fase-3-recomendacao`: `src/recomendacao.py` (habilidade/item/golpes/EVs por frequência, item único, parceiros por confiança/lift, substitutos = co-ocorrência + fraquezas), explicação do porquê e seção "3. Recomendações" no `app.py`; link do site no README. 61 testes passando. |
-| 27/10/2026 | Fase 3 mergeada (PR #4). Início da Fase 4 a pedido do Carlos: aba "Montar o time" com item, habilidade e golpes em cards (`src/opcoes.py`, `montar_time` no leitor). 65 testes passando. |
+| 27/10/2026 | Fase 3 mergeada (PR #4). Fase 3.1 a pedido do Carlos: aba "Montar o time" com item, habilidade e golpes em cards (`src/opcoes.py`, `montar_time` no leitor). 65 testes passando. |
