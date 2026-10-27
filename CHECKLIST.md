@@ -150,6 +150,12 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 - [x] Time montado vai para a análise e as recomendações (`leitor.montar_time`)
 - [x] Testes — `tests/test_opcoes.py` (4 testes); 65 passando no total
 
+### Fase 3.2 — Cobertura ofensiva pelos golpes
+- [x] A cobertura ofensiva usa só os golpes de ataque escolhidos (antes, sem golpes, usava os tipos do próprio Pokémon)
+- [x] A tabela mostra o golpe e quem usa (ex.: Planta — 2x — Poison Jab (Beedrill))
+- [x] Pokémon sem golpes de ataque não entra na conta e aparece num aviso; sem nenhum golpe no time, as dicas de cobertura não aparecem
+- [x] Testes — 3 novos (`test_analise.py` e `test_dicas.py`); 68 passando no total
+
 ### Fase 4 — Interface (Streamlit)
 - [ ] Tela de entrada do time — a base já existe (Fase 3.1); falta: imagem do Pokémon, visual estilo teambuilder, tirar "Colar do Showdown" e trocar por Importar/Exportar
 - [ ] Exibição da análise (tabela/gráfico de fraquezas, funções, ameaças)
@@ -189,3 +195,4 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 | 27/10/2026 | Fase 1 mergeada (PR #2). Fase 2 feita na branch `fase-2-analise`: golpes/movepool/itens do Champions, leitor do time do Showdown, validação das regras, fraquezas, cobertura, funções de duplas, ameaças do meta, dicas e 4 times de exemplo; análise já aparece no `app.py`. 48 testes passando. Limitações: Weather Ball/Terrain Pulse contam como Normal; só as habilidades defensivas mais comuns. |
 | 27/10/2026 | Fase 2 mergeada (PR #3) e site publicado no Streamlit Cloud. Fase 3 feita na branch `fase-3-recomendacao`: `src/recomendacao.py` (habilidade/item/golpes/EVs por frequência, item único, parceiros por confiança/lift, substitutos = co-ocorrência + fraquezas), explicação do porquê e seção "3. Recomendações" no `app.py`; link do site no README. 61 testes passando. |
 | 27/10/2026 | Fase 3 mergeada (PR #4). Fase 3.1 a pedido do Carlos: aba "Montar o time" com item, habilidade e golpes em cards (`src/opcoes.py`, `montar_time` no leitor). 65 testes passando. |
+| 27/10/2026 | Fase 3.2 a pedido do Carlos: cobertura ofensiva só com os golpes de ataque escolhidos, mostrando "golpe (Pokémon)". 68 testes passando. |

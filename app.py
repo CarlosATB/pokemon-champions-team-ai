@@ -148,12 +148,17 @@ if time:
         st.dataframe(tabela, hide_index=True, width="stretch", height=670)
 
     with aba_of:
-        st.caption("O melhor dano que o time causa em cada tipo, com os golpes de ataque do time.")
-        st.dataframe([{
-            "Tipo do alvo": TIPOS_PT[c["tipo"]],
-            "Melhor dano": texto_dano.get(c["melhor"], f"{c['melhor']}x") or "1x",
-            "Quem acerta": ", ".join(c["quem"]) if c["melhor"] >= 2 else "-",
-        } for c in analise["cobertura"]], hide_index=True, width="stretch", height=670)
+        st.caption("O melhor dano que o time causa em cada tipo, só com os golpes de ataque "
+                   "escolhidos. Em cada linha: o golpe e quem usa.")
+        if analise["sem_ataques"]:
+            st.warning(f"Sem golpes de ataque (não entram na conta): "
+                       f"{', '.join(analise['sem_ataques'])}.")
+        if len(analise["sem_ataques"]) < len(time_ok):
+            st.dataframe([{
+                "Tipo do alvo": TIPOS_PT[c["tipo"]],
+                "Melhor dano": texto_dano.get(c["melhor"], f"{c['melhor']}x") or "1x",
+                "Golpes (quem usa)": ", ".join(c["quem"]) if c["melhor"] >= 2 else "-",
+            } for c in analise["cobertura"]], hide_index=True, width="stretch", height=670)
 
     with aba_func:
         st.dataframe([{

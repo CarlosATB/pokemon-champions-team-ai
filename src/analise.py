@@ -3,7 +3,7 @@ Análise do time: a parte de "regras + dados" da IA.
 
 Quatro perguntas, cada uma numa função:
 1. matriz_defensiva   -> de quais tipos de golpe o time apanha muito?
-2. cobertura_ofensiva -> quais tipos o time não consegue acertar bem?
+2. cobertura_ofensiva -> quais tipos os golpes do time não acertam bem?
 3. funcoes_do_time    -> o time tem as funções de duplas (Fake Out, Tailwind...)?
 4. ameacas_do_meta    -> quais Pokémon mais usados nas batalhas reais são
                          um problema para este time?
@@ -66,14 +66,13 @@ def habilidade_de(membro: dict) -> str:
     return pokemon[membro["id"]]["habilidades"][0]
 
 
-def tipos_de_ataque(golpes_ids: list[str], habilidade: str, tipos_proprios: list[str]) -> set[str]:
-    """Tipos dos golpes que causam dano (golpes de status não contam).
+def golpes_de_ataque(golpes_ids: list[str], habilidade: str) -> list[tuple[str, str]]:
+    """Golpes que causam dano, como (nome do golpe, tipo). Golpes de status não contam.
 
-    Se não sabemos os golpes, supomos que ele ataca com os próprios tipos
-    (o STAB, que é o golpe mais forte que quase todo Pokémon carrega).
+    O tipo já conta a habilidade: Hyper Voice com Pixilate vira um golpe de Fada.
     """
     golpes = dados.carregar_golpes()
-    tipos = set()
+    ataques = []
     for golpe_id in golpes_ids:
         golpe = golpes.get(golpe_id)
         if not golpe or golpe["categoria"] == "Status" or golpe["poder"] == 0:
@@ -81,7 +80,17 @@ def tipos_de_ataque(golpes_ids: list[str], habilidade: str, tipos_proprios: list
         tipo = golpe["tipo"]
         if tipo == "Normal" and habilidade in HABILIDADES_ATE:
             tipo = HABILIDADES_ATE[habilidade]
-        tipos.add(tipo)
+        ataques.append((golpe["nome"], tipo))
+    return ataques
+
+
+def tipos_de_ataque(golpes_ids: list[str], habilidade: str, tipos_proprios: list[str]) -> set[str]:
+    """Tipos dos golpes que causam dano.
+
+    Se não sabemos os golpes, supomos que ele ataca com os próprios tipos
+    (o STAB, que é o golpe mais forte que quase todo Pokémon carrega).
+    """
+    tipos = {tipo for _, tipo in golpes_de_ataque(golpes_ids, habilidade)}
     return tipos or set(tipos_proprios)
 
 
@@ -97,6 +106,11 @@ def dano_recebido(tipo_golpe: str, tipos: list[str], habilidade: str) -> float:
 def ataques_do_membro(membro: dict) -> set[str]:
     golpes_ids = [to_id(g) for g in membro["golpes"]]
     return tipos_de_ataque(golpes_ids, habilidade_de(membro), tipos_de(membro))
+
+
+def golpes_de_ataque_do_membro(membro: dict) -> list[tuple[str, str]]:
+    golpes_ids = [to_id(g) for g in membro["golpes"]]
+    return golpes_de_ataque(golpes_ids, habilidade_de(membro))
 
 
 # ---------------------------------------------------------------------------
@@ -126,23 +140,31 @@ def matriz_defensiva(time: list[dict]) -> list[dict]:
 # ---------------------------------------------------------------------------
 
 def cobertura_ofensiva(time: list[dict]) -> list[dict]:
-    """Para cada tipo de Pokémon: o melhor dano que o time consegue causar.
+    """Para cada tipo de Pokémon: o melhor dano que os golpes de ataque do time causam.
 
-    [{tipo, melhor: 2.0, quem: ["Rillaboom"]}]  (melhor = maior multiplicador)
+    [{tipo, melhor: 2.0, quem: ["Poison Jab (Beedrill)"]}]  (melhor = maior multiplicador)
+    Só contam os golpes escolhidos: um Pokémon sem golpes de ataque não entra na conta.
     """
-    ataques = {m["especie"]: ataques_do_membro(m) for m in time}
+    # Todos os golpes de ataque do time, como (golpe, tipo do golpe, Pokémon que usa).
+    golpes = [(golpe, tipo, m["especie"])
+              for m in time for golpe, tipo in golpes_de_ataque_do_membro(m)]
     linhas = []
     for tipo_alvo in TIPOS:
         melhor = 0.0
         quem = []
-        for nome, tipos in ataques.items():
-            dano = max(efetividade(t, [tipo_alvo]) for t in tipos)
+        for golpe, tipo, nome in golpes:
+            dano = efetividade(tipo, [tipo_alvo])
             if dano > melhor:
-                melhor, quem = dano, [nome]
+                melhor, quem = dano, [f"{golpe} ({nome})"]
             elif dano == melhor:
-                quem.append(nome)
+                quem.append(f"{golpe} ({nome})")
         linhas.append({"tipo": tipo_alvo, "melhor": melhor, "quem": quem})
     return linhas
+
+
+def sem_golpes_de_ataque(time: list[dict]) -> list[str]:
+    """Pokémon do time que ainda não têm nenhum golpe de ataque escolhido."""
+    return [m["especie"] for m in time if not golpes_de_ataque_do_membro(m)]
 
 
 # ---------------------------------------------------------------------------
@@ -210,6 +232,7 @@ def analisar(time: list[dict]) -> dict:
     return {
         "defesa": matriz_defensiva(time),
         "cobertura": cobertura_ofensiva(time),
+        "sem_ataques": sem_golpes_de_ataque(time),
         "funcoes": funcoes_do_time(time),
         "ameacas": ameacas_do_meta(time),
     }
