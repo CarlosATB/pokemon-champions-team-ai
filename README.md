@@ -26,7 +26,8 @@ Cada sugestão vem com a explicação do **porquê**.
 
 ```
 pokemon-champions-team-ai/
-├── app.py              # interface (Streamlit)
+├── app.py              # interface (Streamlit): 1. Seu time, 2. Análise, 3. Recomendações
+├── .streamlit/config.toml # tema escuro
 ├── src/
 │   ├── config.py       # regulamentação, regras do formato e fontes de dados
 │   ├── baixar_dados.py # baixa os dados (Showdown, PokéAPI, Smogon) e gera o cache
@@ -34,7 +35,11 @@ pokemon-champions-team-ai/
 │   ├── nomes.py        # padroniza os nomes entre as fontes
 │   ├── tipos.py        # tabela de efetividade de tipos 18 × 18
 │   ├── funcoes_duplas.py # golpes/habilidades de cada função de duplas
-│   ├── leitor.py       # lê o time colado do Showdown (botão Export)
+│   ├── leitor.py       # lê o time no formato do Showdown (botão Export)
+│   ├── tela_montar.py  # tela "Montar o time": 6 cards, dado, ajustes, Importar/Exportar
+│   ├── importar_exportar.py # texto do Showdown <-> cards
+│   ├── opcoes.py       # opções dos seletores (ordenadas pelo uso), dado, Pedra Mega
+│   ├── visual.py       # cores dos tipos e CSS dos cards
 │   ├── validacao.py    # confere as regras do formato (espécie/item repetido, Megas...)
 │   ├── analise.py      # fraquezas, cobertura ofensiva, funções e ameaças do meta
 │   ├── dicas.py        # transforma a análise em dicas em texto
@@ -42,7 +47,8 @@ pokemon-champions-team-ai/
 │   └── times_exemplo.py # times prontos para testes e demonstração
 ├── data/
 │   ├── raw/            # dados baixados (Smogon, PokéAPI)
-│   └── processed/      # dados tratados usados pelo app
+│   ├── processed/      # dados tratados usados pelo app
+│   └── sprites/        # imagens dos Pokémon e dos itens (PokéAPI)
 ├── tests/              # testes automatizados
 ├── requirements.txt
 └── CHECKLIST.md        # acompanhamento do projeto

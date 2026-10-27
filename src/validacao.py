@@ -12,7 +12,7 @@ from src import config, dados
 from src.nomes import to_id
 
 
-def _sugestao(nome_id: str) -> str:
+def sugestao_de_nome(nome_id: str) -> str:
     """"incinerar" -> ' Você quis dizer "Incineroar"?'"""
     pokemon = dados.carregar_pokemon()
     parecidos = difflib.get_close_matches(nome_id, dados.carregar_legais(), n=1)
@@ -49,7 +49,7 @@ def validar_time(time: list[dict]) -> list[dict]:
 
         # 1. O Pokémon existe e é legal nesta regulamentação?
         if info is None:
-            erro(f'"{nome}" não foi reconhecido.{_sugestao(membro["id"])}')
+            erro(f'"{nome}" não foi reconhecido.{sugestao_de_nome(membro["id"])}')
             continue
         if membro["id"] not in legais or info["forma_de_batalha"]:
             erro(f"{nome} não é permitido na {config.REGULATION_NAME}.")

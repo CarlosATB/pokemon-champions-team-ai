@@ -4,8 +4,9 @@ Pokémon Champions Team AI — interface (Streamlit).
 Para rodar localmente:
     streamlit run app.py
 
-Fase 2: análise do time (colar do Showdown ou escolher na lista).
-Fase 3: recomendações (habilidade, item, golpes, EVs, parceiros e substitutos).
+1. Seu time      -> src/tela_montar.py (6 cards, Importar/Exportar do Showdown)
+2. Análise       -> src/analise.py, src/dicas.py, src/validacao.py
+3. Recomendações -> src/recomendacao.py (habilidade, item, golpes, EVs, parceiros e substitutos)
 """
 
 import pandas as pd
@@ -15,16 +16,15 @@ from src import config, dados
 from src.analise import analisar
 from src.dicas import gerar_dicas
 from src.funcoes_duplas import FUNCOES
-from src.leitor import ler_time, montar_time
-from src.opcoes import (
-    montagem_recomendada, opcoes_de_golpes, opcoes_de_habilidades, opcoes_de_itens, pedra_da_mega,
-)
+from src.leitor import montar_time
+from src.opcoes import montagem_recomendada
 from src.recomendacao import (PESO_FRAQUEZAS, PESO_FUNCOES, PESO_PARCERIA, recomendar_time,
                               sugerir_parceiros,
                               sugerir_substitutos)
 from src.tipos import TIPOS_PT
-from src.times_exemplo import TIMES_EXEMPLO
+from src.tela_montar import preencher_card, tela_montar_o_time
 from src.validacao import validar_time
+from src.visual import CSS
 
 st.set_page_config(
     page_title="Pokémon Champions Team AI",
@@ -32,6 +32,7 @@ st.set_page_config(
     layout="wide",
 )
 
+st.markdown(CSS, unsafe_allow_html=True)
 st.title("Pokémon Champions Team AI")
 st.caption(
     f"Analisador e recomendador de times para duplas (VGC) · "
@@ -44,74 +45,8 @@ st.caption(
 # ---------------------------------------------------------------------------
 
 st.header("1. Seu time")
-aba_montar, aba_colar = st.tabs(["Montar o time", "Colar do Showdown"])
-
-with aba_montar:
-    uso_por_id = dados.carregar_uso()["pokemon"]
-    pokemon_por_id = dados.carregar_pokemon()
-    # Nome como no Showdown quando existe ("Indeedee-F"); senão, o da PokéAPI.
-    nome_por_id = {pid: uso_por_id.get(pid, info)["nome"] for pid, info in pokemon_por_id.items()
-                   if pid in dados.carregar_legais() and not info["forma_de_batalha"]}
-    ids_ordenados = sorted(nome_por_id, key=nome_por_id.get)
-    itens_por_id = dados.carregar_itens()["legais"]
-    golpes_por_id = dados.carregar_golpes()
-    habilidades_por_id = dados.carregar_habilidades()
-
-    def nome_do_golpe(golpe_id):
-        golpe = golpes_por_id[golpe_id]
-        return f"{golpe['nome']} · {TIPOS_PT[golpe['tipo']]}"
-
-    st.caption("As opções de item, habilidade e golpes vêm ordenadas pelo uso: "
-               "as primeiras são as que os jogadores mais usam com aquele Pokémon.")
-    montados = []
-    for vaga in range(config.TEAM_SIZE):
-        if vaga % 2 == 0:  # uma linha com 2 cards: grade de 2 colunas x 3 linhas
-            colunas = st.columns(2)
-        with colunas[vaga % 2].container(border=True):
-            pid = st.selectbox(f"Pokémon {vaga + 1}", [None] + ids_ordenados, key=f"especie_{vaga}",
-                               format_func=lambda p: "(vazio)" if p is None else nome_por_id[p])
-            if pid is None:
-                continue
-            st.caption(" / ".join(TIPOS_PT[t] for t in pokemon_por_id[pid]["tipos"]))
-            esquerda, direita = st.columns(2)
-            with esquerda:
-                # A chave inclui o Pokémon: ao trocar de Pokémon, os seletores recomeçam.
-                pedra = pedra_da_mega(pid)
-                if pedra:  # a Mega já vem com a Pedra Mega dela, travada
-                    item = st.selectbox("Item", [pedra], key=f"item_{vaga}_{pid}", disabled=True,
-                                        format_func=itens_por_id.get,
-                                        help="Para Mega Evoluir, ela precisa segurar esta pedra.")
-                else:
-                    item = st.selectbox(
-                        "Item", [None] + opcoes_de_itens(pid), key=f"item_{vaga}_{pid}",
-                        format_func=lambda i: "(nenhum)" if i is None else itens_por_id[i])
-                habilidade = st.selectbox("Habilidade", opcoes_de_habilidades(pid),
-                                          key=f"habilidade_{vaga}_{pid}",
-                                          format_func=lambda h: habilidades_por_id.get(h, h))
-            with direita:
-                golpes = [st.selectbox(f"Golpe {n + 1}", [None] + opcoes_de_golpes(pid),
-                                       key=f"golpe_{vaga}_{n}_{pid}",
-                                       format_func=lambda g: "(nenhum)" if g is None else nome_do_golpe(g))
-                          for n in range(4)]
-            montados.append({
-                "vaga": vaga,  # qual card: o botão das recomendações preenche este card
-                "especie": nome_por_id[pid],
-                "item": itens_por_id[item] if item else "",
-                "habilidade": habilidades_por_id.get(habilidade, habilidade or ""),
-                "natureza": "",
-                "golpes": [golpes_por_id[g]["nome"] for g in golpes if g],
-            })
-
-with aba_colar:
-    exemplo = st.selectbox("Carregar um time de exemplo", ["(colar o meu)"] + list(TIMES_EXEMPLO))
-    texto = st.text_area(
-        "Cole aqui o time exportado do Pokémon Showdown (botão Export)",
-        value=TIMES_EXEMPLO.get(exemplo, "").strip(),
-        height=300,
-    )
-
-# O time montado tem prioridade se algo foi escolhido nele.
-time = montar_time(montados) if montados else ler_time(texto) if texto.strip() else []
+montados = tela_montar_o_time()
+time = montar_time(montados)
 
 # ---------------------------------------------------------------------------
 # Resultado da análise
@@ -205,29 +140,18 @@ if time and time_ok:
     def marca(voce_usa):
         return " ✅" if voce_usa else ""
 
-    def montar_com_a_recomendacao(vaga, pid, montagem):
-        """Coloca item, habilidade e golpes recomendados nos seletores do card."""
-        if montagem["item"]:
-            st.session_state[f"item_{vaga}_{pid}"] = montagem["item"]
-        if montagem["habilidade"]:
-            st.session_state[f"habilidade_{vaga}_{pid}"] = montagem["habilidade"]
-        for n in range(4):
-            golpe = montagem["golpes"][n] if n < len(montagem["golpes"]) else None
-            st.session_state[f"golpe_{vaga}_{n}_{pid}"] = golpe
-
     with aba_pokemon:
         for membro, sugestao in zip(time_ok, recomendar_time(time_ok)):
             with st.expander(sugestao["especie"]):
                 if not sugestao["tem_dados"]:
                     st.info(sugestao["porque"])
                     continue
-                if "vaga" in membro:  # só para o time da aba "Montar o time"
-                    st.button("Montar com esta recomendação", key=f"montar_{membro['vaga']}",
-                              on_click=montar_com_a_recomendacao,
-                              args=(membro["vaga"], membro["id"],
-                                    montagem_recomendada(membro["id"], sugestao)),
-                              help="Preenche o card deste Pokémon com o item, a habilidade "
-                                   "e os 4 golpes mais usados.")
+                montagem = montagem_recomendada(membro["id"], sugestao)
+                st.button("Montar com esta recomendação", key=f"montar_{membro['vaga']}",
+                          on_click=preencher_card,
+                          args=(membro["vaga"], {"pokemon": membro["id"], **montagem}),
+                          help="Preenche o card deste Pokémon com o item, a habilidade, "
+                               "os 4 golpes, a natureza e os pontos de status mais usados.")
                 hab, item, golpes, spread = (sugestao["habilidade"], sugestao["item"],
                                              sugestao["golpes"], sugestao["natureza_evs"])
                 col1, col2 = st.columns(2)

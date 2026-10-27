@@ -169,6 +169,8 @@ def sugerir_para_pokemon(membro: dict, itens_ocupados: dict[str, str] | None = N
         "natureza_evs": {
             "natureza": natureza,
             "evs": evs,
+            "pontos": {nome: int(valor) for nome, valor
+                       in zip(NOMES_EVS, spread.partition(":")[2].split("/")) if valor.isdigit()},
             "uso": spread_pct,
             "voce_usa": membro["natureza"].lower() == natureza.lower(),
             "porque": f"É a combinação mais comum ({_pct(spread_pct)} dos {nome}). "

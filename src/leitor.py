@@ -37,7 +37,8 @@ def ler_bloco(bloco: str) -> dict:
     """Lê UM Pokémon do texto exportado."""
     linhas = [linha.strip() for linha in bloco.strip().splitlines() if linha.strip()]
     especie, item = _ler_primeira_linha(linhas[0])
-    membro = {"especie": especie, "item": item, "habilidade": "", "natureza": "", "golpes": []}
+    membro = {"especie": especie, "item": item, "habilidade": "", "natureza": "", "evs": {},
+              "golpes": []}
     for linha in linhas[1:]:
         if linha.startswith("-"):
             membro["golpes"].append(linha.lstrip("- ").strip())
@@ -45,8 +46,20 @@ def ler_bloco(bloco: str) -> dict:
             membro["habilidade"] = linha.split(":", 1)[1].strip()
         elif linha.endswith("Nature"):
             membro["natureza"] = linha.replace("Nature", "").strip()
-        # Level, EVs, IVs, Shiny etc. não importam para a análise.
+        elif linha.startswith("EVs:"):
+            membro["evs"] = ler_evs(linha.split(":", 1)[1])
+        # Level, IVs, Shiny etc. não importam.
     return completar(membro)
+
+
+def ler_evs(texto: str) -> dict[str, int]:
+    """"32 HP / 2 Atk / 32 SpD" -> {"HP": 32, "Atk": 2, "SpD": 32}"""
+    evs = {}
+    for parte in texto.split("/"):
+        valor, _, status = parte.strip().partition(" ")
+        if valor.isdigit():
+            evs[status.strip()] = int(valor)
+    return evs
 
 
 def completar(membro: dict) -> dict:

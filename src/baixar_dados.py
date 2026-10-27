@@ -9,11 +9,13 @@ regulamentação ou o mês das estatísticas mudar em src/config.py:
     python -m src.baixar_dados pokeapi    # só tipos e status base
     python -m src.baixar_dados smogon     # só as estatísticas de uso
     python -m src.baixar_dados golpes     # só golpes, movepool, itens e habilidades
+    python -m src.baixar_dados imagens    # só as imagens dos Pokémon e dos itens
 
 São três fontes:
 1. Pokémon Showdown -> quais Pokémon (e Megas) são legais na regulamentação,
                        e também golpes, movepool, itens e nomes das habilidades do Champions.
-2. PokéAPI          -> tipos, status base e habilidades de cada Pokémon legal.
+2. PokéAPI          -> tipos, status base e habilidades de cada Pokémon legal,
+                       e as imagens dos Pokémon e dos itens (data/sprites/).
 3. Smogon           -> estatísticas de uso: habilidades, itens, golpes,
                        EVs e parceiros mais usados por cada Pokémon.
 
@@ -325,6 +327,53 @@ def baixar_golpes() -> None:
 
 
 # ---------------------------------------------------------------------------
+# 5. Imagens dos Pokémon e dos itens (sprites da PokéAPI, pelo GitHub)
+# ---------------------------------------------------------------------------
+
+def numeros_pokeapi(indice: dict) -> dict[str, int]:
+    """Índice da PokéAPI -> {nome: número}. A imagem de cada Pokémon tem o número no nome.
+
+    Ex.: {"name": "incineroar", "url": "/api/v2/pokemon/727/"} -> {"incineroar": 727}
+    """
+    return {item["name"]: int(item["url"].rstrip("/").split("/")[-1]) for item in indice["results"]}
+
+
+def _baixar_imagem(url: str, caminho) -> bool:
+    resposta = requests.get(url, timeout=TIMEOUT)
+    if resposta.status_code != 200:
+        return False
+    caminho.write_bytes(resposta.content)
+    return True
+
+
+def baixar_imagens() -> None:
+    print("Baixando as imagens dos Pokémon e dos itens (PokéAPI no GitHub)...")
+    config.ITEM_SPRITES_DIR.mkdir(parents=True, exist_ok=True)
+
+    numeros = numeros_pokeapi(baixar_json(f"{config.POKEAPI_INDICE_BASE}/pokemon/index.json"))
+    with open(config.LEGAIS_FILE, encoding="utf-8") as arquivo:
+        legais = json.load(arquivo)["legais"]
+    faltam = []
+    for pokemon_id in legais:
+        nome = nome_pokeapi(pokemon_id, list(numeros))
+        url = f"{config.SPRITES_BASE}/pokemon/{numeros.get(nome)}.png"
+        if not nome or not _baixar_imagem(url, config.SPRITES_DIR / f"{pokemon_id}.png"):
+            faltam.append(pokemon_id)
+    print(f"  {len(legais) - len(faltam)} imagens de Pokémon; sem imagem: {', '.join(faltam) or '-'}")
+
+    # Itens: a PokéAPI usa o nome com hífens ("sitrus-berry"); to_id junta igual ao Showdown.
+    nomes_itens = {to_id(item["name"]): item["name"] for item in
+                   baixar_json(f"{config.POKEAPI_INDICE_BASE}/item/index.json")["results"]}
+    with open(config.ITENS_FILE, encoding="utf-8") as arquivo:
+        itens = json.load(arquivo)["legais"]
+    baixados = sum(
+        _baixar_imagem(f"{config.SPRITES_BASE}/items/{nomes_itens[item_id]}.png",
+                       config.ITEM_SPRITES_DIR / f"{item_id}.png")
+        for item_id in itens if item_id in nomes_itens)
+    print(f"  {baixados} de {len(itens)} ícones de itens")
+
+
+# ---------------------------------------------------------------------------
 
 def main(etapa: str = "tudo") -> None:
     if etapa in ("legais", "tudo"):
@@ -338,6 +387,8 @@ def main(etapa: str = "tudo") -> None:
         baixar_smogon()
     if etapa in ("golpes", "tudo"):
         baixar_golpes()
+    if etapa in ("imagens", "tudo"):
+        baixar_imagens()
     print("Pronto!")
 
 
