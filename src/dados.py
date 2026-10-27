@@ -57,6 +57,12 @@ def carregar_itens() -> dict:
     return _ler(config.ITENS_FILE)
 
 
+@lru_cache
+def carregar_habilidades() -> dict:
+    """habilidade_id -> nome ("grassysurge" -> "Grassy Surge")"""
+    return _ler(config.HABILIDADES_FILE)
+
+
 def id_do_pokemon(nome: str) -> str:
     """id de um Pokémon escrito como no Showdown ("Indeedee-F") ou como na
     PokéAPI ("Indeedee-Female"). Se não achar, devolve o id do nome mesmo."""

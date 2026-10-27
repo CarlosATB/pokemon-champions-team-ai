@@ -4,7 +4,7 @@ IA que analisa times de **Pokémon Champions** no formato de **duplas (VGC)**: a
 
 > Trabalho prático da disciplina de Inteligência Artificial (CEUB).
 >
-> 🌐 **Site:** _em breve (Streamlit Community Cloud)_
+> 🌐 **Site:** <https://pokemon-champions-team-ai.streamlit.app/> (Streamlit Community Cloud; atualiza a cada merge na `main`)
 
 ---
 
@@ -38,6 +38,7 @@ pokemon-champions-team-ai/
 │   ├── validacao.py    # confere as regras do formato (espécie/item repetido, Megas...)
 │   ├── analise.py      # fraquezas, cobertura ofensiva, funções e ameaças do meta
 │   ├── dicas.py        # transforma a análise em dicas em texto
+│   ├── recomendacao.py # habilidade/item/golpes/EVs, parceiros e substitutos (co-ocorrência)
 │   └── times_exemplo.py # times prontos para testes e demonstração
 ├── data/
 │   ├── raw/            # dados baixados (Smogon, PokéAPI)
@@ -75,7 +76,7 @@ pytest
 
 - [Smogon Usage Stats](https://www.smogon.com/stats/) — estatísticas mensais de uso do Pokémon Showdown.
 - [PokéAPI](https://pokeapi.co/) — tipos e status base dos Pokémon.
-- [Pokémon Showdown](https://github.com/smogon/pokemon-showdown) — lista de Pokémon e Megas legais na regulamentação.
+- [Pokémon Showdown](https://github.com/smogon/pokemon-showdown) — Pokémon e Megas legais, golpes, movepool, itens e habilidades do Champions.
 
 ## Andamento
 

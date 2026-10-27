@@ -105,10 +105,10 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 - [x] Repositório `pokemon-champions-team-ai` criado (público) e conectado ao Claude
 - [x] Estrutura de pastas criada (`data/raw`, `data/processed`, `src/`, `tests/`, `app.py`)
 - [x] `requirements.txt` com as dependências (streamlit, pandas, requests, pytest)
-- [~] `README.md` inicial — falta o link do site (Fase 5)
+- [x] `README.md` inicial — com o link do site
 - [x] `CHECKLIST.md` (este arquivo) dentro do repositório
 - [x] Arquivo de configuração com a regulamentação/formato atual num só lugar (`src/config.py`)
-- [ ] Conta no Streamlit Community Cloud ligada ao GitHub
+- [x] Conta no Streamlit Community Cloud ligada ao GitHub
 - [ ] Confirmar a data de entrega com o professor
 - [~] Confirmar qual regulamentação do Champions usar — configurado M-C (`gen9championsvgc2026regmc`, dados de 2026-09), válida até 2/dez/2026; conferir se surge uma nova antes da entrega
 
@@ -135,24 +135,25 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 - [x] Análise ligada no `app.py` (colar/escolher time, erros, dicas e 4 abas de tabelas) — adiantamento da Fase 4
 
 ### Fase 3 — Sistema de Recomendação
-- [ ] Sugestão de habilidade, item, golpes e natureza/EVs por Pokémon (por frequência de uso)
-- [ ] Respeitar a regra de item único ao sugerir itens
-- [ ] Sugestão de parceiros pela co-ocorrência (teammates)
-- [ ] Pontuação para sugerir substitutos: combina co-ocorrência + cobrir as fraquezas encontradas na Fase 2
-- [ ] Explicação do porquê de cada sugestão
-- [ ] Testes com os times de exemplo
+- [x] Sugestão de habilidade, item, golpes e natureza/EVs por Pokémon (por frequência de uso) — `src/recomendacao.py` (`sugerir_para_pokemon`); Mega usa as estatísticas da Mega; avisa golpes que menos de 5% usam. Nomes das habilidades em `data/processed/habilidades.json` (Showdown)
+- [x] Respeitar a regra de item único ao sugerir itens — `recomendar_time`: sugere o item mais usado que está livre e reserva para os próximos
+- [x] Sugestão de parceiros pela co-ocorrência (teammates) — `sugerir_parceiros`: nota = confiança média; mostra suporte e lift (regras de associação). Não repete espécie nem sugere 2ª Mega
+- [x] Pontuação para sugerir substitutos: combina co-ocorrência + cobrir as fraquezas encontradas na Fase 2 — `sugerir_substitutos`: nota = 50% parceria + 50% fraquezas que resiste; a IA escolhe quem sai (ou o usuário escolhe no site)
+- [x] Explicação do porquê de cada sugestão — campo `porque` em todas as sugestões
+- [x] Testes com os times de exemplo — `tests/test_recomendacao.py` (12 testes); 61 testes passando no total
+- [x] Recomendações ligadas no `app.py` (seção "3. Recomendações": Por Pokémon, Parceiros, Trocar um Pokémon) — adiantamento da Fase 4
 
 ### Fase 4 — Interface (Streamlit)
 - [ ] Tela de entrada do time
 - [ ] Exibição da análise (tabela/gráfico de fraquezas, funções, ameaças)
-- [ ] Exibição das recomendações por Pokémon
+- [~] Exibição das recomendações por Pokémon — primeira versão na Fase 3 (expanders + tabelas); melhorar o visual
 - [ ] Botão para importar/exportar time no formato do Showdown
 - [~] Times de exemplo prontos para a demonstração — 4 times no seletor do app; revisar/ajustar para o roteiro
 - [~] Mensagens de erro amigáveis (nome errado, Pokémon ilegal) — já mostradas na análise ("Você quis dizer...?"); falta revisar o visual
 
 ### Fase 5 — Publicação e testes
-- [ ] Deploy no Streamlit Community Cloud funcionando
-- [ ] Link do site no README
+- [x] Deploy no Streamlit Community Cloud funcionando — https://pokemon-champions-team-ai.streamlit.app/ (atualiza a cada merge na `main`)
+- [x] Link do site no README
 - [ ] Teste completo no site publicado (não só local)
 - [ ] Revisão do código: nomes claros, comentários nos trechos que serão mostrados
 
@@ -179,3 +180,4 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 | 27/10/2026 | Fase 0 quase concluída: estrutura de pastas, `src/config.py` (Reg. M-C), `app.py` inicial, README, testes (4 passando). Falta: conta no Streamlit Cloud e confirmar prazo. |
 | 27/10/2026 | Fase 0 mergeada (PR #1). Fase 1 em andamento (branch `fase-1-dados`): script de download, tabela de tipos, lista de legais (349), dados da PokéAPI, nomes, funções de duplas e testes (19 passando). Estatísticas do Smogon baixadas no PC do Carlos (2026-09, 1,6 mi de batalhas, 316 Pokémon); 20 testes passando. Falta só o movepool do Champions (item novo). |
 | 27/10/2026 | Fase 1 mergeada (PR #2). Fase 2 feita na branch `fase-2-analise`: golpes/movepool/itens do Champions, leitor do time do Showdown, validação das regras, fraquezas, cobertura, funções de duplas, ameaças do meta, dicas e 4 times de exemplo; análise já aparece no `app.py`. 48 testes passando. Limitações: Weather Ball/Terrain Pulse contam como Normal; só as habilidades defensivas mais comuns. |
+| 27/10/2026 | Fase 2 mergeada (PR #3) e site publicado no Streamlit Cloud. Fase 3 feita na branch `fase-3-recomendacao`: `src/recomendacao.py` (habilidade/item/golpes/EVs por frequência, item único, parceiros por confiança/lift, substitutos = co-ocorrência + fraquezas), explicação do porquê e seção "3. Recomendações" no `app.py`; link do site no README. 61 testes passando. |

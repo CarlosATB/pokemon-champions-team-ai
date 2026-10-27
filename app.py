@@ -5,7 +5,7 @@ Para rodar localmente:
     streamlit run app.py
 
 Fase 2: análise do time (colar do Showdown ou escolher na lista).
-A recomendação (Fase 3) será ligada aqui depois.
+Fase 3: recomendações (habilidade, item, golpes, EVs, parceiros e substitutos).
 """
 
 import pandas as pd
@@ -16,6 +16,8 @@ from src.analise import analisar
 from src.dicas import gerar_dicas
 from src.funcoes_duplas import FUNCOES
 from src.leitor import ler_time, time_de_nomes
+from src.recomendacao import (PESO_FRAQUEZAS, PESO_PARCERIA, recomendar_time, sugerir_parceiros,
+                              sugerir_substitutos)
 from src.tipos import TIPOS_PT
 from src.times_exemplo import TIMES_EXEMPLO
 from src.validacao import validar_time
@@ -131,6 +133,76 @@ if time:
             "Suas respostas": ", ".join(a["respostas"]) or "nenhuma",
             "Nota": a["nota"],
         } for a in analise["ameacas"]], hide_index=True, width="stretch")
+
+# ---------------------------------------------------------------------------
+# Recomendações (Fase 3)
+# ---------------------------------------------------------------------------
+
+if time and time_ok:
+    st.header("3. Recomendações")
+    st.caption("Baseadas no que os jogadores mais usam nas batalhas reais "
+               "(\"quem usa X também usa Y\"). ✅ = você já usa.")
+    aba_pokemon, aba_parceiros, aba_trocas = st.tabs(
+        ["Por Pokémon", "Parceiros", "Trocar um Pokémon"])
+
+    def marca(voce_usa):
+        return " ✅" if voce_usa else ""
+
+    with aba_pokemon:
+        for sugestao in recomendar_time(time_ok):
+            with st.expander(sugestao["especie"]):
+                if not sugestao["tem_dados"]:
+                    st.info(sugestao["porque"])
+                    continue
+                hab, item, golpes, spread = (sugestao["habilidade"], sugestao["item"],
+                                             sugestao["golpes"], sugestao["natureza_evs"])
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.markdown(f"**Habilidade:** {hab['nome']}{marca(hab['voce_usa'])}")
+                    st.caption(hab["porque"])
+                    melhor = item["melhor"]["nome"] if item["melhor"] else "-"
+                    st.markdown(f"**Item:** {melhor}{marca(item['voce_usa'])}")
+                    st.caption(item["porque"])
+                    st.markdown(f"**Natureza:** {spread['natureza']}{marca(spread['voce_usa'])}  \n"
+                                f"**EVs:** {spread['evs']}")
+                    st.caption(spread["porque"])
+                with col2:
+                    st.markdown("**Golpes mais usados**")
+                    st.dataframe([{"Golpe": g["nome"] + marca(g["voce_usa"]), "Uso (%)": g["uso"]}
+                                  for g in golpes["lista"]], hide_index=True, width="stretch")
+                    st.caption(golpes["porque"])
+
+    with aba_parceiros:
+        st.caption("Quem mais aparece junto com o seu time. Confiança = % dos times com os "
+                   "seus Pokémon que também têm ele (média). Lift > 1 = combinam mais que o acaso.")
+        st.dataframe([{
+            "Pokémon": p["nome"],
+            "Confiança (%)": p["confianca"],
+            "Uso geral (%)": p["suporte"],
+            "Lift": p["lift"],
+            "Por quê": p["porque"],
+        } for p in sugerir_parceiros(time_ok, quantos=8)], hide_index=True, width="stretch")
+
+    with aba_trocas:
+        if len(time_ok) < 2:
+            st.info("Coloque pelo menos 2 Pokémon para sugerir trocas.")
+        else:
+            automatico = "(a IA escolhe)"
+            escolha = st.selectbox("Quem sai do time?", [automatico] + [m["especie"] for m in time_ok])
+            sai = None if escolha == automatico else next(m for m in time_ok if m["especie"] == escolha)
+            trocas = sugerir_substitutos(time_ok, sai)
+            st.markdown(f"**Sai: {trocas['sai']}.** {trocas['motivo']}")
+            if trocas["fraquezas"]:
+                st.markdown("Fraquezas do time sem ele: " + ", ".join(trocas["fraquezas"]))
+            st.caption(f"Nota (0 a 100) = {PESO_PARCERIA:.0%} co-ocorrência com quem fica + "
+                       f"{PESO_FRAQUEZAS:.0%} quantas dessas fraquezas o substituto resiste.")
+            st.dataframe([{
+                "Pokémon": s["nome"],
+                "Nota": s["nota"],
+                "Confiança (%)": s["confianca"],
+                "Resiste a": ", ".join(s["cobre"]) or "-",
+                "Por quê": s["porque"],
+            } for s in trocas["substitutos"]], hide_index=True, width="stretch")
 
 st.divider()
 st.subheader("Dados carregados")

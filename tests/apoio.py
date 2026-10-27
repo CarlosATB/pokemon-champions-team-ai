@@ -10,7 +10,7 @@ from src.times_exemplo import TIMES_EXEMPLO
 precisa_dados = pytest.mark.skipif(
     not all(arquivo.exists() for arquivo in [
         config.LEGAIS_FILE, config.POKEMON_FILE, config.USO_FILE,
-        config.GOLPES_FILE, config.MOVEPOOL_FILE, config.ITENS_FILE,
+        config.GOLPES_FILE, config.MOVEPOOL_FILE, config.ITENS_FILE, config.HABILIDADES_FILE,
     ]),
     reason="dados ainda não baixados (python -m src.baixar_dados)",
 )
