@@ -157,7 +157,8 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 - [x] Botão "Montar com esta recomendação" em Recomendações → Por Pokémon: preenche o card com o item, a habilidade e os 4 golpes mais usados (`opcoes.montagem_recomendada`); só para o time da aba "Montar o time"
 - [x] Ameaças do meta: um Pokémon do time sem golpes de ataque conta com os golpes mais usados com ele (antes, com os próprios tipos)
 - [x] Escolher uma Mega (ex.: Beedrill-Mega, Aggron-Mega) já trava o item na Pedra Mega dela (`opcoes.pedra_da_mega`)
-- [x] Testes — 7 novos (`test_analise.py`, `test_dicas.py` e `test_opcoes.py`); 72 passando no total
+- [x] Trocar um Pokémon: a nota do substituto também conta as funções de duplas que faltam (40% parceria + 30% fraquezas + 30% funções); pelo menos 1 dos 5 traz cada função essencial que falta; o "Por quê" explica em frases (o que traz, o que resiste, com quem combina)
+- [x] Testes — 8 novos (`test_analise.py`, `test_dicas.py`, `test_opcoes.py` e `test_recomendacao.py`); 73 passando no total
 
 ### Fase 4 — Interface (Streamlit)
 - [ ] Tela de entrada do time — a base já existe (Fase 3.1); falta: imagem do Pokémon, visual estilo teambuilder, tirar "Colar do Showdown" e trocar por Importar/Exportar
@@ -198,4 +199,4 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 | 27/10/2026 | Fase 1 mergeada (PR #2). Fase 2 feita na branch `fase-2-analise`: golpes/movepool/itens do Champions, leitor do time do Showdown, validação das regras, fraquezas, cobertura, funções de duplas, ameaças do meta, dicas e 4 times de exemplo; análise já aparece no `app.py`. 48 testes passando. Limitações: Weather Ball/Terrain Pulse contam como Normal; só as habilidades defensivas mais comuns. |
 | 27/10/2026 | Fase 2 mergeada (PR #3) e site publicado no Streamlit Cloud. Fase 3 feita na branch `fase-3-recomendacao`: `src/recomendacao.py` (habilidade/item/golpes/EVs por frequência, item único, parceiros por confiança/lift, substitutos = co-ocorrência + fraquezas), explicação do porquê e seção "3. Recomendações" no `app.py`; link do site no README. 61 testes passando. |
 | 27/10/2026 | Fase 3 mergeada (PR #4). Fase 3.1 a pedido do Carlos: aba "Montar o time" com item, habilidade e golpes em cards (`src/opcoes.py`, `montar_time` no leitor). 65 testes passando. |
-| 27/10/2026 | Fase 3.2 a pedido do Carlos: cobertura ofensiva só com os golpes de ataque escolhidos, mostrando "golpe (Pokémon)", botão que monta o Pokémon com a recomendação, e ameaças do meta supondo os golpes mais usados de quem não tem golpes; Mega já vem com a Pedra Mega travada. 72 testes passando. |
+| 27/10/2026 | Fase 3.2 a pedido do Carlos: cobertura ofensiva só com os golpes de ataque escolhidos, mostrando "golpe (Pokémon)", botão que monta o Pokémon com a recomendação, e ameaças do meta supondo os golpes mais usados de quem não tem golpes; Mega já vem com a Pedra Mega travada; substitutos levam em conta as funções que faltam e explicam o porquê. 73 testes passando. |

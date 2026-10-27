@@ -19,7 +19,8 @@ from src.leitor import ler_time, montar_time
 from src.opcoes import (
     montagem_recomendada, opcoes_de_golpes, opcoes_de_habilidades, opcoes_de_itens, pedra_da_mega,
 )
-from src.recomendacao import (PESO_FRAQUEZAS, PESO_PARCERIA, recomendar_time, sugerir_parceiros,
+from src.recomendacao import (PESO_FRAQUEZAS, PESO_FUNCOES, PESO_PARCERIA, recomendar_time,
+                              sugerir_parceiros,
                               sugerir_substitutos)
 from src.tipos import TIPOS_PT
 from src.times_exemplo import TIMES_EXEMPLO
@@ -267,12 +268,16 @@ if time and time_ok:
             st.markdown(f"**Sai: {trocas['sai']}.** {trocas['motivo']}")
             if trocas["fraquezas"]:
                 st.markdown("Fraquezas do time sem ele: " + ", ".join(trocas["fraquezas"]))
+            if trocas["faltam"]:
+                st.markdown("Funções de duplas que faltam sem ele: " + ", ".join(trocas["faltam"]))
             st.caption(f"Nota (0 a 100) = {PESO_PARCERIA:.0%} co-ocorrência com quem fica + "
-                       f"{PESO_FRAQUEZAS:.0%} quantas dessas fraquezas o substituto resiste.")
+                       f"{PESO_FRAQUEZAS:.0%} quantas dessas fraquezas ele resiste + "
+                       f"{PESO_FUNCOES:.0%} quantas dessas funções ele traz (com os golpes mais "
+                       "usados com ele). Pelo menos 1 sugerido traz cada função essencial que falta.")
             st.dataframe([{
                 "Pokémon": s["nome"],
                 "Nota": s["nota"],
-                "Confiança (%)": s["confianca"],
+                "Traz": ", ".join(s["traz"]) or "-",
                 "Resiste a": ", ".join(s["cobre"]) or "-",
                 "Por quê": s["porque"],
             } for s in trocas["substitutos"]], hide_index=True, width="stretch")

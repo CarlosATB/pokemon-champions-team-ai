@@ -15,20 +15,25 @@ Três perguntas, cada uma numa função:
                            (o que a maioria dos jogadores usa com ele)
 2. sugerir_parceiros    -> quem combina com o time? (co-ocorrência)
 3. sugerir_substitutos  -> se eu trocar um Pokémon, por quem?
-                           nota = co-ocorrência + cobrir as fraquezas da Fase 2
+                           nota = co-ocorrência + cobrir as fraquezas + trazer as
+                           funções de duplas que faltam (análise da Fase 2)
 """
 
 from src import dados
-from src.analise import dano_recebido, habilidade_de, matriz_defensiva, tipos_de
-from src.dicas import _lista
+from src.analise import (
+    dano_recebido, golpes_mais_usados, habilidade_de, matriz_defensiva, tipos_de,
+)
+from src.dicas import FUNCOES_ESSENCIAIS, _lista
+from src.funcoes_duplas import FUNCOES, funcoes_do_pokemon
 from src.nomes import to_id
 from src.tipos import TIPOS_PT
 
 QUANTOS_GOLPES = 6         # quantos golpes mais usados mostrar
 GOLPE_RARO = 5.0           # % abaixo da qual um golpe do time é "pouco usado"
 CANDIDATOS_DO_META = 80    # quantos Pokémon mais usados entram como candidatos
-PESO_PARCERIA = 0.5        # peso da co-ocorrência na nota do substituto
-PESO_FRAQUEZAS = 0.5       # peso de cobrir as fraquezas na nota do substituto
+PESO_PARCERIA = 0.4        # peso da co-ocorrência na nota do substituto
+PESO_FRAQUEZAS = 0.3       # peso de cobrir as fraquezas na nota do substituto
+PESO_FUNCOES = 0.3         # peso de trazer as funções de duplas que faltam
 NOMES_EVS = ["HP", "Atk", "Def", "SpA", "SpD", "Spe"]
 
 
@@ -309,19 +314,87 @@ def escolher_quem_sai(time: list[dict]) -> tuple[dict, str]:
     return sai, motivo
 
 
+def funcoes_que_faltam(time: list[dict]) -> list[str]:
+    """Funções de duplas (Fase 2) que ninguém do time cumpre.
+
+    Quem ainda não tem golpes conta com os golpes mais usados com ele.
+    """
+    tem = set()
+    for membro in time:
+        golpes = [to_id(g) for g in membro["golpes"]]
+        if not golpes:
+            golpes = golpes_mais_usados(membro["forma"]) or golpes_mais_usados(membro["id"])
+        tem.update(funcoes_do_pokemon(golpes, habilidade_de(membro)))
+    return [chave for chave in FUNCOES if chave not in tem]
+
+
+def _como_cumpre(funcao: str, golpes: list[str], habilidade: str) -> str:
+    """Com que golpe ou habilidade o candidato cumpre a função ("Tailwind")."""
+    nomes = [nome_do_golpe(g) for g in golpes if g in FUNCOES[funcao]["golpes"]]
+    if habilidade in FUNCOES[funcao]["habilidades"]:
+        nomes.append(nome_da_habilidade(habilidade))
+    return ", ".join(nomes)
+
+
+def _porque_do_substituto(linha: dict) -> str:
+    """Explica a nota em frases: o que ele traz, o que resiste e com quem combina."""
+    frases = []
+    if linha["traz"]:
+        partes = []
+        for f in linha["traz"]:
+            nome, como = FUNCOES[f]["nome"], linha["como"][f]
+            # "Fake Out" já diz tudo; "controle de velocidade (Tailwind)" mostra o golpe.
+            partes.append(nome if to_id(nome) == to_id(como) else f"{nome.lower()} ({como})")
+        verbo = "falta" if len(partes) == 1 else "faltam"
+        frases.append(f"Traz {_lista(partes)}, que {verbo} no time.")
+    if linha["cobre"]:
+        verbo = "preocupa" if len(linha["cobre"]) == 1 else "preocupam"
+        frases.append(f"Resiste a {_lista([TIPOS_PT[t] for t in linha['cobre']])}, "
+                      f"que hoje {verbo} o time.")
+    if linha["melhor_parceiro"]:
+        parceiro, pct = linha["melhor_parceiro"]
+        frases.append(f"Combina com quem fica: {_pct(pct)} dos times com {parceiro} também "
+                      f"usam ele (média de {_pct(linha['confianca'])} com os que ficam).")
+    if not linha["traz"] and not linha["cobre"]:
+        frases.append("Não resolve fraquezas nem funções que faltam; entra pela parceria.")
+    return " ".join(frases)
+
+
+def _escolher_os_melhores(linhas: list[dict], faltam: list[str], quantos: int) -> list[dict]:
+    """Os de maior nota, mas garantindo pelo menos 1 para cada função essencial
+    que falta (ex.: se falta controle de velocidade, 1 dos sugeridos tem)."""
+    escolhidos = []
+    for funcao in [f for f in FUNCOES_ESSENCIAIS if f in faltam]:
+        ja_tem = any(funcao in l["traz"] for l in escolhidos)
+        melhor = next((l for l in linhas if funcao in l["traz"]), None)  # já em ordem de nota
+        if not ja_tem and melhor and len(escolhidos) < quantos:
+            escolhidos.append(melhor)
+    for linha in linhas:
+        if len(escolhidos) >= quantos:
+            break
+        if linha not in escolhidos:
+            escolhidos.append(linha)
+    escolhidos.sort(key=lambda l: (l["nota"], l["confianca"]), reverse=True)
+    return escolhidos
+
+
 def sugerir_substitutos(time: list[dict], sai: dict | None = None, quantos: int = 5) -> dict:
     """Quem colocar no lugar de `sai` (se não vier, a IA escolhe).
 
-    Para cada candidato do meta:
-      parceria = confiança média com os 5 que ficam (0 a 1, dividindo pela maior);
-      cobertura = fração das fraquezas do time que ele resiste (0 a 1).
-      nota = PESO_PARCERIA * parceria + PESO_FRAQUEZAS * cobertura   (0 a 100)
+    Para cada candidato do meta (com os golpes e a habilidade mais usados com ele):
+      parceria = confiança média com os que ficam (0 a 1, dividindo pela maior);
+      cobertura = fração das fraquezas do time que ele resiste (0 a 1);
+      funcoes = fração das funções de duplas que faltam e que ele traz (0 a 1).
+      nota = PESO_PARCERIA * parceria + PESO_FRAQUEZAS * cobertura
+             + PESO_FUNCOES * funcoes   (0 a 100)
+    Entre os sugeridos, pelo menos 1 traz cada função essencial que falta.
     """
     motivo = "Escolhido por você."
     if sai is None:
         sai, motivo = escolher_quem_sai(time)
     resto = [m for m in time if m is not sai]
     fraquezas = fraquezas_do_time(resto)
+    faltam = funcoes_que_faltam(resto)
     pokemon = dados.carregar_pokemon()
     uso = dados.carregar_uso()["pokemon"]
 
@@ -332,29 +405,35 @@ def sugerir_substitutos(time: list[dict], sai: dict | None = None, quantos: int 
         confiancas = confianca_com_o_time(resto, candidato)
         media = sum(confiancas.values()) / len(confiancas) if confiancas else 0.0
         habilidade = next(iter(uso[candidato]["habilidades"]), "")
+        golpes = golpes_mais_usados(candidato)
         cobre = [t for t in fraquezas
                  if dano_recebido(t, pokemon[candidato]["tipos"], habilidade) < 1]
-        linhas.append({"id": candidato, "nome": nome_do_pokemon(candidato),
-                       "confianca": round(media, 1), "cobre": cobre})
+        traz = [f for f in funcoes_do_pokemon(golpes, habilidade) if f in faltam]
+        linhas.append({
+            "id": candidato, "nome": nome_do_pokemon(candidato),
+            "confianca": round(media, 1), "cobre": cobre, "traz": traz,
+            "como": {f: _como_cumpre(f, golpes, habilidade) for f in traz},
+            "melhor_parceiro": max(confiancas.items(), key=lambda par: par[1]) if confiancas else None,
+        })
 
     maior = max((l["confianca"] for l in linhas), default=0) or 1
     for linha in linhas:
         parceria = linha["confianca"] / maior
         cobertura = len(linha["cobre"]) / len(fraquezas) if fraquezas else 0.0
-        linha["nota"] = round(100 * (PESO_PARCERIA * parceria + PESO_FRAQUEZAS * cobertura))
-        porque = f"Aparece em média em {_pct(linha['confianca'])} dos times com os Pokémon que ficam"
-        if linha["cobre"]:
-            porque += f" e resiste a {_lista([TIPOS_PT[t] for t in linha['cobre']])}"
-            porque += ", que preocupa o time." if len(linha["cobre"]) == 1 else ", que preocupam o time."
-        else:
-            porque += "."
-        linha["porque"] = porque
-        linha["cobre"] = [TIPOS_PT[t] for t in linha["cobre"]]
+        funcoes = len(linha["traz"]) / len(faltam) if faltam else 0.0
+        linha["nota"] = round(100 * (PESO_PARCERIA * parceria + PESO_FRAQUEZAS * cobertura
+                                     + PESO_FUNCOES * funcoes))
+        linha["porque"] = _porque_do_substituto(linha)
 
     linhas.sort(key=lambda l: (l["nota"], l["confianca"]), reverse=True)
+    escolhidos = _escolher_os_melhores(linhas, faltam, quantos)
+    for linha in escolhidos:
+        linha["cobre"] = [TIPOS_PT[t] for t in linha["cobre"]]
+        linha["traz"] = [FUNCOES[f]["nome"] for f in linha["traz"]]
     return {
         "sai": sai["especie"],
         "motivo": motivo,
         "fraquezas": [TIPOS_PT[t] for t in fraquezas],
-        "substitutos": linhas[:quantos],
+        "faltam": [FUNCOES[f]["nome"] for f in faltam],
+        "substitutos": escolhidos,
     }
