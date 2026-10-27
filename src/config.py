@@ -27,6 +27,10 @@ STATS_MONTH = "2026-09"
 # 1500 é um bom equilíbrio entre quantidade de dados e qualidade dos jogadores.
 STATS_RATING = 1500
 
+# "Mod" do Pokémon Showdown que define quem é legal nesta regulamentação.
+# M-C usa "champions"; a M-B usava "championsregmb".
+SHOWDOWN_MOD = "champions"
+
 # ---------------------------------------------------------------------------
 # Regras do formato (duplas do Pokémon Champions)
 # ---------------------------------------------------------------------------
@@ -45,6 +49,7 @@ HAS_TERA = False       # o Champions não tem Terastalização
 
 SMOGON_STATS_BASE = "https://www.smogon.com/stats"
 POKEAPI_BASE = "https://pokeapi.co/api/v2"
+SHOWDOWN_GITHUB_BASE = "https://raw.githubusercontent.com/smogon/pokemon-showdown/master"
 
 
 def smogon_chaos_url(
@@ -57,6 +62,11 @@ def smogon_chaos_url(
     return f"{SMOGON_STATS_BASE}/{month}/chaos/{format_id}-{rating}.json"
 
 
+def showdown_legalidade_url(mod: str = SHOWDOWN_MOD) -> str:
+    """URL do arquivo do Showdown que diz quais Pokémon são legais no mod."""
+    return f"{SHOWDOWN_GITHUB_BASE}/data/mods/{mod}/formats-data.ts"
+
+
 # ---------------------------------------------------------------------------
 # Pastas do projeto
 # ---------------------------------------------------------------------------
@@ -65,3 +75,9 @@ ROOT_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT_DIR / "data"
 RAW_DATA_DIR = DATA_DIR / "raw"              # dados baixados, sem tratamento
 PROCESSED_DATA_DIR = DATA_DIR / "processed"  # dados limpos, usados pelo app
+
+# Arquivos tratados (cache em JSON) que o site lê. Ficam no repositório,
+# então o site nunca precisa baixar nada ao vivo.
+LEGAIS_FILE = PROCESSED_DATA_DIR / "legais.json"     # ids legais na regulamentação
+POKEMON_FILE = PROCESSED_DATA_DIR / "pokemon.json"   # tipos e status base (PokéAPI)
+USO_FILE = PROCESSED_DATA_DIR / "uso.json"           # estatísticas de uso (Smogon)

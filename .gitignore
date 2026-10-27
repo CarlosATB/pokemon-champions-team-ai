@@ -218,3 +218,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Dados brutos baixados (grandes); o app usa só data/processed/
+data/raw/*
+!data/raw/.gitkeep

@@ -1,0 +1,21 @@
+{
+ "info": {"metagame": "gen9championsvgc2026regmc", "cutoff": 1500, "number of battles": 1000},
+ "data": {
+  "Incineroar": {
+   "usage": 0.5,
+   "Abilities": {"intimidate": 95.0, "blaze": 5.0},
+   "Items": {"sitrusberry": 60.0, "safetygoggles": 39.5, "nothing": 0.5},
+   "Moves": {"fakeout": 98.0, "knockoff": 90.0, "partingshot": 80.0, "flareblitz": 70.0, "": 0.2},
+   "Spreads": {"Careful:252/4/0/0/252/0": 30.0},
+   "Teammates": {"Rillaboom": 40.0, "Indeedee-F": 10.0, "Pikachu": 0.5}
+  },
+  "Indeedee-F": {
+   "usage": 0.1,
+   "Abilities": {"psychicsurge": 20.0},
+   "Items": {"rockyhelmet": 20.0},
+   "Moves": {"followme": 20.0, "protect": 20.0},
+   "Spreads": {},
+   "Teammates": {"Incineroar": 10.0}
+  }
+ }
+}

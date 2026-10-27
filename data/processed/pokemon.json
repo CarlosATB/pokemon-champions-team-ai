@@ -1,0 +1,7942 @@
+{
+ "venusaur": {
+  "id": "venusaur",
+  "nome": "Venusaur",
+  "tipos": [
+   "Grass",
+   "Poison"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 82,
+   "def": 83,
+   "spa": 100,
+   "spd": 100,
+   "spe": 80
+  },
+  "habilidades": [
+   "overgrow",
+   "chlorophyll"
+  ],
+  "especie_base": "venusaur",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "venusaurmega": {
+  "id": "venusaurmega",
+  "nome": "Venusaur-Mega",
+  "tipos": [
+   "Grass",
+   "Poison"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 100,
+   "def": 123,
+   "spa": 122,
+   "spd": 120,
+   "spe": 80
+  },
+  "habilidades": [
+   "thickfat"
+  ],
+  "especie_base": "venusaur",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "charizard": {
+  "id": "charizard",
+  "nome": "Charizard",
+  "tipos": [
+   "Fire",
+   "Flying"
+  ],
+  "status": {
+   "hp": 78,
+   "atk": 84,
+   "def": 78,
+   "spa": 109,
+   "spd": 85,
+   "spe": 100
+  },
+  "habilidades": [
+   "blaze",
+   "solarpower"
+  ],
+  "especie_base": "charizard",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "charizardmegax": {
+  "id": "charizardmegax",
+  "nome": "Charizard-Mega-X",
+  "tipos": [
+   "Fire",
+   "Dragon"
+  ],
+  "status": {
+   "hp": 78,
+   "atk": 130,
+   "def": 111,
+   "spa": 130,
+   "spd": 85,
+   "spe": 100
+  },
+  "habilidades": [
+   "toughclaws"
+  ],
+  "especie_base": "charizard",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "charizardmegay": {
+  "id": "charizardmegay",
+  "nome": "Charizard-Mega-Y",
+  "tipos": [
+   "Fire",
+   "Flying"
+  ],
+  "status": {
+   "hp": 78,
+   "atk": 104,
+   "def": 78,
+   "spa": 159,
+   "spd": 115,
+   "spe": 100
+  },
+  "habilidades": [
+   "drought"
+  ],
+  "especie_base": "charizard",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "blastoise": {
+  "id": "blastoise",
+  "nome": "Blastoise",
+  "tipos": [
+   "Water"
+  ],
+  "status": {
+   "hp": 79,
+   "atk": 83,
+   "def": 100,
+   "spa": 85,
+   "spd": 105,
+   "spe": 78
+  },
+  "habilidades": [
+   "torrent",
+   "raindish"
+  ],
+  "especie_base": "blastoise",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "blastoisemega": {
+  "id": "blastoisemega",
+  "nome": "Blastoise-Mega",
+  "tipos": [
+   "Water"
+  ],
+  "status": {
+   "hp": 79,
+   "atk": 103,
+   "def": 120,
+   "spa": 135,
+   "spd": 115,
+   "spe": 78
+  },
+  "habilidades": [
+   "megalauncher"
+  ],
+  "especie_base": "blastoise",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "beedrill": {
+  "id": "beedrill",
+  "nome": "Beedrill",
+  "tipos": [
+   "Bug",
+   "Poison"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 90,
+   "def": 40,
+   "spa": 45,
+   "spd": 80,
+   "spe": 75
+  },
+  "habilidades": [
+   "swarm",
+   "sniper"
+  ],
+  "especie_base": "beedrill",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "beedrillmega": {
+  "id": "beedrillmega",
+  "nome": "Beedrill-Mega",
+  "tipos": [
+   "Bug",
+   "Poison"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 150,
+   "def": 40,
+   "spa": 15,
+   "spd": 80,
+   "spe": 145
+  },
+  "habilidades": [
+   "adaptability"
+  ],
+  "especie_base": "beedrill",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "pidgeot": {
+  "id": "pidgeot",
+  "nome": "Pidgeot",
+  "tipos": [
+   "Normal",
+   "Flying"
+  ],
+  "status": {
+   "hp": 83,
+   "atk": 80,
+   "def": 75,
+   "spa": 70,
+   "spd": 70,
+   "spe": 101
+  },
+  "habilidades": [
+   "keeneye",
+   "tangledfeet",
+   "bigpecks"
+  ],
+  "especie_base": "pidgeot",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "pidgeotmega": {
+  "id": "pidgeotmega",
+  "nome": "Pidgeot-Mega",
+  "tipos": [
+   "Normal",
+   "Flying"
+  ],
+  "status": {
+   "hp": 83,
+   "atk": 80,
+   "def": 80,
+   "spa": 135,
+   "spd": 80,
+   "spe": 121
+  },
+  "habilidades": [
+   "noguard"
+  ],
+  "especie_base": "pidgeot",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "arbok": {
+  "id": "arbok",
+  "nome": "Arbok",
+  "tipos": [
+   "Poison"
+  ],
+  "status": {
+   "hp": 60,
+   "atk": 95,
+   "def": 69,
+   "spa": 65,
+   "spd": 79,
+   "spe": 80
+  },
+  "habilidades": [
+   "intimidate",
+   "shedskin",
+   "unnerve"
+  ],
+  "especie_base": "arbok",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "pikachu": {
+  "id": "pikachu",
+  "nome": "Pikachu",
+  "tipos": [
+   "Electric"
+  ],
+  "status": {
+   "hp": 35,
+   "atk": 55,
+   "def": 40,
+   "spa": 50,
+   "spd": 50,
+   "spe": 90
+  },
+  "habilidades": [
+   "static",
+   "lightningrod"
+  ],
+  "especie_base": "pikachu",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "raichu": {
+  "id": "raichu",
+  "nome": "Raichu",
+  "tipos": [
+   "Electric"
+  ],
+  "status": {
+   "hp": 60,
+   "atk": 90,
+   "def": 55,
+   "spa": 90,
+   "spd": 80,
+   "spe": 110
+  },
+  "habilidades": [
+   "static",
+   "lightningrod"
+  ],
+  "especie_base": "raichu",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "raichualola": {
+  "id": "raichualola",
+  "nome": "Raichu-Alola",
+  "tipos": [
+   "Electric",
+   "Psychic"
+  ],
+  "status": {
+   "hp": 60,
+   "atk": 85,
+   "def": 50,
+   "spa": 95,
+   "spd": 85,
+   "spe": 110
+  },
+  "habilidades": [
+   "surgesurfer"
+  ],
+  "especie_base": "raichu",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "raichumegax": {
+  "id": "raichumegax",
+  "nome": "Raichu-Mega-X",
+  "tipos": [
+   "Electric"
+  ],
+  "status": {
+   "hp": 60,
+   "atk": 135,
+   "def": 95,
+   "spa": 90,
+   "spd": 95,
+   "spe": 110
+  },
+  "habilidades": [
+   "electricsurge"
+  ],
+  "especie_base": "raichu",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "raichumegay": {
+  "id": "raichumegay",
+  "nome": "Raichu-Mega-Y",
+  "tipos": [
+   "Electric"
+  ],
+  "status": {
+   "hp": 60,
+   "atk": 100,
+   "def": 55,
+   "spa": 160,
+   "spd": 80,
+   "spe": 130
+  },
+  "habilidades": [
+   "noguard"
+  ],
+  "especie_base": "raichu",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "clefable": {
+  "id": "clefable",
+  "nome": "Clefable",
+  "tipos": [
+   "Fairy"
+  ],
+  "status": {
+   "hp": 95,
+   "atk": 70,
+   "def": 73,
+   "spa": 95,
+   "spd": 90,
+   "spe": 60
+  },
+  "habilidades": [
+   "cutecharm",
+   "magicguard",
+   "unaware"
+  ],
+  "especie_base": "clefable",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "clefablemega": {
+  "id": "clefablemega",
+  "nome": "Clefable-Mega",
+  "tipos": [
+   "Fairy",
+   "Flying"
+  ],
+  "status": {
+   "hp": 95,
+   "atk": 80,
+   "def": 93,
+   "spa": 135,
+   "spd": 110,
+   "spe": 70
+  },
+  "habilidades": [
+   "magicbounce"
+  ],
+  "especie_base": "clefable",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "ninetales": {
+  "id": "ninetales",
+  "nome": "Ninetales",
+  "tipos": [
+   "Fire"
+  ],
+  "status": {
+   "hp": 73,
+   "atk": 76,
+   "def": 75,
+   "spa": 81,
+   "spd": 100,
+   "spe": 100
+  },
+  "habilidades": [
+   "flashfire",
+   "drought"
+  ],
+  "especie_base": "ninetales",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "ninetalesalola": {
+  "id": "ninetalesalola",
+  "nome": "Ninetales-Alola",
+  "tipos": [
+   "Ice",
+   "Fairy"
+  ],
+  "status": {
+   "hp": 73,
+   "atk": 67,
+   "def": 75,
+   "spa": 81,
+   "spd": 100,
+   "spe": 109
+  },
+  "habilidades": [
+   "snowcloak",
+   "snowwarning"
+  ],
+  "especie_base": "ninetales",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "wigglytuff": {
+  "id": "wigglytuff",
+  "nome": "Wigglytuff",
+  "tipos": [
+   "Normal",
+   "Fairy"
+  ],
+  "status": {
+   "hp": 140,
+   "atk": 70,
+   "def": 45,
+   "spa": 85,
+   "spd": 50,
+   "spe": 45
+  },
+  "habilidades": [
+   "cutecharm",
+   "competitive",
+   "frisk"
+  ],
+  "especie_base": "wigglytuff",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "vileplume": {
+  "id": "vileplume",
+  "nome": "Vileplume",
+  "tipos": [
+   "Grass",
+   "Poison"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 80,
+   "def": 85,
+   "spa": 110,
+   "spd": 90,
+   "spe": 50
+  },
+  "habilidades": [
+   "chlorophyll",
+   "effectspore"
+  ],
+  "especie_base": "vileplume",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "persian": {
+  "id": "persian",
+  "nome": "Persian",
+  "tipos": [
+   "Normal"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 70,
+   "def": 60,
+   "spa": 65,
+   "spd": 65,
+   "spe": 115
+  },
+  "habilidades": [
+   "limber",
+   "technician",
+   "unnerve"
+  ],
+  "especie_base": "persian",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "persianalola": {
+  "id": "persianalola",
+  "nome": "Persian-Alola",
+  "tipos": [
+   "Dark"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 60,
+   "def": 60,
+   "spa": 75,
+   "spd": 65,
+   "spe": 115
+  },
+  "habilidades": [
+   "furcoat",
+   "technician",
+   "rattled"
+  ],
+  "especie_base": "persian",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "perrserker": {
+  "id": "perrserker",
+  "nome": "Perrserker",
+  "tipos": [
+   "Steel"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 110,
+   "def": 100,
+   "spa": 50,
+   "spd": 60,
+   "spe": 50
+  },
+  "habilidades": [
+   "battlearmor",
+   "toughclaws",
+   "steelyspirit"
+  ],
+  "especie_base": "perrserker",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "arcanine": {
+  "id": "arcanine",
+  "nome": "Arcanine",
+  "tipos": [
+   "Fire"
+  ],
+  "status": {
+   "hp": 90,
+   "atk": 110,
+   "def": 80,
+   "spa": 100,
+   "spd": 80,
+   "spe": 95
+  },
+  "habilidades": [
+   "intimidate",
+   "flashfire",
+   "justified"
+  ],
+  "especie_base": "arcanine",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "arcaninehisui": {
+  "id": "arcaninehisui",
+  "nome": "Arcanine-Hisui",
+  "tipos": [
+   "Fire",
+   "Rock"
+  ],
+  "status": {
+   "hp": 95,
+   "atk": 115,
+   "def": 80,
+   "spa": 95,
+   "spd": 80,
+   "spe": 90
+  },
+  "habilidades": [
+   "intimidate",
+   "flashfire",
+   "rockhead"
+  ],
+  "especie_base": "arcanine",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "politoed": {
+  "id": "politoed",
+  "nome": "Politoed",
+  "tipos": [
+   "Water"
+  ],
+  "status": {
+   "hp": 90,
+   "atk": 75,
+   "def": 75,
+   "spa": 90,
+   "spd": 100,
+   "spe": 70
+  },
+  "habilidades": [
+   "waterabsorb",
+   "damp",
+   "drizzle"
+  ],
+  "especie_base": "politoed",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "alakazam": {
+  "id": "alakazam",
+  "nome": "Alakazam",
+  "tipos": [
+   "Psychic"
+  ],
+  "status": {
+   "hp": 55,
+   "atk": 50,
+   "def": 45,
+   "spa": 135,
+   "spd": 95,
+   "spe": 120
+  },
+  "habilidades": [
+   "synchronize",
+   "innerfocus",
+   "magicguard"
+  ],
+  "especie_base": "alakazam",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "alakazammega": {
+  "id": "alakazammega",
+  "nome": "Alakazam-Mega",
+  "tipos": [
+   "Psychic"
+  ],
+  "status": {
+   "hp": 55,
+   "atk": 50,
+   "def": 65,
+   "spa": 175,
+   "spd": 105,
+   "spe": 150
+  },
+  "habilidades": [
+   "trace"
+  ],
+  "especie_base": "alakazam",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "machamp": {
+  "id": "machamp",
+  "nome": "Machamp",
+  "tipos": [
+   "Fighting"
+  ],
+  "status": {
+   "hp": 90,
+   "atk": 130,
+   "def": 80,
+   "spa": 65,
+   "spd": 85,
+   "spe": 55
+  },
+  "habilidades": [
+   "guts",
+   "noguard",
+   "steadfast"
+  ],
+  "especie_base": "machamp",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "victreebel": {
+  "id": "victreebel",
+  "nome": "Victreebel",
+  "tipos": [
+   "Grass",
+   "Poison"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 105,
+   "def": 65,
+   "spa": 100,
+   "spd": 70,
+   "spe": 70
+  },
+  "habilidades": [
+   "chlorophyll",
+   "gluttony"
+  ],
+  "especie_base": "victreebel",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "victreebelmega": {
+  "id": "victreebelmega",
+  "nome": "Victreebel-Mega",
+  "tipos": [
+   "Grass",
+   "Poison"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 125,
+   "def": 85,
+   "spa": 135,
+   "spd": 95,
+   "spe": 70
+  },
+  "habilidades": [
+   "innardsout"
+  ],
+  "especie_base": "victreebel",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "slowbro": {
+  "id": "slowbro",
+  "nome": "Slowbro",
+  "tipos": [
+   "Water",
+   "Psychic"
+  ],
+  "status": {
+   "hp": 95,
+   "atk": 75,
+   "def": 110,
+   "spa": 100,
+   "spd": 80,
+   "spe": 30
+  },
+  "habilidades": [
+   "oblivious",
+   "owntempo",
+   "regenerator"
+  ],
+  "especie_base": "slowbro",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "slowbromega": {
+  "id": "slowbromega",
+  "nome": "Slowbro-Mega",
+  "tipos": [
+   "Water",
+   "Psychic"
+  ],
+  "status": {
+   "hp": 95,
+   "atk": 75,
+   "def": 180,
+   "spa": 130,
+   "spd": 80,
+   "spe": 30
+  },
+  "habilidades": [
+   "shellarmor"
+  ],
+  "especie_base": "slowbro",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "slowbrogalar": {
+  "id": "slowbrogalar",
+  "nome": "Slowbro-Galar",
+  "tipos": [
+   "Poison",
+   "Psychic"
+  ],
+  "status": {
+   "hp": 95,
+   "atk": 100,
+   "def": 95,
+   "spa": 100,
+   "spd": 70,
+   "spe": 30
+  },
+  "habilidades": [
+   "quickdraw",
+   "owntempo",
+   "regenerator"
+  ],
+  "especie_base": "slowbro",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "slowking": {
+  "id": "slowking",
+  "nome": "Slowking",
+  "tipos": [
+   "Water",
+   "Psychic"
+  ],
+  "status": {
+   "hp": 95,
+   "atk": 75,
+   "def": 80,
+   "spa": 100,
+   "spd": 110,
+   "spe": 30
+  },
+  "habilidades": [
+   "oblivious",
+   "owntempo",
+   "regenerator"
+  ],
+  "especie_base": "slowking",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "slowkinggalar": {
+  "id": "slowkinggalar",
+  "nome": "Slowking-Galar",
+  "tipos": [
+   "Poison",
+   "Psychic"
+  ],
+  "status": {
+   "hp": 95,
+   "atk": 65,
+   "def": 80,
+   "spa": 110,
+   "spd": 110,
+   "spe": 30
+  },
+  "habilidades": [
+   "curiousmedicine",
+   "owntempo",
+   "regenerator"
+  ],
+  "especie_base": "slowking",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "farfetchd": {
+  "id": "farfetchd",
+  "nome": "Farfetchd",
+  "tipos": [
+   "Normal",
+   "Flying"
+  ],
+  "status": {
+   "hp": 52,
+   "atk": 90,
+   "def": 55,
+   "spa": 58,
+   "spd": 62,
+   "spe": 60
+  },
+  "habilidades": [
+   "keeneye",
+   "innerfocus",
+   "defiant"
+  ],
+  "especie_base": "farfetchd",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "sirfetchd": {
+  "id": "sirfetchd",
+  "nome": "Sirfetchd",
+  "tipos": [
+   "Fighting"
+  ],
+  "status": {
+   "hp": 62,
+   "atk": 135,
+   "def": 95,
+   "spa": 68,
+   "spd": 82,
+   "spe": 65
+  },
+  "habilidades": [
+   "steadfast",
+   "scrappy"
+  ],
+  "especie_base": "sirfetchd",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "gengar": {
+  "id": "gengar",
+  "nome": "Gengar",
+  "tipos": [
+   "Ghost",
+   "Poison"
+  ],
+  "status": {
+   "hp": 60,
+   "atk": 65,
+   "def": 60,
+   "spa": 130,
+   "spd": 75,
+   "spe": 110
+  },
+  "habilidades": [
+   "cursedbody"
+  ],
+  "especie_base": "gengar",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "gengarmega": {
+  "id": "gengarmega",
+  "nome": "Gengar-Mega",
+  "tipos": [
+   "Ghost",
+   "Poison"
+  ],
+  "status": {
+   "hp": 60,
+   "atk": 65,
+   "def": 80,
+   "spa": 170,
+   "spd": 95,
+   "spe": 130
+  },
+  "habilidades": [
+   "shadowtag"
+  ],
+  "especie_base": "gengar",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "steelix": {
+  "id": "steelix",
+  "nome": "Steelix",
+  "tipos": [
+   "Steel",
+   "Ground"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 85,
+   "def": 200,
+   "spa": 55,
+   "spd": 65,
+   "spe": 30
+  },
+  "habilidades": [
+   "rockhead",
+   "sturdy",
+   "sheerforce"
+  ],
+  "especie_base": "steelix",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "steelixmega": {
+  "id": "steelixmega",
+  "nome": "Steelix-Mega",
+  "tipos": [
+   "Steel",
+   "Ground"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 125,
+   "def": 230,
+   "spa": 55,
+   "spd": 95,
+   "spe": 30
+  },
+  "habilidades": [
+   "sandforce"
+  ],
+  "especie_base": "steelix",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "rhyperior": {
+  "id": "rhyperior",
+  "nome": "Rhyperior",
+  "tipos": [
+   "Ground",
+   "Rock"
+  ],
+  "status": {
+   "hp": 115,
+   "atk": 140,
+   "def": 130,
+   "spa": 55,
+   "spd": 55,
+   "spe": 40
+  },
+  "habilidades": [
+   "lightningrod",
+   "solidrock",
+   "reckless"
+  ],
+  "especie_base": "rhyperior",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "kangaskhan": {
+  "id": "kangaskhan",
+  "nome": "Kangaskhan",
+  "tipos": [
+   "Normal"
+  ],
+  "status": {
+   "hp": 105,
+   "atk": 95,
+   "def": 80,
+   "spa": 40,
+   "spd": 80,
+   "spe": 90
+  },
+  "habilidades": [
+   "earlybird",
+   "scrappy",
+   "innerfocus"
+  ],
+  "especie_base": "kangaskhan",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "kangaskhanmega": {
+  "id": "kangaskhanmega",
+  "nome": "Kangaskhan-Mega",
+  "tipos": [
+   "Normal"
+  ],
+  "status": {
+   "hp": 105,
+   "atk": 125,
+   "def": 100,
+   "spa": 60,
+   "spd": 100,
+   "spe": 100
+  },
+  "habilidades": [
+   "parentalbond"
+  ],
+  "especie_base": "kangaskhan",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "starmie": {
+  "id": "starmie",
+  "nome": "Starmie",
+  "tipos": [
+   "Water",
+   "Psychic"
+  ],
+  "status": {
+   "hp": 60,
+   "atk": 75,
+   "def": 85,
+   "spa": 100,
+   "spd": 85,
+   "spe": 115
+  },
+  "habilidades": [
+   "illuminate",
+   "naturalcure",
+   "analytic"
+  ],
+  "especie_base": "starmie",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "starmiemega": {
+  "id": "starmiemega",
+  "nome": "Starmie-Mega",
+  "tipos": [
+   "Water",
+   "Psychic"
+  ],
+  "status": {
+   "hp": 60,
+   "atk": 100,
+   "def": 105,
+   "spa": 130,
+   "spd": 105,
+   "spe": 120
+  },
+  "habilidades": [
+   "hugepower"
+  ],
+  "especie_base": "starmie",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "mrmime": {
+  "id": "mrmime",
+  "nome": "Mr-Mime",
+  "tipos": [
+   "Psychic",
+   "Fairy"
+  ],
+  "status": {
+   "hp": 40,
+   "atk": 45,
+   "def": 65,
+   "spa": 100,
+   "spd": 120,
+   "spe": 90
+  },
+  "habilidades": [
+   "soundproof",
+   "filter",
+   "technician"
+  ],
+  "especie_base": "mrmime",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "mrrime": {
+  "id": "mrrime",
+  "nome": "Mr-Rime",
+  "tipos": [
+   "Ice",
+   "Psychic"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 85,
+   "def": 75,
+   "spa": 110,
+   "spd": 100,
+   "spe": 70
+  },
+  "habilidades": [
+   "tangledfeet",
+   "screencleaner",
+   "icebody"
+  ],
+  "especie_base": "mrrime",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "scizor": {
+  "id": "scizor",
+  "nome": "Scizor",
+  "tipos": [
+   "Bug",
+   "Steel"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 130,
+   "def": 100,
+   "spa": 55,
+   "spd": 80,
+   "spe": 65
+  },
+  "habilidades": [
+   "swarm",
+   "technician",
+   "lightmetal"
+  ],
+  "especie_base": "scizor",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "scizormega": {
+  "id": "scizormega",
+  "nome": "Scizor-Mega",
+  "tipos": [
+   "Bug",
+   "Steel"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 150,
+   "def": 140,
+   "spa": 65,
+   "spd": 100,
+   "spe": 75
+  },
+  "habilidades": [
+   "technician"
+  ],
+  "especie_base": "scizor",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "kleavor": {
+  "id": "kleavor",
+  "nome": "Kleavor",
+  "tipos": [
+   "Bug",
+   "Rock"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 135,
+   "def": 95,
+   "spa": 45,
+   "spd": 70,
+   "spe": 85
+  },
+  "habilidades": [
+   "swarm",
+   "sheerforce",
+   "sharpness"
+  ],
+  "especie_base": "kleavor",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "pinsir": {
+  "id": "pinsir",
+  "nome": "Pinsir",
+  "tipos": [
+   "Bug"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 125,
+   "def": 100,
+   "spa": 55,
+   "spd": 70,
+   "spe": 85
+  },
+  "habilidades": [
+   "hypercutter",
+   "moldbreaker",
+   "moxie"
+  ],
+  "especie_base": "pinsir",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "pinsirmega": {
+  "id": "pinsirmega",
+  "nome": "Pinsir-Mega",
+  "tipos": [
+   "Bug",
+   "Flying"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 155,
+   "def": 120,
+   "spa": 65,
+   "spd": 90,
+   "spe": 105
+  },
+  "habilidades": [
+   "aerilate"
+  ],
+  "especie_base": "pinsir",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "tauros": {
+  "id": "tauros",
+  "nome": "Tauros",
+  "tipos": [
+   "Normal"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 100,
+   "def": 95,
+   "spa": 40,
+   "spd": 70,
+   "spe": 110
+  },
+  "habilidades": [
+   "intimidate",
+   "angerpoint",
+   "sheerforce"
+  ],
+  "especie_base": "tauros",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "taurospaldeacombat": {
+  "id": "taurospaldeacombat",
+  "nome": "Tauros-Paldea-Combat-Breed",
+  "tipos": [
+   "Fighting"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 110,
+   "def": 105,
+   "spa": 30,
+   "spd": 70,
+   "spe": 100
+  },
+  "habilidades": [
+   "intimidate",
+   "angerpoint",
+   "cudchew"
+  ],
+  "especie_base": "tauros",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "taurospaldeablaze": {
+  "id": "taurospaldeablaze",
+  "nome": "Tauros-Paldea-Blaze-Breed",
+  "tipos": [
+   "Fighting",
+   "Fire"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 110,
+   "def": 105,
+   "spa": 30,
+   "spd": 70,
+   "spe": 100
+  },
+  "habilidades": [
+   "intimidate",
+   "angerpoint",
+   "cudchew"
+  ],
+  "especie_base": "tauros",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "taurospaldeaaqua": {
+  "id": "taurospaldeaaqua",
+  "nome": "Tauros-Paldea-Aqua-Breed",
+  "tipos": [
+   "Fighting",
+   "Water"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 110,
+   "def": 105,
+   "spa": 30,
+   "spd": 70,
+   "spe": 100
+  },
+  "habilidades": [
+   "intimidate",
+   "angerpoint",
+   "cudchew"
+  ],
+  "especie_base": "tauros",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "gyarados": {
+  "id": "gyarados",
+  "nome": "Gyarados",
+  "tipos": [
+   "Water",
+   "Flying"
+  ],
+  "status": {
+   "hp": 95,
+   "atk": 125,
+   "def": 79,
+   "spa": 60,
+   "spd": 100,
+   "spe": 81
+  },
+  "habilidades": [
+   "intimidate",
+   "moxie"
+  ],
+  "especie_base": "gyarados",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "gyaradosmega": {
+  "id": "gyaradosmega",
+  "nome": "Gyarados-Mega",
+  "tipos": [
+   "Water",
+   "Dark"
+  ],
+  "status": {
+   "hp": 95,
+   "atk": 155,
+   "def": 109,
+   "spa": 70,
+   "spd": 130,
+   "spe": 81
+  },
+  "habilidades": [
+   "moldbreaker"
+  ],
+  "especie_base": "gyarados",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "ditto": {
+  "id": "ditto",
+  "nome": "Ditto",
+  "tipos": [
+   "Normal"
+  ],
+  "status": {
+   "hp": 48,
+   "atk": 48,
+   "def": 48,
+   "spa": 48,
+   "spd": 48,
+   "spe": 48
+  },
+  "habilidades": [
+   "limber",
+   "imposter"
+  ],
+  "especie_base": "ditto",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "vaporeon": {
+  "id": "vaporeon",
+  "nome": "Vaporeon",
+  "tipos": [
+   "Water"
+  ],
+  "status": {
+   "hp": 130,
+   "atk": 65,
+   "def": 60,
+   "spa": 110,
+   "spd": 95,
+   "spe": 65
+  },
+  "habilidades": [
+   "waterabsorb",
+   "hydration"
+  ],
+  "especie_base": "vaporeon",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "jolteon": {
+  "id": "jolteon",
+  "nome": "Jolteon",
+  "tipos": [
+   "Electric"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 65,
+   "def": 60,
+   "spa": 110,
+   "spd": 95,
+   "spe": 130
+  },
+  "habilidades": [
+   "voltabsorb",
+   "quickfeet"
+  ],
+  "especie_base": "jolteon",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "flareon": {
+  "id": "flareon",
+  "nome": "Flareon",
+  "tipos": [
+   "Fire"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 130,
+   "def": 60,
+   "spa": 95,
+   "spd": 110,
+   "spe": 65
+  },
+  "habilidades": [
+   "flashfire",
+   "guts"
+  ],
+  "especie_base": "flareon",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "espeon": {
+  "id": "espeon",
+  "nome": "Espeon",
+  "tipos": [
+   "Psychic"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 65,
+   "def": 60,
+   "spa": 130,
+   "spd": 95,
+   "spe": 110
+  },
+  "habilidades": [
+   "synchronize",
+   "magicbounce"
+  ],
+  "especie_base": "espeon",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "umbreon": {
+  "id": "umbreon",
+  "nome": "Umbreon",
+  "tipos": [
+   "Dark"
+  ],
+  "status": {
+   "hp": 95,
+   "atk": 65,
+   "def": 110,
+   "spa": 60,
+   "spd": 130,
+   "spe": 65
+  },
+  "habilidades": [
+   "synchronize",
+   "innerfocus"
+  ],
+  "especie_base": "umbreon",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "leafeon": {
+  "id": "leafeon",
+  "nome": "Leafeon",
+  "tipos": [
+   "Grass"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 110,
+   "def": 130,
+   "spa": 60,
+   "spd": 65,
+   "spe": 95
+  },
+  "habilidades": [
+   "leafguard",
+   "chlorophyll"
+  ],
+  "especie_base": "leafeon",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "glaceon": {
+  "id": "glaceon",
+  "nome": "Glaceon",
+  "tipos": [
+   "Ice"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 60,
+   "def": 110,
+   "spa": 130,
+   "spd": 95,
+   "spe": 65
+  },
+  "habilidades": [
+   "snowcloak",
+   "icebody"
+  ],
+  "especie_base": "glaceon",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "sylveon": {
+  "id": "sylveon",
+  "nome": "Sylveon",
+  "tipos": [
+   "Fairy"
+  ],
+  "status": {
+   "hp": 95,
+   "atk": 65,
+   "def": 65,
+   "spa": 110,
+   "spd": 130,
+   "spe": 60
+  },
+  "habilidades": [
+   "cutecharm",
+   "pixilate"
+  ],
+  "especie_base": "sylveon",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "aerodactyl": {
+  "id": "aerodactyl",
+  "nome": "Aerodactyl",
+  "tipos": [
+   "Rock",
+   "Flying"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 105,
+   "def": 65,
+   "spa": 60,
+   "spd": 75,
+   "spe": 130
+  },
+  "habilidades": [
+   "rockhead",
+   "pressure",
+   "unnerve"
+  ],
+  "especie_base": "aerodactyl",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "aerodactylmega": {
+  "id": "aerodactylmega",
+  "nome": "Aerodactyl-Mega",
+  "tipos": [
+   "Rock",
+   "Flying"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 135,
+   "def": 85,
+   "spa": 70,
+   "spd": 95,
+   "spe": 150
+  },
+  "habilidades": [
+   "toughclaws"
+  ],
+  "especie_base": "aerodactyl",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "snorlax": {
+  "id": "snorlax",
+  "nome": "Snorlax",
+  "tipos": [
+   "Normal"
+  ],
+  "status": {
+   "hp": 160,
+   "atk": 110,
+   "def": 65,
+   "spa": 65,
+   "spd": 110,
+   "spe": 30
+  },
+  "habilidades": [
+   "immunity",
+   "thickfat",
+   "gluttony"
+  ],
+  "especie_base": "snorlax",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "dragonite": {
+  "id": "dragonite",
+  "nome": "Dragonite",
+  "tipos": [
+   "Dragon",
+   "Flying"
+  ],
+  "status": {
+   "hp": 91,
+   "atk": 134,
+   "def": 95,
+   "spa": 100,
+   "spd": 100,
+   "spe": 80
+  },
+  "habilidades": [
+   "innerfocus",
+   "multiscale"
+  ],
+  "especie_base": "dragonite",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "dragonitemega": {
+  "id": "dragonitemega",
+  "nome": "Dragonite-Mega",
+  "tipos": [
+   "Dragon",
+   "Flying"
+  ],
+  "status": {
+   "hp": 91,
+   "atk": 124,
+   "def": 115,
+   "spa": 145,
+   "spd": 125,
+   "spe": 100
+  },
+  "habilidades": [
+   "multiscale"
+  ],
+  "especie_base": "dragonite",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "meganium": {
+  "id": "meganium",
+  "nome": "Meganium",
+  "tipos": [
+   "Grass"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 82,
+   "def": 100,
+   "spa": 83,
+   "spd": 100,
+   "spe": 80
+  },
+  "habilidades": [
+   "overgrow",
+   "leafguard"
+  ],
+  "especie_base": "meganium",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "meganiummega": {
+  "id": "meganiummega",
+  "nome": "Meganium-Mega",
+  "tipos": [
+   "Grass",
+   "Fairy"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 92,
+   "def": 115,
+   "spa": 143,
+   "spd": 115,
+   "spe": 80
+  },
+  "habilidades": [
+   "megasol"
+  ],
+  "especie_base": "meganium",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "typhlosion": {
+  "id": "typhlosion",
+  "nome": "Typhlosion",
+  "tipos": [
+   "Fire"
+  ],
+  "status": {
+   "hp": 78,
+   "atk": 84,
+   "def": 78,
+   "spa": 109,
+   "spd": 85,
+   "spe": 100
+  },
+  "habilidades": [
+   "blaze",
+   "flashfire"
+  ],
+  "especie_base": "typhlosion",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "typhlosionhisui": {
+  "id": "typhlosionhisui",
+  "nome": "Typhlosion-Hisui",
+  "tipos": [
+   "Fire",
+   "Ghost"
+  ],
+  "status": {
+   "hp": 73,
+   "atk": 84,
+   "def": 78,
+   "spa": 119,
+   "spd": 85,
+   "spe": 95
+  },
+  "habilidades": [
+   "blaze",
+   "frisk"
+  ],
+  "especie_base": "typhlosion",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "feraligatr": {
+  "id": "feraligatr",
+  "nome": "Feraligatr",
+  "tipos": [
+   "Water"
+  ],
+  "status": {
+   "hp": 85,
+   "atk": 105,
+   "def": 100,
+   "spa": 79,
+   "spd": 83,
+   "spe": 78
+  },
+  "habilidades": [
+   "torrent",
+   "sheerforce"
+  ],
+  "especie_base": "feraligatr",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "feraligatrmega": {
+  "id": "feraligatrmega",
+  "nome": "Feraligatr-Mega",
+  "tipos": [
+   "Water",
+   "Dragon"
+  ],
+  "status": {
+   "hp": 85,
+   "atk": 160,
+   "def": 125,
+   "spa": 89,
+   "spd": 93,
+   "spe": 78
+  },
+  "habilidades": [
+   "dragonize"
+  ],
+  "especie_base": "feraligatr",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "ariados": {
+  "id": "ariados",
+  "nome": "Ariados",
+  "tipos": [
+   "Bug",
+   "Poison"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 90,
+   "def": 70,
+   "spa": 60,
+   "spd": 70,
+   "spe": 40
+  },
+  "habilidades": [
+   "swarm",
+   "insomnia",
+   "sniper"
+  ],
+  "especie_base": "ariados",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "ampharos": {
+  "id": "ampharos",
+  "nome": "Ampharos",
+  "tipos": [
+   "Electric"
+  ],
+  "status": {
+   "hp": 90,
+   "atk": 75,
+   "def": 85,
+   "spa": 115,
+   "spd": 90,
+   "spe": 55
+  },
+  "habilidades": [
+   "static",
+   "plus"
+  ],
+  "especie_base": "ampharos",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "ampharosmega": {
+  "id": "ampharosmega",
+  "nome": "Ampharos-Mega",
+  "tipos": [
+   "Electric",
+   "Dragon"
+  ],
+  "status": {
+   "hp": 90,
+   "atk": 95,
+   "def": 105,
+   "spa": 165,
+   "spd": 110,
+   "spe": 45
+  },
+  "habilidades": [
+   "moldbreaker"
+  ],
+  "especie_base": "ampharos",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "azumarill": {
+  "id": "azumarill",
+  "nome": "Azumarill",
+  "tipos": [
+   "Water",
+   "Fairy"
+  ],
+  "status": {
+   "hp": 100,
+   "atk": 50,
+   "def": 80,
+   "spa": 60,
+   "spd": 80,
+   "spe": 50
+  },
+  "habilidades": [
+   "thickfat",
+   "hugepower",
+   "sapsipper"
+  ],
+  "especie_base": "azumarill",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "farigiraf": {
+  "id": "farigiraf",
+  "nome": "Farigiraf",
+  "tipos": [
+   "Normal",
+   "Psychic"
+  ],
+  "status": {
+   "hp": 120,
+   "atk": 90,
+   "def": 70,
+   "spa": 110,
+   "spd": 70,
+   "spe": 60
+  },
+  "habilidades": [
+   "cudchew",
+   "armortail",
+   "sapsipper"
+  ],
+  "especie_base": "farigiraf",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "forretress": {
+  "id": "forretress",
+  "nome": "Forretress",
+  "tipos": [
+   "Bug",
+   "Steel"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 90,
+   "def": 140,
+   "spa": 60,
+   "spd": 60,
+   "spe": 40
+  },
+  "habilidades": [
+   "sturdy",
+   "overcoat"
+  ],
+  "especie_base": "forretress",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "gliscor": {
+  "id": "gliscor",
+  "nome": "Gliscor",
+  "tipos": [
+   "Ground",
+   "Flying"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 95,
+   "def": 125,
+   "spa": 45,
+   "spd": 75,
+   "spe": 95
+  },
+  "habilidades": [
+   "hypercutter",
+   "sandveil",
+   "poisonheal"
+  ],
+  "especie_base": "gliscor",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "qwilfish": {
+  "id": "qwilfish",
+  "nome": "Qwilfish",
+  "tipos": [
+   "Water",
+   "Poison"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 95,
+   "def": 85,
+   "spa": 55,
+   "spd": 55,
+   "spe": 85
+  },
+  "habilidades": [
+   "poisonpoint",
+   "swiftswim",
+   "intimidate"
+  ],
+  "especie_base": "qwilfish",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "overqwil": {
+  "id": "overqwil",
+  "nome": "Overqwil",
+  "tipos": [
+   "Dark",
+   "Poison"
+  ],
+  "status": {
+   "hp": 85,
+   "atk": 115,
+   "def": 95,
+   "spa": 65,
+   "spd": 65,
+   "spe": 85
+  },
+  "habilidades": [
+   "poisonpoint",
+   "swiftswim",
+   "intimidate"
+  ],
+  "especie_base": "overqwil",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "heracross": {
+  "id": "heracross",
+  "nome": "Heracross",
+  "tipos": [
+   "Bug",
+   "Fighting"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 125,
+   "def": 75,
+   "spa": 40,
+   "spd": 95,
+   "spe": 85
+  },
+  "habilidades": [
+   "swarm",
+   "guts",
+   "moxie"
+  ],
+  "especie_base": "heracross",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "heracrossmega": {
+  "id": "heracrossmega",
+  "nome": "Heracross-Mega",
+  "tipos": [
+   "Bug",
+   "Fighting"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 185,
+   "def": 115,
+   "spa": 40,
+   "spd": 105,
+   "spe": 75
+  },
+  "habilidades": [
+   "skilllink"
+  ],
+  "especie_base": "heracross",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "weavile": {
+  "id": "weavile",
+  "nome": "Weavile",
+  "tipos": [
+   "Dark",
+   "Ice"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 120,
+   "def": 65,
+   "spa": 45,
+   "spd": 85,
+   "spe": 125
+  },
+  "habilidades": [
+   "pressure",
+   "pickpocket"
+  ],
+  "especie_base": "weavile",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "sneasler": {
+  "id": "sneasler",
+  "nome": "Sneasler",
+  "tipos": [
+   "Fighting",
+   "Poison"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 130,
+   "def": 60,
+   "spa": 40,
+   "spd": 80,
+   "spe": 120
+  },
+  "habilidades": [
+   "pressure",
+   "unburden",
+   "poisontouch"
+  ],
+  "especie_base": "sneasler",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "mamoswine": {
+  "id": "mamoswine",
+  "nome": "Mamoswine",
+  "tipos": [
+   "Ice",
+   "Ground"
+  ],
+  "status": {
+   "hp": 110,
+   "atk": 130,
+   "def": 80,
+   "spa": 70,
+   "spd": 60,
+   "spe": 80
+  },
+  "habilidades": [
+   "oblivious",
+   "snowcloak",
+   "thickfat"
+  ],
+  "especie_base": "mamoswine",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "skarmory": {
+  "id": "skarmory",
+  "nome": "Skarmory",
+  "tipos": [
+   "Steel",
+   "Flying"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 80,
+   "def": 140,
+   "spa": 40,
+   "spd": 70,
+   "spe": 70
+  },
+  "habilidades": [
+   "keeneye",
+   "sturdy",
+   "weakarmor"
+  ],
+  "especie_base": "skarmory",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "skarmorymega": {
+  "id": "skarmorymega",
+  "nome": "Skarmory-Mega",
+  "tipos": [
+   "Steel",
+   "Flying"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 140,
+   "def": 110,
+   "spa": 40,
+   "spd": 100,
+   "spe": 110
+  },
+  "habilidades": [
+   "stalwart"
+  ],
+  "especie_base": "skarmory",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "houndoom": {
+  "id": "houndoom",
+  "nome": "Houndoom",
+  "tipos": [
+   "Dark",
+   "Fire"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 90,
+   "def": 50,
+   "spa": 110,
+   "spd": 80,
+   "spe": 95
+  },
+  "habilidades": [
+   "earlybird",
+   "flashfire",
+   "unnerve"
+  ],
+  "especie_base": "houndoom",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "houndoommega": {
+  "id": "houndoommega",
+  "nome": "Houndoom-Mega",
+  "tipos": [
+   "Dark",
+   "Fire"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 90,
+   "def": 90,
+   "spa": 140,
+   "spd": 90,
+   "spe": 115
+  },
+  "habilidades": [
+   "solarpower"
+  ],
+  "especie_base": "houndoom",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "wyrdeer": {
+  "id": "wyrdeer",
+  "nome": "Wyrdeer",
+  "tipos": [
+   "Normal",
+   "Psychic"
+  ],
+  "status": {
+   "hp": 103,
+   "atk": 105,
+   "def": 72,
+   "spa": 105,
+   "spd": 75,
+   "spe": 65
+  },
+  "habilidades": [
+   "intimidate",
+   "frisk",
+   "sapsipper"
+  ],
+  "especie_base": "wyrdeer",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "tyranitar": {
+  "id": "tyranitar",
+  "nome": "Tyranitar",
+  "tipos": [
+   "Rock",
+   "Dark"
+  ],
+  "status": {
+   "hp": 100,
+   "atk": 134,
+   "def": 110,
+   "spa": 95,
+   "spd": 100,
+   "spe": 61
+  },
+  "habilidades": [
+   "sandstream",
+   "unnerve"
+  ],
+  "especie_base": "tyranitar",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "tyranitarmega": {
+  "id": "tyranitarmega",
+  "nome": "Tyranitar-Mega",
+  "tipos": [
+   "Rock",
+   "Dark"
+  ],
+  "status": {
+   "hp": 100,
+   "atk": 164,
+   "def": 150,
+   "spa": 95,
+   "spd": 120,
+   "spe": 71
+  },
+  "habilidades": [
+   "sandstream"
+  ],
+  "especie_base": "tyranitar",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "sceptile": {
+  "id": "sceptile",
+  "nome": "Sceptile",
+  "tipos": [
+   "Grass"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 85,
+   "def": 65,
+   "spa": 105,
+   "spd": 85,
+   "spe": 120
+  },
+  "habilidades": [
+   "overgrow",
+   "unburden"
+  ],
+  "especie_base": "sceptile",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "sceptilemega": {
+  "id": "sceptilemega",
+  "nome": "Sceptile-Mega",
+  "tipos": [
+   "Grass",
+   "Dragon"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 110,
+   "def": 75,
+   "spa": 145,
+   "spd": 85,
+   "spe": 145
+  },
+  "habilidades": [
+   "lightningrod"
+  ],
+  "especie_base": "sceptile",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "blaziken": {
+  "id": "blaziken",
+  "nome": "Blaziken",
+  "tipos": [
+   "Fire",
+   "Fighting"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 120,
+   "def": 70,
+   "spa": 110,
+   "spd": 70,
+   "spe": 80
+  },
+  "habilidades": [
+   "blaze",
+   "speedboost"
+  ],
+  "especie_base": "blaziken",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "blazikenmega": {
+  "id": "blazikenmega",
+  "nome": "Blaziken-Mega",
+  "tipos": [
+   "Fire",
+   "Fighting"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 160,
+   "def": 80,
+   "spa": 130,
+   "spd": 80,
+   "spe": 100
+  },
+  "habilidades": [
+   "speedboost"
+  ],
+  "especie_base": "blaziken",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "swampert": {
+  "id": "swampert",
+  "nome": "Swampert",
+  "tipos": [
+   "Water",
+   "Ground"
+  ],
+  "status": {
+   "hp": 100,
+   "atk": 110,
+   "def": 90,
+   "spa": 85,
+   "spd": 90,
+   "spe": 60
+  },
+  "habilidades": [
+   "torrent",
+   "damp"
+  ],
+  "especie_base": "swampert",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "swampertmega": {
+  "id": "swampertmega",
+  "nome": "Swampert-Mega",
+  "tipos": [
+   "Water",
+   "Ground"
+  ],
+  "status": {
+   "hp": 100,
+   "atk": 150,
+   "def": 110,
+   "spa": 95,
+   "spd": 110,
+   "spe": 70
+  },
+  "habilidades": [
+   "swiftswim"
+  ],
+  "especie_base": "swampert",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "pelipper": {
+  "id": "pelipper",
+  "nome": "Pelipper",
+  "tipos": [
+   "Water",
+   "Flying"
+  ],
+  "status": {
+   "hp": 60,
+   "atk": 50,
+   "def": 100,
+   "spa": 95,
+   "spd": 70,
+   "spe": 65
+  },
+  "habilidades": [
+   "keeneye",
+   "drizzle",
+   "raindish"
+  ],
+  "especie_base": "pelipper",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "gardevoir": {
+  "id": "gardevoir",
+  "nome": "Gardevoir",
+  "tipos": [
+   "Psychic",
+   "Fairy"
+  ],
+  "status": {
+   "hp": 68,
+   "atk": 65,
+   "def": 65,
+   "spa": 125,
+   "spd": 115,
+   "spe": 80
+  },
+  "habilidades": [
+   "synchronize",
+   "trace",
+   "telepathy"
+  ],
+  "especie_base": "gardevoir",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "gardevoirmega": {
+  "id": "gardevoirmega",
+  "nome": "Gardevoir-Mega",
+  "tipos": [
+   "Psychic",
+   "Fairy"
+  ],
+  "status": {
+   "hp": 68,
+   "atk": 85,
+   "def": 65,
+   "spa": 165,
+   "spd": 135,
+   "spe": 100
+  },
+  "habilidades": [
+   "pixilate"
+  ],
+  "especie_base": "gardevoir",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "gallade": {
+  "id": "gallade",
+  "nome": "Gallade",
+  "tipos": [
+   "Psychic",
+   "Fighting"
+  ],
+  "status": {
+   "hp": 68,
+   "atk": 125,
+   "def": 65,
+   "spa": 65,
+   "spd": 115,
+   "spe": 80
+  },
+  "habilidades": [
+   "steadfast",
+   "sharpness",
+   "justified"
+  ],
+  "especie_base": "gallade",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "gallademega": {
+  "id": "gallademega",
+  "nome": "Gallade-Mega",
+  "tipos": [
+   "Psychic",
+   "Fighting"
+  ],
+  "status": {
+   "hp": 68,
+   "atk": 165,
+   "def": 95,
+   "spa": 65,
+   "spd": 115,
+   "spe": 110
+  },
+  "habilidades": [
+   "innerfocus"
+  ],
+  "especie_base": "gallade",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "sableye": {
+  "id": "sableye",
+  "nome": "Sableye",
+  "tipos": [
+   "Dark",
+   "Ghost"
+  ],
+  "status": {
+   "hp": 50,
+   "atk": 75,
+   "def": 75,
+   "spa": 65,
+   "spd": 65,
+   "spe": 50
+  },
+  "habilidades": [
+   "keeneye",
+   "stall",
+   "prankster"
+  ],
+  "especie_base": "sableye",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "sableyemega": {
+  "id": "sableyemega",
+  "nome": "Sableye-Mega",
+  "tipos": [
+   "Dark",
+   "Ghost"
+  ],
+  "status": {
+   "hp": 50,
+   "atk": 85,
+   "def": 125,
+   "spa": 85,
+   "spd": 115,
+   "spe": 20
+  },
+  "habilidades": [
+   "magicbounce"
+  ],
+  "especie_base": "sableye",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "mawile": {
+  "id": "mawile",
+  "nome": "Mawile",
+  "tipos": [
+   "Steel",
+   "Fairy"
+  ],
+  "status": {
+   "hp": 50,
+   "atk": 85,
+   "def": 85,
+   "spa": 55,
+   "spd": 55,
+   "spe": 50
+  },
+  "habilidades": [
+   "hypercutter",
+   "intimidate",
+   "sheerforce"
+  ],
+  "especie_base": "mawile",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "mawilemega": {
+  "id": "mawilemega",
+  "nome": "Mawile-Mega",
+  "tipos": [
+   "Steel",
+   "Fairy"
+  ],
+  "status": {
+   "hp": 50,
+   "atk": 105,
+   "def": 125,
+   "spa": 55,
+   "spd": 95,
+   "spe": 50
+  },
+  "habilidades": [
+   "hugepower"
+  ],
+  "especie_base": "mawile",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "aggron": {
+  "id": "aggron",
+  "nome": "Aggron",
+  "tipos": [
+   "Steel",
+   "Rock"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 110,
+   "def": 180,
+   "spa": 60,
+   "spd": 60,
+   "spe": 50
+  },
+  "habilidades": [
+   "sturdy",
+   "rockhead",
+   "heavymetal"
+  ],
+  "especie_base": "aggron",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "aggronmega": {
+  "id": "aggronmega",
+  "nome": "Aggron-Mega",
+  "tipos": [
+   "Steel"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 140,
+   "def": 230,
+   "spa": 60,
+   "spd": 80,
+   "spe": 50
+  },
+  "habilidades": [
+   "filter"
+  ],
+  "especie_base": "aggron",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "medicham": {
+  "id": "medicham",
+  "nome": "Medicham",
+  "tipos": [
+   "Fighting",
+   "Psychic"
+  ],
+  "status": {
+   "hp": 60,
+   "atk": 60,
+   "def": 75,
+   "spa": 60,
+   "spd": 75,
+   "spe": 80
+  },
+  "habilidades": [
+   "purepower",
+   "telepathy"
+  ],
+  "especie_base": "medicham",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "medichammega": {
+  "id": "medichammega",
+  "nome": "Medicham-Mega",
+  "tipos": [
+   "Fighting",
+   "Psychic"
+  ],
+  "status": {
+   "hp": 60,
+   "atk": 100,
+   "def": 85,
+   "spa": 80,
+   "spd": 85,
+   "spe": 100
+  },
+  "habilidades": [
+   "purepower"
+  ],
+  "especie_base": "medicham",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "manectric": {
+  "id": "manectric",
+  "nome": "Manectric",
+  "tipos": [
+   "Electric"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 75,
+   "def": 60,
+   "spa": 105,
+   "spd": 60,
+   "spe": 105
+  },
+  "habilidades": [
+   "static",
+   "lightningrod",
+   "minus"
+  ],
+  "especie_base": "manectric",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "manectricmega": {
+  "id": "manectricmega",
+  "nome": "Manectric-Mega",
+  "tipos": [
+   "Electric"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 75,
+   "def": 80,
+   "spa": 135,
+   "spd": 80,
+   "spe": 135
+  },
+  "habilidades": [
+   "intimidate"
+  ],
+  "especie_base": "manectric",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "roserade": {
+  "id": "roserade",
+  "nome": "Roserade",
+  "tipos": [
+   "Grass",
+   "Poison"
+  ],
+  "status": {
+   "hp": 60,
+   "atk": 70,
+   "def": 65,
+   "spa": 125,
+   "spd": 105,
+   "spe": 90
+  },
+  "habilidades": [
+   "naturalcure",
+   "poisonpoint",
+   "technician"
+  ],
+  "especie_base": "roserade",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "swalot": {
+  "id": "swalot",
+  "nome": "Swalot",
+  "tipos": [
+   "Poison"
+  ],
+  "status": {
+   "hp": 100,
+   "atk": 73,
+   "def": 83,
+   "spa": 73,
+   "spd": 83,
+   "spe": 55
+  },
+  "habilidades": [
+   "liquidooze",
+   "stickyhold",
+   "gluttony"
+  ],
+  "especie_base": "swalot",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "sharpedo": {
+  "id": "sharpedo",
+  "nome": "Sharpedo",
+  "tipos": [
+   "Water",
+   "Dark"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 120,
+   "def": 40,
+   "spa": 95,
+   "spd": 40,
+   "spe": 95
+  },
+  "habilidades": [
+   "roughskin",
+   "speedboost"
+  ],
+  "especie_base": "sharpedo",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "sharpedomega": {
+  "id": "sharpedomega",
+  "nome": "Sharpedo-Mega",
+  "tipos": [
+   "Water",
+   "Dark"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 140,
+   "def": 70,
+   "spa": 110,
+   "spd": 65,
+   "spe": 105
+  },
+  "habilidades": [
+   "strongjaw"
+  ],
+  "especie_base": "sharpedo",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "camerupt": {
+  "id": "camerupt",
+  "nome": "Camerupt",
+  "tipos": [
+   "Fire",
+   "Ground"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 100,
+   "def": 70,
+   "spa": 105,
+   "spd": 75,
+   "spe": 40
+  },
+  "habilidades": [
+   "magmaarmor",
+   "solidrock",
+   "angerpoint"
+  ],
+  "especie_base": "camerupt",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "cameruptmega": {
+  "id": "cameruptmega",
+  "nome": "Camerupt-Mega",
+  "tipos": [
+   "Fire",
+   "Ground"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 120,
+   "def": 100,
+   "spa": 145,
+   "spd": 105,
+   "spe": 20
+  },
+  "habilidades": [
+   "sheerforce"
+  ],
+  "especie_base": "camerupt",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "torkoal": {
+  "id": "torkoal",
+  "nome": "Torkoal",
+  "tipos": [
+   "Fire"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 85,
+   "def": 140,
+   "spa": 85,
+   "spd": 70,
+   "spe": 20
+  },
+  "habilidades": [
+   "whitesmoke",
+   "drought",
+   "shellarmor"
+  ],
+  "especie_base": "torkoal",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "altaria": {
+  "id": "altaria",
+  "nome": "Altaria",
+  "tipos": [
+   "Dragon",
+   "Flying"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 70,
+   "def": 90,
+   "spa": 70,
+   "spd": 105,
+   "spe": 80
+  },
+  "habilidades": [
+   "naturalcure",
+   "cloudnine"
+  ],
+  "especie_base": "altaria",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "altariamega": {
+  "id": "altariamega",
+  "nome": "Altaria-Mega",
+  "tipos": [
+   "Dragon",
+   "Fairy"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 110,
+   "def": 110,
+   "spa": 110,
+   "spd": 105,
+   "spe": 80
+  },
+  "habilidades": [
+   "pixilate"
+  ],
+  "especie_base": "altaria",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "milotic": {
+  "id": "milotic",
+  "nome": "Milotic",
+  "tipos": [
+   "Water"
+  ],
+  "status": {
+   "hp": 95,
+   "atk": 60,
+   "def": 79,
+   "spa": 100,
+   "spd": 125,
+   "spe": 81
+  },
+  "habilidades": [
+   "marvelscale",
+   "competitive",
+   "cutecharm"
+  ],
+  "especie_base": "milotic",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "castform": {
+  "id": "castform",
+  "nome": "Castform",
+  "tipos": [
+   "Normal"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 70,
+   "def": 70,
+   "spa": 70,
+   "spd": 70,
+   "spe": 70
+  },
+  "habilidades": [
+   "forecast"
+  ],
+  "especie_base": "castform",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "castformsunny": {
+  "id": "castformsunny",
+  "nome": "Castform-Sunny",
+  "tipos": [
+   "Fire"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 70,
+   "def": 70,
+   "spa": 70,
+   "spd": 70,
+   "spe": 70
+  },
+  "habilidades": [
+   "forecast"
+  ],
+  "especie_base": "castform",
+  "mega": false,
+  "forma_de_batalha": true
+ },
+ "castformrainy": {
+  "id": "castformrainy",
+  "nome": "Castform-Rainy",
+  "tipos": [
+   "Water"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 70,
+   "def": 70,
+   "spa": 70,
+   "spd": 70,
+   "spe": 70
+  },
+  "habilidades": [
+   "forecast"
+  ],
+  "especie_base": "castform",
+  "mega": false,
+  "forma_de_batalha": true
+ },
+ "castformsnowy": {
+  "id": "castformsnowy",
+  "nome": "Castform-Snowy",
+  "tipos": [
+   "Ice"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 70,
+   "def": 70,
+   "spa": 70,
+   "spd": 70,
+   "spe": 70
+  },
+  "habilidades": [
+   "forecast"
+  ],
+  "especie_base": "castform",
+  "mega": false,
+  "forma_de_batalha": true
+ },
+ "banette": {
+  "id": "banette",
+  "nome": "Banette",
+  "tipos": [
+   "Ghost"
+  ],
+  "status": {
+   "hp": 64,
+   "atk": 115,
+   "def": 65,
+   "spa": 83,
+   "spd": 63,
+   "spe": 65
+  },
+  "habilidades": [
+   "insomnia",
+   "frisk",
+   "cursedbody"
+  ],
+  "especie_base": "banette",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "banettemega": {
+  "id": "banettemega",
+  "nome": "Banette-Mega",
+  "tipos": [
+   "Ghost"
+  ],
+  "status": {
+   "hp": 64,
+   "atk": 165,
+   "def": 75,
+   "spa": 93,
+   "spd": 83,
+   "spe": 75
+  },
+  "habilidades": [
+   "prankster"
+  ],
+  "especie_base": "banette",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "chimecho": {
+  "id": "chimecho",
+  "nome": "Chimecho",
+  "tipos": [
+   "Psychic"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 50,
+   "def": 80,
+   "spa": 95,
+   "spd": 90,
+   "spe": 65
+  },
+  "habilidades": [
+   "levitate"
+  ],
+  "especie_base": "chimecho",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "chimechomega": {
+  "id": "chimechomega",
+  "nome": "Chimecho-Mega",
+  "tipos": [
+   "Psychic",
+   "Steel"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 50,
+   "def": 110,
+   "spa": 135,
+   "spd": 120,
+   "spe": 65
+  },
+  "habilidades": [
+   "levitate"
+  ],
+  "especie_base": "chimecho",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "absol": {
+  "id": "absol",
+  "nome": "Absol",
+  "tipos": [
+   "Dark"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 130,
+   "def": 60,
+   "spa": 75,
+   "spd": 60,
+   "spe": 75
+  },
+  "habilidades": [
+   "pressure",
+   "superluck",
+   "justified"
+  ],
+  "especie_base": "absol",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "absolmega": {
+  "id": "absolmega",
+  "nome": "Absol-Mega",
+  "tipos": [
+   "Dark"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 150,
+   "def": 60,
+   "spa": 115,
+   "spd": 60,
+   "spe": 115
+  },
+  "habilidades": [
+   "magicbounce"
+  ],
+  "especie_base": "absol",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "absolmegaz": {
+  "id": "absolmegaz",
+  "nome": "Absol-Mega-Z",
+  "tipos": [
+   "Dark",
+   "Ghost"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 154,
+   "def": 60,
+   "spa": 75,
+   "spd": 60,
+   "spe": 151
+  },
+  "habilidades": [
+   "sharpness"
+  ],
+  "especie_base": "absol",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "glalie": {
+  "id": "glalie",
+  "nome": "Glalie",
+  "tipos": [
+   "Ice"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 80,
+   "def": 80,
+   "spa": 80,
+   "spd": 80,
+   "spe": 80
+  },
+  "habilidades": [
+   "innerfocus",
+   "icebody",
+   "moody"
+  ],
+  "especie_base": "glalie",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "glaliemega": {
+  "id": "glaliemega",
+  "nome": "Glalie-Mega",
+  "tipos": [
+   "Ice"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 120,
+   "def": 80,
+   "spa": 120,
+   "spd": 80,
+   "spe": 100
+  },
+  "habilidades": [
+   "refrigerate"
+  ],
+  "especie_base": "glalie",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "froslass": {
+  "id": "froslass",
+  "nome": "Froslass",
+  "tipos": [
+   "Ice",
+   "Ghost"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 80,
+   "def": 70,
+   "spa": 80,
+   "spd": 70,
+   "spe": 110
+  },
+  "habilidades": [
+   "snowcloak",
+   "cursedbody"
+  ],
+  "especie_base": "froslass",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "froslassmega": {
+  "id": "froslassmega",
+  "nome": "Froslass-Mega",
+  "tipos": [
+   "Ice",
+   "Ghost"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 80,
+   "def": 70,
+   "spa": 140,
+   "spd": 100,
+   "spe": 120
+  },
+  "habilidades": [
+   "snowwarning"
+  ],
+  "especie_base": "froslass",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "salamence": {
+  "id": "salamence",
+  "nome": "Salamence",
+  "tipos": [
+   "Dragon",
+   "Flying"
+  ],
+  "status": {
+   "hp": 95,
+   "atk": 135,
+   "def": 80,
+   "spa": 110,
+   "spd": 80,
+   "spe": 100
+  },
+  "habilidades": [
+   "intimidate",
+   "moxie"
+  ],
+  "especie_base": "salamence",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "salamencemega": {
+  "id": "salamencemega",
+  "nome": "Salamence-Mega",
+  "tipos": [
+   "Dragon",
+   "Flying"
+  ],
+  "status": {
+   "hp": 95,
+   "atk": 145,
+   "def": 130,
+   "spa": 120,
+   "spd": 90,
+   "spe": 120
+  },
+  "habilidades": [
+   "aerilate"
+  ],
+  "especie_base": "salamence",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "metagross": {
+  "id": "metagross",
+  "nome": "Metagross",
+  "tipos": [
+   "Steel",
+   "Psychic"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 135,
+   "def": 130,
+   "spa": 95,
+   "spd": 90,
+   "spe": 70
+  },
+  "habilidades": [
+   "clearbody",
+   "lightmetal"
+  ],
+  "especie_base": "metagross",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "metagrossmega": {
+  "id": "metagrossmega",
+  "nome": "Metagross-Mega",
+  "tipos": [
+   "Steel",
+   "Psychic"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 145,
+   "def": 150,
+   "spa": 105,
+   "spd": 110,
+   "spe": 110
+  },
+  "habilidades": [
+   "toughclaws"
+  ],
+  "especie_base": "metagross",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "torterra": {
+  "id": "torterra",
+  "nome": "Torterra",
+  "tipos": [
+   "Grass",
+   "Ground"
+  ],
+  "status": {
+   "hp": 95,
+   "atk": 109,
+   "def": 105,
+   "spa": 75,
+   "spd": 85,
+   "spe": 56
+  },
+  "habilidades": [
+   "overgrow",
+   "shellarmor"
+  ],
+  "especie_base": "torterra",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "infernape": {
+  "id": "infernape",
+  "nome": "Infernape",
+  "tipos": [
+   "Fire",
+   "Fighting"
+  ],
+  "status": {
+   "hp": 76,
+   "atk": 104,
+   "def": 71,
+   "spa": 104,
+   "spd": 71,
+   "spe": 108
+  },
+  "habilidades": [
+   "blaze",
+   "ironfist"
+  ],
+  "especie_base": "infernape",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "empoleon": {
+  "id": "empoleon",
+  "nome": "Empoleon",
+  "tipos": [
+   "Water",
+   "Steel"
+  ],
+  "status": {
+   "hp": 84,
+   "atk": 86,
+   "def": 88,
+   "spa": 111,
+   "spd": 101,
+   "spe": 60
+  },
+  "habilidades": [
+   "torrent",
+   "competitive"
+  ],
+  "especie_base": "empoleon",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "staraptor": {
+  "id": "staraptor",
+  "nome": "Staraptor",
+  "tipos": [
+   "Normal",
+   "Flying"
+  ],
+  "status": {
+   "hp": 85,
+   "atk": 120,
+   "def": 70,
+   "spa": 50,
+   "spd": 60,
+   "spe": 100
+  },
+  "habilidades": [
+   "intimidate",
+   "reckless"
+  ],
+  "especie_base": "staraptor",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "staraptormega": {
+  "id": "staraptormega",
+  "nome": "Staraptor-Mega",
+  "tipos": [
+   "Fighting",
+   "Flying"
+  ],
+  "status": {
+   "hp": 85,
+   "atk": 140,
+   "def": 100,
+   "spa": 60,
+   "spd": 90,
+   "spe": 110
+  },
+  "habilidades": [
+   "contrary"
+  ],
+  "especie_base": "staraptor",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "luxray": {
+  "id": "luxray",
+  "nome": "Luxray",
+  "tipos": [
+   "Electric"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 120,
+   "def": 79,
+   "spa": 95,
+   "spd": 79,
+   "spe": 70
+  },
+  "habilidades": [
+   "rivalry",
+   "intimidate",
+   "guts"
+  ],
+  "especie_base": "luxray",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "rampardos": {
+  "id": "rampardos",
+  "nome": "Rampardos",
+  "tipos": [
+   "Rock"
+  ],
+  "status": {
+   "hp": 97,
+   "atk": 165,
+   "def": 60,
+   "spa": 65,
+   "spd": 50,
+   "spe": 58
+  },
+  "habilidades": [
+   "moldbreaker",
+   "sheerforce"
+  ],
+  "especie_base": "rampardos",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "bastiodon": {
+  "id": "bastiodon",
+  "nome": "Bastiodon",
+  "tipos": [
+   "Rock",
+   "Steel"
+  ],
+  "status": {
+   "hp": 60,
+   "atk": 52,
+   "def": 168,
+   "spa": 47,
+   "spd": 138,
+   "spe": 30
+  },
+  "habilidades": [
+   "sturdy",
+   "soundproof"
+  ],
+  "especie_base": "bastiodon",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "lopunny": {
+  "id": "lopunny",
+  "nome": "Lopunny",
+  "tipos": [
+   "Normal"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 76,
+   "def": 84,
+   "spa": 54,
+   "spd": 96,
+   "spe": 105
+  },
+  "habilidades": [
+   "cutecharm",
+   "klutz",
+   "limber"
+  ],
+  "especie_base": "lopunny",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "lopunnymega": {
+  "id": "lopunnymega",
+  "nome": "Lopunny-Mega",
+  "tipos": [
+   "Normal",
+   "Fighting"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 136,
+   "def": 94,
+   "spa": 54,
+   "spd": 96,
+   "spe": 135
+  },
+  "habilidades": [
+   "scrappy"
+  ],
+  "especie_base": "lopunny",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "spiritomb": {
+  "id": "spiritomb",
+  "nome": "Spiritomb",
+  "tipos": [
+   "Ghost",
+   "Dark"
+  ],
+  "status": {
+   "hp": 50,
+   "atk": 92,
+   "def": 108,
+   "spa": 92,
+   "spd": 108,
+   "spe": 35
+  },
+  "habilidades": [
+   "pressure",
+   "infiltrator"
+  ],
+  "especie_base": "spiritomb",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "garchomp": {
+  "id": "garchomp",
+  "nome": "Garchomp",
+  "tipos": [
+   "Dragon",
+   "Ground"
+  ],
+  "status": {
+   "hp": 108,
+   "atk": 130,
+   "def": 95,
+   "spa": 80,
+   "spd": 85,
+   "spe": 102
+  },
+  "habilidades": [
+   "sandveil",
+   "roughskin"
+  ],
+  "especie_base": "garchomp",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "garchompmega": {
+  "id": "garchompmega",
+  "nome": "Garchomp-Mega",
+  "tipos": [
+   "Dragon",
+   "Ground"
+  ],
+  "status": {
+   "hp": 108,
+   "atk": 170,
+   "def": 115,
+   "spa": 120,
+   "spd": 95,
+   "spe": 92
+  },
+  "habilidades": [
+   "sandforce"
+  ],
+  "especie_base": "garchomp",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "garchompmegaz": {
+  "id": "garchompmegaz",
+  "nome": "Garchomp-Mega-Z",
+  "tipos": [
+   "Dragon"
+  ],
+  "status": {
+   "hp": 108,
+   "atk": 130,
+   "def": 85,
+   "spa": 141,
+   "spd": 85,
+   "spe": 151
+  },
+  "habilidades": [
+   "levitate"
+  ],
+  "especie_base": "garchomp",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "lucario": {
+  "id": "lucario",
+  "nome": "Lucario",
+  "tipos": [
+   "Fighting",
+   "Steel"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 110,
+   "def": 70,
+   "spa": 115,
+   "spd": 70,
+   "spe": 90
+  },
+  "habilidades": [
+   "steadfast",
+   "innerfocus",
+   "justified"
+  ],
+  "especie_base": "lucario",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "lucariomega": {
+  "id": "lucariomega",
+  "nome": "Lucario-Mega",
+  "tipos": [
+   "Fighting",
+   "Steel"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 145,
+   "def": 88,
+   "spa": 140,
+   "spd": 70,
+   "spe": 112
+  },
+  "habilidades": [
+   "adaptability"
+  ],
+  "especie_base": "lucario",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "lucariomegaz": {
+  "id": "lucariomegaz",
+  "nome": "Lucario-Mega-Z",
+  "tipos": [
+   "Fighting",
+   "Steel"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 100,
+   "def": 70,
+   "spa": 164,
+   "spd": 70,
+   "spe": 151
+  },
+  "habilidades": [
+   "auraguard"
+  ],
+  "especie_base": "lucario",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "hippowdon": {
+  "id": "hippowdon",
+  "nome": "Hippowdon",
+  "tipos": [
+   "Ground"
+  ],
+  "status": {
+   "hp": 108,
+   "atk": 112,
+   "def": 118,
+   "spa": 68,
+   "spd": 72,
+   "spe": 47
+  },
+  "habilidades": [
+   "sandstream",
+   "sandforce"
+  ],
+  "especie_base": "hippowdon",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "toxicroak": {
+  "id": "toxicroak",
+  "nome": "Toxicroak",
+  "tipos": [
+   "Poison",
+   "Fighting"
+  ],
+  "status": {
+   "hp": 83,
+   "atk": 106,
+   "def": 65,
+   "spa": 86,
+   "spd": 65,
+   "spe": 85
+  },
+  "habilidades": [
+   "anticipation",
+   "dryskin",
+   "poisontouch"
+  ],
+  "especie_base": "toxicroak",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "abomasnow": {
+  "id": "abomasnow",
+  "nome": "Abomasnow",
+  "tipos": [
+   "Grass",
+   "Ice"
+  ],
+  "status": {
+   "hp": 90,
+   "atk": 92,
+   "def": 75,
+   "spa": 92,
+   "spd": 85,
+   "spe": 60
+  },
+  "habilidades": [
+   "snowwarning",
+   "soundproof"
+  ],
+  "especie_base": "abomasnow",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "abomasnowmega": {
+  "id": "abomasnowmega",
+  "nome": "Abomasnow-Mega",
+  "tipos": [
+   "Grass",
+   "Ice"
+  ],
+  "status": {
+   "hp": 90,
+   "atk": 132,
+   "def": 105,
+   "spa": 132,
+   "spd": 105,
+   "spe": 30
+  },
+  "habilidades": [
+   "snowwarning"
+  ],
+  "especie_base": "abomasnow",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "rotom": {
+  "id": "rotom",
+  "nome": "Rotom",
+  "tipos": [
+   "Electric",
+   "Ghost"
+  ],
+  "status": {
+   "hp": 50,
+   "atk": 50,
+   "def": 77,
+   "spa": 95,
+   "spd": 77,
+   "spe": 91
+  },
+  "habilidades": [
+   "levitate"
+  ],
+  "especie_base": "rotom",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "rotomheat": {
+  "id": "rotomheat",
+  "nome": "Rotom-Heat",
+  "tipos": [
+   "Electric",
+   "Fire"
+  ],
+  "status": {
+   "hp": 50,
+   "atk": 65,
+   "def": 107,
+   "spa": 105,
+   "spd": 107,
+   "spe": 86
+  },
+  "habilidades": [
+   "levitate"
+  ],
+  "especie_base": "rotom",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "rotomwash": {
+  "id": "rotomwash",
+  "nome": "Rotom-Wash",
+  "tipos": [
+   "Electric",
+   "Water"
+  ],
+  "status": {
+   "hp": 50,
+   "atk": 65,
+   "def": 107,
+   "spa": 105,
+   "spd": 107,
+   "spe": 86
+  },
+  "habilidades": [
+   "levitate"
+  ],
+  "especie_base": "rotom",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "rotomfrost": {
+  "id": "rotomfrost",
+  "nome": "Rotom-Frost",
+  "tipos": [
+   "Electric",
+   "Ice"
+  ],
+  "status": {
+   "hp": 50,
+   "atk": 65,
+   "def": 107,
+   "spa": 105,
+   "spd": 107,
+   "spe": 86
+  },
+  "habilidades": [
+   "levitate"
+  ],
+  "especie_base": "rotom",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "rotomfan": {
+  "id": "rotomfan",
+  "nome": "Rotom-Fan",
+  "tipos": [
+   "Electric",
+   "Flying"
+  ],
+  "status": {
+   "hp": 50,
+   "atk": 65,
+   "def": 107,
+   "spa": 105,
+   "spd": 107,
+   "spe": 86
+  },
+  "habilidades": [
+   "levitate"
+  ],
+  "especie_base": "rotom",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "rotommow": {
+  "id": "rotommow",
+  "nome": "Rotom-Mow",
+  "tipos": [
+   "Electric",
+   "Grass"
+  ],
+  "status": {
+   "hp": 50,
+   "atk": 65,
+   "def": 107,
+   "spa": 105,
+   "spd": 107,
+   "spe": 86
+  },
+  "habilidades": [
+   "levitate"
+  ],
+  "especie_base": "rotom",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "serperior": {
+  "id": "serperior",
+  "nome": "Serperior",
+  "tipos": [
+   "Grass"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 75,
+   "def": 95,
+   "spa": 75,
+   "spd": 95,
+   "spe": 113
+  },
+  "habilidades": [
+   "overgrow",
+   "contrary"
+  ],
+  "especie_base": "serperior",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "emboar": {
+  "id": "emboar",
+  "nome": "Emboar",
+  "tipos": [
+   "Fire",
+   "Fighting"
+  ],
+  "status": {
+   "hp": 110,
+   "atk": 123,
+   "def": 65,
+   "spa": 100,
+   "spd": 65,
+   "spe": 65
+  },
+  "habilidades": [
+   "blaze",
+   "reckless"
+  ],
+  "especie_base": "emboar",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "emboarmega": {
+  "id": "emboarmega",
+  "nome": "Emboar-Mega",
+  "tipos": [
+   "Fire",
+   "Fighting"
+  ],
+  "status": {
+   "hp": 110,
+   "atk": 148,
+   "def": 75,
+   "spa": 110,
+   "spd": 110,
+   "spe": 75
+  },
+  "habilidades": [
+   "moldbreaker"
+  ],
+  "especie_base": "emboar",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "samurott": {
+  "id": "samurott",
+  "nome": "Samurott",
+  "tipos": [
+   "Water"
+  ],
+  "status": {
+   "hp": 95,
+   "atk": 100,
+   "def": 85,
+   "spa": 108,
+   "spd": 70,
+   "spe": 70
+  },
+  "habilidades": [
+   "torrent",
+   "shellarmor"
+  ],
+  "especie_base": "samurott",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "samurotthisui": {
+  "id": "samurotthisui",
+  "nome": "Samurott-Hisui",
+  "tipos": [
+   "Water",
+   "Dark"
+  ],
+  "status": {
+   "hp": 90,
+   "atk": 108,
+   "def": 80,
+   "spa": 100,
+   "spd": 65,
+   "spe": 85
+  },
+  "habilidades": [
+   "torrent",
+   "sharpness"
+  ],
+  "especie_base": "samurott",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "watchog": {
+  "id": "watchog",
+  "nome": "Watchog",
+  "tipos": [
+   "Normal"
+  ],
+  "status": {
+   "hp": 60,
+   "atk": 85,
+   "def": 69,
+   "spa": 60,
+   "spd": 69,
+   "spe": 77
+  },
+  "habilidades": [
+   "illuminate",
+   "keeneye",
+   "analytic"
+  ],
+  "especie_base": "watchog",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "liepard": {
+  "id": "liepard",
+  "nome": "Liepard",
+  "tipos": [
+   "Dark"
+  ],
+  "status": {
+   "hp": 64,
+   "atk": 88,
+   "def": 50,
+   "spa": 88,
+   "spd": 50,
+   "spe": 106
+  },
+  "habilidades": [
+   "limber",
+   "unburden",
+   "prankster"
+  ],
+  "especie_base": "liepard",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "simisage": {
+  "id": "simisage",
+  "nome": "Simisage",
+  "tipos": [
+   "Grass"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 98,
+   "def": 63,
+   "spa": 98,
+   "spd": 63,
+   "spe": 101
+  },
+  "habilidades": [
+   "gluttony",
+   "overgrow"
+  ],
+  "especie_base": "simisage",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "simisear": {
+  "id": "simisear",
+  "nome": "Simisear",
+  "tipos": [
+   "Fire"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 98,
+   "def": 63,
+   "spa": 98,
+   "spd": 63,
+   "spe": 101
+  },
+  "habilidades": [
+   "gluttony",
+   "blaze"
+  ],
+  "especie_base": "simisear",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "simipour": {
+  "id": "simipour",
+  "nome": "Simipour",
+  "tipos": [
+   "Water"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 98,
+   "def": 63,
+   "spa": 98,
+   "spd": 63,
+   "spe": 101
+  },
+  "habilidades": [
+   "gluttony",
+   "torrent"
+  ],
+  "especie_base": "simipour",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "musharna": {
+  "id": "musharna",
+  "nome": "Musharna",
+  "tipos": [
+   "Psychic"
+  ],
+  "status": {
+   "hp": 116,
+   "atk": 55,
+   "def": 85,
+   "spa": 107,
+   "spd": 95,
+   "spe": 29
+  },
+  "habilidades": [
+   "forewarn",
+   "synchronize",
+   "telepathy"
+  ],
+  "especie_base": "musharna",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "excadrill": {
+  "id": "excadrill",
+  "nome": "Excadrill",
+  "tipos": [
+   "Ground",
+   "Steel"
+  ],
+  "status": {
+   "hp": 110,
+   "atk": 135,
+   "def": 60,
+   "spa": 50,
+   "spd": 65,
+   "spe": 88
+  },
+  "habilidades": [
+   "sandrush",
+   "sandforce",
+   "moldbreaker"
+  ],
+  "especie_base": "excadrill",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "excadrillmega": {
+  "id": "excadrillmega",
+  "nome": "Excadrill-Mega",
+  "tipos": [
+   "Ground",
+   "Steel"
+  ],
+  "status": {
+   "hp": 110,
+   "atk": 165,
+   "def": 100,
+   "spa": 65,
+   "spd": 65,
+   "spe": 103
+  },
+  "habilidades": [
+   "piercingdrill"
+  ],
+  "especie_base": "excadrill",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "audino": {
+  "id": "audino",
+  "nome": "Audino",
+  "tipos": [
+   "Normal"
+  ],
+  "status": {
+   "hp": 103,
+   "atk": 60,
+   "def": 86,
+   "spa": 60,
+   "spd": 86,
+   "spe": 50
+  },
+  "habilidades": [
+   "healer",
+   "regenerator",
+   "klutz"
+  ],
+  "especie_base": "audino",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "audinomega": {
+  "id": "audinomega",
+  "nome": "Audino-Mega",
+  "tipos": [
+   "Normal",
+   "Fairy"
+  ],
+  "status": {
+   "hp": 103,
+   "atk": 60,
+   "def": 126,
+   "spa": 80,
+   "spd": 126,
+   "spe": 50
+  },
+  "habilidades": [
+   "healer"
+  ],
+  "especie_base": "audino",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "conkeldurr": {
+  "id": "conkeldurr",
+  "nome": "Conkeldurr",
+  "tipos": [
+   "Fighting"
+  ],
+  "status": {
+   "hp": 105,
+   "atk": 140,
+   "def": 95,
+   "spa": 55,
+   "spd": 65,
+   "spe": 45
+  },
+  "habilidades": [
+   "guts",
+   "sheerforce",
+   "ironfist"
+  ],
+  "especie_base": "conkeldurr",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "scolipede": {
+  "id": "scolipede",
+  "nome": "Scolipede",
+  "tipos": [
+   "Bug",
+   "Poison"
+  ],
+  "status": {
+   "hp": 60,
+   "atk": 100,
+   "def": 89,
+   "spa": 55,
+   "spd": 69,
+   "spe": 112
+  },
+  "habilidades": [
+   "poisonpoint",
+   "swarm",
+   "speedboost"
+  ],
+  "especie_base": "scolipede",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "scolipedemega": {
+  "id": "scolipedemega",
+  "nome": "Scolipede-Mega",
+  "tipos": [
+   "Bug",
+   "Poison"
+  ],
+  "status": {
+   "hp": 60,
+   "atk": 140,
+   "def": 149,
+   "spa": 75,
+   "spd": 99,
+   "spe": 62
+  },
+  "habilidades": [
+   "shellarmor"
+  ],
+  "especie_base": "scolipede",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "whimsicott": {
+  "id": "whimsicott",
+  "nome": "Whimsicott",
+  "tipos": [
+   "Grass",
+   "Fairy"
+  ],
+  "status": {
+   "hp": 60,
+   "atk": 67,
+   "def": 85,
+   "spa": 77,
+   "spd": 75,
+   "spe": 116
+  },
+  "habilidades": [
+   "prankster",
+   "infiltrator",
+   "chlorophyll"
+  ],
+  "especie_base": "whimsicott",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "basculegion": {
+  "id": "basculegion",
+  "nome": "Basculegion-Male",
+  "tipos": [
+   "Water",
+   "Ghost"
+  ],
+  "status": {
+   "hp": 120,
+   "atk": 112,
+   "def": 65,
+   "spa": 80,
+   "spd": 75,
+   "spe": 78
+  },
+  "habilidades": [
+   "swiftswim",
+   "adaptability",
+   "moldbreaker"
+  ],
+  "especie_base": "basculegion",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "basculegionf": {
+  "id": "basculegionf",
+  "nome": "Basculegion-Female",
+  "tipos": [
+   "Water",
+   "Ghost"
+  ],
+  "status": {
+   "hp": 120,
+   "atk": 92,
+   "def": 65,
+   "spa": 100,
+   "spd": 75,
+   "spe": 78
+  },
+  "habilidades": [
+   "swiftswim",
+   "adaptability",
+   "moldbreaker"
+  ],
+  "especie_base": "basculegion",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "krookodile": {
+  "id": "krookodile",
+  "nome": "Krookodile",
+  "tipos": [
+   "Ground",
+   "Dark"
+  ],
+  "status": {
+   "hp": 95,
+   "atk": 117,
+   "def": 80,
+   "spa": 65,
+   "spd": 70,
+   "spe": 92
+  },
+  "habilidades": [
+   "intimidate",
+   "moxie",
+   "angerpoint"
+  ],
+  "especie_base": "krookodile",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "scrafty": {
+  "id": "scrafty",
+  "nome": "Scrafty",
+  "tipos": [
+   "Dark",
+   "Fighting"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 90,
+   "def": 115,
+   "spa": 45,
+   "spd": 115,
+   "spe": 58
+  },
+  "habilidades": [
+   "shedskin",
+   "moxie",
+   "intimidate"
+  ],
+  "especie_base": "scrafty",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "scraftymega": {
+  "id": "scraftymega",
+  "nome": "Scrafty-Mega",
+  "tipos": [
+   "Dark",
+   "Fighting"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 130,
+   "def": 135,
+   "spa": 55,
+   "spd": 135,
+   "spe": 68
+  },
+  "habilidades": [
+   "intimidate"
+  ],
+  "especie_base": "scrafty",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "cofagrigus": {
+  "id": "cofagrigus",
+  "nome": "Cofagrigus",
+  "tipos": [
+   "Ghost"
+  ],
+  "status": {
+   "hp": 58,
+   "atk": 50,
+   "def": 145,
+   "spa": 95,
+   "spd": 105,
+   "spe": 30
+  },
+  "habilidades": [
+   "mummy"
+  ],
+  "especie_base": "cofagrigus",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "runerigus": {
+  "id": "runerigus",
+  "nome": "Runerigus",
+  "tipos": [
+   "Ground",
+   "Ghost"
+  ],
+  "status": {
+   "hp": 58,
+   "atk": 95,
+   "def": 145,
+   "spa": 50,
+   "spd": 105,
+   "spe": 30
+  },
+  "habilidades": [
+   "wanderingspirit"
+  ],
+  "especie_base": "runerigus",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "garbodor": {
+  "id": "garbodor",
+  "nome": "Garbodor",
+  "tipos": [
+   "Poison"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 95,
+   "def": 82,
+   "spa": 60,
+   "spd": 82,
+   "spe": 75
+  },
+  "habilidades": [
+   "stench",
+   "weakarmor",
+   "aftermath"
+  ],
+  "especie_base": "garbodor",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "zoroark": {
+  "id": "zoroark",
+  "nome": "Zoroark",
+  "tipos": [
+   "Dark"
+  ],
+  "status": {
+   "hp": 60,
+   "atk": 105,
+   "def": 60,
+   "spa": 120,
+   "spd": 60,
+   "spe": 105
+  },
+  "habilidades": [
+   "illusion"
+  ],
+  "especie_base": "zoroark",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "zoroarkhisui": {
+  "id": "zoroarkhisui",
+  "nome": "Zoroark-Hisui",
+  "tipos": [
+   "Normal",
+   "Ghost"
+  ],
+  "status": {
+   "hp": 55,
+   "atk": 100,
+   "def": 60,
+   "spa": 125,
+   "spd": 60,
+   "spe": 110
+  },
+  "habilidades": [
+   "illusion"
+  ],
+  "especie_base": "zoroark",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "reuniclus": {
+  "id": "reuniclus",
+  "nome": "Reuniclus",
+  "tipos": [
+   "Psychic"
+  ],
+  "status": {
+   "hp": 110,
+   "atk": 65,
+   "def": 75,
+   "spa": 125,
+   "spd": 85,
+   "spe": 30
+  },
+  "habilidades": [
+   "overcoat",
+   "magicguard",
+   "regenerator"
+  ],
+  "especie_base": "reuniclus",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "vanilluxe": {
+  "id": "vanilluxe",
+  "nome": "Vanilluxe",
+  "tipos": [
+   "Ice"
+  ],
+  "status": {
+   "hp": 71,
+   "atk": 95,
+   "def": 85,
+   "spa": 110,
+   "spd": 95,
+   "spe": 79
+  },
+  "habilidades": [
+   "icebody",
+   "snowwarning",
+   "weakarmor"
+  ],
+  "especie_base": "vanilluxe",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "emolga": {
+  "id": "emolga",
+  "nome": "Emolga",
+  "tipos": [
+   "Electric",
+   "Flying"
+  ],
+  "status": {
+   "hp": 55,
+   "atk": 75,
+   "def": 60,
+   "spa": 75,
+   "spd": 60,
+   "spe": 103
+  },
+  "habilidades": [
+   "static",
+   "motordrive"
+  ],
+  "especie_base": "emolga",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "eelektross": {
+  "id": "eelektross",
+  "nome": "Eelektross",
+  "tipos": [
+   "Electric"
+  ],
+  "status": {
+   "hp": 85,
+   "atk": 115,
+   "def": 80,
+   "spa": 105,
+   "spd": 80,
+   "spe": 50
+  },
+  "habilidades": [
+   "levitate"
+  ],
+  "especie_base": "eelektross",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "eelektrossmega": {
+  "id": "eelektrossmega",
+  "nome": "Eelektross-Mega",
+  "tipos": [
+   "Electric"
+  ],
+  "status": {
+   "hp": 85,
+   "atk": 145,
+   "def": 80,
+   "spa": 135,
+   "spd": 90,
+   "spe": 80
+  },
+  "habilidades": [
+   "eelevate"
+  ],
+  "especie_base": "eelektross",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "chandelure": {
+  "id": "chandelure",
+  "nome": "Chandelure",
+  "tipos": [
+   "Ghost",
+   "Fire"
+  ],
+  "status": {
+   "hp": 60,
+   "atk": 55,
+   "def": 90,
+   "spa": 145,
+   "spd": 90,
+   "spe": 80
+  },
+  "habilidades": [
+   "flashfire",
+   "flamebody",
+   "infiltrator"
+  ],
+  "especie_base": "chandelure",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "chandeluremega": {
+  "id": "chandeluremega",
+  "nome": "Chandelure-Mega",
+  "tipos": [
+   "Ghost",
+   "Fire"
+  ],
+  "status": {
+   "hp": 60,
+   "atk": 75,
+   "def": 110,
+   "spa": 175,
+   "spd": 110,
+   "spe": 90
+  },
+  "habilidades": [
+   "infiltrator"
+  ],
+  "especie_base": "chandelure",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "beartic": {
+  "id": "beartic",
+  "nome": "Beartic",
+  "tipos": [
+   "Ice"
+  ],
+  "status": {
+   "hp": 95,
+   "atk": 130,
+   "def": 80,
+   "spa": 70,
+   "spd": 80,
+   "spe": 50
+  },
+  "habilidades": [
+   "snowcloak",
+   "slushrush",
+   "swiftswim"
+  ],
+  "especie_base": "beartic",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "stunfisk": {
+  "id": "stunfisk",
+  "nome": "Stunfisk",
+  "tipos": [
+   "Ground",
+   "Electric"
+  ],
+  "status": {
+   "hp": 109,
+   "atk": 66,
+   "def": 84,
+   "spa": 81,
+   "spd": 99,
+   "spe": 32
+  },
+  "habilidades": [
+   "static",
+   "limber",
+   "sandveil"
+  ],
+  "especie_base": "stunfisk",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "stunfiskgalar": {
+  "id": "stunfiskgalar",
+  "nome": "Stunfisk-Galar",
+  "tipos": [
+   "Ground",
+   "Steel"
+  ],
+  "status": {
+   "hp": 109,
+   "atk": 81,
+   "def": 99,
+   "spa": 66,
+   "spd": 84,
+   "spe": 32
+  },
+  "habilidades": [
+   "mimicry"
+  ],
+  "especie_base": "stunfisk",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "golurk": {
+  "id": "golurk",
+  "nome": "Golurk",
+  "tipos": [
+   "Ground",
+   "Ghost"
+  ],
+  "status": {
+   "hp": 89,
+   "atk": 124,
+   "def": 80,
+   "spa": 55,
+   "spd": 80,
+   "spe": 55
+  },
+  "habilidades": [
+   "ironfist",
+   "klutz",
+   "noguard"
+  ],
+  "especie_base": "golurk",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "golurkmega": {
+  "id": "golurkmega",
+  "nome": "Golurk-Mega",
+  "tipos": [
+   "Ground",
+   "Ghost"
+  ],
+  "status": {
+   "hp": 89,
+   "atk": 159,
+   "def": 105,
+   "spa": 70,
+   "spd": 105,
+   "spe": 55
+  },
+  "habilidades": [
+   "unseenfist"
+  ],
+  "especie_base": "golurk",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "hydreigon": {
+  "id": "hydreigon",
+  "nome": "Hydreigon",
+  "tipos": [
+   "Dark",
+   "Dragon"
+  ],
+  "status": {
+   "hp": 92,
+   "atk": 105,
+   "def": 90,
+   "spa": 125,
+   "spd": 90,
+   "spe": 98
+  },
+  "habilidades": [
+   "levitate"
+  ],
+  "especie_base": "hydreigon",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "volcarona": {
+  "id": "volcarona",
+  "nome": "Volcarona",
+  "tipos": [
+   "Bug",
+   "Fire"
+  ],
+  "status": {
+   "hp": 85,
+   "atk": 60,
+   "def": 65,
+   "spa": 135,
+   "spd": 105,
+   "spe": 100
+  },
+  "habilidades": [
+   "flamebody",
+   "swarm"
+  ],
+  "especie_base": "volcarona",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "chesnaught": {
+  "id": "chesnaught",
+  "nome": "Chesnaught",
+  "tipos": [
+   "Grass",
+   "Fighting"
+  ],
+  "status": {
+   "hp": 88,
+   "atk": 107,
+   "def": 122,
+   "spa": 74,
+   "spd": 75,
+   "spe": 64
+  },
+  "habilidades": [
+   "overgrow",
+   "bulletproof"
+  ],
+  "especie_base": "chesnaught",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "chesnaughtmega": {
+  "id": "chesnaughtmega",
+  "nome": "Chesnaught-Mega",
+  "tipos": [
+   "Grass",
+   "Fighting"
+  ],
+  "status": {
+   "hp": 88,
+   "atk": 137,
+   "def": 172,
+   "spa": 74,
+   "spd": 115,
+   "spe": 44
+  },
+  "habilidades": [
+   "bulletproof"
+  ],
+  "especie_base": "chesnaught",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "delphox": {
+  "id": "delphox",
+  "nome": "Delphox",
+  "tipos": [
+   "Fire",
+   "Psychic"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 69,
+   "def": 72,
+   "spa": 114,
+   "spd": 100,
+   "spe": 104
+  },
+  "habilidades": [
+   "blaze",
+   "magician"
+  ],
+  "especie_base": "delphox",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "delphoxmega": {
+  "id": "delphoxmega",
+  "nome": "Delphox-Mega",
+  "tipos": [
+   "Fire",
+   "Psychic"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 69,
+   "def": 72,
+   "spa": 159,
+   "spd": 125,
+   "spe": 134
+  },
+  "habilidades": [
+   "levitate"
+  ],
+  "especie_base": "delphox",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "greninja": {
+  "id": "greninja",
+  "nome": "Greninja",
+  "tipos": [
+   "Water",
+   "Dark"
+  ],
+  "status": {
+   "hp": 72,
+   "atk": 95,
+   "def": 67,
+   "spa": 103,
+   "spd": 71,
+   "spe": 122
+  },
+  "habilidades": [
+   "torrent",
+   "protean"
+  ],
+  "especie_base": "greninja",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "greninjamega": {
+  "id": "greninjamega",
+  "nome": "Greninja-Mega",
+  "tipos": [
+   "Water",
+   "Dark"
+  ],
+  "status": {
+   "hp": 72,
+   "atk": 125,
+   "def": 77,
+   "spa": 133,
+   "spd": 81,
+   "spe": 142
+  },
+  "habilidades": [
+   "protean"
+  ],
+  "especie_base": "greninja",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "diggersby": {
+  "id": "diggersby",
+  "nome": "Diggersby",
+  "tipos": [
+   "Normal",
+   "Ground"
+  ],
+  "status": {
+   "hp": 85,
+   "atk": 56,
+   "def": 77,
+   "spa": 50,
+   "spd": 77,
+   "spe": 78
+  },
+  "habilidades": [
+   "pickup",
+   "cheekpouch",
+   "hugepower"
+  ],
+  "especie_base": "diggersby",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "talonflame": {
+  "id": "talonflame",
+  "nome": "Talonflame",
+  "tipos": [
+   "Fire",
+   "Flying"
+  ],
+  "status": {
+   "hp": 78,
+   "atk": 81,
+   "def": 71,
+   "spa": 74,
+   "spd": 69,
+   "spe": 126
+  },
+  "habilidades": [
+   "flamebody",
+   "galewings"
+  ],
+  "especie_base": "talonflame",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "vivillon": {
+  "id": "vivillon",
+  "nome": "Vivillon",
+  "tipos": [
+   "Bug",
+   "Flying"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 52,
+   "def": 50,
+   "spa": 90,
+   "spd": 50,
+   "spe": 89
+  },
+  "habilidades": [
+   "shielddust",
+   "compoundeyes",
+   "friendguard"
+  ],
+  "especie_base": "vivillon",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "pyroar": {
+  "id": "pyroar",
+  "nome": "Pyroar-Male",
+  "tipos": [
+   "Fire",
+   "Normal"
+  ],
+  "status": {
+   "hp": 86,
+   "atk": 68,
+   "def": 72,
+   "spa": 109,
+   "spd": 66,
+   "spe": 106
+  },
+  "habilidades": [
+   "rivalry",
+   "unnerve",
+   "moxie"
+  ],
+  "especie_base": "pyroar",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "pyroarmega": {
+  "id": "pyroarmega",
+  "nome": "Pyroar-Mega",
+  "tipos": [
+   "Fire",
+   "Normal"
+  ],
+  "status": {
+   "hp": 86,
+   "atk": 88,
+   "def": 92,
+   "spa": 129,
+   "spd": 86,
+   "spe": 126
+  },
+  "habilidades": [
+   "firemane"
+  ],
+  "especie_base": "pyroar",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "floetteeternal": {
+  "id": "floetteeternal",
+  "nome": "Floette-Eternal",
+  "tipos": [
+   "Fairy"
+  ],
+  "status": {
+   "hp": 74,
+   "atk": 65,
+   "def": 67,
+   "spa": 125,
+   "spd": 128,
+   "spe": 92
+  },
+  "habilidades": [
+   "flowerveil",
+   "symbiosis"
+  ],
+  "especie_base": "floette",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "floettemega": {
+  "id": "floettemega",
+  "nome": "Floette-Mega",
+  "tipos": [
+   "Fairy"
+  ],
+  "status": {
+   "hp": 74,
+   "atk": 85,
+   "def": 87,
+   "spa": 155,
+   "spd": 148,
+   "spe": 102
+  },
+  "habilidades": [
+   "fairyaura"
+  ],
+  "especie_base": "floette",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "florges": {
+  "id": "florges",
+  "nome": "Florges",
+  "tipos": [
+   "Fairy"
+  ],
+  "status": {
+   "hp": 78,
+   "atk": 65,
+   "def": 68,
+   "spa": 112,
+   "spd": 154,
+   "spe": 75
+  },
+  "habilidades": [
+   "flowerveil",
+   "symbiosis"
+  ],
+  "especie_base": "florges",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "gogoat": {
+  "id": "gogoat",
+  "nome": "Gogoat",
+  "tipos": [
+   "Grass"
+  ],
+  "status": {
+   "hp": 123,
+   "atk": 100,
+   "def": 62,
+   "spa": 97,
+   "spd": 81,
+   "spe": 68
+  },
+  "habilidades": [
+   "sapsipper",
+   "grasspelt"
+  ],
+  "especie_base": "gogoat",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "pangoro": {
+  "id": "pangoro",
+  "nome": "Pangoro",
+  "tipos": [
+   "Fighting",
+   "Dark"
+  ],
+  "status": {
+   "hp": 95,
+   "atk": 124,
+   "def": 78,
+   "spa": 69,
+   "spd": 71,
+   "spe": 58
+  },
+  "habilidades": [
+   "ironfist",
+   "moldbreaker",
+   "scrappy"
+  ],
+  "especie_base": "pangoro",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "furfrou": {
+  "id": "furfrou",
+  "nome": "Furfrou",
+  "tipos": [
+   "Normal"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 80,
+   "def": 60,
+   "spa": 65,
+   "spd": 90,
+   "spe": 102
+  },
+  "habilidades": [
+   "furcoat"
+  ],
+  "especie_base": "furfrou",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "meowstic": {
+  "id": "meowstic",
+  "nome": "Meowstic-Male",
+  "tipos": [
+   "Psychic"
+  ],
+  "status": {
+   "hp": 74,
+   "atk": 48,
+   "def": 76,
+   "spa": 83,
+   "spd": 81,
+   "spe": 104
+  },
+  "habilidades": [
+   "keeneye",
+   "infiltrator",
+   "prankster"
+  ],
+  "especie_base": "meowstic",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "meowsticmmega": {
+  "id": "meowsticmmega",
+  "nome": "Meowstic-Male-Mega",
+  "tipos": [
+   "Psychic"
+  ],
+  "status": {
+   "hp": 74,
+   "atk": 48,
+   "def": 76,
+   "spa": 143,
+   "spd": 101,
+   "spe": 124
+  },
+  "habilidades": [
+   "trace"
+  ],
+  "especie_base": "meowstic",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "meowsticfmega": {
+  "id": "meowsticfmega",
+  "nome": "Meowstic-Female-Mega",
+  "tipos": [
+   "Psychic"
+  ],
+  "status": {
+   "hp": 74,
+   "atk": 48,
+   "def": 76,
+   "spa": 143,
+   "spd": 101,
+   "spe": 124
+  },
+  "habilidades": [
+   "trace"
+  ],
+  "especie_base": "meowstic",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "aegislash": {
+  "id": "aegislash",
+  "nome": "Aegislash-Shield",
+  "tipos": [
+   "Steel",
+   "Ghost"
+  ],
+  "status": {
+   "hp": 60,
+   "atk": 50,
+   "def": 140,
+   "spa": 50,
+   "spd": 140,
+   "spe": 60
+  },
+  "habilidades": [
+   "stancechange"
+  ],
+  "especie_base": "aegislash",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "aegislashblade": {
+  "id": "aegislashblade",
+  "nome": "Aegislash-Blade",
+  "tipos": [
+   "Steel",
+   "Ghost"
+  ],
+  "status": {
+   "hp": 60,
+   "atk": 140,
+   "def": 50,
+   "spa": 140,
+   "spd": 50,
+   "spe": 60
+  },
+  "habilidades": [
+   "stancechange"
+  ],
+  "especie_base": "aegislash",
+  "mega": false,
+  "forma_de_batalha": true
+ },
+ "aromatisse": {
+  "id": "aromatisse",
+  "nome": "Aromatisse",
+  "tipos": [
+   "Fairy"
+  ],
+  "status": {
+   "hp": 101,
+   "atk": 72,
+   "def": 72,
+   "spa": 99,
+   "spd": 89,
+   "spe": 29
+  },
+  "habilidades": [
+   "healer",
+   "aromaveil"
+  ],
+  "especie_base": "aromatisse",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "slurpuff": {
+  "id": "slurpuff",
+  "nome": "Slurpuff",
+  "tipos": [
+   "Fairy"
+  ],
+  "status": {
+   "hp": 82,
+   "atk": 80,
+   "def": 86,
+   "spa": 85,
+   "spd": 75,
+   "spe": 72
+  },
+  "habilidades": [
+   "sweetveil",
+   "unburden"
+  ],
+  "especie_base": "slurpuff",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "malamar": {
+  "id": "malamar",
+  "nome": "Malamar",
+  "tipos": [
+   "Dark",
+   "Psychic"
+  ],
+  "status": {
+   "hp": 86,
+   "atk": 92,
+   "def": 88,
+   "spa": 68,
+   "spd": 75,
+   "spe": 73
+  },
+  "habilidades": [
+   "contrary",
+   "suctioncups",
+   "infiltrator"
+  ],
+  "especie_base": "malamar",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "malamarmega": {
+  "id": "malamarmega",
+  "nome": "Malamar-Mega",
+  "tipos": [
+   "Dark",
+   "Psychic"
+  ],
+  "status": {
+   "hp": 86,
+   "atk": 102,
+   "def": 88,
+   "spa": 98,
+   "spd": 120,
+   "spe": 88
+  },
+  "habilidades": [
+   "contrary"
+  ],
+  "especie_base": "malamar",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "barbaracle": {
+  "id": "barbaracle",
+  "nome": "Barbaracle",
+  "tipos": [
+   "Rock",
+   "Water"
+  ],
+  "status": {
+   "hp": 72,
+   "atk": 105,
+   "def": 115,
+   "spa": 54,
+   "spd": 86,
+   "spe": 68
+  },
+  "habilidades": [
+   "toughclaws",
+   "sniper",
+   "pickpocket"
+  ],
+  "especie_base": "barbaracle",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "barbaraclemega": {
+  "id": "barbaraclemega",
+  "nome": "Barbaracle-Mega",
+  "tipos": [
+   "Rock",
+   "Fighting"
+  ],
+  "status": {
+   "hp": 72,
+   "atk": 140,
+   "def": 130,
+   "spa": 64,
+   "spd": 106,
+   "spe": 88
+  },
+  "habilidades": [
+   "toughclaws"
+  ],
+  "especie_base": "barbaracle",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "dragalge": {
+  "id": "dragalge",
+  "nome": "Dragalge",
+  "tipos": [
+   "Poison",
+   "Dragon"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 75,
+   "def": 90,
+   "spa": 97,
+   "spd": 123,
+   "spe": 44
+  },
+  "habilidades": [
+   "poisonpoint",
+   "poisontouch",
+   "adaptability"
+  ],
+  "especie_base": "dragalge",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "dragalgemega": {
+  "id": "dragalgemega",
+  "nome": "Dragalge-Mega",
+  "tipos": [
+   "Poison",
+   "Dragon"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 85,
+   "def": 105,
+   "spa": 132,
+   "spd": 163,
+   "spe": 44
+  },
+  "habilidades": [
+   "regenerator"
+  ],
+  "especie_base": "dragalge",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "clawitzer": {
+  "id": "clawitzer",
+  "nome": "Clawitzer",
+  "tipos": [
+   "Water"
+  ],
+  "status": {
+   "hp": 71,
+   "atk": 73,
+   "def": 88,
+   "spa": 120,
+   "spd": 89,
+   "spe": 59
+  },
+  "habilidades": [
+   "megalauncher"
+  ],
+  "especie_base": "clawitzer",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "heliolisk": {
+  "id": "heliolisk",
+  "nome": "Heliolisk",
+  "tipos": [
+   "Electric",
+   "Normal"
+  ],
+  "status": {
+   "hp": 62,
+   "atk": 55,
+   "def": 52,
+   "spa": 109,
+   "spd": 94,
+   "spe": 109
+  },
+  "habilidades": [
+   "dryskin",
+   "sandveil",
+   "solarpower"
+  ],
+  "especie_base": "heliolisk",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "tyrantrum": {
+  "id": "tyrantrum",
+  "nome": "Tyrantrum",
+  "tipos": [
+   "Rock",
+   "Dragon"
+  ],
+  "status": {
+   "hp": 82,
+   "atk": 121,
+   "def": 119,
+   "spa": 69,
+   "spd": 59,
+   "spe": 71
+  },
+  "habilidades": [
+   "strongjaw",
+   "rockhead"
+  ],
+  "especie_base": "tyrantrum",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "aurorus": {
+  "id": "aurorus",
+  "nome": "Aurorus",
+  "tipos": [
+   "Rock",
+   "Ice"
+  ],
+  "status": {
+   "hp": 123,
+   "atk": 77,
+   "def": 72,
+   "spa": 99,
+   "spd": 92,
+   "spe": 58
+  },
+  "habilidades": [
+   "refrigerate",
+   "snowwarning"
+  ],
+  "especie_base": "aurorus",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "hawlucha": {
+  "id": "hawlucha",
+  "nome": "Hawlucha",
+  "tipos": [
+   "Fighting",
+   "Flying"
+  ],
+  "status": {
+   "hp": 78,
+   "atk": 92,
+   "def": 75,
+   "spa": 74,
+   "spd": 63,
+   "spe": 118
+  },
+  "habilidades": [
+   "limber",
+   "unburden",
+   "moldbreaker"
+  ],
+  "especie_base": "hawlucha",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "hawluchamega": {
+  "id": "hawluchamega",
+  "nome": "Hawlucha-Mega",
+  "tipos": [
+   "Fighting",
+   "Flying"
+  ],
+  "status": {
+   "hp": 78,
+   "atk": 137,
+   "def": 100,
+   "spa": 74,
+   "spd": 93,
+   "spe": 118
+  },
+  "habilidades": [
+   "noguard"
+  ],
+  "especie_base": "hawlucha",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "dedenne": {
+  "id": "dedenne",
+  "nome": "Dedenne",
+  "tipos": [
+   "Electric",
+   "Fairy"
+  ],
+  "status": {
+   "hp": 67,
+   "atk": 58,
+   "def": 57,
+   "spa": 81,
+   "spd": 67,
+   "spe": 101
+  },
+  "habilidades": [
+   "cheekpouch",
+   "pickup",
+   "plus"
+  ],
+  "especie_base": "dedenne",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "goodra": {
+  "id": "goodra",
+  "nome": "Goodra",
+  "tipos": [
+   "Dragon"
+  ],
+  "status": {
+   "hp": 90,
+   "atk": 100,
+   "def": 70,
+   "spa": 110,
+   "spd": 150,
+   "spe": 80
+  },
+  "habilidades": [
+   "sapsipper",
+   "hydration",
+   "gooey"
+  ],
+  "especie_base": "goodra",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "goodrahisui": {
+  "id": "goodrahisui",
+  "nome": "Goodra-Hisui",
+  "tipos": [
+   "Steel",
+   "Dragon"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 100,
+   "def": 100,
+   "spa": 110,
+   "spd": 150,
+   "spe": 60
+  },
+  "habilidades": [
+   "sapsipper",
+   "shellarmor",
+   "gooey"
+  ],
+  "especie_base": "goodra",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "klefki": {
+  "id": "klefki",
+  "nome": "Klefki",
+  "tipos": [
+   "Steel",
+   "Fairy"
+  ],
+  "status": {
+   "hp": 57,
+   "atk": 80,
+   "def": 91,
+   "spa": 80,
+   "spd": 87,
+   "spe": 75
+  },
+  "habilidades": [
+   "prankster",
+   "magician"
+  ],
+  "especie_base": "klefki",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "trevenant": {
+  "id": "trevenant",
+  "nome": "Trevenant",
+  "tipos": [
+   "Ghost",
+   "Grass"
+  ],
+  "status": {
+   "hp": 85,
+   "atk": 110,
+   "def": 76,
+   "spa": 65,
+   "spd": 82,
+   "spe": 56
+  },
+  "habilidades": [
+   "naturalcure",
+   "frisk",
+   "harvest"
+  ],
+  "especie_base": "trevenant",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "gourgeist": {
+  "id": "gourgeist",
+  "nome": "Gourgeist-Average",
+  "tipos": [
+   "Ghost",
+   "Grass"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 90,
+   "def": 122,
+   "spa": 58,
+   "spd": 75,
+   "spe": 84
+  },
+  "habilidades": [
+   "pickup",
+   "frisk",
+   "insomnia"
+  ],
+  "especie_base": "gourgeist",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "gourgeistsmall": {
+  "id": "gourgeistsmall",
+  "nome": "Gourgeist-Small",
+  "tipos": [
+   "Ghost",
+   "Grass"
+  ],
+  "status": {
+   "hp": 55,
+   "atk": 85,
+   "def": 122,
+   "spa": 58,
+   "spd": 75,
+   "spe": 99
+  },
+  "habilidades": [
+   "pickup",
+   "frisk",
+   "insomnia"
+  ],
+  "especie_base": "gourgeist",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "gourgeistlarge": {
+  "id": "gourgeistlarge",
+  "nome": "Gourgeist-Large",
+  "tipos": [
+   "Ghost",
+   "Grass"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 95,
+   "def": 122,
+   "spa": 58,
+   "spd": 75,
+   "spe": 69
+  },
+  "habilidades": [
+   "pickup",
+   "frisk",
+   "insomnia"
+  ],
+  "especie_base": "gourgeist",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "gourgeistsuper": {
+  "id": "gourgeistsuper",
+  "nome": "Gourgeist-Super",
+  "tipos": [
+   "Ghost",
+   "Grass"
+  ],
+  "status": {
+   "hp": 85,
+   "atk": 100,
+   "def": 122,
+   "spa": 58,
+   "spd": 75,
+   "spe": 54
+  },
+  "habilidades": [
+   "pickup",
+   "frisk",
+   "insomnia"
+  ],
+  "especie_base": "gourgeist",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "avalugg": {
+  "id": "avalugg",
+  "nome": "Avalugg",
+  "tipos": [
+   "Ice"
+  ],
+  "status": {
+   "hp": 95,
+   "atk": 117,
+   "def": 184,
+   "spa": 44,
+   "spd": 46,
+   "spe": 28
+  },
+  "habilidades": [
+   "owntempo",
+   "icebody",
+   "sturdy"
+  ],
+  "especie_base": "avalugg",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "avalugghisui": {
+  "id": "avalugghisui",
+  "nome": "Avalugg-Hisui",
+  "tipos": [
+   "Ice",
+   "Rock"
+  ],
+  "status": {
+   "hp": 95,
+   "atk": 127,
+   "def": 184,
+   "spa": 34,
+   "spd": 36,
+   "spe": 38
+  },
+  "habilidades": [
+   "strongjaw",
+   "icebody",
+   "sturdy"
+  ],
+  "especie_base": "avalugg",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "noivern": {
+  "id": "noivern",
+  "nome": "Noivern",
+  "tipos": [
+   "Flying",
+   "Dragon"
+  ],
+  "status": {
+   "hp": 85,
+   "atk": 70,
+   "def": 80,
+   "spa": 97,
+   "spd": 80,
+   "spe": 123
+  },
+  "habilidades": [
+   "frisk",
+   "infiltrator",
+   "telepathy"
+  ],
+  "especie_base": "noivern",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "decidueye": {
+  "id": "decidueye",
+  "nome": "Decidueye",
+  "tipos": [
+   "Grass",
+   "Ghost"
+  ],
+  "status": {
+   "hp": 78,
+   "atk": 107,
+   "def": 75,
+   "spa": 100,
+   "spd": 100,
+   "spe": 70
+  },
+  "habilidades": [
+   "overgrow",
+   "longreach"
+  ],
+  "especie_base": "decidueye",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "decidueyehisui": {
+  "id": "decidueyehisui",
+  "nome": "Decidueye-Hisui",
+  "tipos": [
+   "Grass",
+   "Fighting"
+  ],
+  "status": {
+   "hp": 88,
+   "atk": 112,
+   "def": 80,
+   "spa": 95,
+   "spd": 95,
+   "spe": 60
+  },
+  "habilidades": [
+   "overgrow",
+   "scrappy"
+  ],
+  "especie_base": "decidueye",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "incineroar": {
+  "id": "incineroar",
+  "nome": "Incineroar",
+  "tipos": [
+   "Fire",
+   "Dark"
+  ],
+  "status": {
+   "hp": 95,
+   "atk": 115,
+   "def": 90,
+   "spa": 80,
+   "spd": 90,
+   "spe": 60
+  },
+  "habilidades": [
+   "blaze",
+   "intimidate"
+  ],
+  "especie_base": "incineroar",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "primarina": {
+  "id": "primarina",
+  "nome": "Primarina",
+  "tipos": [
+   "Water",
+   "Fairy"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 74,
+   "def": 74,
+   "spa": 126,
+   "spd": 116,
+   "spe": 60
+  },
+  "habilidades": [
+   "torrent",
+   "liquidvoice"
+  ],
+  "especie_base": "primarina",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "toucannon": {
+  "id": "toucannon",
+  "nome": "Toucannon",
+  "tipos": [
+   "Normal",
+   "Flying"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 120,
+   "def": 75,
+   "spa": 75,
+   "spd": 75,
+   "spe": 60
+  },
+  "habilidades": [
+   "keeneye",
+   "skilllink",
+   "sheerforce"
+  ],
+  "especie_base": "toucannon",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "crabominable": {
+  "id": "crabominable",
+  "nome": "Crabominable",
+  "tipos": [
+   "Fighting",
+   "Ice"
+  ],
+  "status": {
+   "hp": 97,
+   "atk": 132,
+   "def": 77,
+   "spa": 62,
+   "spd": 67,
+   "spe": 43
+  },
+  "habilidades": [
+   "hypercutter",
+   "ironfist",
+   "angerpoint"
+  ],
+  "especie_base": "crabominable",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "crabominablemega": {
+  "id": "crabominablemega",
+  "nome": "Crabominable-Mega",
+  "tipos": [
+   "Fighting",
+   "Ice"
+  ],
+  "status": {
+   "hp": 97,
+   "atk": 157,
+   "def": 122,
+   "spa": 62,
+   "spd": 107,
+   "spe": 33
+  },
+  "habilidades": [
+   "ironfist"
+  ],
+  "especie_base": "crabominable",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "lycanroc": {
+  "id": "lycanroc",
+  "nome": "Lycanroc-Midday",
+  "tipos": [
+   "Rock"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 115,
+   "def": 65,
+   "spa": 55,
+   "spd": 65,
+   "spe": 112
+  },
+  "habilidades": [
+   "keeneye",
+   "sandrush",
+   "steadfast"
+  ],
+  "especie_base": "lycanroc",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "lycanrocmidnight": {
+  "id": "lycanrocmidnight",
+  "nome": "Lycanroc-Midnight",
+  "tipos": [
+   "Rock"
+  ],
+  "status": {
+   "hp": 85,
+   "atk": 115,
+   "def": 75,
+   "spa": 55,
+   "spd": 75,
+   "spe": 82
+  },
+  "habilidades": [
+   "keeneye",
+   "vitalspirit",
+   "noguard"
+  ],
+  "especie_base": "lycanroc",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "lycanrocdusk": {
+  "id": "lycanrocdusk",
+  "nome": "Lycanroc-Dusk",
+  "tipos": [
+   "Rock"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 117,
+   "def": 65,
+   "spa": 55,
+   "spd": 65,
+   "spe": 110
+  },
+  "habilidades": [
+   "toughclaws"
+  ],
+  "especie_base": "lycanroc",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "toxapex": {
+  "id": "toxapex",
+  "nome": "Toxapex",
+  "tipos": [
+   "Poison",
+   "Water"
+  ],
+  "status": {
+   "hp": 50,
+   "atk": 63,
+   "def": 152,
+   "spa": 53,
+   "spd": 142,
+   "spe": 35
+  },
+  "habilidades": [
+   "merciless",
+   "limber",
+   "regenerator"
+  ],
+  "especie_base": "toxapex",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "mudsdale": {
+  "id": "mudsdale",
+  "nome": "Mudsdale",
+  "tipos": [
+   "Ground"
+  ],
+  "status": {
+   "hp": 100,
+   "atk": 125,
+   "def": 100,
+   "spa": 55,
+   "spd": 85,
+   "spe": 35
+  },
+  "habilidades": [
+   "owntempo",
+   "stamina",
+   "innerfocus"
+  ],
+  "especie_base": "mudsdale",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "araquanid": {
+  "id": "araquanid",
+  "nome": "Araquanid",
+  "tipos": [
+   "Water",
+   "Bug"
+  ],
+  "status": {
+   "hp": 68,
+   "atk": 70,
+   "def": 92,
+   "spa": 50,
+   "spd": 132,
+   "spe": 42
+  },
+  "habilidades": [
+   "waterbubble",
+   "waterabsorb"
+  ],
+  "especie_base": "araquanid",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "salazzle": {
+  "id": "salazzle",
+  "nome": "Salazzle",
+  "tipos": [
+   "Poison",
+   "Fire"
+  ],
+  "status": {
+   "hp": 68,
+   "atk": 64,
+   "def": 60,
+   "spa": 111,
+   "spd": 60,
+   "spe": 117
+  },
+  "habilidades": [
+   "corrosion",
+   "oblivious"
+  ],
+  "especie_base": "salazzle",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "tsareena": {
+  "id": "tsareena",
+  "nome": "Tsareena",
+  "tipos": [
+   "Grass"
+  ],
+  "status": {
+   "hp": 72,
+   "atk": 120,
+   "def": 98,
+   "spa": 50,
+   "spd": 98,
+   "spe": 72
+  },
+  "habilidades": [
+   "leafguard",
+   "queenlymajesty",
+   "sweetveil"
+  ],
+  "especie_base": "tsareena",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "oranguru": {
+  "id": "oranguru",
+  "nome": "Oranguru",
+  "tipos": [
+   "Normal",
+   "Psychic"
+  ],
+  "status": {
+   "hp": 90,
+   "atk": 60,
+   "def": 80,
+   "spa": 90,
+   "spd": 110,
+   "spe": 60
+  },
+  "habilidades": [
+   "innerfocus",
+   "telepathy",
+   "symbiosis"
+  ],
+  "especie_base": "oranguru",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "passimian": {
+  "id": "passimian",
+  "nome": "Passimian",
+  "tipos": [
+   "Fighting"
+  ],
+  "status": {
+   "hp": 100,
+   "atk": 120,
+   "def": 90,
+   "spa": 40,
+   "spd": 60,
+   "spe": 80
+  },
+  "habilidades": [
+   "receiver",
+   "defiant"
+  ],
+  "especie_base": "passimian",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "golisopod": {
+  "id": "golisopod",
+  "nome": "Golisopod",
+  "tipos": [
+   "Bug",
+   "Water"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 125,
+   "def": 140,
+   "spa": 60,
+   "spd": 90,
+   "spe": 40
+  },
+  "habilidades": [
+   "emergencyexit"
+  ],
+  "especie_base": "golisopod",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "golisopodmega": {
+  "id": "golisopodmega",
+  "nome": "Golisopod-Mega",
+  "tipos": [
+   "Bug",
+   "Steel"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 150,
+   "def": 175,
+   "spa": 70,
+   "spd": 120,
+   "spe": 40
+  },
+  "habilidades": [
+   "toughclaws"
+  ],
+  "especie_base": "golisopod",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "mimikyu": {
+  "id": "mimikyu",
+  "nome": "Mimikyu-Disguised",
+  "tipos": [
+   "Ghost",
+   "Fairy"
+  ],
+  "status": {
+   "hp": 55,
+   "atk": 90,
+   "def": 80,
+   "spa": 50,
+   "spd": 105,
+   "spe": 96
+  },
+  "habilidades": [
+   "disguise"
+  ],
+  "especie_base": "mimikyu",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "drampa": {
+  "id": "drampa",
+  "nome": "Drampa",
+  "tipos": [
+   "Normal",
+   "Dragon"
+  ],
+  "status": {
+   "hp": 78,
+   "atk": 60,
+   "def": 85,
+   "spa": 135,
+   "spd": 91,
+   "spe": 36
+  },
+  "habilidades": [
+   "berserk",
+   "sapsipper",
+   "cloudnine"
+  ],
+  "especie_base": "drampa",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "drampamega": {
+  "id": "drampamega",
+  "nome": "Drampa-Mega",
+  "tipos": [
+   "Normal",
+   "Dragon"
+  ],
+  "status": {
+   "hp": 78,
+   "atk": 85,
+   "def": 110,
+   "spa": 160,
+   "spd": 116,
+   "spe": 36
+  },
+  "habilidades": [
+   "berserk"
+  ],
+  "especie_base": "drampa",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "kommoo": {
+  "id": "kommoo",
+  "nome": "Kommo-O",
+  "tipos": [
+   "Dragon",
+   "Fighting"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 110,
+   "def": 125,
+   "spa": 100,
+   "spd": 105,
+   "spe": 85
+  },
+  "habilidades": [
+   "bulletproof",
+   "soundproof",
+   "overcoat"
+  ],
+  "especie_base": "kommoo",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "rillaboom": {
+  "id": "rillaboom",
+  "nome": "Rillaboom",
+  "tipos": [
+   "Grass"
+  ],
+  "status": {
+   "hp": 100,
+   "atk": 125,
+   "def": 90,
+   "spa": 60,
+   "spd": 70,
+   "spe": 85
+  },
+  "habilidades": [
+   "overgrow",
+   "grassysurge"
+  ],
+  "especie_base": "rillaboom",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "cinderace": {
+  "id": "cinderace",
+  "nome": "Cinderace",
+  "tipos": [
+   "Fire"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 116,
+   "def": 75,
+   "spa": 65,
+   "spd": 75,
+   "spe": 119
+  },
+  "habilidades": [
+   "blaze",
+   "libero"
+  ],
+  "especie_base": "cinderace",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "inteleon": {
+  "id": "inteleon",
+  "nome": "Inteleon",
+  "tipos": [
+   "Water"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 85,
+   "def": 65,
+   "spa": 125,
+   "spd": 65,
+   "spe": 120
+  },
+  "habilidades": [
+   "torrent",
+   "sniper"
+  ],
+  "especie_base": "inteleon",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "corviknight": {
+  "id": "corviknight",
+  "nome": "Corviknight",
+  "tipos": [
+   "Flying",
+   "Steel"
+  ],
+  "status": {
+   "hp": 98,
+   "atk": 87,
+   "def": 105,
+   "spa": 53,
+   "spd": 85,
+   "spe": 67
+  },
+  "habilidades": [
+   "pressure",
+   "unnerve",
+   "mirrorarmor"
+  ],
+  "especie_base": "corviknight",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "thievul": {
+  "id": "thievul",
+  "nome": "Thievul",
+  "tipos": [
+   "Dark"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 58,
+   "def": 58,
+   "spa": 87,
+   "spd": 92,
+   "spe": 90
+  },
+  "habilidades": [
+   "runaway",
+   "unburden",
+   "stakeout"
+  ],
+  "especie_base": "thievul",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "flapple": {
+  "id": "flapple",
+  "nome": "Flapple",
+  "tipos": [
+   "Grass",
+   "Dragon"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 110,
+   "def": 80,
+   "spa": 95,
+   "spd": 60,
+   "spe": 70
+  },
+  "habilidades": [
+   "ripen",
+   "gluttony",
+   "hustle"
+  ],
+  "especie_base": "flapple",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "appletun": {
+  "id": "appletun",
+  "nome": "Appletun",
+  "tipos": [
+   "Grass",
+   "Dragon"
+  ],
+  "status": {
+   "hp": 110,
+   "atk": 85,
+   "def": 80,
+   "spa": 100,
+   "spd": 80,
+   "spe": 30
+  },
+  "habilidades": [
+   "ripen",
+   "gluttony",
+   "thickfat"
+  ],
+  "especie_base": "appletun",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "sandaconda": {
+  "id": "sandaconda",
+  "nome": "Sandaconda",
+  "tipos": [
+   "Ground"
+  ],
+  "status": {
+   "hp": 72,
+   "atk": 107,
+   "def": 125,
+   "spa": 65,
+   "spd": 70,
+   "spe": 71
+  },
+  "habilidades": [
+   "sandspit",
+   "shedskin",
+   "sandveil"
+  ],
+  "especie_base": "sandaconda",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "toxtricity": {
+  "id": "toxtricity",
+  "nome": "Toxtricity-Amped",
+  "tipos": [
+   "Electric",
+   "Poison"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 98,
+   "def": 70,
+   "spa": 114,
+   "spd": 70,
+   "spe": 75
+  },
+  "habilidades": [
+   "punkrock",
+   "plus",
+   "technician"
+  ],
+  "especie_base": "toxtricity",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "toxtricitylowkey": {
+  "id": "toxtricitylowkey",
+  "nome": "Toxtricity-Low-Key",
+  "tipos": [
+   "Electric",
+   "Poison"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 98,
+   "def": 70,
+   "spa": 114,
+   "spd": 70,
+   "spe": 75
+  },
+  "habilidades": [
+   "punkrock",
+   "minus",
+   "technician"
+  ],
+  "especie_base": "toxtricity",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "grapploct": {
+  "id": "grapploct",
+  "nome": "Grapploct",
+  "tipos": [
+   "Fighting"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 118,
+   "def": 90,
+   "spa": 70,
+   "spd": 80,
+   "spe": 42
+  },
+  "habilidades": [
+   "limber",
+   "technician"
+  ],
+  "especie_base": "grapploct",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "polteageist": {
+  "id": "polteageist",
+  "nome": "Polteageist",
+  "tipos": [
+   "Ghost"
+  ],
+  "status": {
+   "hp": 60,
+   "atk": 65,
+   "def": 65,
+   "spa": 134,
+   "spd": 114,
+   "spe": 70
+  },
+  "habilidades": [
+   "weakarmor",
+   "cursedbody"
+  ],
+  "especie_base": "polteageist",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "hatterene": {
+  "id": "hatterene",
+  "nome": "Hatterene",
+  "tipos": [
+   "Psychic",
+   "Fairy"
+  ],
+  "status": {
+   "hp": 57,
+   "atk": 90,
+   "def": 95,
+   "spa": 136,
+   "spd": 103,
+   "spe": 29
+  },
+  "habilidades": [
+   "healer",
+   "anticipation",
+   "magicbounce"
+  ],
+  "especie_base": "hatterene",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "grimmsnarl": {
+  "id": "grimmsnarl",
+  "nome": "Grimmsnarl",
+  "tipos": [
+   "Dark",
+   "Fairy"
+  ],
+  "status": {
+   "hp": 95,
+   "atk": 120,
+   "def": 65,
+   "spa": 95,
+   "spd": 75,
+   "spe": 60
+  },
+  "habilidades": [
+   "prankster",
+   "frisk",
+   "pickpocket"
+  ],
+  "especie_base": "grimmsnarl",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "alcremie": {
+  "id": "alcremie",
+  "nome": "Alcremie",
+  "tipos": [
+   "Fairy"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 60,
+   "def": 75,
+   "spa": 110,
+   "spd": 121,
+   "spe": 64
+  },
+  "habilidades": [
+   "sweetveil",
+   "aromaveil"
+  ],
+  "especie_base": "alcremie",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "falinks": {
+  "id": "falinks",
+  "nome": "Falinks",
+  "tipos": [
+   "Fighting"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 100,
+   "def": 100,
+   "spa": 70,
+   "spd": 60,
+   "spe": 75
+  },
+  "habilidades": [
+   "battlearmor",
+   "defiant"
+  ],
+  "especie_base": "falinks",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "falinksmega": {
+  "id": "falinksmega",
+  "nome": "Falinks-Mega",
+  "tipos": [
+   "Fighting"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 135,
+   "def": 135,
+   "spa": 70,
+   "spd": 65,
+   "spe": 100
+  },
+  "habilidades": [
+   "defiant"
+  ],
+  "especie_base": "falinks",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "pincurchin": {
+  "id": "pincurchin",
+  "nome": "Pincurchin",
+  "tipos": [
+   "Electric"
+  ],
+  "status": {
+   "hp": 48,
+   "atk": 101,
+   "def": 95,
+   "spa": 91,
+   "spd": 85,
+   "spe": 15
+  },
+  "habilidades": [
+   "lightningrod",
+   "electricsurge"
+  ],
+  "especie_base": "pincurchin",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "indeedee": {
+  "id": "indeedee",
+  "nome": "Indeedee-Male",
+  "tipos": [
+   "Psychic",
+   "Normal"
+  ],
+  "status": {
+   "hp": 60,
+   "atk": 65,
+   "def": 55,
+   "spa": 105,
+   "spd": 95,
+   "spe": 95
+  },
+  "habilidades": [
+   "innerfocus",
+   "synchronize",
+   "psychicsurge"
+  ],
+  "especie_base": "indeedee",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "indeedeef": {
+  "id": "indeedeef",
+  "nome": "Indeedee-Female",
+  "tipos": [
+   "Psychic",
+   "Normal"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 55,
+   "def": 65,
+   "spa": 95,
+   "spd": 105,
+   "spe": 85
+  },
+  "habilidades": [
+   "owntempo",
+   "synchronize",
+   "psychicsurge"
+  ],
+  "especie_base": "indeedee",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "morpeko": {
+  "id": "morpeko",
+  "nome": "Morpeko-Full-Belly",
+  "tipos": [
+   "Electric",
+   "Dark"
+  ],
+  "status": {
+   "hp": 58,
+   "atk": 95,
+   "def": 58,
+   "spa": 70,
+   "spd": 58,
+   "spe": 97
+  },
+  "habilidades": [
+   "hungerswitch"
+  ],
+  "especie_base": "morpeko",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "dragapult": {
+  "id": "dragapult",
+  "nome": "Dragapult",
+  "tipos": [
+   "Dragon",
+   "Ghost"
+  ],
+  "status": {
+   "hp": 88,
+   "atk": 120,
+   "def": 75,
+   "spa": 100,
+   "spd": 75,
+   "spe": 142
+  },
+  "habilidades": [
+   "clearbody",
+   "infiltrator",
+   "cursedbody"
+  ],
+  "especie_base": "dragapult",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "meowscarada": {
+  "id": "meowscarada",
+  "nome": "Meowscarada",
+  "tipos": [
+   "Grass",
+   "Dark"
+  ],
+  "status": {
+   "hp": 76,
+   "atk": 110,
+   "def": 70,
+   "spa": 81,
+   "spd": 70,
+   "spe": 123
+  },
+  "habilidades": [
+   "overgrow",
+   "protean"
+  ],
+  "especie_base": "meowscarada",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "skeledirge": {
+  "id": "skeledirge",
+  "nome": "Skeledirge",
+  "tipos": [
+   "Fire",
+   "Ghost"
+  ],
+  "status": {
+   "hp": 104,
+   "atk": 75,
+   "def": 100,
+   "spa": 110,
+   "spd": 75,
+   "spe": 66
+  },
+  "habilidades": [
+   "blaze",
+   "unaware"
+  ],
+  "especie_base": "skeledirge",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "quaquaval": {
+  "id": "quaquaval",
+  "nome": "Quaquaval",
+  "tipos": [
+   "Water",
+   "Fighting"
+  ],
+  "status": {
+   "hp": 85,
+   "atk": 120,
+   "def": 80,
+   "spa": 85,
+   "spd": 75,
+   "spe": 85
+  },
+  "habilidades": [
+   "torrent",
+   "moxie"
+  ],
+  "especie_base": "quaquaval",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "houndstone": {
+  "id": "houndstone",
+  "nome": "Houndstone",
+  "tipos": [
+   "Ghost"
+  ],
+  "status": {
+   "hp": 72,
+   "atk": 101,
+   "def": 100,
+   "spa": 50,
+   "spd": 97,
+   "spe": 68
+  },
+  "habilidades": [
+   "sandrush",
+   "fluffy"
+  ],
+  "especie_base": "houndstone",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "espathra": {
+  "id": "espathra",
+  "nome": "Espathra",
+  "tipos": [
+   "Psychic"
+  ],
+  "status": {
+   "hp": 95,
+   "atk": 60,
+   "def": 60,
+   "spa": 101,
+   "spd": 60,
+   "spe": 105
+  },
+  "habilidades": [
+   "opportunist",
+   "frisk",
+   "speedboost"
+  ],
+  "especie_base": "espathra",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "palafin": {
+  "id": "palafin",
+  "nome": "Palafin-Zero",
+  "tipos": [
+   "Water"
+  ],
+  "status": {
+   "hp": 100,
+   "atk": 70,
+   "def": 72,
+   "spa": 53,
+   "spd": 62,
+   "spe": 100
+  },
+  "habilidades": [
+   "zerotohero"
+  ],
+  "especie_base": "palafin",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "arboliva": {
+  "id": "arboliva",
+  "nome": "Arboliva",
+  "tipos": [
+   "Grass",
+   "Normal"
+  ],
+  "status": {
+   "hp": 78,
+   "atk": 69,
+   "def": 90,
+   "spa": 125,
+   "spd": 109,
+   "spe": 39
+  },
+  "habilidades": [
+   "seedsower",
+   "harvest"
+  ],
+  "especie_base": "arboliva",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "scovillain": {
+  "id": "scovillain",
+  "nome": "Scovillain",
+  "tipos": [
+   "Grass",
+   "Fire"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 108,
+   "def": 65,
+   "spa": 108,
+   "spd": 65,
+   "spe": 75
+  },
+  "habilidades": [
+   "chlorophyll",
+   "insomnia",
+   "moody"
+  ],
+  "especie_base": "scovillain",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "scovillainmega": {
+  "id": "scovillainmega",
+  "nome": "Scovillain-Mega",
+  "tipos": [
+   "Grass",
+   "Fire"
+  ],
+  "status": {
+   "hp": 65,
+   "atk": 138,
+   "def": 85,
+   "spa": 138,
+   "spd": 85,
+   "spe": 75
+  },
+  "habilidades": [
+   "spicyspray"
+  ],
+  "especie_base": "scovillain",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "bellibolt": {
+  "id": "bellibolt",
+  "nome": "Bellibolt",
+  "tipos": [
+   "Electric"
+  ],
+  "status": {
+   "hp": 109,
+   "atk": 64,
+   "def": 91,
+   "spa": 103,
+   "spd": 83,
+   "spe": 45
+  },
+  "habilidades": [
+   "electromorphosis",
+   "static",
+   "damp"
+  ],
+  "especie_base": "bellibolt",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "orthworm": {
+  "id": "orthworm",
+  "nome": "Orthworm",
+  "tipos": [
+   "Steel"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 85,
+   "def": 145,
+   "spa": 60,
+   "spd": 55,
+   "spe": 65
+  },
+  "habilidades": [
+   "eartheater",
+   "sandveil"
+  ],
+  "especie_base": "orthworm",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "maushold": {
+  "id": "maushold",
+  "nome": "Maushold-Family-Of-Four",
+  "tipos": [
+   "Normal"
+  ],
+  "status": {
+   "hp": 74,
+   "atk": 75,
+   "def": 70,
+   "spa": 65,
+   "spd": 75,
+   "spe": 111
+  },
+  "habilidades": [
+   "friendguard",
+   "cheekpouch",
+   "technician"
+  ],
+  "especie_base": "maushold",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "baxcalibur": {
+  "id": "baxcalibur",
+  "nome": "Baxcalibur",
+  "tipos": [
+   "Dragon",
+   "Ice"
+  ],
+  "status": {
+   "hp": 115,
+   "atk": 145,
+   "def": 92,
+   "spa": 75,
+   "spd": 86,
+   "spe": 87
+  },
+  "habilidades": [
+   "thermalexchange",
+   "icebody"
+  ],
+  "especie_base": "baxcalibur",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "baxcaliburmega": {
+  "id": "baxcaliburmega",
+  "nome": "Baxcalibur-Mega",
+  "tipos": [
+   "Dragon",
+   "Ice"
+  ],
+  "status": {
+   "hp": 115,
+   "atk": 175,
+   "def": 117,
+   "spa": 105,
+   "spd": 101,
+   "spe": 87
+  },
+  "habilidades": [
+   "thermalexchange"
+  ],
+  "especie_base": "baxcalibur",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "pawmot": {
+  "id": "pawmot",
+  "nome": "Pawmot",
+  "tipos": [
+   "Electric",
+   "Fighting"
+  ],
+  "status": {
+   "hp": 70,
+   "atk": 115,
+   "def": 70,
+   "spa": 70,
+   "spd": 60,
+   "spe": 105
+  },
+  "habilidades": [
+   "voltabsorb",
+   "naturalcure",
+   "ironfist"
+  ],
+  "especie_base": "pawmot",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "squawkabilly": {
+  "id": "squawkabilly",
+  "nome": "Squawkabilly-Green-Plumage",
+  "tipos": [
+   "Normal",
+   "Flying"
+  ],
+  "status": {
+   "hp": 82,
+   "atk": 96,
+   "def": 51,
+   "spa": 45,
+   "spd": 51,
+   "spe": 92
+  },
+  "habilidades": [
+   "intimidate",
+   "hustle",
+   "guts"
+  ],
+  "especie_base": "squawkabilly",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "squawkabillyblue": {
+  "id": "squawkabillyblue",
+  "nome": "Squawkabilly-Blue-Plumage",
+  "tipos": [
+   "Normal",
+   "Flying"
+  ],
+  "status": {
+   "hp": 82,
+   "atk": 96,
+   "def": 51,
+   "spa": 45,
+   "spd": 51,
+   "spe": 92
+  },
+  "habilidades": [
+   "intimidate",
+   "hustle",
+   "guts"
+  ],
+  "especie_base": "squawkabilly",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "squawkabillyyellow": {
+  "id": "squawkabillyyellow",
+  "nome": "Squawkabilly-Yellow-Plumage",
+  "tipos": [
+   "Normal",
+   "Flying"
+  ],
+  "status": {
+   "hp": 82,
+   "atk": 96,
+   "def": 51,
+   "spa": 45,
+   "spd": 51,
+   "spe": 92
+  },
+  "habilidades": [
+   "intimidate",
+   "hustle",
+   "sheerforce"
+  ],
+  "especie_base": "squawkabilly",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "squawkabillywhite": {
+  "id": "squawkabillywhite",
+  "nome": "Squawkabilly-White-Plumage",
+  "tipos": [
+   "Normal",
+   "Flying"
+  ],
+  "status": {
+   "hp": 82,
+   "atk": 96,
+   "def": 51,
+   "spa": 45,
+   "spd": 51,
+   "spe": 92
+  },
+  "habilidades": [
+   "intimidate",
+   "hustle",
+   "sheerforce"
+  ],
+  "especie_base": "squawkabilly",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "garganacl": {
+  "id": "garganacl",
+  "nome": "Garganacl",
+  "tipos": [
+   "Rock"
+  ],
+  "status": {
+   "hp": 100,
+   "atk": 100,
+   "def": 130,
+   "spa": 45,
+   "spd": 90,
+   "spe": 35
+  },
+  "habilidades": [
+   "purifyingsalt",
+   "sturdy",
+   "clearbody"
+  ],
+  "especie_base": "garganacl",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "glimmora": {
+  "id": "glimmora",
+  "nome": "Glimmora",
+  "tipos": [
+   "Rock",
+   "Poison"
+  ],
+  "status": {
+   "hp": 83,
+   "atk": 55,
+   "def": 90,
+   "spa": 130,
+   "spd": 81,
+   "spe": 86
+  },
+  "habilidades": [
+   "toxicdebris",
+   "corrosion"
+  ],
+  "especie_base": "glimmora",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "glimmoramega": {
+  "id": "glimmoramega",
+  "nome": "Glimmora-Mega",
+  "tipos": [
+   "Rock",
+   "Poison"
+  ],
+  "status": {
+   "hp": 83,
+   "atk": 90,
+   "def": 105,
+   "spa": 150,
+   "spd": 96,
+   "spe": 101
+  },
+  "habilidades": [
+   "adaptability"
+  ],
+  "especie_base": "glimmora",
+  "mega": true,
+  "forma_de_batalha": false
+ },
+ "mabosstiff": {
+  "id": "mabosstiff",
+  "nome": "Mabosstiff",
+  "tipos": [
+   "Dark"
+  ],
+  "status": {
+   "hp": 80,
+   "atk": 120,
+   "def": 90,
+   "spa": 60,
+   "spd": 70,
+   "spe": 85
+  },
+  "habilidades": [
+   "intimidate",
+   "guarddog",
+   "stakeout"
+  ],
+  "especie_base": "mabosstiff",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "gholdengo": {
+  "id": "gholdengo",
+  "nome": "Gholdengo",
+  "tipos": [
+   "Steel",
+   "Ghost"
+  ],
+  "status": {
+   "hp": 87,
+   "atk": 60,
+   "def": 95,
+   "spa": 133,
+   "spd": 91,
+   "spe": 84
+  },
+  "habilidades": [
+   "goodasgold"
+  ],
+  "especie_base": "gholdengo",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "tinkaton": {
+  "id": "tinkaton",
+  "nome": "Tinkaton",
+  "tipos": [
+   "Fairy",
+   "Steel"
+  ],
+  "status": {
+   "hp": 85,
+   "atk": 75,
+   "def": 77,
+   "spa": 70,
+   "spd": 105,
+   "spe": 94
+  },
+  "habilidades": [
+   "moldbreaker",
+   "owntempo",
+   "pickpocket"
+  ],
+  "especie_base": "tinkaton",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "armarouge": {
+  "id": "armarouge",
+  "nome": "Armarouge",
+  "tipos": [
+   "Fire",
+   "Psychic"
+  ],
+  "status": {
+   "hp": 85,
+   "atk": 60,
+   "def": 100,
+   "spa": 125,
+   "spd": 80,
+   "spe": 75
+  },
+  "habilidades": [
+   "flashfire",
+   "weakarmor"
+  ],
+  "especie_base": "armarouge",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "ceruledge": {
+  "id": "ceruledge",
+  "nome": "Ceruledge",
+  "tipos": [
+   "Fire",
+   "Ghost"
+  ],
+  "status": {
+   "hp": 75,
+   "atk": 125,
+   "def": 80,
+   "spa": 60,
+   "spd": 100,
+   "spe": 85
+  },
+  "habilidades": [
+   "flashfire",
+   "weakarmor"
+  ],
+  "especie_base": "ceruledge",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "kingambit": {
+  "id": "kingambit",
+  "nome": "Kingambit",
+  "tipos": [
+   "Dark",
+   "Steel"
+  ],
+  "status": {
+   "hp": 100,
+   "atk": 135,
+   "def": 120,
+   "spa": 60,
+   "spd": 85,
+   "spe": 50
+  },
+  "habilidades": [
+   "defiant",
+   "supremeoverlord",
+   "pressure"
+  ],
+  "especie_base": "kingambit",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "annihilape": {
+  "id": "annihilape",
+  "nome": "Annihilape",
+  "tipos": [
+   "Fighting",
+   "Ghost"
+  ],
+  "status": {
+   "hp": 110,
+   "atk": 115,
+   "def": 80,
+   "spa": 50,
+   "spd": 90,
+   "spe": 90
+  },
+  "habilidades": [
+   "vitalspirit",
+   "innerfocus",
+   "defiant"
+  ],
+  "especie_base": "annihilape",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "sinistcha": {
+  "id": "sinistcha",
+  "nome": "Sinistcha",
+  "tipos": [
+   "Grass",
+   "Ghost"
+  ],
+  "status": {
+   "hp": 71,
+   "atk": 60,
+   "def": 106,
+   "spa": 121,
+   "spd": 80,
+   "spe": 70
+  },
+  "habilidades": [
+   "hospitality",
+   "heatproof"
+  ],
+  "especie_base": "sinistcha",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "archaludon": {
+  "id": "archaludon",
+  "nome": "Archaludon",
+  "tipos": [
+   "Steel",
+   "Dragon"
+  ],
+  "status": {
+   "hp": 90,
+   "atk": 105,
+   "def": 130,
+   "spa": 125,
+   "spd": 65,
+   "spe": 85
+  },
+  "habilidades": [
+   "stamina",
+   "sturdy",
+   "stalwart"
+  ],
+  "especie_base": "archaludon",
+  "mega": false,
+  "forma_de_batalha": false
+ },
+ "hydrapple": {
+  "id": "hydrapple",
+  "nome": "Hydrapple",
+  "tipos": [
+   "Grass",
+   "Dragon"
+  ],
+  "status": {
+   "hp": 106,
+   "atk": 80,
+   "def": 110,
+   "spa": 120,
+   "spd": 80,
+   "spe": 44
+  },
+  "habilidades": [
+   "supersweetsyrup",
+   "regenerator",
+   "stickyhold"
+  ],
+  "especie_base": "hydrapple",
+  "mega": false,
+  "forma_de_batalha": false
+ }
+}
