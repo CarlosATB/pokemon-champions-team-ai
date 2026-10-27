@@ -16,8 +16,11 @@ from src.analise import analisar
 from src.dicas import gerar_dicas
 from src.funcoes_duplas import FUNCOES
 from src.leitor import ler_time, montar_time
-from src.opcoes import opcoes_de_golpes, opcoes_de_habilidades, opcoes_de_itens
-from src.recomendacao import (PESO_FRAQUEZAS, PESO_PARCERIA, recomendar_time, sugerir_parceiros,
+from src.opcoes import (
+    montagem_recomendada, opcoes_de_golpes, opcoes_de_habilidades, opcoes_de_itens, pedra_da_mega,
+)
+from src.recomendacao import (PESO_FRAQUEZAS, PESO_FUNCOES, PESO_PARCERIA, recomendar_time,
+                              sugerir_parceiros,
                               sugerir_substitutos)
 from src.tipos import TIPOS_PT
 from src.times_exemplo import TIMES_EXEMPLO
@@ -73,8 +76,15 @@ with aba_montar:
             esquerda, direita = st.columns(2)
             with esquerda:
                 # A chave inclui o Pokémon: ao trocar de Pokémon, os seletores recomeçam.
-                item = st.selectbox("Item", [None] + opcoes_de_itens(pid), key=f"item_{vaga}_{pid}",
-                                    format_func=lambda i: "(nenhum)" if i is None else itens_por_id[i])
+                pedra = pedra_da_mega(pid)
+                if pedra:  # a Mega já vem com a Pedra Mega dela, travada
+                    item = st.selectbox("Item", [pedra], key=f"item_{vaga}_{pid}", disabled=True,
+                                        format_func=itens_por_id.get,
+                                        help="Para Mega Evoluir, ela precisa segurar esta pedra.")
+                else:
+                    item = st.selectbox(
+                        "Item", [None] + opcoes_de_itens(pid), key=f"item_{vaga}_{pid}",
+                        format_func=lambda i: "(nenhum)" if i is None else itens_por_id[i])
                 habilidade = st.selectbox("Habilidade", opcoes_de_habilidades(pid),
                                           key=f"habilidade_{vaga}_{pid}",
                                           format_func=lambda h: habilidades_por_id.get(h, h))
@@ -84,6 +94,7 @@ with aba_montar:
                                        format_func=lambda g: "(nenhum)" if g is None else nome_do_golpe(g))
                           for n in range(4)]
             montados.append({
+                "vaga": vaga,  # qual card: o botão das recomendações preenche este card
                 "especie": nome_por_id[pid],
                 "item": itens_por_id[item] if item else "",
                 "habilidade": habilidades_por_id.get(habilidade, habilidade or ""),
@@ -148,12 +159,17 @@ if time:
         st.dataframe(tabela, hide_index=True, width="stretch", height=670)
 
     with aba_of:
-        st.caption("O melhor dano que o time causa em cada tipo, com os golpes de ataque do time.")
-        st.dataframe([{
-            "Tipo do alvo": TIPOS_PT[c["tipo"]],
-            "Melhor dano": texto_dano.get(c["melhor"], f"{c['melhor']}x") or "1x",
-            "Quem acerta": ", ".join(c["quem"]) if c["melhor"] >= 2 else "-",
-        } for c in analise["cobertura"]], hide_index=True, width="stretch", height=670)
+        st.caption("O melhor dano que o time causa em cada tipo, só com os golpes de ataque "
+                   "escolhidos. Em cada linha: o golpe e quem usa.")
+        if analise["sem_ataques"]:
+            st.warning(f"Sem golpes de ataque (não entram na conta): "
+                       f"{', '.join(analise['sem_ataques'])}.")
+        if len(analise["sem_ataques"]) < len(time_ok):
+            st.dataframe([{
+                "Tipo do alvo": TIPOS_PT[c["tipo"]],
+                "Melhor dano": texto_dano.get(c["melhor"], f"{c['melhor']}x") or "1x",
+                "Golpes (quem usa)": ", ".join(c["quem"]) if c["melhor"] >= 2 else "-",
+            } for c in analise["cobertura"]], hide_index=True, width="stretch", height=670)
 
     with aba_func:
         st.dataframe([{
@@ -164,7 +180,8 @@ if time:
 
     with aba_ameacas:
         st.caption("Entre os 30 Pokémon mais usados: quem acerta muitos do seu time com dano "
-                   "dobrado e quase não é acertado de volta. Nota = acerta − respostas.")
+                   "dobrado e quase não é acertado de volta. Nota = acerta − respostas. "
+                   "Pokémon sem golpes contam com os golpes mais usados com ele.")
         st.dataframe([{
             "Pokémon": a["nome"],
             "Uso (%)": a["uso"],
@@ -188,12 +205,29 @@ if time and time_ok:
     def marca(voce_usa):
         return " ✅" if voce_usa else ""
 
+    def montar_com_a_recomendacao(vaga, pid, montagem):
+        """Coloca item, habilidade e golpes recomendados nos seletores do card."""
+        if montagem["item"]:
+            st.session_state[f"item_{vaga}_{pid}"] = montagem["item"]
+        if montagem["habilidade"]:
+            st.session_state[f"habilidade_{vaga}_{pid}"] = montagem["habilidade"]
+        for n in range(4):
+            golpe = montagem["golpes"][n] if n < len(montagem["golpes"]) else None
+            st.session_state[f"golpe_{vaga}_{n}_{pid}"] = golpe
+
     with aba_pokemon:
-        for sugestao in recomendar_time(time_ok):
+        for membro, sugestao in zip(time_ok, recomendar_time(time_ok)):
             with st.expander(sugestao["especie"]):
                 if not sugestao["tem_dados"]:
                     st.info(sugestao["porque"])
                     continue
+                if "vaga" in membro:  # só para o time da aba "Montar o time"
+                    st.button("Montar com esta recomendação", key=f"montar_{membro['vaga']}",
+                              on_click=montar_com_a_recomendacao,
+                              args=(membro["vaga"], membro["id"],
+                                    montagem_recomendada(membro["id"], sugestao)),
+                              help="Preenche o card deste Pokémon com o item, a habilidade "
+                                   "e os 4 golpes mais usados.")
                 hab, item, golpes, spread = (sugestao["habilidade"], sugestao["item"],
                                              sugestao["golpes"], sugestao["natureza_evs"])
                 col1, col2 = st.columns(2)
@@ -234,12 +268,16 @@ if time and time_ok:
             st.markdown(f"**Sai: {trocas['sai']}.** {trocas['motivo']}")
             if trocas["fraquezas"]:
                 st.markdown("Fraquezas do time sem ele: " + ", ".join(trocas["fraquezas"]))
+            if trocas["faltam"]:
+                st.markdown("Funções de duplas que faltam sem ele: " + ", ".join(trocas["faltam"]))
             st.caption(f"Nota (0 a 100) = {PESO_PARCERIA:.0%} co-ocorrência com quem fica + "
-                       f"{PESO_FRAQUEZAS:.0%} quantas dessas fraquezas o substituto resiste.")
+                       f"{PESO_FRAQUEZAS:.0%} quantas dessas fraquezas ele resiste + "
+                       f"{PESO_FUNCOES:.0%} quantas dessas funções ele traz (com os golpes mais "
+                       "usados com ele). Pelo menos 1 sugerido traz cada função essencial que falta.")
             st.dataframe([{
                 "Pokémon": s["nome"],
                 "Nota": s["nota"],
-                "Confiança (%)": s["confianca"],
+                "Traz": ", ".join(s["traz"]) or "-",
                 "Resiste a": ", ".join(s["cobre"]) or "-",
                 "Por quê": s["porque"],
             } for s in trocas["substitutos"]], hide_index=True, width="stretch")

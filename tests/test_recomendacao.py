@@ -85,7 +85,17 @@ def test_substituto_cobre_as_fraquezas():
     melhor = resultado["substitutos"][0]
     assert melhor["cobre"]
     assert 0 <= melhor["nota"] <= 100
-    assert "resiste a" in melhor["porque"]
+    assert "Resiste a" in melhor["porque"]
+
+
+def test_substitutos_trazem_a_funcao_essencial_que_falta():
+    # O "Time com problemas" não tem controle de velocidade nem proteção.
+    resultado = sugerir_substitutos(time_exemplo("Time com problemas"))
+    assert "Controle de velocidade" in resultado["faltam"]
+    trazem = [s for s in resultado["substitutos"] if "Controle de velocidade" in s["traz"]]
+    assert trazem, "pelo menos 1 dos 5 precisa trazer controle de velocidade"
+    assert "controle de velocidade (" in trazem[0]["porque"]  # diz com qual golpe
+    assert any("Proteção" in s["traz"] for s in resultado["substitutos"])
 
 
 def test_quem_sai_e_fraco_aos_problemas_do_time():

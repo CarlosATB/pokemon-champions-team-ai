@@ -36,3 +36,8 @@ def test_time_sem_golpes_nao_reclama_de_funcoes_de_golpe():
     textos = " | ".join(dicas_de(time_de_nomes(["Garchomp", "Dragonite", "Salamence"])))
     assert "controle de velocidade" not in textos
     assert "dano dobrado de **Gelo**" in textos
+
+
+def test_time_sem_golpes_nao_fala_de_cobertura_ofensiva():
+    textos = " | ".join(dicas_de(time_de_nomes(["Beedrill", "Rillaboom"])))
+    assert "Cobertura ofensiva" not in textos and "não tem golpe" not in textos

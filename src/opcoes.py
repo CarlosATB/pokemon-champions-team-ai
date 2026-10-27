@@ -20,8 +20,22 @@ def _ordenar(ids: list[str], mais_usados: dict, nome) -> list[str]:
     return primeiros + resto
 
 
+def pedra_da_mega(pokemon_id: str) -> str | None:
+    """Pedra Mega que esta forma Mega precisa segurar (None se não for Mega)."""
+    for item_id, pedra in dados.carregar_itens()["pedras_mega"].items():
+        if pedra["mega"] == pokemon_id:
+            return item_id
+    return None
+
+
 def opcoes_de_itens(pokemon_id: str) -> list[str]:
-    """ids dos itens legais, sem Pedras Mega de outros Pokémon."""
+    """ids dos itens legais, sem Pedras Mega de outros Pokémon.
+
+    Uma Mega (ex.: Beedrill-Mega) só pode segurar a própria Pedra Mega.
+    """
+    pedra = pedra_da_mega(pokemon_id)
+    if pedra:
+        return [pedra]
     itens = dados.carregar_itens()
     especie = dados.carregar_pokemon().get(pokemon_id, {}).get("especie_base", pokemon_id)
     validos = [i for i in itens["legais"]
@@ -48,3 +62,20 @@ def opcoes_de_golpes(pokemon_id: str) -> list[str]:
     aprende = [g for g in aprende if g in golpes]
     return _ordenar(aprende, _uso_do_pokemon(pokemon_id).get("golpes", {}),
                     lambda g: golpes[g]["nome"])
+
+
+def montagem_recomendada(pokemon_id: str, sugestao: dict) -> dict:
+    """Item, habilidade e 4 golpes da recomendação, prontos para os seletores do card.
+
+    Só entra o que existe nas opções daquele Pokémon (ex.: a habilidade da Mega
+    não está entre as da forma normal, então a habilidade fica como está).
+    """
+    item = sugestao["item"]["melhor"]
+    habilidade = sugestao["habilidade"]["id"]
+    golpes_validos = opcoes_de_golpes(pokemon_id)
+    golpes = [g["id"] for g in sugestao["golpes"]["lista"] if g["id"] in golpes_validos]
+    return {
+        "item": item["id"] if item and item["id"] in opcoes_de_itens(pokemon_id) else None,
+        "habilidade": habilidade if habilidade in opcoes_de_habilidades(pokemon_id) else None,
+        "golpes": golpes[:4],
+    }
