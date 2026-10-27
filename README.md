@@ -28,7 +28,12 @@ Cada sugestão vem com a explicação do **porquê**.
 pokemon-champions-team-ai/
 ├── app.py              # interface (Streamlit)
 ├── src/
-│   └── config.py       # regulamentação, regras do formato e fontes de dados
+│   ├── config.py       # regulamentação, regras do formato e fontes de dados
+│   ├── baixar_dados.py # baixa os dados (Showdown, PokéAPI, Smogon) e gera o cache
+│   ├── dados.py        # lê o cache em JSON (usado pelo resto do projeto)
+│   ├── nomes.py        # padroniza os nomes entre as fontes
+│   ├── tipos.py        # tabela de efetividade de tipos 18 × 18
+│   └── funcoes_duplas.py # golpes/habilidades de cada função de duplas
 ├── data/
 │   ├── raw/            # dados baixados (Smogon, PokéAPI)
 │   └── processed/      # dados tratados usados pelo app
@@ -51,10 +56,13 @@ python -m venv .venv
 # 3. Instalar as dependências
 pip install -r requirements.txt
 
-# 4. Rodar o site
+# 4. (Só quando mudar a regulamentação/mês) baixar os dados
+python -m src.baixar_dados
+
+# 5. Rodar o site
 streamlit run app.py
 
-# 5. Rodar os testes
+# 6. Rodar os testes
 pytest
 ```
 
@@ -62,6 +70,7 @@ pytest
 
 - [Smogon Usage Stats](https://www.smogon.com/stats/) — estatísticas mensais de uso do Pokémon Showdown.
 - [PokéAPI](https://pokeapi.co/) — tipos e status base dos Pokémon.
+- [Pokémon Showdown](https://github.com/smogon/pokemon-showdown) — lista de Pokémon e Megas legais na regulamentação.
 
 ## Andamento
 
