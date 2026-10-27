@@ -84,6 +84,7 @@ A IA precisa usar algoritmos que o grupo consiga explicar. **Não** é "mandar o
 - **Hospedagem:** Streamlit Community Cloud — grátis, publica direto do repositório **público** no GitHub e atualiza a cada push. (GitHub Pages não roda Streamlit.) O app "dorme" após 12 h sem acesso: abrir antes da apresentação.
 - **Dados de uso:** estatísticas mensais do Smogon/Pokémon Showdown para Champions VGC (formato `gen9championsvgc...` da regulamentação atual).
 - **Dados base:** PokéAPI (tipos e status base) + tabela de tipos.
+- **Lista de legais:** Pokémon Showdown (mod da regulamentação, ex.: `champions`) — define quais Pokémon e Megas são permitidos.
 - Existem sites parecidos (PokeTools, Pikalytics); na apresentação, deixar claro que a lógica foi construída pelo grupo.
 - Sem skills extras instaladas (decidido).
 
