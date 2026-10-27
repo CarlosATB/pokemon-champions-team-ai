@@ -16,7 +16,9 @@ from src.analise import analisar
 from src.dicas import gerar_dicas
 from src.funcoes_duplas import FUNCOES
 from src.leitor import ler_time, montar_time
-from src.opcoes import opcoes_de_golpes, opcoes_de_habilidades, opcoes_de_itens
+from src.opcoes import (
+    montagem_recomendada, opcoes_de_golpes, opcoes_de_habilidades, opcoes_de_itens,
+)
 from src.recomendacao import (PESO_FRAQUEZAS, PESO_PARCERIA, recomendar_time, sugerir_parceiros,
                               sugerir_substitutos)
 from src.tipos import TIPOS_PT
@@ -84,6 +86,7 @@ with aba_montar:
                                        format_func=lambda g: "(nenhum)" if g is None else nome_do_golpe(g))
                           for n in range(4)]
             montados.append({
+                "vaga": vaga,  # qual card: o botão das recomendações preenche este card
                 "especie": nome_por_id[pid],
                 "item": itens_por_id[item] if item else "",
                 "habilidade": habilidades_por_id.get(habilidade, habilidade or ""),
@@ -193,12 +196,29 @@ if time and time_ok:
     def marca(voce_usa):
         return " ✅" if voce_usa else ""
 
+    def montar_com_a_recomendacao(vaga, pid, montagem):
+        """Coloca item, habilidade e golpes recomendados nos seletores do card."""
+        if montagem["item"]:
+            st.session_state[f"item_{vaga}_{pid}"] = montagem["item"]
+        if montagem["habilidade"]:
+            st.session_state[f"habilidade_{vaga}_{pid}"] = montagem["habilidade"]
+        for n in range(4):
+            golpe = montagem["golpes"][n] if n < len(montagem["golpes"]) else None
+            st.session_state[f"golpe_{vaga}_{n}_{pid}"] = golpe
+
     with aba_pokemon:
-        for sugestao in recomendar_time(time_ok):
+        for membro, sugestao in zip(time_ok, recomendar_time(time_ok)):
             with st.expander(sugestao["especie"]):
                 if not sugestao["tem_dados"]:
                     st.info(sugestao["porque"])
                     continue
+                if "vaga" in membro:  # só para o time da aba "Montar o time"
+                    st.button("Montar com esta recomendação", key=f"montar_{membro['vaga']}",
+                              on_click=montar_com_a_recomendacao,
+                              args=(membro["vaga"], membro["id"],
+                                    montagem_recomendada(membro["id"], sugestao)),
+                              help="Preenche o card deste Pokémon com o item, a habilidade "
+                                   "e os 4 golpes mais usados.")
                 hab, item, golpes, spread = (sugestao["habilidade"], sugestao["item"],
                                              sugestao["golpes"], sugestao["natureza_evs"])
                 col1, col2 = st.columns(2)

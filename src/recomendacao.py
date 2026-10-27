@@ -108,6 +108,7 @@ def sugerir_para_pokemon(membro: dict, itens_ocupados: dict[str, str] | None = N
     else:
         porque = f"{_pct(habilidade_pct)} dos {nome} usam {nome_da_habilidade(habilidade_id)}."
     habilidade = {
+        "id": habilidade_id,
         "nome": nome_da_habilidade(habilidade_id),
         "uso": habilidade_pct,
         "voce_usa": eh_mega or to_id(membro["habilidade"]) == habilidade_id,
@@ -139,7 +140,7 @@ def sugerir_para_pokemon(membro: dict, itens_ocupados: dict[str, str] | None = N
 
     # Golpes: os mais usados; e os do time que quase ninguém usa.
     golpes_do_time = {to_id(g) for g in membro["golpes"]}
-    golpes = [{"nome": nome_do_golpe(g), "uso": p, "voce_usa": g in golpes_do_time}
+    golpes = [{"id": g, "nome": nome_do_golpe(g), "uso": p, "voce_usa": g in golpes_do_time}
               for g, p in list(info["golpes"].items())[:QUANTOS_GOLPES]]
     raros = [nome_do_golpe(g) for g in golpes_do_time
              if info["golpes"].get(g, 0) < GOLPE_RARO and g in dados.carregar_golpes()]

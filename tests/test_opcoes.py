@@ -4,7 +4,10 @@ from apoio import precisa_dados
 
 from src.analise import analisar
 from src.leitor import montar_time
-from src.opcoes import opcoes_de_golpes, opcoes_de_habilidades, opcoes_de_itens
+from src.opcoes import (
+    montagem_recomendada, opcoes_de_golpes, opcoes_de_habilidades, opcoes_de_itens,
+)
+from src.recomendacao import sugerir_para_pokemon
 from src.validacao import tem_erro, validar_time
 
 pytestmark = precisa_dados
@@ -37,3 +40,21 @@ def test_time_montado_vai_para_a_analise():
     assert time[1]["forma"] == "salamencemega"
     assert not tem_erro(validar_time(time))
     assert "Rillaboom" in analisar(time)["funcoes"]["fake_out"]
+
+
+def test_montagem_recomendada_cabe_nos_seletores():
+    membro = montar_time([{"especie": "Incineroar", "item": "", "habilidade": "", "golpes": []}])[0]
+    montagem = montagem_recomendada("incineroar", sugerir_para_pokemon(membro))
+    assert montagem["item"] in opcoes_de_itens("incineroar")
+    assert montagem["habilidade"] == "intimidate"
+    assert len(montagem["golpes"]) == 4 and "fakeout" in montagem["golpes"]
+    assert all(g in opcoes_de_golpes("incineroar") for g in montagem["golpes"])
+
+
+def test_montagem_da_mega_nao_troca_a_habilidade():
+    # A habilidade da Mega (Adaptability) não é uma opção do Beedrill normal.
+    membro = montar_time([{"especie": "Beedrill", "item": "Beedrillite",
+                           "habilidade": "", "golpes": []}])[0]
+    montagem = montagem_recomendada("beedrill", sugerir_para_pokemon(membro))
+    assert montagem["item"] == "beedrillite" and montagem["habilidade"] is None
+    assert "poisonjab" in montagem["golpes"]
