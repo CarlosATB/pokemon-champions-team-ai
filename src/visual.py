@@ -82,6 +82,16 @@ def css_fotos_na_lista(ids_ordenados: list[str]) -> str:
 # Cores: fundo azul escuro (tema) e detalhes em #3a0445.
 CSS = """
 <style>
+/* Barra de cima no estilo de site: logo à esquerda e abas em maiúsculas */
+[data-testid="stHeader"] { background: #071022; border-bottom: 1px solid #3a0445; }
+[data-testid="stHeaderLogo"] { height: 2.3rem; max-width: none; margin-right: 2rem; }
+/* Sem o título grande, o conteúdo pode começar mais perto da barra */
+.block-container { padding-top: 4rem; }
+[data-testid="stTopNavLink"] p {
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
 [class*="st-key-card_"] {
     background: #0F1B33;
     border: 1px solid #3a0445;

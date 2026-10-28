@@ -180,6 +180,7 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 - [x] Fotinha do Pokémon ao lado de cada nome na lista de escolha (CSS por posição da opção: `css_fotos_na_lista`)
 - [x] Cobertura ofensiva em grade de 18 tipos: número = golpes supereficazes; passar o mouse mostra os golpes e quem usa, com fotinho (sem a coluna "2x") — `cobertura_ofensiva` agora devolve `supereficazes`
 - [x] Fraquezas na mesma grade: número = quantos seguram − quantos são fracos; passar o mouse mostra quem toma quanto; tipos perigosos continuam em cima; tabela completa num "Ver a tabela completa"
+- [x] Nome do site como logo na barra de cima (`static/logo.svg` com `st.logo`), abas em maiúsculas sem ícones, no estilo de barra de site
 - [x] Abas no topo (`st.navigation`): Montar o time, Mais usados (20 mais usados com imagem, `src/tela_mais_usados.py`) e Sobre (`src/tela_sobre.py`, a desenvolver); o time continua montado ao trocar de aba
 - [x] Imagens movidas para `static/sprites/` (servidas pelo Streamlit em `app/static/`, para usar dentro do HTML)
 - [x] Testes — 2 novos; 83 passando

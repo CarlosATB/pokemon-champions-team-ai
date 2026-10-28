@@ -37,7 +37,6 @@ def manter_o_time() -> None:
 
 
 def pagina_montar_o_time() -> None:
-    st.title("Pokémon Champions Team AI")
     st.caption(f"Analisador e recomendador de times para duplas (VGC) · "
                f"{config.REGULATION_NAME} · dados de uso de {config.STATS_MONTH}")
 
@@ -56,10 +55,11 @@ def pagina_montar_o_time() -> None:
 
 st.set_page_config(page_title="Pokémon Champions Team AI", page_icon="⚔️", layout="wide")
 st.markdown(CSS, unsafe_allow_html=True)
+st.logo("static/logo.svg", size="large")  # o nome do site vira logo na barra de cima
 manter_o_time()
 pagina = st.navigation([
-    st.Page(pagina_montar_o_time, title="Montar o time", icon="🛠️", default=True),
-    st.Page(mostrar_mais_usados, title="Mais usados", icon="📊", url_path="mais-usados"),
-    st.Page(mostrar_sobre, title="Sobre", icon="ℹ️", url_path="sobre"),
+    st.Page(pagina_montar_o_time, title="Montar o time", default=True),
+    st.Page(mostrar_mais_usados, title="Mais usados", url_path="mais-usados"),
+    st.Page(mostrar_sobre, title="Sobre", url_path="sobre"),
 ], position="top")
 pagina.run()
