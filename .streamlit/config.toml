@@ -1,8 +1,8 @@
-# Visual do site: minimalista, fundo azul escuro com detalhes em #3a0445.
+# Visual do site: minimalista, fundo cinza escuro com detalhes em #3a0445.
 [theme]
 base = "dark"
-backgroundColor = "#0A1428"
-secondaryBackgroundColor = "#14213D"
+backgroundColor = "#1E1E22"
+secondaryBackgroundColor = "#2A2A30"
 primaryColor = "#9d4bbd"
 textColor = "#ECE6EF"
 borderColor = "#3a0445"

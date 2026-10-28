@@ -79,11 +79,11 @@ def css_fotos_na_lista(ids_ordenados: list[str]) -> str:
 
 # CSS colocado uma vez no topo da página (st.markdown com unsafe_allow_html).
 # Os cards são st.container(key="card_N"): o Streamlit dá a classe "st-key-card_N".
-# Cores: fundo azul escuro (tema) e detalhes em #3a0445.
+# Cores: fundo cinza escuro (tema) e detalhes em #3a0445.
 CSS = """
 <style>
 /* Barra de cima no estilo de site: logo à esquerda e abas em maiúsculas */
-[data-testid="stHeader"] { background: #071022; border-bottom: 1px solid #3a0445; }
+[data-testid="stHeader"] { background: #18181B; border-bottom: 1px solid #3a0445; }
 [data-testid="stHeaderLogo"] { height: 2.3rem; max-width: none; margin-right: 2rem; }
 /* Sem o título grande, o conteúdo pode começar mais perto da barra */
 .block-container { padding-top: 4rem; }
@@ -93,7 +93,7 @@ CSS = """
     letter-spacing: 0.04em;
 }
 [class*="st-key-card_"] {
-    background: #0F1B33;
+    background: #26262B;
     border: 1px solid #3a0445;
     border-radius: 10px;
     padding: 10px 12px;
@@ -138,7 +138,7 @@ img.foto { vertical-align: middle; }
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 6px 8px;
-    background: #0F1B33;
+    background: #26262B;
     border: 1px solid #3a0445;
     border-radius: 10px;
     padding: 12px;
@@ -157,7 +157,7 @@ img.foto { vertical-align: middle; }
     z-index: 100;
     min-width: 280px;
     text-align: left;
-    background: #14213D;
+    background: #2A2A30;
     border: 1px solid #3a0445;
     border-radius: 8px;
     padding: 10px 12px;
