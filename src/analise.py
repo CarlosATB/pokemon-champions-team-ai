@@ -153,23 +153,30 @@ def matriz_defensiva(time: list[dict]) -> list[dict]:
 def cobertura_ofensiva(time: list[dict]) -> list[dict]:
     """Para cada tipo de Pokémon: o melhor dano que os golpes de ataque do time causam.
 
-    [{tipo, melhor: 2.0, quem: ["Poison Jab (Beedrill)"]}]  (melhor = maior multiplicador)
+    [{tipo, melhor: 2.0, quem: ["Poison Jab (Beedrill)"],
+      supereficazes: [{golpe, tipo_golpe, pokemon, id}]}]
+    melhor = maior multiplicador; supereficazes = todos os golpes que dão dano dobrado (ou mais).
     Só contam os golpes escolhidos: um Pokémon sem golpes de ataque não entra na conta.
     """
     # Todos os golpes de ataque do time, como (golpe, tipo do golpe, Pokémon que usa).
-    golpes = [(golpe, tipo, m["especie"])
+    golpes = [(golpe, tipo, m)
               for m in time for golpe, tipo in golpes_de_ataque_do_membro(m)]
     linhas = []
     for tipo_alvo in TIPOS:
         melhor = 0.0
         quem = []
-        for golpe, tipo, nome in golpes:
+        supereficazes = []
+        for golpe, tipo, membro in golpes:
             dano = efetividade(tipo, [tipo_alvo])
             if dano > melhor:
-                melhor, quem = dano, [f"{golpe} ({nome})"]
+                melhor, quem = dano, [f"{golpe} ({membro['especie']})"]
             elif dano == melhor:
-                quem.append(f"{golpe} ({nome})")
-        linhas.append({"tipo": tipo_alvo, "melhor": melhor, "quem": quem})
+                quem.append(f"{golpe} ({membro['especie']})")
+            if dano >= 2:
+                supereficazes.append({"golpe": golpe, "tipo_golpe": tipo,
+                                      "pokemon": membro["especie"], "id": membro["forma"]})
+        linhas.append({"tipo": tipo_alvo, "melhor": melhor, "quem": quem,
+                       "supereficazes": supereficazes})
     return linhas
 
 

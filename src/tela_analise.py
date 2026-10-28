@@ -13,7 +13,7 @@ from src.dicas import FUNCOES_ESSENCIAIS, gerar_dicas
 from src.funcoes_duplas import FUNCOES
 from src.tipos import TIPOS, TIPOS_PT
 from src.validacao import validar_time
-from src.visual import etiqueta_tipo, etiquetas, imagem
+from src.visual import etiqueta_tipo, etiquetas, foto, grade_de_tipos, imagem
 
 TEXTO_DANO = {4: "4x", 2: "2x", 1: "", 0.5: "½", 0.25: "¼", 0: "0"}
 CORES_DANO = {"4x": "#e74c3c", "2x": "#f5b7b1", "½": "#a9dfbf", "¼": "#52be80", "0": "#5dade2"}
@@ -65,7 +65,23 @@ def mostrar_dicas(time: list[dict], analise: dict) -> None:
             st.markdown(_lista_em_markdown(textos) if textos else "Nenhum.")
 
 
-def mostrar_fraquezas(analise: dict, nomes: list[str]) -> None:
+def _sinal(numero: int) -> tuple[str, str]:
+    """3 -> ("+3", "verde");  -2 -> ("-2", "vermelho");  0 -> ("0", "neutro")"""
+    if numero > 0:
+        return f"+{numero}", "verde"
+    if numero < 0:
+        return str(numero), "vermelho"
+    return "0", "neutro"
+
+
+def _tabela_de_quem(linhas: list[tuple[str, str, str]]) -> str:
+    """Linhas (coluna da esquerda, nome do Pokémon, id) -> tabela HTML com fotinhas."""
+    return "<table>" + "".join(
+        f"<tr><td>{esquerda}</td><td>{nome} {foto(pid, 28)}</td></tr>"
+        for esquerda, nome, pid in linhas) + "</table>"
+
+
+def mostrar_fraquezas(analise: dict, time: list[dict]) -> None:
     perigosos = tipos_perigosos(analise)
     if perigosos:
         st.markdown("**Tipos perigosos para o seu time:** " + " ".join(
@@ -73,18 +89,33 @@ def mostrar_fraquezas(analise: dict, nomes: list[str]) -> None:
             for p in perigosos), unsafe_allow_html=True)
     else:
         st.markdown("✅ Nenhum tipo de golpe acerta forte metade do time sem resposta.")
-    st.caption("Dano que cada Pokémon toma de cada tipo de golpe "
-               "(já contando habilidades como Levitate e a forma Mega).")
-    linhas = []
+    st.caption("Número = quantos seguram (resistem ou são imunes) − quantos são fracos. "
+               "Vermelho: mais fracos do que respostas. Passe o mouse num tipo para ver quem.")
+
+    ids = {m["especie"]: m["forma"] for m in time}
+    celulas = []
     for linha in analise["defesa"]:
-        celulas = {nome: TEXTO_DANO.get(x, f"{x}x") for nome, x in linha["dano"].items()}
-        linhas.append({"Tipo do golpe": TIPOS_PT[linha["tipo"]], **celulas,
-                       "Fracos": len(linha["fracos"]),
-                       "Resistem/imunes": len(linha["resistem"]) + len(linha["imunes"])})
-    tabela = pd.DataFrame(linhas).style.map(
-        lambda v: f"background-color: {CORES_DANO[v]}; color: black" if v in CORES_DANO else "",
-        subset=nomes)
-    st.dataframe(tabela, hide_index=True, width="stretch", height=670)
+        seguram = linha["resistem"] + linha["imunes"]
+        numero, cor = _sinal(len(seguram) - len(linha["fracos"]))
+        quem = ([(f"toma {TEXTO_DANO[linha['dano'][n]]}", n, ids[n]) for n in linha["fracos"]]
+                + [(f"toma {TEXTO_DANO[linha['dano'][n]]}", n, ids[n]) for n in seguram])
+        detalhe = (f"Golpes de {etiqueta_tipo(linha['tipo'])} contra o seu time:"
+                   + (_tabela_de_quem(quem) if quem else "<br>Todos tomam dano normal."))
+        celulas.append({"tipo": linha["tipo"], "numero": numero, "cor": cor, "detalhe": detalhe})
+    st.markdown(grade_de_tipos(celulas), unsafe_allow_html=True)
+
+    with st.expander("Ver a tabela completa"):
+        nomes = [m["especie"] for m in time]
+        linhas = []
+        for linha in analise["defesa"]:
+            celulas_tabela = {nome: TEXTO_DANO.get(x, f"{x}x") for nome, x in linha["dano"].items()}
+            linhas.append({"Tipo do golpe": TIPOS_PT[linha["tipo"]], **celulas_tabela,
+                           "Fracos": len(linha["fracos"]),
+                           "Resistem/imunes": len(linha["resistem"]) + len(linha["imunes"])})
+        tabela = pd.DataFrame(linhas).style.map(
+            lambda v: f"background-color: {CORES_DANO[v]}; color: black" if v in CORES_DANO else "",
+            subset=nomes)
+        st.dataframe(tabela, hide_index=True, width="stretch", height=670)
 
 
 def mostrar_cobertura(analise: dict, time: list[dict]) -> None:
@@ -94,19 +125,24 @@ def mostrar_cobertura(analise: dict, time: list[dict]) -> None:
     if len(analise["sem_ataques"]) == len(time):
         st.info("Escolha os golpes nos cards para ver a cobertura ofensiva.")
         return
-    fracos = [c["tipo"] for c in analise["cobertura"] if c["melhor"] < 2]
+    fracos = [c["tipo"] for c in analise["cobertura"] if not c["supereficazes"]]
     if fracos:
-        st.markdown("**Nenhum golpe acerta com dano dobrado:** " + etiquetas(fracos),
+        st.markdown("**Nenhum golpe é supereficaz contra:** " + etiquetas(fracos),
                     unsafe_allow_html=True)
     else:
-        st.markdown("✅ O time acerta todos os tipos com dano dobrado.")
-    st.caption("O melhor dano que o time causa em cada tipo, só com os golpes de ataque "
-               "escolhidos. Em cada linha: o golpe e quem usa.")
-    st.dataframe([{
-        "Tipo do alvo": TIPOS_PT[c["tipo"]],
-        "Melhor dano": TEXTO_DANO.get(c["melhor"], f"{c['melhor']}x") or "1x",
-        "Golpes (quem usa)": ", ".join(c["quem"]) if c["melhor"] >= 2 else "-",
-    } for c in analise["cobertura"]], hide_index=True, width="stretch", height=670)
+        st.markdown("✅ O time tem golpe supereficaz contra todos os tipos.")
+    st.caption("Número = quantos golpes do time são supereficazes contra o tipo. "
+               "Passe o mouse num tipo para ver os golpes e quem usa.")
+
+    celulas = []
+    for c in analise["cobertura"]:
+        numero, cor = _sinal(len(c["supereficazes"]))
+        quem = [(f"{etiqueta_tipo(g['tipo_golpe'], pequena=True)} {g['golpe']}", g["pokemon"], g["id"])
+                for g in c["supereficazes"]]
+        detalhe = (f"Supereficaz contra {etiqueta_tipo(c['tipo'])}:"
+                   + (_tabela_de_quem(quem) if quem else "<br>Nenhum golpe do time."))
+        celulas.append({"tipo": c["tipo"], "numero": numero, "cor": cor, "detalhe": detalhe})
+    st.markdown(grade_de_tipos(celulas), unsafe_allow_html=True)
 
 
 def mostrar_funcoes(analise: dict) -> None:
@@ -155,7 +191,7 @@ def mostrar_analise(time: list[dict]) -> list[dict]:
     aba_def, aba_of, aba_func, aba_ameacas = st.tabs(
         ["Fraquezas e resistências", "Cobertura ofensiva", "Funções de duplas", "Ameaças do meta"])
     with aba_def:
-        mostrar_fraquezas(analise, [m["especie"] for m in time_ok])
+        mostrar_fraquezas(analise, time_ok)
     with aba_of:
         mostrar_cobertura(analise, time_ok)
     with aba_func:

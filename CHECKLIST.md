@@ -162,7 +162,7 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 
 ### Fase 4 — Interface (Streamlit)
 - [x] Tela de entrada do time — **4.1**: "Montar o time" é a única tela (`src/tela_montar.py`); 6 cards (2×3) no estilo do teambuilder: Pokémon no topo, imagem com os tipos (etiquetas coloridas) ao lado, item com ícone embaixo, 4 golpes (com etiqueta do tipo) e habilidade à direita; tema escuro (`.streamlit/config.toml`, `src/visual.py`)
-- [x] Imagens dos Pokémon (349) e ícones dos itens (165) salvos em `data/sprites/` (`python -m src.baixar_dados imagens`, PokéAPI pelo GitHub): o site não depende de internet para mostrar as imagens
+- [x] Imagens dos Pokémon (349) e ícones dos itens (165) salvos em `static/sprites/` (era `data/sprites/` até a 4.3) (`python -m src.baixar_dados imagens`, PokéAPI pelo GitHub): o site não depende de internet para mostrar as imagens
 - [x] Botão do dado (Pokémon aleatório entre os 60 mais usados, já montado com a recomendação, sem repetir espécie nem 2ª Mega) e botão de ajustes (natureza e pontos de status, até 32 cada e 66 no total)
 - [x] Botão para importar/exportar time no formato do Showdown — **4.1**: aba "Colar do Showdown" removida; Importar (cola o texto ou carrega um time de exemplo → preenche os cards, avisa o que não entrou) e Exportar (texto pronto para o Showdown; Mega sai como forma normal + Pedra Mega) — `src/importar_exportar.py`
 - [x] "Montar com esta recomendação" também preenche natureza e pontos de status
@@ -173,6 +173,17 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 - [x] Mensagens de erro amigáveis — o Importar avisa em português ("Você quis dizer...?"); na análise, erros agrupados numa caixa e "time incompleto" virou informação (azul), não aviso — **4.2**
 - [x] "Sobre os dados": tabela dos 20 mais usados com nomes bonitos (antes mostrava ids como `grassysurge`) — **4.2**
 - [x] Testes — **4.2**: `tipos_perigosos`, time incompleto e times de exemplo; 81 passando
+
+### Fase 4.3 — Estética minimalista (pedidos do Carlos em 28/10)
+- [x] Cores: fundo cinza escuro (`#1E1E22`; o `#160D18` ficou roxo demais, e o preto e o azul escuro não agradaram) e detalhes em `#3a0445` (`.streamlit/config.toml`, CSS em `src/visual.py`)
+- [x] Borda em cada seletor do card (golpe, habilidade, item)
+- [x] Fotinha do Pokémon ao lado de cada nome na lista de escolha (CSS por posição da opção: `css_fotos_na_lista`)
+- [x] Cobertura ofensiva em grade de 18 tipos: número = golpes supereficazes; passar o mouse mostra os golpes e quem usa, com fotinho (sem a coluna "2x") — `cobertura_ofensiva` agora devolve `supereficazes`
+- [x] Fraquezas na mesma grade: número = quantos seguram − quantos são fracos; passar o mouse mostra quem toma quanto; tipos perigosos continuam em cima; tabela completa num "Ver a tabela completa"
+- [x] Nome do site como logo na barra de cima (`static/logo.svg` com `st.logo`), abas em maiúsculas sem ícones, no estilo de barra de site
+- [x] Abas no topo (`st.navigation`): Montar o time, Mais usados (20 mais usados com imagem, `src/tela_mais_usados.py`) e Sobre (`src/tela_sobre.py`, a desenvolver); o time continua montado ao trocar de aba
+- [x] Imagens movidas para `static/sprites/` (servidas pelo Streamlit em `app/static/`, para usar dentro do HTML)
+- [x] Testes — 2 novos; 83 passando
 
 ### Fase 5 — Publicação e testes
 - [x] Deploy no Streamlit Community Cloud funcionando — https://pokemon-champions-team-ai.streamlit.app/ (atualiza a cada merge na `main`)
@@ -210,3 +221,4 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 | 27/10/2026 | Fase 4.1 (branch `fase-4-montar-o-time`): "Montar o time" virou a única tela de entrada, com cards no estilo do teambuilder (imagem, tipos coloridos, ícone do item, tema escuro), dado, ajustes de natureza/EVs e botões Importar/Exportar no lugar da aba "Colar do Showdown". Imagens salvas em `data/sprites/`. 79 testes passando. Próximo: 4.2 (análise, recomendações, mensagens e times de exemplo). |
 | 27/10/2026 | Fase 4.2 (branch `fase-4-2-analise`, em cima da 4.1): análise com resumo em números, dicas em 3 colunas, etiquetas de tipo, funções e ameaças em cartões; recomendações com imagens e botões que levam a sugestão para os cards (adicionar parceiro, trocar Pokémon); times de exemplo com EVs + "Começo de time"; mensagens revisadas. `app.py` ficou só com as 3 partes. 81 testes passando. Fase 4 concluída; próximo: Fase 5 (teste completo no site publicado e revisão do código). |
 | 27/10/2026 | PRs #7 e #8 mergeados: Fase 4 concluída. Fase 5 (branch `fase-5-revisao`): Meowsticite corrigida (Pedras Mega com mais de uma forma), 1ª revisão do código. Falta o teste completo no site publicado (pelo Carlos). 81 testes passando. |
+| 28/10/2026 | Fase 4.3 (branch `fase-4-3-visual`): estética minimalista (fundo cinza escuro + detalhes #3a0445), bordas nos seletores, fotinha na lista de Pokémon, cobertura e fraquezas em grade de tipos com detalhes ao passar o mouse, abas no topo (Montar o time, Mais usados, Sobre). 83 testes passando. |

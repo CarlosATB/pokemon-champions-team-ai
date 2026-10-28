@@ -66,3 +66,11 @@ def test_mega_so_pode_segurar_a_propria_pedra():
     assert opcoes_de_itens("aggronmega") == ["aggronite"]
     assert pedra_da_mega("beedrill") is None  # a forma normal escolhe qualquer item
     assert "beedrillite" in opcoes_de_itens("beedrill")
+
+
+def test_fotos_na_lista_seguem_a_ordem_das_opcoes():
+    from src.visual import css_fotos_na_lista
+    css = css_fotos_na_lista(["incineroar", "rillaboom"])
+    # data-key 0 é "Escolha um Pokémon"; o 1º Pokémon é o data-key 1
+    assert '[data-key="1"] > div{background-image:url(app/static/sprites/incineroar.png)}' in css
+    assert 'data-key="2"' in css and "rillaboom.png" in css

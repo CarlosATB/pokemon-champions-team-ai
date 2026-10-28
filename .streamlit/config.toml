@@ -1,7 +1,13 @@
-# Tema escuro, parecido com o teambuilder do Showdown.
+# Visual do site: minimalista, fundo cinza escuro com detalhes em #3a0445.
 [theme]
 base = "dark"
-primaryColor = "#e3350d"
-backgroundColor = "#1b1b1f"
-secondaryBackgroundColor = "#2c2c31"
-textColor = "#f0f0f0"
+backgroundColor = "#1E1E22"
+secondaryBackgroundColor = "#2A2A30"
+primaryColor = "#9d4bbd"
+textColor = "#ECE6EF"
+borderColor = "#3a0445"
+showWidgetBorder = true
+
+[server]
+# Serve a pasta static/ (imagens) em app/static/, para usar as imagens no HTML.
+enableStaticServing = true

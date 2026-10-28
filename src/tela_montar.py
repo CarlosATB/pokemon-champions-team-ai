@@ -23,7 +23,7 @@ from src.opcoes import (
 )
 from src.recomendacao import NOMES_EVS, sugerir_para_pokemon
 from src.times_exemplo import TIMES_EXEMPLO
-from src.visual import CATEGORIAS, etiqueta_tipo, etiquetas
+from src.visual import CATEGORIAS, css_fotos_na_lista, etiqueta_tipo, etiquetas
 
 VAGAS = range(config.TEAM_SIZE)
 
@@ -230,6 +230,7 @@ def tela_montar_o_time() -> list[dict]:
     # Nome como no Showdown quando existe ("Indeedee-F"); senão, o da PokéAPI.
     nomes = {pid: uso.get(pid, info)["nome"] for pid, info in pokemon.items() if pode_escolher(pid)}
     ids_ordenados = sorted(nomes, key=nomes.get)
+    st.markdown(css_fotos_na_lista(ids_ordenados), unsafe_allow_html=True)
 
     # Os botões ficam em cima, mas o Exportar precisa dos cards: guardamos um
     # lugar para eles e desenhamos depois.
