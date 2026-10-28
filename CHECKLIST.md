@@ -175,7 +175,7 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 - [x] Testes — **4.2**: `tipos_perigosos`, time incompleto e times de exemplo; 81 passando
 
 ### Fase 4.3 — Estética minimalista (pedidos do Carlos em 28/10)
-- [x] Cores: fundo `#160D18` e detalhes em `#3a0445` (`.streamlit/config.toml`, CSS em `src/visual.py`)
+- [x] Cores: fundo preto (`#000000`; o `#160D18` ficou roxo demais) e detalhes em `#3a0445` (`.streamlit/config.toml`, CSS em `src/visual.py`)
 - [x] Borda em cada seletor do card (golpe, habilidade, item)
 - [x] Fotinha do Pokémon ao lado de cada nome na lista de escolha (CSS por posição da opção: `css_fotos_na_lista`)
 - [x] Cobertura ofensiva em grade de 18 tipos: número = golpes supereficazes; passar o mouse mostra os golpes e quem usa, com fotinho (sem a coluna "2x") — `cobertura_ofensiva` agora devolve `supereficazes`
@@ -220,4 +220,4 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 | 27/10/2026 | Fase 4.1 (branch `fase-4-montar-o-time`): "Montar o time" virou a única tela de entrada, com cards no estilo do teambuilder (imagem, tipos coloridos, ícone do item, tema escuro), dado, ajustes de natureza/EVs e botões Importar/Exportar no lugar da aba "Colar do Showdown". Imagens salvas em `data/sprites/`. 79 testes passando. Próximo: 4.2 (análise, recomendações, mensagens e times de exemplo). |
 | 27/10/2026 | Fase 4.2 (branch `fase-4-2-analise`, em cima da 4.1): análise com resumo em números, dicas em 3 colunas, etiquetas de tipo, funções e ameaças em cartões; recomendações com imagens e botões que levam a sugestão para os cards (adicionar parceiro, trocar Pokémon); times de exemplo com EVs + "Começo de time"; mensagens revisadas. `app.py` ficou só com as 3 partes. 81 testes passando. Fase 4 concluída; próximo: Fase 5 (teste completo no site publicado e revisão do código). |
 | 27/10/2026 | PRs #7 e #8 mergeados: Fase 4 concluída. Fase 5 (branch `fase-5-revisao`): Meowsticite corrigida (Pedras Mega com mais de uma forma), 1ª revisão do código. Falta o teste completo no site publicado (pelo Carlos). 81 testes passando. |
-| 28/10/2026 | Fase 4.3 (branch `fase-4-3-visual`): estética minimalista (#160D18 + #3a0445), bordas nos seletores, fotinha na lista de Pokémon, cobertura e fraquezas em grade de tipos com detalhes ao passar o mouse, abas no topo (Montar o time, Mais usados, Sobre). 83 testes passando. |
+| 28/10/2026 | Fase 4.3 (branch `fase-4-3-visual`): estética minimalista (fundo preto + detalhes #3a0445), bordas nos seletores, fotinha na lista de Pokémon, cobertura e fraquezas em grade de tipos com detalhes ao passar o mouse, abas no topo (Montar o time, Mais usados, Sobre). 83 testes passando. |

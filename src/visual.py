@@ -79,11 +79,11 @@ def css_fotos_na_lista(ids_ordenados: list[str]) -> str:
 
 # CSS colocado uma vez no topo da página (st.markdown com unsafe_allow_html).
 # Os cards são st.container(key="card_N"): o Streamlit dá a classe "st-key-card_N".
-# Cores: fundo #160D18 (tema) e detalhes em #3a0445.
+# Cores: fundo preto (tema) e detalhes em #3a0445.
 CSS = """
 <style>
 [class*="st-key-card_"] {
-    background: #1d1222;
+    background: #0f0f0f;
     border: 1px solid #3a0445;
     border-radius: 10px;
     padding: 10px 12px;
@@ -128,7 +128,7 @@ img.foto { vertical-align: middle; }
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 6px 8px;
-    background: #1d1222;
+    background: #0f0f0f;
     border: 1px solid #3a0445;
     border-radius: 10px;
     padding: 12px;
@@ -147,7 +147,7 @@ img.foto { vertical-align: middle; }
     z-index: 100;
     min-width: 280px;
     text-align: left;
-    background: #21142A;
+    background: #161616;
     border: 1px solid #3a0445;
     border-radius: 8px;
     padding: 10px 12px;
