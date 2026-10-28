@@ -61,3 +61,10 @@ def test_dado_nao_repete_especie_nem_segunda_mega():
         sorteado = pokemon_aleatorio(time, random.Random(semente))
         assert sorteado not in ("rillaboom", "salamence", "salamencemega")
         assert not dados.carregar_pokemon()[sorteado]["mega"]
+
+
+def test_exportar_floette_mega_sai_como_floette_eternal():
+    # A Floette comum não existe no Champions: quem Mega Evolui é a Eternal.
+    texto = exportar([{"pokemon": "floettemega", "item": "floettite", "habilidade": None,
+                       "golpes": ["moonblast"], "natureza": None, "evs": {}}])
+    assert texto.splitlines()[0] == "Floette-Eternal @ Floettite"

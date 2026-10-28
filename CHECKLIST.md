@@ -191,6 +191,7 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 - [ ] Teste completo no site publicado (não só local) — a nuvem do Claude não acessa o streamlit.app; o Carlos testa pelo navegador (roteiro no PR da Fase 5)
 - [~] Revisão do código: nomes claros, comentários nos trechos que serão mostrados — 1ª passada feita (`app.py` só com as 3 partes, uma tela por arquivo, `_lista` → `juntar_nomes`, docstrings antigas corrigidas); revisar de novo quando o roteiro da Fase 7 definir quais trechos mostrar
 - [x] Meowsticite: Pedra Mega que serve a duas formas (Meowstic-M e Meowstic-F) agora é lida (`megas` em `itens.json`; 81 Pedras Mega)
+- [x] Floette-Eternal e Floette-Mega sem golpes (e o Exportar dava erro): o bloco dela no `learnsets.ts` tem `inherit: true` e a Floette comum não existe no Champions. Movepool corrigido e `opcoes.forma_normal` (a Mega usa a forma que segura a pedra)
 
 ### Fase 6 — Algoritmo Genético (opcional)
 - [ ] Função de "nota" do time (cobertura + funções + sinergia)
@@ -222,3 +223,4 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 | 27/10/2026 | Fase 4.2 (branch `fase-4-2-analise`, em cima da 4.1): análise com resumo em números, dicas em 3 colunas, etiquetas de tipo, funções e ameaças em cartões; recomendações com imagens e botões que levam a sugestão para os cards (adicionar parceiro, trocar Pokémon); times de exemplo com EVs + "Começo de time"; mensagens revisadas. `app.py` ficou só com as 3 partes. 81 testes passando. Fase 4 concluída; próximo: Fase 5 (teste completo no site publicado e revisão do código). |
 | 27/10/2026 | PRs #7 e #8 mergeados: Fase 4 concluída. Fase 5 (branch `fase-5-revisao`): Meowsticite corrigida (Pedras Mega com mais de uma forma), 1ª revisão do código. Falta o teste completo no site publicado (pelo Carlos). 81 testes passando. |
 | 28/10/2026 | Fase 4.3 (branch `fase-4-3-visual`): estética minimalista (fundo cinza escuro + detalhes #3a0445), bordas nos seletores, fotinha na lista de Pokémon, cobertura e fraquezas em grade de tipos com detalhes ao passar o mouse, abas no topo (Montar o time, Mais usados, Sobre). 83 testes passando. |
+| 28/10/2026 | Correção (branch `corrige-floette`): Floette-Eternal e Floette-Mega agora têm golpes e o Exportar não quebra mais com a Floette-Mega. 86 testes passando (com a Fase 4.3). |

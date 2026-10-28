@@ -52,6 +52,19 @@ def pedra_da_mega(pokemon_id: str) -> str | None:
     return None
 
 
+def forma_normal(pokemon_id: str) -> str:
+    """Forma que Mega Evolui nesta Mega (Charizard-Mega-Y -> Charizard).
+
+    Quase sempre é a espécie base. A Floette-Mega é exceção: quem Mega Evolui
+    é a Floette-Eternal, e a Floette comum nem existe no Champions.
+    """
+    info = dados.carregar_pokemon().get(pokemon_id, {})
+    pedra = pedra_da_mega(pokemon_id)
+    if pedra and info.get("especie_base") not in dados.carregar_pokemon():
+        return dados.carregar_itens()["pedras_mega"][pedra]["pokemon"]
+    return info.get("especie_base", pokemon_id)
+
+
 def opcoes_de_itens(pokemon_id: str) -> list[str]:
     """ids dos itens legais, sem Pedras Mega de outros Pokémon.
 
@@ -81,8 +94,7 @@ def opcoes_de_golpes(pokemon_id: str) -> list[str]:
     """ids dos golpes que o Pokémon aprende no Champions (a Mega usa os da forma normal)."""
     movepool = dados.carregar_movepool()
     golpes = dados.carregar_golpes()
-    especie = dados.carregar_pokemon().get(pokemon_id, {}).get("especie_base", pokemon_id)
-    aprende = movepool.get(pokemon_id) or movepool.get(especie) or []
+    aprende = movepool.get(pokemon_id) or movepool.get(forma_normal(pokemon_id)) or []
     aprende = [g for g in aprende if g in golpes]
     return _ordenar(aprende, _uso_do_pokemon(pokemon_id).get("golpes", {}),
                     lambda g: golpes[g]["nome"])

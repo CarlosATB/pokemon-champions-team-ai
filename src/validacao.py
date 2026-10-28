@@ -11,6 +11,7 @@ import difflib
 
 from src import config, dados
 from src.nomes import to_id
+from src.opcoes import forma_normal
 
 
 def sugestao_de_nome(nome_id: str) -> str:
@@ -80,7 +81,7 @@ def validar_time(time: list[dict]) -> list[dict]:
         # 4. Golpes: no máximo 4, e que o Pokémon aprenda no Champions.
         if len(membro["golpes"]) > 4:
             erro(f"{nome} tem {len(membro['golpes'])} golpes; o máximo é 4.")
-        aprende = movepool.get(membro["id"]) or movepool.get(especie)
+        aprende = movepool.get(membro["id"]) or movepool.get(forma_normal(membro["id"]))
         for golpe in membro["golpes"]:
             golpe_id = to_id(golpe)
             if golpe_id not in golpes:
