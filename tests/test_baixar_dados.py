@@ -84,6 +84,16 @@ def test_processar_movepool():
     assert processar_movepool(texto) == {"incineroar": ["fakeout", "protect"]}
 
 
+def test_processar_movepool_com_inherit():
+    texto = (
+        "export const Learnsets = {\n"
+        "\tfloetteeternal: {\n\t\tinherit: true,\n\t\tlearnset: {\n"
+        "\t\t\tmoonblast: [\"9M\"],\n\t\t},\n\t},\n"
+        "};\n"
+    )
+    assert processar_movepool(texto) == {"floetteeternal": ["moonblast"]}
+
+
 def test_processar_itens_e_pedras_mega():
     base = (
         "export const Items = {\n"

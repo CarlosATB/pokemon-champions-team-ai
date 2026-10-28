@@ -30,6 +30,11 @@ def test_mega_usa_os_golpes_da_forma_normal():
     assert "tailwind" in opcoes_de_golpes("salamencemega")
 
 
+def test_floette_eternal_e_a_mega_tem_golpes():
+    assert "lightofruin" in opcoes_de_golpes("floetteeternal")
+    assert "moonblast" in opcoes_de_golpes("floettemega")
+
+
 def test_time_montado_vai_para_a_analise():
     time = montar_time([
         {"especie": "Rillaboom", "item": "Miracle Seed", "habilidade": "Grassy Surge",

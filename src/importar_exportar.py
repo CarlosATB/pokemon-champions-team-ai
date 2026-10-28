@@ -9,7 +9,7 @@ Botões Importar e Exportar da tela "Montar o time" (formato do Pokémon Showdow
 from src import config, dados
 from src.leitor import ler_time
 from src.nomes import to_id
-from src.opcoes import (opcoes_de_golpes, opcoes_de_habilidades, opcoes_de_itens,
+from src.opcoes import (forma_normal, opcoes_de_golpes, opcoes_de_habilidades, opcoes_de_itens,
                         pedra_da_mega, pode_escolher)
 from src.recomendacao import NOMES_EVS
 from src.validacao import sugestao_de_nome
@@ -107,7 +107,7 @@ def exportar(cards: list[dict]) -> str:
     for card in cards:
         pid, habilidade = card["pokemon"], card["habilidade"]
         if pokemon[pid]["mega"]:
-            pid = pokemon[pid]["especie_base"]
+            pid = forma_normal(pid)
             habilidade = (opcoes_de_habilidades(pid) or [None])[0]
         linhas = [nome(pid) + (f" @ {itens[card['item']]}" if card["item"] else "")]
         if habilidade:

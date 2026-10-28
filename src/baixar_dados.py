@@ -226,10 +226,11 @@ def _campo(bloco: str, nome: str) -> str | None:
 def processar_movepool(learnsets_ts: str) -> dict[str, list[str]]:
     """Lê o learnsets.ts do mod: {pokemon_id: [golpes que ele aprende]}.
 
-    Megas não têm lista própria: usam a da forma normal (ver src/analise).
+    Megas não têm lista própria: usam a da forma normal (ver src/opcoes).
+    Alguns blocos têm "inherit: true" antes do learnset (ex.: floetteeternal).
     """
     blocos = re.findall(
-        r"^\t(\w+): \{\n\t\tlearnset: \{(.*?)^\t\t\}", learnsets_ts, re.MULTILINE | re.DOTALL
+        r"^\t(\w+): \{\n(?:\t\tinherit: true,\n)?\t\tlearnset: \{(.*?)^\t\t\}", learnsets_ts, re.MULTILINE | re.DOTALL
     )
     return {pokemon_id: re.findall(r"^\t\t\t(\w+):", golpes, re.MULTILINE)
             for pokemon_id, golpes in blocos}
