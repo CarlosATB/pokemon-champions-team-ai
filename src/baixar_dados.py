@@ -15,7 +15,7 @@ São três fontes:
 1. Pokémon Showdown -> quais Pokémon (e Megas) são legais na regulamentação,
                        e também golpes, movepool, itens e nomes das habilidades do Champions.
 2. PokéAPI          -> tipos, status base e habilidades de cada Pokémon legal,
-                       e as imagens dos Pokémon e dos itens (data/sprites/).
+                       e as imagens dos Pokémon e dos itens (static/sprites/).
 3. Smogon           -> estatísticas de uso: habilidades, itens, golpes,
                        EVs e parceiros mais usados por cada Pokémon.
 

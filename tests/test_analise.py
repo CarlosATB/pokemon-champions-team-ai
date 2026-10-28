@@ -105,3 +105,11 @@ def test_tipos_perigosos():
     tipos = [p["tipo"] for p in perigosos]
     assert tipos[0] == "Ice"  # 4 dragões/voadores fracos a Gelo
     assert all(p["fracos"] >= 2 and p["fracos"] > p["seguram"] for p in perigosos)
+
+
+def test_cobertura_lista_os_golpes_supereficazes():
+    cobertura = {c["tipo"]: c for c in cobertura_ofensiva(time_exemplo("Meta"))}
+    agua = cobertura["Water"]["supereficazes"]
+    assert {"golpe": "Wood Hammer", "tipo_golpe": "Grass", "pokemon": "Rillaboom",
+            "id": "rillaboom"} in agua
+    assert all(g["tipo_golpe"] in ("Grass", "Electric") for g in agua)
