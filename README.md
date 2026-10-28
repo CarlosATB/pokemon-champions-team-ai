@@ -49,8 +49,8 @@ pokemon-champions-team-ai/
 │   └── times_exemplo.py # times prontos para testes e demonstração
 ├── data/
 │   ├── raw/            # dados baixados (Smogon, PokéAPI)
-│   ├── processed/      # dados tratados usados pelo app
-│   └── sprites/        # imagens dos Pokémon e dos itens (PokéAPI)
+│   └── processed/      # dados tratados usados pelo app
+├── static/sprites/     # imagens dos Pokémon e dos itens (PokéAPI), servidas pelo Streamlit
 ├── tests/              # testes automatizados
 ├── requirements.txt
 └── CHECKLIST.md        # acompanhamento do projeto

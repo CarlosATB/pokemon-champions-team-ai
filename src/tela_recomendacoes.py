@@ -31,7 +31,7 @@ def mostrar_por_pokemon(time: list[dict]) -> None:
     abas = st.tabs([m["especie"] for m in time])
     for aba, membro, sugestao in zip(abas, time, recomendar_time(time)):
         with aba:
-            col_imagem, col1, col2 = st.columns([1, 3, 3])
+            col_imagem, col1, col2 = st.columns([2, 4, 4])
             if imagem(membro["forma"]) or imagem(membro["id"]):
                 col_imagem.image(imagem(membro["forma"]) or imagem(membro["id"]), width=96)
             if not sugestao["tem_dados"]:
