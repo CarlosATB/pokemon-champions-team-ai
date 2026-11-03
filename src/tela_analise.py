@@ -11,6 +11,7 @@ from src import dados
 from src.analise import analisar, tipos_perigosos
 from src.dicas import FUNCOES_ESSENCIAIS, gerar_dicas
 from src.funcoes_duplas import FUNCOES
+from src.modelo_nota import carregar_modelo, nota_do_time, pesos_do_modelo
 from src.tipos import TIPOS, TIPOS_PT
 from src.validacao import validar_time
 from src.visual import etiqueta_tipo, etiquetas, foto, grade_de_tipos, imagem
@@ -178,6 +179,48 @@ def mostrar_ameacas(analise: dict) -> None:
                         f"**Suas respostas:** {', '.join(ameaca['respostas']) or 'nenhuma'}")
 
 
+def mostrar_nota_ia(time: list[dict], analise: dict) -> None:
+    """Nota de 0 a 10 dada pelo modelo de Machine Learning (src/modelo_nota.py)."""
+    modelo = carregar_modelo()
+    resultado = nota_do_time(time, analise, modelo)
+    if resultado is None:
+        st.info("O modelo ainda não foi treinado. Rode: python -m src.modelo_nota")
+        return
+    st.caption("Um modelo de Machine Learning (Regressão Ridge) aprendeu, com "
+               f"{modelo['times_treino']} times de treino, a relação entre os números da "
+               "análise acima e a coesão dos times no meta (o quanto os jogadores de verdade "
+               "usam esses Pokémon juntos, segundo as estatísticas do Smogon).")
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Nota da IA", f"{resultado['nota']:.1f} / 10".replace(".", ","),
+                help="0 = parece um time aleatório; 10 = parece um time forte do meta.")
+    col2.metric("Coesão prevista", f"{resultado['coesao_prevista']:.1f}%".replace(".", ","),
+                help="O que o modelo prevê só olhando a análise do time.")
+    col3.metric("Coesão real no meta", f"{resultado['coesao_real']:.1f}%".replace(".", ","),
+                help="Média, entre os pares do time, da % de times com um que também têm o outro.")
+
+    st.markdown("**Por que essa nota?** Quanto cada característica somou ou tirou, "
+                "comparando com um time médio:")
+    st.dataframe(pd.DataFrame([
+        {"Característica": c["nome"], "Valor no seu time": c["valor"], "Pontos na nota": c["pontos"]}
+        for c in resultado["contribuicoes"]]).style.map(
+            lambda v: f"color: {'#52be80' if v > 0 else '#e74c3c' if v < 0 else 'inherit'}",
+            subset=["Pontos na nota"]).format({"Valor no seu time": "{:.2f}", "Pontos na nota": "{:+.2f}"}),
+        hide_index=True, width="stretch")
+    with st.expander("Como o modelo foi treinado e avaliado"):
+        teste, base = modelo["teste"], modelo["baseline_media"]
+        grupos = modelo["coesao_media_por_grupo"]
+        st.markdown(
+            f"- **Dados:** times montados com os parceiros mais comuns do meta "
+            f"(coesão média {grupos['meta']}%), times do meta com 1 a 3 trocas "
+            f"({grupos['perturbado']}%) e times aleatórios ({grupos['aleatorio']}%).\n"
+            f"- **Avaliação** em {modelo['times_teste']} times que o modelo não viu: "
+            f"R² = {teste['r2']} (erro médio de {teste['mae']} pontos de coesão). "
+            f"Chutando sempre a média: R² = {base['r2']} (erro de {base['mae']}).\n"
+            "- **Importância** de cada característica (pontos de nota por desvio padrão):")
+        st.dataframe(pd.DataFrame(pesos_do_modelo(modelo)).rename(
+            columns={"nome": "Característica", "peso": "Peso"}), hide_index=True, width="stretch")
+
+
 def mostrar_analise(time: list[dict]) -> list[dict]:
     """Desenha a seção inteira. Devolve só os Pokémon reconhecidos (para as recomendações)."""
     mostrar_problemas(validar_time(time))
@@ -188,8 +231,9 @@ def mostrar_analise(time: list[dict]) -> list[dict]:
     mostrar_resumo(time_ok, analise)
     st.subheader("Dicas")
     mostrar_dicas(time_ok, analise)
-    aba_def, aba_of, aba_func, aba_ameacas = st.tabs(
-        ["Fraquezas e resistências", "Cobertura ofensiva", "Funções de duplas", "Ameaças do meta"])
+    aba_def, aba_of, aba_func, aba_ameacas, aba_nota = st.tabs(
+        ["Fraquezas e resistências", "Cobertura ofensiva", "Funções de duplas", "Ameaças do meta",
+         "Nota da IA"])
     with aba_def:
         mostrar_fraquezas(analise, time_ok)
     with aba_of:
@@ -198,4 +242,6 @@ def mostrar_analise(time: list[dict]) -> list[dict]:
         mostrar_funcoes(analise)
     with aba_ameacas:
         mostrar_ameacas(analise)
+    with aba_nota:
+        mostrar_nota_ia(time_ok, analise)
     return time_ok

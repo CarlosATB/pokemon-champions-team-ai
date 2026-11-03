@@ -76,7 +76,8 @@ A IA precisa usar algoritmos que o grupo consiga explicar. **Não** é "mandar o
    - **funções de duplas:** controle de velocidade (Tailwind, Trick Room, Icy Wind), Fake Out, Intimidate, redirecionamento (Follow Me, Rage Powder), golpes que acertam os dois alvos, proteção (Protect, Wide Guard);
    - ameaças do meta: os Pokémon mais usados que o time tem dificuldade de enfrentar;
    - validação das regras do formato.
-3. **Algoritmo Genético (opcional)** — "evolui" o time testando trocas e mantendo as melhores, como seleção natural, para melhorar cobertura e sinergia.
+3. **Nota do time com Machine Learning** — Regressão Ridge que aprende, com os números da análise, a prever a coesão do time no meta (uso real do Smogon); a nota vem explicada pela contribuição de cada característica.
+4. **Algoritmo Genético (opcional)** — "evolui" o time testando trocas e mantendo as melhores, como seleção natural, para melhorar cobertura e sinergia.
 
 ### B5. Tecnologias e dados
 
@@ -193,6 +194,15 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 - [x] Meowsticite: Pedra Mega que serve a duas formas (Meowstic-M e Meowstic-F) agora é lida (`megas` em `itens.json`; 81 Pedras Mega)
 - [x] Floette-Eternal e Floette-Mega sem golpes (e o Exportar dava erro): o bloco dela no `learnsets.ts` tem `inherit: true` e a Floette comum não existe no Champions. Movepool corrigido e `opcoes.forma_normal` (a Mega usa a forma que segura a pedra)
 
+### Fase 5.1 — Nota do time com Machine Learning (pedido do usuário em 02/11)
+- [x] Características numéricas tiradas de `analisar()` (15: tipos perigosos, fraquezas, 4x, resistências, tipos sem resposta, cobertura 2x, sem ataques, 6 funções de duplas, ameaças) — `src/modelo_nota.py`
+- [x] Rótulo vindo do uso real: coesão no meta (confiança média entre os pares, pelos parceiros do `uso.json`)
+- [x] Dataset: 400 times do meta (por co-ocorrência), 400 perturbados (1 a 3 trocas) e 400 aleatórios
+- [x] Regressão Ridge feita com numpy (sem dependência nova); 80/20 treino/teste: R² 0,68 contra 0 de chutar a média
+- [x] Modelo salvo em `data/processed/modelo_nota.json` (`python -m src.modelo_nota` treina de novo)
+- [x] Aba "Nota da IA" na análise: nota 0–10, coesão prevista × real, quanto cada característica somou/tirou e os pesos do modelo
+- [x] Testes — 8 novos; 94 passando
+
 ### Fase 6 — Algoritmo Genético (opcional)
 - [ ] Função de "nota" do time (cobertura + funções + sinergia)
 - [ ] Geração, cruzamento e mutação de times
@@ -224,3 +234,4 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 | 27/10/2026 | PRs #7 e #8 mergeados: Fase 4 concluída. Fase 5 (branch `fase-5-revisao`): Meowsticite corrigida (Pedras Mega com mais de uma forma), 1ª revisão do código. Falta o teste completo no site publicado (pelo Carlos). 81 testes passando. |
 | 28/10/2026 | Fase 4.3 (branch `fase-4-3-visual`): estética minimalista (fundo cinza escuro + detalhes #3a0445), bordas nos seletores, fotinha na lista de Pokémon, cobertura e fraquezas em grade de tipos com detalhes ao passar o mouse, abas no topo (Montar o time, Mais usados, Sobre). 83 testes passando. |
 | 28/10/2026 | Correção (branch `corrige-floette`): Floette-Eternal e Floette-Mega agora têm golpes e o Exportar não quebra mais com a Floette-Mega. 86 testes passando (com a Fase 4.3). |
+| 03/11/2026 | Fase 5.1 (branch `valiinn-ml-pontuacao-times`): nota do time com Machine Learning (`src/modelo_nota.py`, Regressão Ridge com numpy). Entradas = números da análise; rótulo = coesão no meta (parceiros do Smogon). R² 0,68 no teste. Aba "Nota da IA" com explicação. 94 testes passando. |

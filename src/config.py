@@ -101,6 +101,7 @@ GOLPES_FILE = PROCESSED_DATA_DIR / "golpes.json"     # tipo, categoria e poder d
 MOVEPOOL_FILE = PROCESSED_DATA_DIR / "movepool.json" # golpes que cada Pokémon aprende
 ITENS_FILE = PROCESSED_DATA_DIR / "itens.json"       # itens legais e Pedras Mega
 HABILIDADES_FILE = PROCESSED_DATA_DIR / "habilidades.json"  # nome bonito das habilidades
+MODELO_FILE = PROCESSED_DATA_DIR / "modelo_nota.json"  # modelo de ML da nota do time (src/modelo_nota.py)
 # As imagens ficam em static/: o Streamlit serve essa pasta no endereço app/static/
 # (enableStaticServing em .streamlit/config.toml), e o navegador busca cada imagem por lá.
 SPRITES_DIR = ROOT_DIR / "static" / "sprites"  # imagem de cada Pokémon ({id}.png)

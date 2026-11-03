@@ -12,7 +12,8 @@ IA que analisa times de **Pokémon Champions** no formato de **duplas (VGC)**: a
 
 1. **Sistema de Recomendação** — usa as estatísticas de milhares de batalhas reais (Smogon / Pokémon Showdown). A ideia é a mesma da recomendação de uma loja online: *"quem usa este Pokémon também costuma usar esta habilidade, este item e este parceiro"*.
 2. **Análise do time** — mostra as fraquezas e resistências por tipo, a cobertura ofensiva e se o time tem as funções essenciais de duplas (controle de velocidade, Fake Out, Intimidate, redirecionamento, proteção).
-3. **Algoritmo Genético** *(opcional)* — testa trocas no time e vai "evoluindo" para versões com melhor cobertura e sinergia.
+3. **Nota do time com Machine Learning** — um modelo de **Regressão Ridge** (feito com numpy) aprende a dar uma nota de 0 a 10 ao time. As **entradas** são os números da análise (tipos perigosos, fraquezas, resistências, cobertura, funções de duplas, ameaças do meta); o **rótulo** que ele aprende vem do uso real: a *coesão no meta* (o quanto os jogadores usam aqueles Pokémon juntos, pelos "parceiros" do Smogon). A nota vem explicada: quanto cada característica somou ou tirou.
+4. **Algoritmo Genético** *(opcional)* — testa trocas no time e vai "evoluindo" para versões com melhor cobertura e sinergia.
 
 Cada sugestão vem com a explicação do **porquê**.
 
@@ -46,6 +47,7 @@ pokemon-champions-team-ai/
 │   ├── analise.py      # fraquezas, cobertura ofensiva, funções e ameaças do meta
 │   ├── dicas.py        # transforma a análise em dicas em texto
 │   ├── recomendacao.py # habilidade/item/golpes/EVs, parceiros e substitutos (co-ocorrência)
+│   ├── modelo_nota.py  # Machine Learning: nota do time (Ridge) aprendida com o uso real
 │   └── times_exemplo.py # times prontos para testes e demonstração
 ├── data/
 │   ├── raw/            # dados baixados (Smogon, PokéAPI)
@@ -73,12 +75,23 @@ pip install -r requirements.txt
 # 4. (Só quando mudar a regulamentação/mês) baixar os dados
 python -m src.baixar_dados
 
-# 5. Rodar o site
+# 5. (Depois de baixar os dados) treinar de novo o modelo da nota do time
+python -m src.modelo_nota
+
+# 6. Rodar o site
 streamlit run app.py
 
-# 6. Rodar os testes
+# 7. Rodar os testes
 pytest
 ```
+
+### Como funciona o modelo da nota (`src/modelo_nota.py`)
+
+1. **Dataset** — gera 1.200 times: 400 "do meta" (começa por um Pokémon popular e chama os parceiros com que ele mais aparece), 400 do meta com 1 a 3 trocas e 400 aleatórios. Cada Pokémon recebe a habilidade, o item e os 4 golpes mais usados.
+2. **Características** — roda `analisar()` em cada time e transforma o resultado em 15 números.
+3. **Rótulo** — coesão no meta: média, entre os pares do time, da % de times com um Pokémon que também têm o outro.
+4. **Treino e avaliação** — 80% treino / 20% teste. No teste, R² ≈ 0,68 (chutar sempre a média dá R² = 0).
+5. **Uso** — o modelo fica salvo em `data/processed/modelo_nota.json` e aparece na aba **Nota da IA** da análise.
 
 ## Fontes de dados
 
