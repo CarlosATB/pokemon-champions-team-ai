@@ -76,7 +76,7 @@ A IA precisa usar algoritmos que o grupo consiga explicar. **Não** é "mandar o
    - **funções de duplas:** controle de velocidade (Tailwind, Trick Room, Icy Wind), Fake Out, Intimidate, redirecionamento (Follow Me, Rage Powder), golpes que acertam os dois alvos, proteção (Protect, Wide Guard);
    - ameaças do meta: os Pokémon mais usados que o time tem dificuldade de enfrentar;
    - validação das regras do formato.
-3. **Análise do time com Machine Learning** — regressão logística treinada com batalhas reais do Showdown (quem venceu?): avalia os 11 pontos da análise (cobertura contra o top 10, controle de velocidade, sinergia, Fake Out, Screens, clima), dá nota 0–10 e mostra gráficos do time e do treinamento.
+3. **Análise do time com Machine Learning** — regressão logística treinada com batalhas reais do Showdown (quem venceu?): avalia 12 pontos em 5 categorias com pesos em ordem (cobertura contra o top 10 > sinergia > winrate > controle de velocidade > situacionais: Fake Out, Screens, clima) + alerta de físicos demais, dá nota 0–10 e mostra gráficos do time e do treinamento.
 4. **Algoritmo Genético (opcional)** — "evolui" o time testando trocas e mantendo as melhores, como seleção natural, para melhorar cobertura e sinergia.
 
 ### B5. Tecnologias e dados
@@ -212,6 +212,13 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 - [x] Testes — `tests/test_modelo_nota.py` reescrito e `tests/test_replays.py`; 97 passando
 - [x] "Trocar um Pokémon" com a IA (`src/trocas_ia.py`): testa cada candidato do meta no lugar de quem sai, ordena pelo ganho de força, explica pelos pontos que mudam e mostra gráfico do ganho; a IA também escolhe quem sai. Regra antiga só com time incompleto. 3 testes (`tests/test_trocas_ia.py`); 100 passando
 
+### Fase 5.3 — Pesos em ordem de importância (pedido do usuário em 03/11)
+- [x] Ordem pedida: Cobertura (top 10) > Sinergia > Winrate > Controle de velocidade > Situacionais; o treino (descida do gradiente com projeção) garante cada peso ≥ o de baixo + 0,01
+- [x] Novo ponto Winrate (média suavizada dos Pokémon, sem contar a própria batalha no treino)
+- [x] Situacionais só contam se o time se beneficia: Fake Out (+1 com setup/preparo de campo, −1 com Psychic Terrain), Screens (+1 com setup ou Trick Room), clima (aproveitam − prejudicados); ficam fora da "melhor/pior categoria"
+- [x] Ponto de alerta: físicos demais × especiais contra ameaças bulky do top 10 (peso ≤ 0, aviso na tela)
+- [x] Validação cruzada 51,7% ± 1,1% (sem a ordem seria ≈ 56%, quase só pelo winrate — explicado na tela); 103 testes passando
+
 ### Fase 6 — Algoritmo Genético (opcional)
 - [ ] Função de "nota" do time (cobertura + funções + sinergia)
 - [ ] Geração, cruzamento e mutação de times
@@ -246,3 +253,4 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 | 03/11/2026 | Fase 5.1 (branch `valiinn-ml-pontuacao-times`): nota do time com Machine Learning (`src/modelo_nota.py`, Regressão Ridge com numpy). Entradas = números da análise; rótulo = coesão no meta (parceiros do Smogon). R² 0,68 no teste. Aba "Nota da IA" com explicação. 94 testes passando. |
 | 03/11/2026 | Fase 5.2 (mesma branch): a análise passou a ser feita pela IA, treinada com 12.000 batalhas reais do Showdown (`src/replays.py`): 11 pontos pedidos pelo usuário, regressão logística (≈ 53% de acerto contra 50% do chute — o jogador pesa mais que o time), dicas/respostas a partir dos pesos e aba "Gráficos". 97 testes passando. |
 | 03/11/2026 | "Trocar um Pokémon" passou a usar a IA (`src/trocas_ia.py`): testa as trocas e sugere as que mais aumentam a força do time, com gráfico e explicação. 100 testes passando. |
+| 03/11/2026 | Fase 5.3: a IA aprende respeitando a ordem pedida (cobertura > sinergia > winrate > velocidade > situacionais), novo ponto winrate, situacionais só quando o time se beneficia (Fake Out × Psychic Terrain, Screens, clima) e alerta de físicos demais. 103 testes passando. |

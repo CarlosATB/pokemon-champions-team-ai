@@ -13,9 +13,9 @@ import streamlit as st
 from src import config, dados
 from src.analise import analisar, tipos_perigosos
 from src.dicas import FUNCOES_ESSENCIAIS
-from src.dicas_ia import dicas_da_ia, respostas_da_ia
+from src.dicas_ia import dicas_da_ia, respostas_da_ia, texto_do_alerta
 from src.funcoes_duplas import FUNCOES
-from src.modelo_nota import PONTOS, analise_da_ia, carregar_modelo, pesos_do_modelo
+from src.modelo_nota import ALERTA, PONTOS, analise_da_ia, carregar_modelo, pesos_do_modelo
 from src.tipos import TIPOS_PT
 from src.validacao import validar_time
 from src.visual import etiqueta_tipo, etiquetas, foto, grade_de_tipos, imagem
@@ -46,8 +46,12 @@ def _virgula(numero: float, casas: int = 1) -> str:
 
 
 def mostrar_resumo(resultado: dict, modelo: dict) -> None:
-    """A análise da IA de relance: nota, chance de vencer e melhor/pior categoria."""
-    categorias = sorted(resultado["categorias"], key=lambda c: c["nota"])
+    """A análise da IA de relance: nota, chance de vencer e melhor/pior categoria.
+
+    Melhor/pior olham só as categorias principais: as situacionais (clima,
+    Fake Out, Screens) dependem do time e não dizem sozinhas se ele é bom.
+    """
+    categorias = sorted([c for c in resultado["categorias"] if c["principal"]], key=lambda c: c["nota"])
     col1, col2, col3, col4 = st.columns(4)
     col1.metric("Nota da IA", f"{_virgula(resultado['nota'])} / 10",
                 help=f"Mais forte que {resultado['nota'] * 10:.0f}% dos times de "
@@ -63,6 +67,9 @@ def mostrar_resumo(resultado: dict, modelo: dict) -> None:
 
 def mostrar_dicas(resultado: dict) -> None:
     """Dicas e respostas escritas a partir do que a IA aprendeu (src/dicas_ia.py)."""
+    alerta = texto_do_alerta(resultado["alerta"])
+    if alerta:
+        st.warning(alerta, icon="⚠️")
     dicas = dicas_da_ia(resultado)
     col_ok, col_atencao = st.columns(2)
     for coluna, (nivel, titulo) in zip([col_ok, col_atencao],
@@ -71,8 +78,9 @@ def mostrar_dicas(resultado: dict) -> None:
             st.markdown(f"**{titulo}**")
             textos = [d["texto"] for d in dicas if d["nivel"] == nivel]
             st.markdown(_lista_em_markdown(textos) if textos else "Nenhum.")
+    st.markdown("**Situacionais** (só contam quando o time se beneficia deles)")
     for resposta in respostas_da_ia(resultado):
-        icone = "🟢" if resposta["impacto"] > 0.03 else "🔴" if resposta["impacto"] < -0.03 else "⚪"
+        icone = {1: "🟢", 0: "⚪", -1: "🔴"}[resposta["efeito"]]
         st.markdown(f"{icone} **{resposta['pergunta']}** {resposta['resposta']}")
 
 
@@ -193,10 +201,12 @@ def mostrar_pontos_ia(resultado: dict) -> None:
     """A análise da IA por categoria e por ponto, em tabela."""
     st.caption("Cada ponto foi calculado para o seu time e pesado pelo que o modelo aprendeu "
                "com batalhas reais. Impacto = quanto o ponto deixa o time mais forte (+) ou "
-               "mais fraco (-) que um time médio. Nota da categoria = mais forte que X% dos times reais (÷10).")
-    for categoria in resultado["categorias"]:
-        pontos = [p for p in resultado["pontos"] if p["categoria"] == categoria["nome"]]
-        st.markdown(f"**{categoria['nome']}** · nota {_virgula(categoria['nota'])} / 10")
+               "mais fraco (-) que um time médio. Nota da categoria = mais forte que X% dos times reais (÷10). "
+               "As categorias estão na ordem de importância.")
+    blocos = [(c["nome"], f" · nota {_virgula(c['nota'])} / 10") for c in resultado["categorias"]]
+    for nome, nota in blocos + [(ALERTA, "")]:
+        pontos = [p for p in resultado["pontos"] if p["categoria"] == nome]
+        st.markdown(f"**{nome}**{nota}")
         st.dataframe(pd.DataFrame([
             {"Ponto": p["nome"], "Seu time": p["valor"], "Média dos vencedores": p["media_vencedores"],
              "Impacto": p["impacto"]} for p in pontos]).style.map(
@@ -249,8 +259,8 @@ def mostrar_graficos(resultado: dict, modelo: dict) -> None:
 
     st.markdown("#### Treinamento do modelo")
     col1, col2 = st.columns(2)
-    pesos = pd.DataFrame([{"Ponto": p["nome"], "Peso": p["peso"]} for p in pesos_do_modelo(modelo)])
-    col1.altair_chart(_barras(pesos, "Peso", "Ponto", "O que o modelo aprendeu (peso de cada ponto)"),
+    pesos = pd.DataFrame([{"Categoria": p["categoria"], "Peso": p["peso"]} for p in pesos_do_modelo(modelo)])
+    col1.altair_chart(_barras(pesos, "Peso", "Categoria", "O que o modelo aprendeu (peso de cada categoria)"),
                       width="stretch")
     cruzada = modelo["validacao_cruzada"]
     acuracias = pd.DataFrame([
@@ -260,6 +270,8 @@ def mostrar_graficos(resultado: dict, modelo: dict) -> None:
         {"Avaliação": "Validação cruzada", "Acurácia": 100 * cruzada["media"]}])
     col2.altair_chart(_barras(acuracias, "Acurácia", "Avaliação", "Acertou quem venceu? (%)",
                               cor="Avaliação", dominio=[0, 100]), width="stretch")
+    col1.caption("O treino é obrigado a manter a ordem: cada categoria pesa mais que a de baixo. "
+                 "O alerta só pode tirar força.")
 
     forcas = pd.DataFrame([{"Força": f, "Resultado": "Venceu"} for f in modelo["forca_vencedores"]]
                           + [{"Força": f, "Resultado": "Perdeu"} for f in modelo["forca_perdedores"]])
@@ -282,7 +294,13 @@ def mostrar_sobre_o_modelo(modelo: dict) -> None:
             f"Pokémon Showdown (replays públicos, rating {modelo['rating_minimo']}+), com os dois "
             "times e quem venceu.\n"
             "- **Modelo:** Regressão Logística (feita com numpy). Para cada batalha, olha a diferença "
-            "entre os pontos de análise dos dois times e aprende um peso para cada ponto.\n"
+            "entre as categorias dos dois times e aprende um peso para cada categoria.\n"
+            "- **Ordem de importância:** Cobertura > Sinergia > Winrate > Controle de velocidade > "
+            "Situacionais. O treino é obrigado a manter essa ordem (o valor de cada peso vem das "
+            "batalhas). Clima, Fake Out e Screens só contam quando o time se beneficia deles. "
+            "Atacantes físicos demais são um alerta que só tira força.\n"
+            "- **Winrate:** quanto cada Pokémon vence nas batalhas de treino (sem contar a própria "
+            "batalha, para o modelo não colar a resposta).\n"
             f"- **Avaliação:** acertou quem venceu em {_virgula(100 * modelo['teste']['acuracia'])}% de "
             f"{modelo['batalhas_teste']} batalhas que não viu no treino; na validação cruzada "
             f"(5 partes), {_virgula(100 * cruzada['media'])}% ± {_virgula(100 * cruzada['desvio'])}%. "

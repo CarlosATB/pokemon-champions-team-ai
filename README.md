@@ -11,7 +11,7 @@ IA que analisa times de **Pokémon Champions** no formato de **duplas (VGC)**: a
 ## O que a IA faz
 
 1. **Sistema de Recomendação** — usa as estatísticas de milhares de batalhas reais (Smogon / Pokémon Showdown). A ideia é a mesma da recomendação de uma loja online: *"quem usa este Pokémon também costuma usar esta habilidade, este item e este parceiro"*. Em **Trocar um Pokémon**, quem decide é a IA da análise: ela testa cada Pokémon do meta no lugar de quem sai e sugere as trocas que mais aumentam a chance de vencer.
-2. **Análise do time feita pela IA** — um modelo de **Machine Learning (regressão logística, feita com numpy)** aprendeu com **milhares de batalhas reais do Pokémon Showdown** (replays de jogadores com rating 1200+) quais pontos fazem um time **vencer**. Ele avalia o time em 6 categorias: **cobertura contra o top 10** (ataque e defesa), **controle de velocidade** (breakers rápidos, Trick Room, Tailwind), **sinergia** (aparecem juntos no meta, cobrem as fraquezas um do outro), **Fake Out**, **Screens** e **clima**. Dá uma nota de 0 a 10, responde "Fake Out / Screens / clima ajudam o time?" e mostra tudo em **gráficos** (inclusive os resultados do treinamento). As abas de fraquezas, cobertura, funções de duplas e ameaças do meta continuam como dados de apoio.
+2. **Análise do time feita pela IA** — um modelo de **Machine Learning (regressão logística, feita com numpy)** aprendeu com **milhares de batalhas reais do Pokémon Showdown** (replays de jogadores com rating 1200+) quais pontos fazem um time **vencer**. Ele avalia o time em 5 categorias, em ordem de importância: **cobertura contra o top 10** (ataque e defesa), **sinergia** (aparecem juntos no meta, cobrem as fraquezas um do outro), **winrate** dos Pokémon, **controle de velocidade** (breakers rápidos, Trick Room, Tailwind) e **situacionais** (Fake Out, Screens e clima — só contam se o time se beneficia), além de um **ponto de alerta** para times com físicos demais. Dá uma nota de 0 a 10, responde "Fake Out / Screens / clima ajudam o time?" e mostra tudo em **gráficos** (inclusive os resultados do treinamento). As abas de fraquezas, cobertura, funções de duplas e ameaças do meta continuam como dados de apoio.
 3. **Algoritmo Genético** *(opcional)* — testa trocas no time e vai "evoluindo" para versões com melhor cobertura e sinergia.
 
 Cada sugestão vem com a explicação do **porquê**.
@@ -91,13 +91,18 @@ pytest
 ### Como funciona a IA da análise (`src/modelo_nota.py`)
 
 1. **Dados** — 12.000 batalhas reais do formato de duplas do Champions, baixadas dos replays públicos do Pokémon Showdown (`src/replays.py`). Para cada batalha guardamos os 2 times (Pokémon, golpes, item, habilidade) e quem venceu. Usamos as de rating 1200+ (≈ 5.000), onde o time pesa mais que o erro de jogador iniciante.
-2. **Pontos da análise (entradas)** — 11 números por time:
-   - *Cobertura contra o top 10 mais usados*: ataque (quantos o time acerta com dano dobrado) e defesa (quantos ataques do top 10 alguém resiste).
-   - *Controle de velocidade*: breakers rápidos (velocidade ≥ 100 e ataque ≥ 110), Trick Room (lentos com quem usa TR), Tailwind.
-   - *Sinergia*: aparecem juntos no meta (parceiros do Smogon) e cobrem as fraquezas um do outro.
-   - *Fake Out*, *Screens* (Reflect, Light Screen, Aurora Veil) e *clima* (quem aproveita × quem é prejudicado).
-3. **Modelo** — regressão logística com descida do gradiente: recebe a diferença entre os pontos do time 1 e do time 2 e aprende a probabilidade de o time 1 vencer. Os **pesos** dizem se cada ponto ajuda (+) ou atrapalha (−).
-4. **Avaliação** — 80% treino / 20% teste e validação cruzada (5 partes): acerta ≈ 53% de quem venceu (chutar dá 50%). É pouco porque **quem joga melhor costuma vencer com qualquer time** — a montagem explica só uma parte do resultado, e o site deixa isso claro.
+2. **Pontos da análise (entradas)** — 12 números por time, em 5 categorias + 1 alerta, **em ordem de importância**:
+   1. *Cobertura contra o top 10 mais usados*: ataque (quantos o time acerta com dano dobrado) e defesa (quantos ataques do top 10 alguém resiste).
+   2. *Sinergia*: aparecem juntos no meta (parceiros do Smogon) e cobrem as fraquezas um do outro.
+   3. *Winrate*: média da taxa de vitória de cada Pokémon nas batalhas de treino (suavizada, e sem contar a própria batalha — senão a IA "colaria").
+   4. *Controle de velocidade*: breakers rápidos (velocidade ≥ 100 e ataque ≥ 110), Trick Room (lentos com quem usa TR), Tailwind.
+   5. *Situacionais* — só contam se o time **se beneficia** deles, então quase nunca são a melhor categoria:
+      - *Fake Out*: +1 se outro Pokémon faz setup ou prepara o campo (Tailwind, Trick Room, Screens…); −1 se o time tem Psychic Terrain (bloqueia prioridade); 0 se não usa.
+      - *Screens* (Reflect, Light Screen, Aurora Veil): +1 se protegem alguém que faz setup ou joga no Trick Room.
+      - *Clima*: quantos aproveitam − quantos são prejudicados (0 se o time não coloca clima).
+   - *Ponto de alerta*: muitos atacantes físicos e poucos especiais (físicos − especiais − 2). Ameaças bulky do meta (Defesa ≥ 100, ex.: Kingambit) seguram bem golpes físicos — o peso desse ponto só pode tirar força.
+3. **Modelo** — regressão logística com descida do gradiente: recebe a diferença entre as categorias do time 1 e do time 2 e aprende a probabilidade de o time 1 vencer. O treino **respeita a ordem**: cada categoria pesa pelo menos 0,01 a mais que a de baixo (Cobertura > Sinergia > Winrate > Velocidade > Situacionais) e o alerta só pode ser ≤ 0. Pesos aprendidos: 0,058 > 0,048 > 0,038 > 0,028 > 0,018; alerta −0,026.
+4. **Avaliação** — 80% treino / 20% teste e validação cruzada (5 partes): acerta ≈ 52% de quem venceu (chutar dá 50%). É pouco porque **quem joga melhor costuma vencer com qualquer time** — a montagem explica só uma parte do resultado, e o site deixa isso claro. Sem a ordem, os dados sozinhos dariam ≈ 56% apoiados quase só no winrate; a ordem troca um pouco de acerto por uma análise que segue o que importa no VGC.
 5. **Uso** — o modelo fica salvo em `data/processed/modelo_nota.json`. Na análise do site aparecem a nota (0 a 10 = mais forte que X% dos times reais), as dicas, as respostas sobre Fake Out/Screens/clima e a aba **Gráficos** (notas por categoria, impacto de cada ponto, seu time × vencedores × perdedores, pesos aprendidos, acurácia e a força dos times reais). A nota aparece com o time completo (6 Pokémon).
 6. **Trocar um Pokémon** (`src/trocas_ia.py`) — para cada candidato do meta, a IA monta o time com ele no lugar de quem sai (golpes, item e habilidade mais usados) e calcula a nova força; as sugestões são as de maior ganho, explicadas pelos pontos que mais mudam. Se o usuário não escolhe quem sai, a IA testa trocar cada um e fica com a melhor troca. Com menos de 6 Pokémon, vale a regra antiga (co-ocorrência + fraquezas + funções).
 
