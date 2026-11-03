@@ -5,17 +5,24 @@ Os botões usam preencher_card (src/tela_montar.py) para levar a sugestão
 direto para os cards do time.
 """
 
+import altair as alt
+import pandas as pd
 import streamlit as st
 
 from src.opcoes import montagem_recomendada
 from src.recomendacao import (PESO_FRAQUEZAS, PESO_FUNCOES, PESO_PARCERIA, recomendar_time,
                               sugerir_parceiros, sugerir_substitutos)
 from src.tela_montar import VAGAS, card_recomendado, preencher_card
+from src.trocas_ia import trocas_da_ia
 from src.visual import imagem
 
 
 def _marca(voce_usa: bool) -> str:
     return " ✅" if voce_usa else ""
+
+
+def _nota(valor: float) -> str:
+    return f"{valor:.1f}".replace(".", ",")
 
 
 def _itens_ocupados(time: list[dict], menos: dict | None = None) -> dict:
@@ -82,6 +89,38 @@ def mostrar_parceiros(time: list[dict]) -> None:
                       if vagas_livres else "O time já tem 6. Use 'Trocar um Pokémon'.")
 
 
+def _mostrar_trocas_da_ia(time: list[dict], trocas: dict) -> None:
+    membro_que_sai = next(m for m in time if m["especie"] == trocas["sai"])
+    st.markdown(f"**Sai: {trocas['sai']}.** {trocas['motivo']}")
+    st.caption("A IA testa cada Pokémon do meta no lugar de quem sai (com os golpes, o item e a "
+               "habilidade mais usados com ele) e calcula a força do novo time com o que aprendeu "
+               f"nas batalhas reais. Hoje o time tem nota {_nota(trocas['atual']['nota'])}. "
+               "Ganho = quanto a troca aumenta a força do time.")
+    if not trocas["substitutos"]:
+        st.info("Não há candidatos do meta para esta troca.")
+        return
+    grafico = pd.DataFrame([{"Pokémon": s["nome"], "Ganho de força": s["ganho"],
+                             "Nota do time": s["nota"]} for s in trocas["substitutos"]])
+    st.altair_chart(alt.Chart(grafico, title="Ganho de força com cada troca").mark_bar().encode(
+        x="Ganho de força", y=alt.Y("Pokémon", sort=None, title=None, axis=alt.Axis(labelLimit=200)),
+        color=alt.condition("datum['Ganho de força'] >= 0", alt.value("#52be80"), alt.value("#e74c3c")),
+        tooltip=list(grafico.columns)).properties(height=60 * len(grafico)), width="stretch")
+    for substituto in trocas["substitutos"]:
+        with st.container(border=True):
+            col_imagem, col_texto, col_botao = st.columns([1, 5, 2], vertical_alignment="center")
+            if imagem(substituto["id"]):
+                col_imagem.image(imagem(substituto["id"]), width=80)
+            ganho = f"{substituto['ganho']:+.3f}".replace(".", ",")
+            col_texto.markdown(f"**{substituto['nome']}** · nota do time **{_nota(substituto['nota'])}**"
+                               f" · ganho {ganho}")
+            col_texto.caption(substituto["porque"])
+            col_botao.button(f"Colocar no lugar de {trocas['sai']}",
+                             key=f"trocar_{substituto['id']}", width="stretch",
+                             on_click=_colocar_no_time,
+                             args=(membro_que_sai["vaga"], substituto["id"],
+                                   _itens_ocupados(time, menos=membro_que_sai)))
+
+
 def mostrar_trocas(time: list[dict]) -> None:
     if len(time) < 2:
         st.info("Coloque pelo menos 2 Pokémon para sugerir trocas.")
@@ -89,6 +128,12 @@ def mostrar_trocas(time: list[dict]) -> None:
     automatico = "(a IA escolhe)"
     escolha = st.selectbox("Quem sai do time?", [automatico] + [m["especie"] for m in time])
     sai = None if escolha == automatico else next(m for m in time if m["especie"] == escolha)
+    trocas_ia = trocas_da_ia(time, sai)
+    if trocas_ia is not None:
+        _mostrar_trocas_da_ia(time, trocas_ia)
+        return
+    st.info("Com o time completo (6 Pokémon) a IA testa as trocas. Por enquanto, a sugestão "
+            "usa a regra de co-ocorrência, fraquezas e funções.")
     trocas = sugerir_substitutos(time, sai)
     membro_que_sai = next(m for m in time if m["especie"] == trocas["sai"])
     st.markdown(f"**Sai: {trocas['sai']}.** {trocas['motivo']}")
@@ -119,7 +164,7 @@ def mostrar_trocas(time: list[dict]) -> None:
 
 def mostrar_recomendacoes(time: list[dict]) -> None:
     st.caption("Baseadas no que os jogadores mais usam nas batalhas reais "
-               "(\"quem usa X também usa Y\"). ✅ = você já usa.")
+               "(\"quem usa X também usa Y\"); as trocas são testadas pela IA. ✅ = você já usa.")
     aba_pokemon, aba_parceiros, aba_trocas = st.tabs(
         ["Por Pokémon", "Parceiros", "Trocar um Pokémon"])
     with aba_pokemon:

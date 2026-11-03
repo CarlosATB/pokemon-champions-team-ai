@@ -210,6 +210,7 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 - [x] Análise da tela trocada pela da IA: nota 0–10, chance contra um time médio, dicas e respostas (Fake Out / Screens / clima) a partir dos pesos — `src/dicas_ia.py`; nota só com o time completo
 - [x] Aba "Gráficos": nota por categoria, impacto de cada ponto, seu time × vencedores × perdedores, pesos aprendidos, acurácia e histograma da força dos times reais
 - [x] Testes — `tests/test_modelo_nota.py` reescrito e `tests/test_replays.py`; 97 passando
+- [x] "Trocar um Pokémon" com a IA (`src/trocas_ia.py`): testa cada candidato do meta no lugar de quem sai, ordena pelo ganho de força, explica pelos pontos que mudam e mostra gráfico do ganho; a IA também escolhe quem sai. Regra antiga só com time incompleto. 3 testes (`tests/test_trocas_ia.py`); 100 passando
 
 ### Fase 6 — Algoritmo Genético (opcional)
 - [ ] Função de "nota" do time (cobertura + funções + sinergia)
@@ -244,3 +245,4 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 | 28/10/2026 | Correção (branch `corrige-floette`): Floette-Eternal e Floette-Mega agora têm golpes e o Exportar não quebra mais com a Floette-Mega. 86 testes passando (com a Fase 4.3). |
 | 03/11/2026 | Fase 5.1 (branch `valiinn-ml-pontuacao-times`): nota do time com Machine Learning (`src/modelo_nota.py`, Regressão Ridge com numpy). Entradas = números da análise; rótulo = coesão no meta (parceiros do Smogon). R² 0,68 no teste. Aba "Nota da IA" com explicação. 94 testes passando. |
 | 03/11/2026 | Fase 5.2 (mesma branch): a análise passou a ser feita pela IA, treinada com 12.000 batalhas reais do Showdown (`src/replays.py`): 11 pontos pedidos pelo usuário, regressão logística (≈ 53% de acerto contra 50% do chute — o jogador pesa mais que o time), dicas/respostas a partir dos pesos e aba "Gráficos". 97 testes passando. |
+| 03/11/2026 | "Trocar um Pokémon" passou a usar a IA (`src/trocas_ia.py`): testa as trocas e sugere as que mais aumentam a força do time, com gráfico e explicação. 100 testes passando. |

@@ -10,7 +10,7 @@ IA que analisa times de **Pokémon Champions** no formato de **duplas (VGC)**: a
 
 ## O que a IA faz
 
-1. **Sistema de Recomendação** — usa as estatísticas de milhares de batalhas reais (Smogon / Pokémon Showdown). A ideia é a mesma da recomendação de uma loja online: *"quem usa este Pokémon também costuma usar esta habilidade, este item e este parceiro"*.
+1. **Sistema de Recomendação** — usa as estatísticas de milhares de batalhas reais (Smogon / Pokémon Showdown). A ideia é a mesma da recomendação de uma loja online: *"quem usa este Pokémon também costuma usar esta habilidade, este item e este parceiro"*. Em **Trocar um Pokémon**, quem decide é a IA da análise: ela testa cada Pokémon do meta no lugar de quem sai e sugere as trocas que mais aumentam a chance de vencer.
 2. **Análise do time feita pela IA** — um modelo de **Machine Learning (regressão logística, feita com numpy)** aprendeu com **milhares de batalhas reais do Pokémon Showdown** (replays de jogadores com rating 1200+) quais pontos fazem um time **vencer**. Ele avalia o time em 6 categorias: **cobertura contra o top 10** (ataque e defesa), **controle de velocidade** (breakers rápidos, Trick Room, Tailwind), **sinergia** (aparecem juntos no meta, cobrem as fraquezas um do outro), **Fake Out**, **Screens** e **clima**. Dá uma nota de 0 a 10, responde "Fake Out / Screens / clima ajudam o time?" e mostra tudo em **gráficos** (inclusive os resultados do treinamento). As abas de fraquezas, cobertura, funções de duplas e ameaças do meta continuam como dados de apoio.
 3. **Algoritmo Genético** *(opcional)* — testa trocas no time e vai "evoluindo" para versões com melhor cobertura e sinergia.
 
@@ -49,6 +49,7 @@ pokemon-champions-team-ai/
 │   ├── replays.py      # baixa e lê batalhas reais (replays) do Pokémon Showdown
 │   ├── modelo_nota.py  # Machine Learning: pontos da análise + regressão logística (quem vence?)
 │   ├── dicas_ia.py     # dicas e respostas escritas a partir do que o modelo aprendeu
+│   ├── trocas_ia.py    # "Trocar um Pokémon": a IA testa cada troca e mede o ganho de força
 │   └── times_exemplo.py # times prontos para testes e demonstração
 ├── data/
 │   ├── raw/            # dados baixados (Smogon, PokéAPI)
@@ -98,6 +99,7 @@ pytest
 3. **Modelo** — regressão logística com descida do gradiente: recebe a diferença entre os pontos do time 1 e do time 2 e aprende a probabilidade de o time 1 vencer. Os **pesos** dizem se cada ponto ajuda (+) ou atrapalha (−).
 4. **Avaliação** — 80% treino / 20% teste e validação cruzada (5 partes): acerta ≈ 53% de quem venceu (chutar dá 50%). É pouco porque **quem joga melhor costuma vencer com qualquer time** — a montagem explica só uma parte do resultado, e o site deixa isso claro.
 5. **Uso** — o modelo fica salvo em `data/processed/modelo_nota.json`. Na análise do site aparecem a nota (0 a 10 = mais forte que X% dos times reais), as dicas, as respostas sobre Fake Out/Screens/clima e a aba **Gráficos** (notas por categoria, impacto de cada ponto, seu time × vencedores × perdedores, pesos aprendidos, acurácia e a força dos times reais). A nota aparece com o time completo (6 Pokémon).
+6. **Trocar um Pokémon** (`src/trocas_ia.py`) — para cada candidato do meta, a IA monta o time com ele no lugar de quem sai (golpes, item e habilidade mais usados) e calcula a nova força; as sugestões são as de maior ganho, explicadas pelos pontos que mais mudam. Se o usuário não escolhe quem sai, a IA testa trocar cada um e fica com a melhor troca. Com menos de 6 Pokémon, vale a regra antiga (co-ocorrência + fraquezas + funções).
 
 ## Fontes de dados
 
