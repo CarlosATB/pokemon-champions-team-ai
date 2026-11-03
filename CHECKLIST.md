@@ -219,6 +219,13 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 - [x] Ponto de alerta: físicos demais × especiais contra ameaças bulky do top 10 (peso ≤ 0, aviso na tela)
 - [x] Validação cruzada 51,7% ± 1,1% (sem a ordem seria ≈ 56%, quase só pelo winrate — explicado na tela); 103 testes passando
 
+### Fase 5.4 — Visual e navegação (pedido do usuário em 03/11)
+- [x] Página em 2 partes: "1. Seu time" e "2. O que a IA achou", com seletor de 3 visões (`src/navegacao.py`): 📊 Análise da IA, 🛠️ Melhorar o time, 🔎 Detalhes
+- [x] Análise da IA: veredito com anel da nota, um card por categoria (ordem, nota, barra, ▲/▼ comparando com os vencedores) e "Próximo passo" com botão que leva às trocas sugeridas
+- [x] Melhorar o time: abas na ordem certa (time completo → trocas primeiro; incompleto → completar o time primeiro); cada troca mostra nota antes → depois e o que melhora/piora
+- [x] Detalhes: gráficos, pontos, fraquezas, cobertura, funções, ameaças e como a IA aprendeu
+- [x] Testes de tela (`tests/test_telas.py`, `AppTest`); 111 passando
+
 ### Fase 6 — Algoritmo Genético (opcional)
 - [ ] Função de "nota" do time (cobertura + funções + sinergia)
 - [ ] Geração, cruzamento e mutação de times
@@ -254,3 +261,4 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 | 03/11/2026 | Fase 5.2 (mesma branch): a análise passou a ser feita pela IA, treinada com 12.000 batalhas reais do Showdown (`src/replays.py`): 11 pontos pedidos pelo usuário, regressão logística (≈ 53% de acerto contra 50% do chute — o jogador pesa mais que o time), dicas/respostas a partir dos pesos e aba "Gráficos". 97 testes passando. |
 | 03/11/2026 | "Trocar um Pokémon" passou a usar a IA (`src/trocas_ia.py`): testa as trocas e sugere as que mais aumentam a força do time, com gráfico e explicação. 100 testes passando. |
 | 03/11/2026 | Fase 5.3: a IA aprende respeitando a ordem pedida (cobertura > sinergia > winrate > velocidade > situacionais), novo ponto winrate, situacionais só quando o time se beneficia (Fake Out × Psychic Terrain, Screens, clima) e alerta de físicos demais. 103 testes passando. |
+| 03/11/2026 | Fase 5.4: visual e navegação — "O que a IA achou" com 3 visões (Análise da IA em cards por categoria, Melhorar o time, Detalhes) e botões que levam de uma à outra. 111 testes passando. |

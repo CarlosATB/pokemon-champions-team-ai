@@ -170,5 +170,75 @@ img.foto { vertical-align: middle; }
 .detalhe table { border: none; margin: 6px 0 0 0; width: 100%; }
 .detalhe td { border: none; padding: 2px 4px; }
 .detalhe .tipo.pequena { width: auto; min-width: 56px; }
+
+/* Seletor das visões (Análise da IA / Melhorar o time / Detalhes) */
+[data-testid="stButtonGroup"] button { padding: 8px 20px; font-size: 1rem; }
+
+/* Veredito da IA: nota num anel colorido */
+.veredito {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: #26262B;
+    border: 1px solid #3a0445;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 14px;
+    line-height: 1.7;
+}
+.anel {
+    flex: none;
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: conic-gradient(var(--cor) var(--pct), #3a3a42 0);
+}
+.anel > div {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: #26262B;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    line-height: 1.1;
+}
+.anel b { font-size: 1.9rem; }
+.anel small { color: #8a7f8f; }
+.veredito .titulo { font-size: 1.5rem; font-weight: 700; }
+.apagado { color: #8a7f8f; font-size: 0.85rem; }
+
+/* Cards das categorias */
+.categorias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 12px;
+    margin-bottom: 14px;
+}
+.categoria {
+    background: #26262B;
+    border: 1px solid #3a0445;
+    border-radius: 10px;
+    padding: 12px 14px;
+}
+.categoria .cabecalho { display: flex; align-items: center; gap: 8px; font-size: 1.05rem; }
+.categoria .ordem {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: #5b1f70; display: grid; place-items: center; font-size: 0.8rem;
+}
+.categoria .nota { margin-left: auto; font-size: 1.4rem; font-weight: 700; }
+.categoria .selo {
+    font-size: 0.7rem; padding: 1px 8px; border-radius: 10px; background: #3a3a42; color: #bdb3c2;
+}
+.barra { height: 8px; border-radius: 4px; background: #3a3a42; margin: 8px 0 6px 0; overflow: hidden; }
+.barra > div { height: 100%; border-radius: 4px; }
+.motivos { list-style: none; padding: 0; margin: 8px 0 0 0; font-size: 0.88rem; }
+.motivos li { margin: 4px 0; padding-left: 18px; text-indent: -18px; }
+.motivos li span:first-child { display: inline-block; width: 18px; text-indent: 0; }
+.motivos li.verde span:first-child { color: #4cd964; }
+.motivos li.vermelho span:first-child { color: #ff5c5c; }
+.motivos li.neutro span:first-child { color: #8a7f8f; }
 </style>
 """

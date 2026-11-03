@@ -1,5 +1,6 @@
 """
-Seção "3. Recomendações" do site: mostra o resultado de src/recomendacao.py.
+Visão "🛠️ Melhorar o time" do site (ver src/navegacao.py): mostra o resultado de
+src/recomendacao.py e das trocas testadas pela IA (src/trocas_ia.py).
 
 Os botões usam preencher_card (src/tela_montar.py) para levar a sugestão
 direto para os cards do time.
@@ -9,6 +10,7 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 
+from src import config
 from src.opcoes import montagem_recomendada
 from src.recomendacao import (PESO_FRAQUEZAS, PESO_FUNCOES, PESO_PARCERIA, recomendar_time,
                               sugerir_parceiros, sugerir_substitutos)
@@ -45,7 +47,7 @@ def mostrar_por_pokemon(time: list[dict]) -> None:
                 col1.info(sugestao["porque"])
                 continue
             montagem = montagem_recomendada(membro["id"], sugestao)
-            col_imagem.button("Montar com esta recomendação", key=f"montar_{membro['vaga']}",
+            col_imagem.button("Usar esta montagem", key=f"montar_{membro['vaga']}", width="stretch",
                               on_click=preencher_card,
                               args=(membro["vaga"], {"pokemon": membro["id"], **montagem}),
                               help="Preenche o card deste Pokémon com o item, a habilidade, "
@@ -69,8 +71,8 @@ def mostrar_por_pokemon(time: list[dict]) -> None:
 
 
 def mostrar_parceiros(time: list[dict]) -> None:
-    st.caption("Quem mais aparece junto com o seu time. Confiança = % dos times com os "
-               "seus Pokémon que também têm ele (média). Lift > 1 = combinam mais que o acaso.")
+    st.caption("Confiança = % dos times com os seus Pokémon que também têm ele (média). "
+               "Lift > 1 = combinam mais que o acaso.")
     vagas_livres = [v for v in VAGAS if v not in {m["vaga"] for m in time}]
     colunas = st.columns(4)
     for n, parceiro in enumerate(sugerir_parceiros(time, quantos=8)):
@@ -89,36 +91,54 @@ def mostrar_parceiros(time: list[dict]) -> None:
                       if vagas_livres else "O time já tem 6. Use 'Trocar um Pokémon'.")
 
 
+def _numero(valor: float) -> str:
+    return f"{valor:.2f}".rstrip("0").rstrip(".").replace(".", ",")
+
+
+def _card_da_troca(troca: dict, atual: dict) -> str:
+    """Nome, nota antes → depois e o que melhora (▲) ou piora (▼) com a troca."""
+    diferenca = troca["nota"] - atual["nota"]
+    cor = "#52be80" if diferenca > 0 else "#e74c3c" if diferenca < 0 else "#ECE6EF"
+    linhas = ([("verde", "▲", m) for m in troca["melhora"][:2]]
+              + [("vermelho", "▼", m) for m in troca["piora"][:1]])
+    motivos = "".join(f'<li class="{classe}"><span>{seta}</span> {m["nome"]}: '
+                      f"{_numero(m['antes'])} → <b>{_numero(m['depois'])}</b></li>"
+                      for classe, seta, m in linhas)
+    return (f"<b>{troca['nome']}</b> &nbsp; Nota do time {_nota(atual['nota'])} → "
+            f'<b style="color:{cor}">{_nota(troca["nota"])}</b> '
+            f'<span class="apagado">({diferenca:+.1f}'.replace(".", ",") +
+            f" · chance {_nota(atual['chance'])}% → {_nota(troca['chance'])}%)</span>"
+            f'<ul class="motivos">{motivos}</ul>')
+
+
 def _mostrar_trocas_da_ia(time: list[dict], trocas: dict) -> None:
     membro_que_sai = next(m for m in time if m["especie"] == trocas["sai"])
     st.markdown(f"**Sai: {trocas['sai']}.** {trocas['motivo']}")
-    st.caption("A IA testa cada Pokémon do meta no lugar de quem sai (com os golpes, o item e a "
-               "habilidade mais usados com ele) e calcula a força do novo time com o que aprendeu "
-               f"nas batalhas reais. Hoje o time tem nota {_nota(trocas['atual']['nota'])}. "
-               "Ganho = quanto a troca aumenta a força do time.")
+    st.caption("A IA testou cada Pokémon do meta no lugar de quem sai (com os golpes, o item e a "
+               "habilidade mais usados com ele) e deu a nota do novo time. As melhores trocas vêm primeiro.")
     if not trocas["substitutos"]:
         st.info("Não há candidatos do meta para esta troca.")
         return
-    grafico = pd.DataFrame([{"Pokémon": s["nome"], "Ganho de força": s["ganho"],
-                             "Nota do time": s["nota"]} for s in trocas["substitutos"]])
-    st.altair_chart(alt.Chart(grafico, title="Ganho de força com cada troca").mark_bar().encode(
-        x="Ganho de força", y=alt.Y("Pokémon", sort=None, title=None, axis=alt.Axis(labelLimit=200)),
-        color=alt.condition("datum['Ganho de força'] >= 0", alt.value("#52be80"), alt.value("#e74c3c")),
-        tooltip=list(grafico.columns)).properties(height=60 * len(grafico)), width="stretch")
     for substituto in trocas["substitutos"]:
         with st.container(border=True):
-            col_imagem, col_texto, col_botao = st.columns([1, 5, 2], vertical_alignment="center")
+            col_imagem, col_texto, col_botao = st.columns([1, 6, 2], vertical_alignment="center")
             if imagem(substituto["id"]):
-                col_imagem.image(imagem(substituto["id"]), width=80)
-            ganho = f"{substituto['ganho']:+.3f}".replace(".", ",")
-            col_texto.markdown(f"**{substituto['nome']}** · nota do time **{_nota(substituto['nota'])}**"
-                               f" · ganho {ganho}")
-            col_texto.caption(substituto["porque"])
-            col_botao.button(f"Colocar no lugar de {trocas['sai']}",
-                             key=f"trocar_{substituto['id']}", width="stretch",
+                col_imagem.image(imagem(substituto["id"]), width=72)
+            col_texto.markdown(_card_da_troca(substituto, trocas["atual"]), unsafe_allow_html=True)
+            col_botao.button("Colocar no time", key=f"trocar_{substituto['id']}", width="stretch",
+                             type="primary", help=f"Coloca no lugar de {trocas['sai']}, já montado "
+                                                  "com a recomendação.",
                              on_click=_colocar_no_time,
                              args=(membro_que_sai["vaga"], substituto["id"],
                                    _itens_ocupados(time, menos=membro_que_sai)))
+    with st.expander("📈 Ver o ganho de força de cada troca em gráfico"):
+        grafico = pd.DataFrame([{"Pokémon": s["nome"], "Ganho de força": s["ganho"],
+                                 "Nota do time": s["nota"]} for s in trocas["substitutos"]])
+        st.altair_chart(alt.Chart(grafico).mark_bar().encode(
+            x="Ganho de força", y=alt.Y("Pokémon", sort=None, title=None, axis=alt.Axis(labelLimit=200)),
+            color=alt.condition("datum['Ganho de força'] >= 0", alt.value("#52be80"), alt.value("#e74c3c")),
+            tooltip=list(grafico.columns)).properties(height=50 * len(grafico)), width="stretch")
+        st.caption("Ganho de força = quanto a troca aumenta a força do time na conta da IA.")
 
 
 def mostrar_trocas(time: list[dict]) -> None:
@@ -163,13 +183,20 @@ def mostrar_trocas(time: list[dict]) -> None:
 
 
 def mostrar_recomendacoes(time: list[dict]) -> None:
-    st.caption("Baseadas no que os jogadores mais usam nas batalhas reais "
-               "(\"quem usa X também usa Y\"); as trocas são testadas pela IA. ✅ = você já usa.")
-    aba_pokemon, aba_parceiros, aba_trocas = st.tabs(
-        ["Por Pokémon", "Parceiros", "Trocar um Pokémon"])
-    with aba_pokemon:
-        mostrar_por_pokemon(time)
-    with aba_parceiros:
-        mostrar_parceiros(time)
-    with aba_trocas:
-        mostrar_trocas(time)
+    """Visão "🛠️ Melhorar o time". A primeira aba é o que mais ajuda agora:
+    time completo -> trocar um Pokémon (IA); time incompleto -> parceiros para completar."""
+    trocar = ("🔄 Trocar um Pokémon", "A IA testa trocas e mostra quais deixam o time mais forte.",
+              mostrar_trocas)
+    parceiros = ("🤝 Parceiros", "Quem mais aparece junto com o seu time nas batalhas reais.",
+                 mostrar_parceiros)
+    montagem = ("🧩 Montagem de cada Pokémon", "Habilidade, item, golpes e EVs mais usados com cada um. "
+                "✅ = você já usa.", mostrar_por_pokemon)
+    if len(time) >= config.TEAM_SIZE:
+        ordem = [trocar, montagem, parceiros]
+    else:
+        ordem = [(f"🤝 Completar o time ({config.TEAM_SIZE - len(time)} vagas)", *parceiros[1:]),
+                 montagem, trocar]
+    for aba, (_, explicacao, mostrar) in zip(st.tabs([titulo for titulo, *_ in ordem]), ordem):
+        with aba:
+            st.caption(explicacao)
+            mostrar(time)

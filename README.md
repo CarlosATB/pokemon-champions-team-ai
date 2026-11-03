@@ -37,8 +37,9 @@ pokemon-champions-team-ai/
 │   ├── funcoes_duplas.py # golpes/habilidades de cada função de duplas
 │   ├── leitor.py       # lê o time no formato do Showdown (botão Export)
 │   ├── tela_montar.py  # 1. Seu time: 6 cards, dado, ajustes, Importar/Exportar
-│   ├── tela_analise.py # 2. Análise da IA: nota, dicas, pontos, gráficos + abas de apoio
-│   ├── tela_recomendacoes.py # 3. Recomendações: por Pokémon, parceiros, trocas
+│   ├── navegacao.py    # 2. O que a IA achou: 3 visões (Análise da IA / Melhorar o time / Detalhes)
+│   ├── tela_analise.py # visão "Análise da IA" (nota, cards por categoria, próximo passo) e "Detalhes"
+│   ├── tela_recomendacoes.py # visão "Melhorar o time": trocas da IA, montagem, parceiros
 │   ├── importar_exportar.py # texto do Showdown <-> cards
 │   ├── opcoes.py       # opções dos seletores (ordenadas pelo uso), dado, Pedra Mega
 │   ├── visual.py       # cores dos tipos e CSS dos cards
