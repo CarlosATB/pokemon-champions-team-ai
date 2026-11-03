@@ -85,17 +85,17 @@ def icone(nome: str, classe: str = "") -> str:
 
 # CSS colocado uma vez no topo da página (st.markdown com unsafe_allow_html).
 # Os cards são st.container(key="card_N") ou key="vidro_..." (classe "st-key-...").
-# Visual: azul-escuro com painéis de "vidro" (fundo translúcido + desfoque).
+# Visual: carvão (cinza-escuro) com painéis de "vidro" (fundo translúcido + desfoque).
 CSS = """
 <style>
 :root {
-    --vidro: rgba(20, 32, 58, 0.55);
-    --vidro-forte: rgba(14, 22, 42, 0.82);
-    --borda: rgba(120, 160, 255, 0.14);
-    --borda-forte: rgba(120, 160, 255, 0.28);
+    --vidro: rgba(38, 38, 42, 0.55);
+    --vidro-forte: rgba(24, 24, 27, 0.85);
+    --borda: rgba(255, 255, 255, 0.08);
+    --borda-forte: rgba(255, 255, 255, 0.16);
     --destaque: #5B9BFF;
     --destaque-2: #7C6CFF;
-    --texto-apagado: #8A9BB8;
+    --texto-apagado: #9CA3AF;
     --verde: #34D399;
     --vermelho: #F87171;
     --amarelo: #FBBF24;
@@ -104,16 +104,16 @@ CSS = """
 /* Fundo azul-escuro com brilhos suaves (fica parado ao rolar) */
 .stApp {
     background:
-        radial-gradient(1100px 600px at 8% -10%, rgba(59, 130, 246, 0.22), transparent 60%),
-        radial-gradient(900px 500px at 100% 0%, rgba(124, 108, 255, 0.16), transparent 60%),
-        radial-gradient(900px 700px at 50% 110%, rgba(14, 165, 233, 0.10), transparent 60%),
-        linear-gradient(180deg, #070C18 0%, #0A1224 100%);
+        radial-gradient(1100px 600px at 8% -10%, rgba(255, 255, 255, 0.05), transparent 60%),
+        radial-gradient(900px 500px at 100% 0%, rgba(91, 155, 255, 0.06), transparent 60%),
+        radial-gradient(900px 700px at 50% 110%, rgba(255, 255, 255, 0.03), transparent 60%),
+        linear-gradient(180deg, #121214 0%, #18181B 100%);
     background-attachment: fixed;
 }
 
 /* Barra de cima: vidro, logo à esquerda, abas em "pílula" */
 [data-testid="stHeader"] {
-    background: rgba(7, 12, 24, 0.62);
+    background: rgba(18, 18, 20, 0.70);
     backdrop-filter: blur(18px) saturate(160%);
     -webkit-backdrop-filter: blur(18px) saturate(160%);
     border-bottom: 1px solid var(--borda);
@@ -137,7 +137,7 @@ CSS = """
     font-weight: 600;
     font-size: 0.92rem;
     letter-spacing: 0.01em;
-    color: #B9C6DE;
+    color: #C4C4CC;
 }
 [data-testid="stTopNavLink"]:hover { background: rgba(91, 155, 255, 0.10); }
 [data-testid="stTopNavLink"]:hover p { color: #FFFFFF; }
@@ -180,7 +180,7 @@ h2 { font-weight: 700 !important; }
     box-shadow: 0 10px 24px rgba(59, 130, 246, 0.45);
 }
 [data-testid="stBaseButton-secondary"], [data-testid="stPopoverButton"] {
-    background: rgba(20, 32, 58, 0.6) !important;
+    background: rgba(42, 42, 46, 0.6) !important;
     border: 1px solid var(--borda-forte) !important;
 }
 [data-testid="stBaseButton-secondary"]:hover, [data-testid="stPopoverButton"]:hover {
@@ -275,7 +275,7 @@ img.foto { vertical-align: middle; }
 .numero { font-weight: 600; margin-top: 2px; }
 .numero.verde { color: var(--verde); }
 .numero.vermelho { color: var(--vermelho); }
-.numero.neutro { color: #E5ECF8; }
+.numero.neutro { color: #E7E7EA; }
 .detalhe {
     display: none;
     position: absolute;
@@ -284,7 +284,7 @@ img.foto { vertical-align: middle; }
     z-index: 100;
     min-width: 280px;
     text-align: left;
-    background: #0F1A30;
+    background: #1F1F23;
     border: 1px solid var(--borda-forte);
     border-radius: 10px;
     padding: 10px 12px;
@@ -321,7 +321,7 @@ img.foto { vertical-align: middle; }
     width: 92px;
     height: 92px;
     border-radius: 50%;
-    background: #0D1628;
+    background: #1A1A1D;
     display: grid;
     place-content: center;
     text-align: center;
@@ -355,7 +355,7 @@ img.foto { vertical-align: middle; }
 .categoria .nota { margin-left: auto; font-size: 1.45rem; font-weight: 800; }
 .categoria .selo, .ameaca .selo {
     font-size: 0.7rem; padding: 1px 9px; border-radius: 10px;
-    background: rgba(255, 255, 255, 0.07); color: #B9C6DE;
+    background: rgba(255, 255, 255, 0.07); color: #C4C4CC;
 }
 .ameaca .selo { margin-left: auto; }
 .ameaca img.foto { background: rgba(255, 255, 255, 0.04); border-radius: 12px; }

@@ -41,3 +41,20 @@ def test_time_incompleto_leva_aos_parceiros():
 
     tela = AppTest.from_function(tela_incompleta, default_timeout=60).run()
     assert not tela.exception and tela.button(key="ir_para_parceiros")
+
+
+@precisa_dados
+def test_auto_build_monta_todos_sem_repetir_item():
+    def tela_montar():
+        from src.tela_montar import tela_montar_o_time
+        tela_montar_o_time()
+
+    tela = AppTest.from_function(tela_montar, default_timeout=60)
+    tela.session_state["especie_0"] = "incineroar"
+    tela.session_state["especie_1"] = "rillaboom"
+    tela.run()
+    next(b for b in tela.button if b.label == "Auto build").click().run()
+    assert not tela.exception, [e.value for e in tela.exception]
+    itens = [tela.session_state[f"item_{v}_{p}"] for v, p in [(0, "incineroar"), (1, "rillaboom")]]
+    assert all(itens) and len(set(itens)) == 2
+    assert tela.session_state["golpe_0_0_incineroar"]

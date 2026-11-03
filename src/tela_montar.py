@@ -91,6 +91,22 @@ def _ao_limpar() -> None:
     st.session_state["avisos_importar"] = []
 
 
+def _ao_auto_build() -> None:
+    """Auto build: cada Pokémon do time recebe a montagem recomendada (a mais usada).
+
+    Vai de card em card guardando os itens já usados, para não repetir item (regra do VGC).
+    """
+    ocupados = {}
+    for vaga in VAGAS:
+        pid = st.session_state.get(f"especie_{vaga}")
+        if not pid:
+            continue
+        card = card_recomendado(pid, ocupados)
+        preencher_card(vaga, card)
+        if card.get("item"):
+            ocupados[card["item"]] = pid
+
+
 def _ao_sortear(vaga: int) -> None:
     """Dado: um Pokémon do meta que não está no time, já montado com a recomendação."""
     outros = {v: st.session_state.get(f"especie_{v}") for v in VAGAS if v != vaga}
@@ -104,7 +120,11 @@ def _ao_sortear(vaga: int) -> None:
 # ---------------------------------------------------------------------------
 
 def _barra_de_botoes(cards: list[dict]) -> None:
-    importar_, exportar_, limpar_ = st.columns([1, 1, 1])
+    auto_, importar_, exportar_, limpar_ = st.columns([1, 1, 1, 1])
+    auto_.button("Auto build", icon=":material/auto_fix_high:", type="primary",
+                 on_click=_ao_auto_build, width="stretch", disabled=not cards,
+                 help="Monta todos os Pokémon do time com a build recomendada: item, "
+                      "habilidade, 4 golpes, natureza e EVs mais usados (sem repetir item).")
     with importar_.popover("Importar", icon=":material/file_download:", width="stretch"):
         st.selectbox("Time de exemplo", list(TIMES_EXEMPLO), key="exemplo_escolhido")
         st.button("Carregar este exemplo", on_click=_ao_carregar_exemplo, width="stretch")

@@ -1,11 +1,11 @@
 # Visual do site: azul-escuro "premium" com painéis de vidro (CSS em src/visual.py).
 [theme]
 base = "dark"
-backgroundColor = "#070C18"
-secondaryBackgroundColor = "#111A2E"
+backgroundColor = "#121214"
+secondaryBackgroundColor = "#1F1F23"
 primaryColor = "#5B9BFF"
-textColor = "#E5ECF8"
-borderColor = "#22314F"
+textColor = "#E7E7EA"
+borderColor = "#2E2E33"
 showWidgetBorder = true
 baseRadius = "medium"
 font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"

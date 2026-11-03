@@ -99,7 +99,7 @@ def _numero(valor: float) -> str:
 def _card_da_troca(troca: dict, atual: dict) -> str:
     """Nome, nota antes → depois e o que melhora ou piora com a troca."""
     diferenca = troca["nota"] - atual["nota"]
-    cor = "#34D399" if diferenca > 0 else "#F87171" if diferenca < 0 else "#E5ECF8"
+    cor = "#34D399" if diferenca > 0 else "#F87171" if diferenca < 0 else "#E7E7EA"
     linhas = ([("verde", "trending_up", m) for m in troca["melhora"][:2]]
               + [("vermelho", "trending_down", m) for m in troca["piora"][:1]])
     motivos = "".join(f'<li class="{classe}">{icone(seta)} {m["nome"]}: '

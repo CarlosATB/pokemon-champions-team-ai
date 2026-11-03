@@ -230,6 +230,8 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 - [x] Ameaças do meta dentro da "Análise da IA" (cards com foto, tipos, % de uso, quem elas acertam forte e as respostas do time)
 - [x] Emojis trocados por ícones da biblioteca **Material Symbols** (`:material/nome:` no Streamlit e `icone()` no HTML)
 - [x] Barra de cima refinada (logo compacto, abas em "pílula", aba ativa em degradê) e fundo azul-escuro com painéis de vidro (`src/visual.py`, `.streamlit/config.toml`, fonte Inter)
+- [x] Fundo trocado para carvão (cinza-escuro); o azul ficou só como cor de destaque
+- [x] Botão **Auto build**: monta todos os Pokémon do time com a build recomendada (item, habilidade, golpes, natureza e EVs mais usados), sem repetir item
 
 ### Fase 6 — Algoritmo Genético (opcional)
 - [ ] Função de "nota" do time (cobertura + funções + sinergia)
