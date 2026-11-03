@@ -1,12 +1,18 @@
-# Visual do site: minimalista, fundo cinza escuro com detalhes em #3a0445.
+# Visual do site: azul-escuro "premium" com painéis de vidro (CSS em src/visual.py).
 [theme]
 base = "dark"
-backgroundColor = "#1E1E22"
-secondaryBackgroundColor = "#2A2A30"
-primaryColor = "#9d4bbd"
-textColor = "#ECE6EF"
-borderColor = "#3a0445"
+backgroundColor = "#070C18"
+secondaryBackgroundColor = "#111A2E"
+primaryColor = "#5B9BFF"
+textColor = "#E5ECF8"
+borderColor = "#22314F"
 showWidgetBorder = true
+baseRadius = "medium"
+font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+
+[client]
+# Sem o botão "Deploy" e o menu de desenvolvedor na barra de cima.
+toolbarMode = "minimal"
 
 [server]
 # Serve a pasta static/ (imagens) em app/static/, para usar as imagens no HTML.

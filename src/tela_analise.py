@@ -1,8 +1,8 @@
 """
-Visões "📊 Análise da IA" e "🔎 Detalhes" do site (ver src/navegacao.py).
+Visões "Análise da IA" e "Detalhes" do site (ver src/navegacao.py).
 
-- Análise da IA: veredito (nota), alerta, um card por categoria com os motivos
-  e o próximo passo (src/modelo_nota.py e src/dicas_ia.py).
+- Análise da IA: veredito (nota), alerta, um card por categoria com os motivos,
+  as ameaças do meta e o próximo passo (src/modelo_nota.py, src/dicas_ia.py, src/analise.py).
 - Detalhes: gráficos e tabelas da IA e os dados de apoio de src/analise.py.
 
 Só exibição; a IA fica em modelo_nota.py e as regras em analise.py e validacao.py.
@@ -22,7 +22,7 @@ from src.modelo_nota import ALERTA, PONTOS, analise_da_ia, carregar_modelo, peso
 from src.navegacao import MELHORAR, botao_ir_para
 from src.tipos import TIPOS_PT
 from src.validacao import validar_time
-from src.visual import etiqueta_tipo, etiquetas, foto, grade_de_tipos, imagem
+from src.visual import etiqueta_tipo, etiquetas, foto, grade_de_tipos, icone
 
 TEXTO_DANO = {4: "4x", 2: "2x", 1: "", 0.5: "½", 0.25: "¼", 0: "0"}
 CORES_DANO = {"4x": "#e74c3c", "2x": "#f5b7b1", "½": "#a9dfbf", "¼": "#52be80", "0": "#5dade2"}
@@ -34,9 +34,9 @@ def _lista_em_markdown(itens: list[str]) -> str:
 
 def mostrar_problemas(problemas: list[dict]) -> None:
     """Erros das regras numa caixa vermelha, avisos numa amarela, o resto em azul."""
-    caixas = [("erro", st.error, "⛔", "O time quebra as regras do formato:"),
-              ("aviso", st.warning, "⚠️", "Vale conferir:"),
-              ("info", st.info, "ℹ️", "")]
+    caixas = [("erro", st.error, ":material/block:", "O time quebra as regras do formato:"),
+              ("aviso", st.warning, ":material/warning:", "Vale conferir:"),
+              ("info", st.info, ":material/info:", "")]
     for nivel, caixa, icone, titulo in caixas:
         mensagens = [p["mensagem"] for p in problemas if p["nivel"] == nivel]
         if len(mensagens) == 1:
@@ -51,7 +51,7 @@ def _virgula(numero: float, casas: int = 1) -> str:
 
 def _cor(nota: float) -> str:
     """Verde = bom, amarelo = na média, vermelho = fraco (nota de 0 a 10)."""
-    return "#52be80" if nota >= 7 else "#f1c40f" if nota >= 4 else "#e74c3c"
+    return "#34D399" if nota >= 7 else "#FBBF24" if nota >= 4 else "#F87171"
 
 
 def _numero(valor: float) -> str:
@@ -69,6 +69,7 @@ def mostrar_veredito(resultado: dict, modelo: dict) -> None:
     <div><b>{_virgula(nota)}</b><small>/ 10</small></div>
   </div>
   <div>
+    <div class="rotulo">{icone("auto_awesome")} Veredito da IA</div>
     <div class="titulo" style="color:{_cor(nota)}">{titulo}</div>
     <div>Mais forte que <b>{nota * 10:.0f}%</b> dos times de {total} batalhas reais.</div>
     <div>Chance de vencer um time médio do meta: <b>{_virgula(resultado['chance'])}%</b>
@@ -84,12 +85,16 @@ DESCRICOES = {
     "Controle de velocidade": "Breakers rápidos, Trick Room e Tailwind.",
     "Situacionais": "Fake Out, Screens e clima: só contam se o time aproveita.",
 }
-SETAS = {1: ("▲", "verde"), 0: ("•", "neutro"), -1: ("▼", "vermelho")}
+ICONES_CATEGORIAS = {
+    "Cobertura (top 10)": "shield", "Sinergia": "hub", "Winrate": "emoji_events",
+    "Controle de velocidade": "speed", "Situacionais": "tune",
+}
+SETAS = {1: ("trending_up", "verde"), 0: ("remove", "neutro"), -1: ("trending_down", "vermelho")}
 
 
 def _motivo(seta: int, texto: str) -> str:
     simbolo, classe = SETAS[seta]
-    return f'<li class="{classe}"><span>{simbolo}</span> {texto}</li>'
+    return f'<li class="{classe}">{icone(simbolo)} {texto}</li>'
 
 
 def _motivos(resultado: dict, categoria: dict) -> list[str]:
@@ -110,16 +115,17 @@ def _motivos(resultado: dict, categoria: dict) -> list[str]:
 
 def mostrar_categorias(resultado: dict) -> None:
     """Um card por categoria, na ordem de importância, com barra e os motivos da nota."""
-    st.markdown("#### Categoria por categoria")
+    st.markdown("#### :material/category: Categoria por categoria")
     st.caption("Em ordem de importância para a IA. Nota = mais forte que X% dos times reais (÷10). "
-               "▲ ajuda a vencer · ▼ puxa para baixo · • quase não muda.")
+               ":green[:material/trending_up:] ajuda a vencer · :red[:material/trending_down:] puxa "
+               "para baixo · :gray[:material/remove:] quase não muda.")
     cards = []
     for ordem, categoria in enumerate(resultado["categorias"], start=1):
         nota, cor = categoria["nota"], _cor(categoria["nota"])
         selo = "" if categoria["principal"] else '<span class="selo">situacional</span>'
         cards.append(f"""
 <div class="categoria">
-  <div class="cabecalho"><span class="ordem">{ordem}</span><b>{categoria['nome']}</b>{selo}
+  <div class="cabecalho"><span class="ordem">{ordem}</span>{icone(ICONES_CATEGORIAS.get(categoria['nome'], 'label'))}<b>{categoria['nome']}</b>{selo}
     <span class="nota" style="color:{cor}">{_virgula(nota)}</span></div>
   <div class="barra"><div style="width:{nota * 10:.0f}%; background:{cor}"></div></div>
   <div class="apagado">{DESCRICOES[categoria['nome']]}</div>
@@ -131,13 +137,13 @@ def mostrar_categorias(resultado: dict) -> None:
 def mostrar_proximo_passo(resultado: dict) -> None:
     """Liga a análise às recomendações: qual o ponto mais fraco e onde melhorar."""
     pior = min((c for c in resultado["categorias"] if c["principal"]), key=lambda c: c["nota"])
-    with st.container(border=True):
+    with st.container(key="vidro_proximo_passo"):
         col_texto, col_botao = st.columns([3, 1], vertical_alignment="center")
-        col_texto.markdown(f"**Próximo passo:** o ponto mais fraco é **{pior['nome']}** "
-                           f"(nota {_virgula(pior['nota'])}). A IA já testou trocas de Pokémon "
-                           "para deixar o time mais forte.")
+        col_texto.markdown(f":blue[:material/lightbulb:] **Próximo passo:** o ponto mais fraco é "
+                           f"**{pior['nome']}** (nota {_virgula(pior['nota'])}). A IA já testou "
+                           "trocas de Pokémon para deixar o time mais forte.")
         with col_botao:
-            botao_ir_para("Ver trocas sugeridas →", MELHORAR, "ir_para_trocas")
+            botao_ir_para("Ver trocas sugeridas", MELHORAR, "ir_para_trocas")
 
 
 def _sinal(numero: int) -> tuple[str, str]:
@@ -163,7 +169,7 @@ def mostrar_fraquezas(analise: dict, time: list[dict]) -> None:
             f"{etiqueta_tipo(p['tipo'])} {p['fracos']} fracos · {p['seguram']} seguram &nbsp;"
             for p in perigosos), unsafe_allow_html=True)
     else:
-        st.markdown("✅ Nenhum tipo de golpe acerta forte metade do time sem resposta.")
+        st.markdown(":green[:material/check_circle:] Nenhum tipo de golpe acerta forte metade do time sem resposta.")
     st.caption("Número = quantos seguram (resistem ou são imunes) − quantos são fracos. "
                "Vermelho: mais fracos do que respostas. Passe o mouse num tipo para ver quem.")
 
@@ -205,7 +211,7 @@ def mostrar_cobertura(analise: dict, time: list[dict]) -> None:
         st.markdown("**Nenhum golpe é supereficaz contra:** " + etiquetas(fracos),
                     unsafe_allow_html=True)
     else:
-        st.markdown("✅ O time tem golpe supereficaz contra todos os tipos.")
+        st.markdown(":green[:material/check_circle:] O time tem golpe supereficaz contra todos os tipos.")
     st.caption("Número = quantos golpes do time são supereficazes contra o tipo. "
                "Passe o mouse num tipo para ver os golpes e quem usa.")
 
@@ -221,36 +227,44 @@ def mostrar_cobertura(analise: dict, time: list[dict]) -> None:
 
 
 def mostrar_funcoes(analise: dict) -> None:
-    st.caption("✅ = alguém do time faz · ❌ = ninguém faz. As marcadas com ⭐ quase "
-               "todo time de duplas precisa.")
+    st.caption(":green[:material/check_circle:] = alguém do time faz · :red[:material/cancel:] = ninguém "
+               "faz. As marcadas com :orange[:material/star:] quase todo time de duplas precisa.")
     colunas = st.columns(4)
     for n, (chave, funcao) in enumerate(FUNCOES.items()):
         quem = analise["funcoes"][chave]
-        estrela = " ⭐" if chave in FUNCOES_ESSENCIAIS else ""
-        with colunas[n % 4].container(border=True):
-            st.markdown(f"{'✅' if quem else '❌'} **{funcao['nome']}**{estrela}")
+        estrela = " :orange[:material/star:]" if chave in FUNCOES_ESSENCIAIS else ""
+        marca = ":green[:material/check_circle:]" if quem else ":red[:material/cancel:]"
+        with colunas[n % 4].container(key=f"vidro_funcao_{chave}"):
+            st.markdown(f"{marca} **{funcao['nome']}**{estrela}")
             st.markdown(", ".join(quem) if quem else "ninguém")
             st.caption(funcao["descricao"])
 
 
 def mostrar_ameacas(analise: dict) -> None:
+    """Cards dos Pokémon do meta que levam vantagem contra o time (parte da Análise da IA)."""
+    st.markdown("#### :material/crisis_alert: Ameaças do meta")
     st.caption("Entre os 30 Pokémon mais usados: quem acerta muitos do seu time com dano "
                "dobrado e quase não é acertado de volta. Pokémon sem golpes contam com "
                "os golpes mais usados com ele.")
     if not analise["ameacas"]:
-        st.success("Nenhum dos mais usados leva vantagem clara contra o seu time.")
+        st.success("Nenhum dos mais usados leva vantagem clara contra o seu time.",
+                   icon=":material/verified:")
         return
-    colunas = st.columns(3)
-    for n, ameaca in enumerate(analise["ameacas"][:6]):
-        with colunas[n % 3].container(border=True):
-            col_imagem, col_texto = st.columns([1, 2])
-            if imagem(ameaca["id"]):
-                col_imagem.image(imagem(ameaca["id"]), width=80)
-            col_texto.markdown(f"**{ameaca['nome']}**  \n{ameaca['uso']:.0f}% dos times")
-            st.markdown("Ataca com: " + etiquetas(ameaca["tipos_ataque"]),
-                        unsafe_allow_html=True)
-            st.markdown(f"**Acerta forte:** {', '.join(ameaca['acerta'])}  \n"
-                        f"**Suas respostas:** {', '.join(ameaca['respostas']) or 'nenhuma'}")
+    cards = []
+    for ameaca in analise["ameacas"][:6]:
+        respostas = ", ".join(ameaca["respostas"]) or "nenhuma"
+        classe = "verde" if ameaca["respostas"] else "vermelho"
+        cards.append(f"""
+<div class="ameaca">
+  <div class="cabecalho">{foto(ameaca['id'], 56)}<div><b>{ameaca['nome']}</b>
+    <div class="apagado">{etiquetas(ameaca['tipos_ataque'])}</div></div>
+    <span class="selo">{ameaca['uso']:.0f}% dos times</span></div>
+  <ul class="motivos">
+    <li class="vermelho">{icone("bolt")} <b>Acerta forte:</b> {', '.join(ameaca['acerta'])}</li>
+    <li class="{classe}">{icone("shield")} <b>Suas respostas:</b> {respostas}</li>
+  </ul>
+</div>""")
+    st.markdown(f'<div class="ameacas">{"".join(cards)}</div>', unsafe_allow_html=True)
 
 
 def mostrar_pontos_ia(resultado: dict) -> None:
@@ -385,55 +399,60 @@ def _resultado_da_ia(time: list[dict]) -> tuple[dict | None, dict | None]:
 
 def _sem_nota(time: list[dict], modelo: dict | None) -> None:
     if modelo is None:
-        st.info("A IA ainda não foi treinada. Rode: python -m src.replays e python -m src.modelo_nota")
+        st.info("A IA ainda não foi treinada. Rode: python -m src.replays e python -m src.modelo_nota",
+                icon=":material/model_training:")
         return
     # A IA aprendeu com times completos: com menos Pokémon as contagens caem e a nota não vale.
     faltam = config.TEAM_SIZE - len(time)
-    with st.container(border=True):
+    with st.container(key="vidro_sem_nota"):
         col_texto, col_botao = st.columns([3, 1], vertical_alignment="center")
-        col_texto.markdown(f"**Faltam {faltam} Pokémon.** A IA dá a nota com o time completo "
-                           f"({config.TEAM_SIZE}), porque aprendeu com times completos de batalhas reais. "
-                           "Veja quem combina com o seu time:")
+        col_texto.markdown(f":blue[:material/group_add:] **Faltam {faltam} Pokémon.** A IA dá a nota "
+                           f"com o time completo ({config.TEAM_SIZE}), porque aprendeu com times "
+                           "completos de batalhas reais. Veja quem combina com o seu time:")
         with col_botao:
-            botao_ir_para("Ver parceiros sugeridos →", MELHORAR, "ir_para_parceiros")
+            botao_ir_para("Ver parceiros sugeridos", MELHORAR, "ir_para_parceiros")
 
 
 def mostrar_analise(time: list[dict]) -> None:
-    """Visão "📊 Análise da IA": veredito, alerta, categorias e o próximo passo."""
+    """Visão "Análise da IA": veredito, alerta, categorias, ameaças do meta e o próximo passo."""
     resultado, modelo = _resultado_da_ia(time)
     if resultado is None:
         _sem_nota(time, modelo)
+        mostrar_ameacas(analisar(time))
         return
     mostrar_veredito(resultado, modelo)
     alerta = texto_do_alerta(resultado["alerta"])
     if alerta:
-        st.warning(alerta, icon="⚠️")
+        st.warning(alerta, icon=":material/warning:")
     mostrar_categorias(resultado)
+    mostrar_ameacas(analisar(time))
     mostrar_proximo_passo(resultado)
 
 
+ABA_GRAFICOS, ABA_PONTOS, ABA_MODELO = (":material/bar_chart: Gráficos", ":material/table_chart: Pontos da análise",
+                                        ":material/school: Como a IA aprendeu")
+ABA_FRAQUEZAS, ABA_COBERTURA, ABA_FUNCOES = (":material/shield: Fraquezas", ":material/swords: Cobertura ofensiva",
+                                             ":material/groups: Funções de duplas")
+
+
 def mostrar_detalhes(time: list[dict]) -> None:
-    """Visão "🔎 Detalhes": gráficos e tabelas da IA e os dados de apoio da análise."""
+    """Visão "Detalhes": gráficos e tabelas da IA e os dados de apoio da análise."""
     resultado, modelo = _resultado_da_ia(time)
     analise = analisar(time)
-    abas = ["🛡️ Fraquezas", "⚔️ Cobertura ofensiva", "🎯 Funções de duplas", "👀 Ameaças do meta"]
+    abas = [ABA_FRAQUEZAS, ABA_COBERTURA, ABA_FUNCOES]
     if resultado is not None:
-        abas = ["📈 Gráficos", "🧮 Pontos da análise", *abas, "🧠 Como a IA aprendeu"]
+        abas = [ABA_GRAFICOS, ABA_PONTOS, *abas, ABA_MODELO]
     aba = dict(zip(abas, st.tabs(abas)))
     if resultado is not None:
-        with aba["📈 Gráficos"]:
+        with aba[ABA_GRAFICOS]:
             mostrar_graficos(resultado, modelo)
-        with aba["🧮 Pontos da análise"]:
+        with aba[ABA_PONTOS]:
             mostrar_pontos_ia(resultado)
-        with aba["🧠 Como a IA aprendeu"]:
+        with aba[ABA_MODELO]:
             mostrar_sobre_o_modelo(modelo)
-    with aba["🛡️ Fraquezas"]:
+    with aba[ABA_FRAQUEZAS]:
         mostrar_fraquezas(analise, time)
-    with aba["⚔️ Cobertura ofensiva"]:
+    with aba[ABA_COBERTURA]:
         mostrar_cobertura(analise, time)
-    with aba["🎯 Funções de duplas"]:
+    with aba[ABA_FUNCOES]:
         mostrar_funcoes(analise)
-    with aba["👀 Ameaças do meta"]:
-        mostrar_ameacas(analise)
-
-

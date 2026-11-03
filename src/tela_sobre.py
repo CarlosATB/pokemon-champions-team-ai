@@ -14,7 +14,7 @@ def mostrar_sobre() -> None:
         "Trabalho da disciplina de Inteligência Artificial (CEUB). Uma IA que analisa um time "
         "de Pokémon Champions (duplas) e recomenda melhorias usando estatísticas de batalhas "
         "reais: \"quem usa X também usa Y\".")
-    st.info("Esta página ainda vai ser desenvolvida.", icon="🚧")
+    st.info("Esta página ainda vai ser desenvolvida.", icon=":material/construction:")
 
     uso = dados.carregar_uso()
     col1, col2, col3 = st.columns(3)

@@ -226,6 +226,11 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 - [x] Detalhes: gráficos, pontos, fraquezas, cobertura, funções, ameaças e como a IA aprendeu
 - [x] Testes de tela (`tests/test_telas.py`, `AppTest`); 111 passando
 
+### Fase 5.5 — Visual premium (pedido do usuário em 03/11)
+- [x] Ameaças do meta dentro da "Análise da IA" (cards com foto, tipos, % de uso, quem elas acertam forte e as respostas do time)
+- [x] Emojis trocados por ícones da biblioteca **Material Symbols** (`:material/nome:` no Streamlit e `icone()` no HTML)
+- [x] Barra de cima refinada (logo compacto, abas em "pílula", aba ativa em degradê) e fundo azul-escuro com painéis de vidro (`src/visual.py`, `.streamlit/config.toml`, fonte Inter)
+
 ### Fase 6 — Algoritmo Genético (opcional)
 - [ ] Função de "nota" do time (cobertura + funções + sinergia)
 - [ ] Geração, cruzamento e mutação de times
@@ -261,4 +266,5 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 | 03/11/2026 | Fase 5.2 (mesma branch): a análise passou a ser feita pela IA, treinada com 12.000 batalhas reais do Showdown (`src/replays.py`): 11 pontos pedidos pelo usuário, regressão logística (≈ 53% de acerto contra 50% do chute — o jogador pesa mais que o time), dicas/respostas a partir dos pesos e aba "Gráficos". 97 testes passando. |
 | 03/11/2026 | "Trocar um Pokémon" passou a usar a IA (`src/trocas_ia.py`): testa as trocas e sugere as que mais aumentam a força do time, com gráfico e explicação. 100 testes passando. |
 | 03/11/2026 | Fase 5.3: a IA aprende respeitando a ordem pedida (cobertura > sinergia > winrate > velocidade > situacionais), novo ponto winrate, situacionais só quando o time se beneficia (Fake Out × Psychic Terrain, Screens, clima) e alerta de físicos demais. 103 testes passando. |
-| 03/11/2026 | Fase 5.4: visual e navegação — "O que a IA achou" com 3 visões (Análise da IA em cards por categoria, Melhorar o time, Detalhes) e botões que levam de uma à outra. 111 testes passando. |
+| 03/11/2026 | Fase 5.4: visual e navegação — "O que a IA achou" com 3 visões (Análise da IA em cards por categoria, Melhorar o time, Detalhes) e botões que levam de uma à outra. 111 passando. |
+| 03/11/2026 | Fase 5.5: visual premium — ameaças do meta na Análise da IA, ícones Material Symbols no lugar dos emojis, barra de cima refinada e fundo azul-escuro com vidro. 111 testes passando. |

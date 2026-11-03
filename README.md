@@ -11,7 +11,7 @@ IA que analisa times de **Pokémon Champions** no formato de **duplas (VGC)**: a
 ## O que a IA faz
 
 1. **Sistema de Recomendação** — usa as estatísticas de milhares de batalhas reais (Smogon / Pokémon Showdown). A ideia é a mesma da recomendação de uma loja online: *"quem usa este Pokémon também costuma usar esta habilidade, este item e este parceiro"*. Em **Trocar um Pokémon**, quem decide é a IA da análise: ela testa cada Pokémon do meta no lugar de quem sai e sugere as trocas que mais aumentam a chance de vencer.
-2. **Análise do time feita pela IA** — um modelo de **Machine Learning (regressão logística, feita com numpy)** aprendeu com **milhares de batalhas reais do Pokémon Showdown** (replays de jogadores com rating 1200+) quais pontos fazem um time **vencer**. Ele avalia o time em 5 categorias, em ordem de importância: **cobertura contra o top 10** (ataque e defesa), **sinergia** (aparecem juntos no meta, cobrem as fraquezas um do outro), **winrate** dos Pokémon, **controle de velocidade** (breakers rápidos, Trick Room, Tailwind) e **situacionais** (Fake Out, Screens e clima — só contam se o time se beneficia), além de um **ponto de alerta** para times com físicos demais. Dá uma nota de 0 a 10, responde "Fake Out / Screens / clima ajudam o time?" e mostra tudo em **gráficos** (inclusive os resultados do treinamento). As abas de fraquezas, cobertura, funções de duplas e ameaças do meta continuam como dados de apoio.
+2. **Análise do time feita pela IA** — um modelo de **Machine Learning (regressão logística, feita com numpy)** aprendeu com **milhares de batalhas reais do Pokémon Showdown** (replays de jogadores com rating 1200+) quais pontos fazem um time **vencer**. Ele avalia o time em 5 categorias, em ordem de importância: **cobertura contra o top 10** (ataque e defesa), **sinergia** (aparecem juntos no meta, cobrem as fraquezas um do outro), **winrate** dos Pokémon, **controle de velocidade** (breakers rápidos, Trick Room, Tailwind) e **situacionais** (Fake Out, Screens e clima — só contam se o time se beneficia), além de um **ponto de alerta** para times com físicos demais. Dá uma nota de 0 a 10, responde "Fake Out / Screens / clima ajudam o time?" e mostra tudo em **gráficos** (inclusive os resultados do treinamento). As abas de fraquezas, cobertura e funções de duplas continuam como dados de apoio em "Detalhes"; as **ameaças do meta** aparecem junto com a análise da IA. Visual azul-escuro com painéis de vidro e ícones da biblioteca **Material Symbols**.
 3. **Algoritmo Genético** *(opcional)* — testa trocas no time e vai "evoluindo" para versões com melhor cobertura e sinergia.
 
 Cada sugestão vem com a explicação do **porquê**.
@@ -38,11 +38,11 @@ pokemon-champions-team-ai/
 │   ├── leitor.py       # lê o time no formato do Showdown (botão Export)
 │   ├── tela_montar.py  # 1. Seu time: 6 cards, dado, ajustes, Importar/Exportar
 │   ├── navegacao.py    # 2. O que a IA achou: 3 visões (Análise da IA / Melhorar o time / Detalhes)
-│   ├── tela_analise.py # visão "Análise da IA" (nota, cards por categoria, próximo passo) e "Detalhes"
+│   ├── tela_analise.py # visão "Análise da IA" (nota, cards por categoria, ameaças do meta, próximo passo) e "Detalhes"
 │   ├── tela_recomendacoes.py # visão "Melhorar o time": trocas da IA, montagem, parceiros
 │   ├── importar_exportar.py # texto do Showdown <-> cards
 │   ├── opcoes.py       # opções dos seletores (ordenadas pelo uso), dado, Pedra Mega
-│   ├── visual.py       # cores dos tipos e CSS dos cards
+│   ├── visual.py       # cores dos tipos, ícones (Material Symbols) e CSS (azul-escuro com vidro)
 │   ├── validacao.py    # confere as regras do formato (espécie/item repetido, Megas...)
 │   ├── analise.py      # fraquezas, cobertura ofensiva, funções e ameaças do meta
 │   ├── dicas.py        # transforma a análise em dicas em texto
