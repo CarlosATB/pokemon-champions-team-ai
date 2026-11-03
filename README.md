@@ -11,9 +11,8 @@ IA que analisa times de **Pokémon Champions** no formato de **duplas (VGC)**: a
 ## O que a IA faz
 
 1. **Sistema de Recomendação** — usa as estatísticas de milhares de batalhas reais (Smogon / Pokémon Showdown). A ideia é a mesma da recomendação de uma loja online: *"quem usa este Pokémon também costuma usar esta habilidade, este item e este parceiro"*.
-2. **Análise do time** — mostra as fraquezas e resistências por tipo, a cobertura ofensiva e se o time tem as funções essenciais de duplas (controle de velocidade, Fake Out, Intimidate, redirecionamento, proteção).
-3. **Nota do time com Machine Learning** — um modelo de **Regressão Ridge** (feito com numpy) aprende a dar uma nota de 0 a 10 ao time. As **entradas** são os números da análise (tipos perigosos, fraquezas, resistências, cobertura, funções de duplas, ameaças do meta); o **rótulo** que ele aprende vem do uso real: a *coesão no meta* (o quanto os jogadores usam aqueles Pokémon juntos, pelos "parceiros" do Smogon). A nota vem explicada: quanto cada característica somou ou tirou.
-4. **Algoritmo Genético** *(opcional)* — testa trocas no time e vai "evoluindo" para versões com melhor cobertura e sinergia.
+2. **Análise do time feita pela IA** — um modelo de **Machine Learning (regressão logística, feita com numpy)** aprendeu com **milhares de batalhas reais do Pokémon Showdown** (replays de jogadores com rating 1200+) quais pontos fazem um time **vencer**. Ele avalia o time em 6 categorias: **cobertura contra o top 10** (ataque e defesa), **controle de velocidade** (breakers rápidos, Trick Room, Tailwind), **sinergia** (aparecem juntos no meta, cobrem as fraquezas um do outro), **Fake Out**, **Screens** e **clima**. Dá uma nota de 0 a 10, responde "Fake Out / Screens / clima ajudam o time?" e mostra tudo em **gráficos** (inclusive os resultados do treinamento). As abas de fraquezas, cobertura, funções de duplas e ameaças do meta continuam como dados de apoio.
+3. **Algoritmo Genético** *(opcional)* — testa trocas no time e vai "evoluindo" para versões com melhor cobertura e sinergia.
 
 Cada sugestão vem com a explicação do **porquê**.
 
@@ -38,7 +37,7 @@ pokemon-champions-team-ai/
 │   ├── funcoes_duplas.py # golpes/habilidades de cada função de duplas
 │   ├── leitor.py       # lê o time no formato do Showdown (botão Export)
 │   ├── tela_montar.py  # 1. Seu time: 6 cards, dado, ajustes, Importar/Exportar
-│   ├── tela_analise.py # 2. Análise: resumo, dicas, fraquezas, cobertura, funções, ameaças
+│   ├── tela_analise.py # 2. Análise da IA: nota, dicas, pontos, gráficos + abas de apoio
 │   ├── tela_recomendacoes.py # 3. Recomendações: por Pokémon, parceiros, trocas
 │   ├── importar_exportar.py # texto do Showdown <-> cards
 │   ├── opcoes.py       # opções dos seletores (ordenadas pelo uso), dado, Pedra Mega
@@ -47,7 +46,9 @@ pokemon-champions-team-ai/
 │   ├── analise.py      # fraquezas, cobertura ofensiva, funções e ameaças do meta
 │   ├── dicas.py        # transforma a análise em dicas em texto
 │   ├── recomendacao.py # habilidade/item/golpes/EVs, parceiros e substitutos (co-ocorrência)
-│   ├── modelo_nota.py  # Machine Learning: nota do time (Ridge) aprendida com o uso real
+│   ├── replays.py      # baixa e lê batalhas reais (replays) do Pokémon Showdown
+│   ├── modelo_nota.py  # Machine Learning: pontos da análise + regressão logística (quem vence?)
+│   ├── dicas_ia.py     # dicas e respostas escritas a partir do que o modelo aprendeu
 │   └── times_exemplo.py # times prontos para testes e demonstração
 ├── data/
 │   ├── raw/            # dados baixados (Smogon, PokéAPI)
@@ -75,8 +76,9 @@ pip install -r requirements.txt
 # 4. (Só quando mudar a regulamentação/mês) baixar os dados
 python -m src.baixar_dados
 
-# 5. (Depois de baixar os dados) treinar de novo o modelo da nota do time
-python -m src.modelo_nota
+# 5. (Opcional) baixar mais batalhas reais e treinar de novo a IA da análise
+python -m src.replays 12000   # baixa até 12.000 batalhas (continua de onde parou)
+python -m src.modelo_nota      # treina, avalia e salva o modelo
 
 # 6. Rodar o site
 streamlit run app.py
@@ -85,20 +87,24 @@ streamlit run app.py
 pytest
 ```
 
-### Como funciona o modelo da nota (`src/modelo_nota.py`)
+### Como funciona a IA da análise (`src/modelo_nota.py`)
 
-1. **Dataset** — gera 1.200 times: 400 "do meta" (começa por um Pokémon popular e chama os parceiros com que ele mais aparece), 400 do meta com 1 a 3 trocas e 400 aleatórios. Cada Pokémon recebe a habilidade, o item e os 4 golpes mais usados.
-2. **Características** — roda `analisar()` em cada time e transforma o resultado em 15 números.
-3. **Rótulo** — coesão no meta: média, entre os pares do time, da % de times com um Pokémon que também têm o outro.
-4. **Treino e avaliação** — 80% treino / 20% teste. No teste, R² ≈ 0,68 (chutar sempre a média dá R² = 0).
-5. **Uso** — o modelo fica salvo em `data/processed/modelo_nota.json` e aparece na aba **Nota da IA** da análise.
+1. **Dados** — 12.000 batalhas reais do formato de duplas do Champions, baixadas dos replays públicos do Pokémon Showdown (`src/replays.py`). Para cada batalha guardamos os 2 times (Pokémon, golpes, item, habilidade) e quem venceu. Usamos as de rating 1200+ (≈ 5.000), onde o time pesa mais que o erro de jogador iniciante.
+2. **Pontos da análise (entradas)** — 11 números por time:
+   - *Cobertura contra o top 10 mais usados*: ataque (quantos o time acerta com dano dobrado) e defesa (quantos ataques do top 10 alguém resiste).
+   - *Controle de velocidade*: breakers rápidos (velocidade ≥ 100 e ataque ≥ 110), Trick Room (lentos com quem usa TR), Tailwind.
+   - *Sinergia*: aparecem juntos no meta (parceiros do Smogon) e cobrem as fraquezas um do outro.
+   - *Fake Out*, *Screens* (Reflect, Light Screen, Aurora Veil) e *clima* (quem aproveita × quem é prejudicado).
+3. **Modelo** — regressão logística com descida do gradiente: recebe a diferença entre os pontos do time 1 e do time 2 e aprende a probabilidade de o time 1 vencer. Os **pesos** dizem se cada ponto ajuda (+) ou atrapalha (−).
+4. **Avaliação** — 80% treino / 20% teste e validação cruzada (5 partes): acerta ≈ 53% de quem venceu (chutar dá 50%). É pouco porque **quem joga melhor costuma vencer com qualquer time** — a montagem explica só uma parte do resultado, e o site deixa isso claro.
+5. **Uso** — o modelo fica salvo em `data/processed/modelo_nota.json`. Na análise do site aparecem a nota (0 a 10 = mais forte que X% dos times reais), as dicas, as respostas sobre Fake Out/Screens/clima e a aba **Gráficos** (notas por categoria, impacto de cada ponto, seu time × vencedores × perdedores, pesos aprendidos, acurácia e a força dos times reais). A nota aparece com o time completo (6 Pokémon).
 
 ## Fontes de dados
 
 - [Smogon Usage Stats](https://www.smogon.com/stats/) — estatísticas mensais de uso do Pokémon Showdown.
 - [PokéAPI](https://pokeapi.co/) — tipos e status base dos Pokémon.
 - [Pokémon Showdown](https://github.com/smogon/pokemon-showdown) — Pokémon e Megas legais, golpes, movepool, itens e habilidades do Champions.
-
+- [Replays do Pokémon Showdown](https://replay.pokemonshowdown.com/) — batalhas reais (times e vencedor) usadas para treinar a IA da análise.
 ## Andamento
 
 O progresso do projeto está em [`CHECKLIST.md`](CHECKLIST.md).

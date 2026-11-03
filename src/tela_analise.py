@@ -1,18 +1,22 @@
 """
-Seção "2. Análise" do site: mostra o resultado de src/analise.py e src/dicas.py.
+Seção "2. Análise" do site: a análise feita pela IA (src/modelo_nota.py e
+src/dicas_ia.py), com gráficos, e os dados de apoio de src/analise.py.
 
-Só exibição; as regras ficam em analise.py, dicas.py e validacao.py.
+Só exibição; a IA fica em modelo_nota.py e as regras em analise.py e validacao.py.
 """
 
+import altair as alt
+import numpy as np
 import pandas as pd
 import streamlit as st
 
-from src import dados
+from src import config, dados
 from src.analise import analisar, tipos_perigosos
-from src.dicas import FUNCOES_ESSENCIAIS, gerar_dicas
+from src.dicas import FUNCOES_ESSENCIAIS
+from src.dicas_ia import dicas_da_ia, respostas_da_ia
 from src.funcoes_duplas import FUNCOES
-from src.modelo_nota import carregar_modelo, nota_do_time, pesos_do_modelo
-from src.tipos import TIPOS, TIPOS_PT
+from src.modelo_nota import PONTOS, analise_da_ia, carregar_modelo, pesos_do_modelo
+from src.tipos import TIPOS_PT
 from src.validacao import validar_time
 from src.visual import etiqueta_tipo, etiquetas, foto, grade_de_tipos, imagem
 
@@ -37,33 +41,39 @@ def mostrar_problemas(problemas: list[dict]) -> None:
             caixa(f"{titulo}\n\n{_lista_em_markdown(mensagens)}", icon=icone)
 
 
-def mostrar_resumo(time: list[dict], analise: dict) -> None:
-    """Quatro números grandes para ver o time de relance."""
-    alguem_ataca = len(analise["sem_ataques"]) < len(time)
-    acerta_forte = sum(c["melhor"] >= 2 for c in analise["cobertura"])
-    funcoes = sum(bool(quem) for quem in analise["funcoes"].values())
-    ameaca = analise["ameacas"][0]["nome"] if analise["ameacas"] else "nenhuma"
+def _virgula(numero: float, casas: int = 1) -> str:
+    return f"{numero:.{casas}f}".replace(".", ",")
+
+
+def mostrar_resumo(resultado: dict, modelo: dict) -> None:
+    """A análise da IA de relance: nota, chance de vencer e melhor/pior categoria."""
+    categorias = sorted(resultado["categorias"], key=lambda c: c["nota"])
     col1, col2, col3, col4 = st.columns(4)
-    col1.metric("Tipos perigosos", len(tipos_perigosos(analise)),
-                help="Tipos de golpe a que 2 ou mais do time são fracos e poucos resistem.")
-    col2.metric("Acerta com dano dobrado",
-                f"{acerta_forte} de {len(TIPOS)} tipos" if alguem_ataca else "sem golpes",
-                help="Quantos tipos os golpes de ataque do time acertam com dano dobrado.")
-    col3.metric("Funções de duplas", f"{funcoes} de {len(FUNCOES)}",
-                help="Controle de velocidade, Fake Out, Intimidate, redirecionamento...")
-    col4.metric("Maior ameaça do meta", ameaca,
-                help="O Pokémon muito usado que mais atrapalha o seu time.")
+    col1.metric("Nota da IA", f"{_virgula(resultado['nota'])} / 10",
+                help=f"Mais forte que {resultado['nota'] * 10:.0f}% dos times de "
+                     f"{modelo['batalhas_treino'] + modelo['batalhas_teste']} batalhas reais, "
+                     "segundo o que o modelo aprendeu.")
+    col2.metric("Chance contra um time médio", f"{_virgula(resultado['chance'])}%",
+                help="Chance de vencer um time típico do meta, só pela montagem do time "
+                     "(sem contar a habilidade de quem joga).")
+    col3.metric("Melhor categoria", categorias[-1]["nome"], f"nota {_virgula(categorias[-1]['nota'])}")
+    col4.metric("Pior categoria", categorias[0]["nome"], f"nota {_virgula(categorias[0]['nota'])}",
+                delta_color="inverse")
 
 
-def mostrar_dicas(time: list[dict], analise: dict) -> None:
-    dicas = gerar_dicas(time, analise)
-    colunas = st.columns(3)
-    grupos = [("alerta", "🔴 Problemas"), ("atencao", "🟡 Pode melhorar"), ("ok", "🟢 Pontos fortes")]
-    for coluna, (nivel, titulo) in zip(colunas, grupos):
+def mostrar_dicas(resultado: dict) -> None:
+    """Dicas e respostas escritas a partir do que a IA aprendeu (src/dicas_ia.py)."""
+    dicas = dicas_da_ia(resultado)
+    col_ok, col_atencao = st.columns(2)
+    for coluna, (nivel, titulo) in zip([col_ok, col_atencao],
+                                       [("ok", "🟢 Ajuda a vencer"), ("atencao", "🟡 Pode melhorar")]):
         with coluna.container(border=True):
             st.markdown(f"**{titulo}**")
             textos = [d["texto"] for d in dicas if d["nivel"] == nivel]
             st.markdown(_lista_em_markdown(textos) if textos else "Nenhum.")
+    for resposta in respostas_da_ia(resultado):
+        icone = "🟢" if resposta["impacto"] > 0.03 else "🔴" if resposta["impacto"] < -0.03 else "⚪"
+        st.markdown(f"{icone} **{resposta['pergunta']}** {resposta['resposta']}")
 
 
 def _sinal(numero: int) -> tuple[str, str]:
@@ -179,46 +189,107 @@ def mostrar_ameacas(analise: dict) -> None:
                         f"**Suas respostas:** {', '.join(ameaca['respostas']) or 'nenhuma'}")
 
 
-def mostrar_nota_ia(time: list[dict], analise: dict) -> None:
-    """Nota de 0 a 10 dada pelo modelo de Machine Learning (src/modelo_nota.py)."""
-    modelo = carregar_modelo()
-    resultado = nota_do_time(time, analise, modelo)
-    if resultado is None:
-        st.info("O modelo ainda não foi treinado. Rode: python -m src.modelo_nota")
-        return
-    st.caption("Um modelo de Machine Learning (Regressão Ridge) aprendeu, com "
-               f"{modelo['times_treino']} times de treino, a relação entre os números da "
-               "análise acima e a coesão dos times no meta (o quanto os jogadores de verdade "
-               "usam esses Pokémon juntos, segundo as estatísticas do Smogon).")
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Nota da IA", f"{resultado['nota']:.1f} / 10".replace(".", ","),
-                help="0 = parece um time aleatório; 10 = parece um time forte do meta.")
-    col2.metric("Coesão prevista", f"{resultado['coesao_prevista']:.1f}%".replace(".", ","),
-                help="O que o modelo prevê só olhando a análise do time.")
-    col3.metric("Coesão real no meta", f"{resultado['coesao_real']:.1f}%".replace(".", ","),
-                help="Média, entre os pares do time, da % de times com um que também têm o outro.")
+def mostrar_pontos_ia(resultado: dict) -> None:
+    """A análise da IA por categoria e por ponto, em tabela."""
+    st.caption("Cada ponto foi calculado para o seu time e pesado pelo que o modelo aprendeu "
+               "com batalhas reais. Impacto = quanto o ponto deixa o time mais forte (+) ou "
+               "mais fraco (-) que um time médio. Nota da categoria = mais forte que X% dos times reais (÷10).")
+    for categoria in resultado["categorias"]:
+        pontos = [p for p in resultado["pontos"] if p["categoria"] == categoria["nome"]]
+        st.markdown(f"**{categoria['nome']}** · nota {_virgula(categoria['nota'])} / 10")
+        st.dataframe(pd.DataFrame([
+            {"Ponto": p["nome"], "Seu time": p["valor"], "Média dos vencedores": p["media_vencedores"],
+             "Impacto": p["impacto"]} for p in pontos]).style.map(
+                lambda v: f"color: {'#52be80' if v > 0 else '#e74c3c' if v < 0 else 'inherit'}",
+                subset=["Impacto"]).format(
+                {"Seu time": "{:.2f}", "Média dos vencedores": "{:.2f}", "Impacto": "{:+.3f}"}),
+            hide_index=True, width="stretch")
 
-    st.markdown("**Por que essa nota?** Quanto cada característica somou ou tirou, "
-                "comparando com um time médio:")
-    st.dataframe(pd.DataFrame([
-        {"Característica": c["nome"], "Valor no seu time": c["valor"], "Pontos na nota": c["pontos"]}
-        for c in resultado["contribuicoes"]]).style.map(
-            lambda v: f"color: {'#52be80' if v > 0 else '#e74c3c' if v < 0 else 'inherit'}",
-            subset=["Pontos na nota"]).format({"Valor no seu time": "{:.2f}", "Pontos na nota": "{:+.2f}"}),
-        hide_index=True, width="stretch")
-    with st.expander("Como o modelo foi treinado e avaliado"):
-        teste, base = modelo["teste"], modelo["baseline_media"]
-        grupos = modelo["coesao_media_por_grupo"]
+
+def _barras(tabela: pd.DataFrame, x: str, y: str, titulo: str, cor: str | None = None,
+            dominio: list | None = None) -> alt.Chart:
+    """Gráfico de barras deitadas (verde = positivo, vermelho = negativo)."""
+    escala = alt.Scale(domain=dominio) if dominio else alt.Undefined
+    cores = (alt.Color(cor, legend=None) if cor else
+             alt.condition(f"datum['{x}'] >= 0", alt.value("#52be80"), alt.value("#e74c3c")))
+    return alt.Chart(tabela, title=titulo).mark_bar().encode(
+        x=alt.X(x, scale=escala), y=alt.Y(y, sort=None, title=None, axis=alt.Axis(labelLimit=320)),
+        color=cores, tooltip=list(tabela.columns))
+
+
+def mostrar_graficos(resultado: dict, modelo: dict) -> None:
+    """Gráficos do seu time e do treinamento do modelo."""
+    st.markdown("#### Seu time")
+    col1, col2 = st.columns(2)
+    categorias = pd.DataFrame([{"Categoria": c["nome"], "Nota": c["nota"]} for c in resultado["categorias"]])
+    col1.altair_chart(_barras(categorias, "Nota", "Categoria", "Nota por categoria (0 a 10)",
+                              cor="Categoria", dominio=[0, 10]), width="stretch")
+    impactos = pd.DataFrame([{"Ponto": p["nome"], "Impacto": p["impacto"]} for p in resultado["pontos"]])
+    col2.altair_chart(_barras(impactos, "Impacto", "Ponto", "Impacto de cada ponto na força do time"),
+                      width="stretch")
+
+    # Seu time x vencedores x perdedores, em desvios da média (para caber tudo no mesmo eixo).
+    medias, desvios = np.array(modelo["medias"]), np.array(modelo["desvios"])
+    grupos = {"Seu time": [p["valor"] for p in resultado["pontos"]],
+              "Média dos vencedores": modelo["media_vencedores"],
+              "Média dos perdedores": modelo["media_perdedores"]}
+    comparacao = pd.DataFrame([
+        {"Ponto": PONTOS[chave][1], "Grupo": grupo, "Desvios da média": round(float(z), 2)}
+        for grupo, valores in grupos.items()
+        for chave, z in zip(modelo["pontos"], (np.array(valores) - medias) / desvios)])
+    ordem = list(grupos)
+    st.altair_chart(alt.Chart(comparacao, title="Seu time comparado aos vencedores e perdedores").mark_bar()
+                    .encode(x="Desvios da média",
+                            y=alt.Y("Ponto", sort=None, title=None, axis=alt.Axis(labelLimit=320)),
+                            yOffset=alt.YOffset("Grupo", sort=ordem),
+                            color=alt.Color("Grupo", sort=ordem, legend=alt.Legend(orient="top", title=None)),
+                            tooltip=["Ponto", "Grupo", "Desvios da média"])
+                    .properties(height=len(PONTOS) * 36), width="stretch")
+    st.caption("Desvios da média: 0 = time comum; positivo = tem mais disso que a maioria dos times.")
+
+    st.markdown("#### Treinamento do modelo")
+    col1, col2 = st.columns(2)
+    pesos = pd.DataFrame([{"Ponto": p["nome"], "Peso": p["peso"]} for p in pesos_do_modelo(modelo)])
+    col1.altair_chart(_barras(pesos, "Peso", "Ponto", "O que o modelo aprendeu (peso de cada ponto)"),
+                      width="stretch")
+    cruzada = modelo["validacao_cruzada"]
+    acuracias = pd.DataFrame([
+        {"Avaliação": "Chute (50%)", "Acurácia": 50.0},
+        {"Avaliação": "Treino", "Acurácia": 100 * modelo["treino"]["acuracia"]},
+        {"Avaliação": "Teste", "Acurácia": 100 * modelo["teste"]["acuracia"]},
+        {"Avaliação": "Validação cruzada", "Acurácia": 100 * cruzada["media"]}])
+    col2.altair_chart(_barras(acuracias, "Acurácia", "Avaliação", "Acertou quem venceu? (%)",
+                              cor="Avaliação", dominio=[0, 100]), width="stretch")
+
+    forcas = pd.DataFrame([{"Força": f, "Resultado": "Venceu"} for f in modelo["forca_vencedores"]]
+                          + [{"Força": f, "Resultado": "Perdeu"} for f in modelo["forca_perdedores"]])
+    histograma = alt.Chart(forcas, title="Força dos times reais: vencedores x perdedores").mark_bar(
+        opacity=0.5).encode(x=alt.X("Força", bin=alt.Bin(maxbins=40), title="Força"),
+                            y=alt.Y("count()", stack=None, title="Times"),
+                            color=alt.Color("Resultado", scale=alt.Scale(domain=["Perdeu", "Venceu"],
+                                                                         range=["#e74c3c", "#52be80"])))
+    seu_time = alt.Chart(pd.DataFrame([{"Força": resultado["forca"]}])).mark_rule(
+        color="#f1c40f", strokeWidth=3).encode(x="Força")
+    st.altair_chart(histograma + seu_time, width="stretch")
+    st.caption("A linha amarela é o seu time. Quanto mais à direita, mais o modelo acha que o time vence.")
+
+
+def mostrar_sobre_o_modelo(modelo: dict) -> None:
+    cruzada = modelo["validacao_cruzada"]
+    with st.expander("Como a IA aprendeu (e o quanto ela acerta)"):
         st.markdown(
-            f"- **Dados:** times montados com os parceiros mais comuns do meta "
-            f"(coesão média {grupos['meta']}%), times do meta com 1 a 3 trocas "
-            f"({grupos['perturbado']}%) e times aleatórios ({grupos['aleatorio']}%).\n"
-            f"- **Avaliação** em {modelo['times_teste']} times que o modelo não viu: "
-            f"R² = {teste['r2']} (erro médio de {teste['mae']} pontos de coesão). "
-            f"Chutando sempre a média: R² = {base['r2']} (erro de {base['mae']}).\n"
-            "- **Importância** de cada característica (pontos de nota por desvio padrão):")
-        st.dataframe(pd.DataFrame(pesos_do_modelo(modelo)).rename(
-            columns={"nome": "Característica", "peso": "Peso"}), hide_index=True, width="stretch")
+            f"- **Dados:** {modelo['batalhas_treino'] + modelo['batalhas_teste']} batalhas reais do "
+            f"Pokémon Showdown (replays públicos, rating {modelo['rating_minimo']}+), com os dois "
+            "times e quem venceu.\n"
+            "- **Modelo:** Regressão Logística (feita com numpy). Para cada batalha, olha a diferença "
+            "entre os pontos de análise dos dois times e aprende um peso para cada ponto.\n"
+            f"- **Avaliação:** acertou quem venceu em {_virgula(100 * modelo['teste']['acuracia'])}% de "
+            f"{modelo['batalhas_teste']} batalhas que não viu no treino; na validação cruzada "
+            f"(5 partes), {_virgula(100 * cruzada['media'])}% ± {_virgula(100 * cruzada['desvio'])}%. "
+            "Chutar daria 50%.\n"
+            "- **Limite:** quem joga melhor costuma vencer, com qualquer time. Por isso a montagem do "
+            "time explica só uma parte do resultado, e a acurácia fica perto de 50%. Os pesos mostram "
+            "tendências, não garantias.")
 
 
 def mostrar_analise(time: list[dict]) -> list[dict]:
@@ -228,12 +299,28 @@ def mostrar_analise(time: list[dict]) -> list[dict]:
     if not time_ok:
         return []
     analise = analisar(time_ok)
-    mostrar_resumo(time_ok, analise)
-    st.subheader("Dicas")
-    mostrar_dicas(time_ok, analise)
-    aba_def, aba_of, aba_func, aba_ameacas, aba_nota = st.tabs(
-        ["Fraquezas e resistências", "Cobertura ofensiva", "Funções de duplas", "Ameaças do meta",
-         "Nota da IA"])
+    modelo = carregar_modelo()
+    resultado = analise_da_ia(time_ok, modelo)
+    abas_de_dados = ["Fraquezas e resistências", "Cobertura ofensiva", "Funções de duplas", "Ameaças do meta"]
+    if resultado is None:
+        st.info("A IA ainda não foi treinada. Rode: python -m src.replays e python -m src.modelo_nota")
+        abas = st.tabs(abas_de_dados)
+    elif len(time_ok) < config.TEAM_SIZE:
+        # A IA aprendeu com times completos: com menos Pokémon as contagens caem e a nota não vale.
+        st.info(f"A análise da IA aparece com o time completo ({config.TEAM_SIZE} Pokémon), porque ela "
+                "aprendeu com times completos de batalhas reais.")
+        abas = st.tabs(abas_de_dados)
+    else:
+        mostrar_resumo(resultado, modelo)
+        st.subheader("Análise da IA")
+        mostrar_dicas(resultado)
+        mostrar_sobre_o_modelo(modelo)
+        aba_ia, aba_graficos, *abas = st.tabs(["Pontos da análise", "Gráficos", *abas_de_dados])
+        with aba_ia:
+            mostrar_pontos_ia(resultado)
+        with aba_graficos:
+            mostrar_graficos(resultado, modelo)
+    aba_def, aba_of, aba_func, aba_ameacas = abas
     with aba_def:
         mostrar_fraquezas(analise, time_ok)
     with aba_of:
@@ -242,6 +329,4 @@ def mostrar_analise(time: list[dict]) -> list[dict]:
         mostrar_funcoes(analise)
     with aba_ameacas:
         mostrar_ameacas(analise)
-    with aba_nota:
-        mostrar_nota_ia(time_ok, analise)
     return time_ok

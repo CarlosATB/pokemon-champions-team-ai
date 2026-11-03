@@ -76,7 +76,7 @@ A IA precisa usar algoritmos que o grupo consiga explicar. **Não** é "mandar o
    - **funções de duplas:** controle de velocidade (Tailwind, Trick Room, Icy Wind), Fake Out, Intimidate, redirecionamento (Follow Me, Rage Powder), golpes que acertam os dois alvos, proteção (Protect, Wide Guard);
    - ameaças do meta: os Pokémon mais usados que o time tem dificuldade de enfrentar;
    - validação das regras do formato.
-3. **Nota do time com Machine Learning** — Regressão Ridge que aprende, com os números da análise, a prever a coesão do time no meta (uso real do Smogon); a nota vem explicada pela contribuição de cada característica.
+3. **Análise do time com Machine Learning** — regressão logística treinada com batalhas reais do Showdown (quem venceu?): avalia os 11 pontos da análise (cobertura contra o top 10, controle de velocidade, sinergia, Fake Out, Screens, clima), dá nota 0–10 e mostra gráficos do time e do treinamento.
 4. **Algoritmo Genético (opcional)** — "evolui" o time testando trocas e mantendo as melhores, como seleção natural, para melhorar cobertura e sinergia.
 
 ### B5. Tecnologias e dados
@@ -203,6 +203,14 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 - [x] Aba "Nota da IA" na análise: nota 0–10, coesão prevista × real, quanto cada característica somou/tirou e os pesos do modelo
 - [x] Testes — 8 novos; 94 passando
 
+### Fase 5.2 — Análise do time feita pela IA, com gráficos (pedido do usuário em 03/11)
+- [x] Batalhas reais: `src/replays.py` baixa e lê replays do Showdown (12.000 batalhas em `data/processed/replays.json`; times, golpes, item, habilidade e vencedor)
+- [x] 11 pontos da análise pedidos pelo usuário: cobertura contra o top 10 (ataque/defesa), controle de velocidade (breakers rápidos, Trick Room, Tailwind), sinergia (aparecem juntos, cobrem fraquezas), Fake Out, Screens, clima (a favor/contra)
+- [x] Regressão logística com numpy (time 1 − time 2 → chance de o time 1 vencer), só batalhas de rating 1200+; teste 53,5% e validação cruzada 53,1% ± 1,9% (chute = 50%) — o resultado depende muito do jogador, e o site explica isso
+- [x] Análise da tela trocada pela da IA: nota 0–10, chance contra um time médio, dicas e respostas (Fake Out / Screens / clima) a partir dos pesos — `src/dicas_ia.py`; nota só com o time completo
+- [x] Aba "Gráficos": nota por categoria, impacto de cada ponto, seu time × vencedores × perdedores, pesos aprendidos, acurácia e histograma da força dos times reais
+- [x] Testes — `tests/test_modelo_nota.py` reescrito e `tests/test_replays.py`; 97 passando
+
 ### Fase 6 — Algoritmo Genético (opcional)
 - [ ] Função de "nota" do time (cobertura + funções + sinergia)
 - [ ] Geração, cruzamento e mutação de times
@@ -235,3 +243,4 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 | 28/10/2026 | Fase 4.3 (branch `fase-4-3-visual`): estética minimalista (fundo cinza escuro + detalhes #3a0445), bordas nos seletores, fotinha na lista de Pokémon, cobertura e fraquezas em grade de tipos com detalhes ao passar o mouse, abas no topo (Montar o time, Mais usados, Sobre). 83 testes passando. |
 | 28/10/2026 | Correção (branch `corrige-floette`): Floette-Eternal e Floette-Mega agora têm golpes e o Exportar não quebra mais com a Floette-Mega. 86 testes passando (com a Fase 4.3). |
 | 03/11/2026 | Fase 5.1 (branch `valiinn-ml-pontuacao-times`): nota do time com Machine Learning (`src/modelo_nota.py`, Regressão Ridge com numpy). Entradas = números da análise; rótulo = coesão no meta (parceiros do Smogon). R² 0,68 no teste. Aba "Nota da IA" com explicação. 94 testes passando. |
+| 03/11/2026 | Fase 5.2 (mesma branch): a análise passou a ser feita pela IA, treinada com 12.000 batalhas reais do Showdown (`src/replays.py`): 11 pontos pedidos pelo usuário, regressão logística (≈ 53% de acerto contra 50% do chute — o jogador pesa mais que o time), dicas/respostas a partir dos pesos e aba "Gráficos". 97 testes passando. |

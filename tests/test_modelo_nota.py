@@ -1,83 +1,119 @@
-"""Nota do time com Machine Learning (src/modelo_nota.py)."""
-
-import random
+"""Análise do time com Machine Learning (src/modelo_nota.py) e dicas da IA (src/dicas_ia.py)."""
 
 import numpy as np
+import pytest
 from apoio import precisa_dados, time_exemplo
 
-from src import config
-from src.leitor import montar_time
+from src.dicas_ia import dicas_da_ia, respostas_da_ia
 from src.modelo_nota import (
-    CARACTERISTICAS, caracteristicas, carregar_modelo, coesao_no_meta, gerar_dataset,
-    membro_do_meta, nota_do_time, pool_do_meta, prever, time_aleatorio, time_do_meta,
-    treinar, treinar_ridge,
+    CATEGORIAS, PONTOS, analise_da_ia, avaliar, carregar_modelo, especie_conhecida,
+    pontos_de_analise, sigmoide, time_do_replay, treinar, treinar_logistica,
 )
 
-pytestmark = precisa_dados
+# ---------------------------------------------------------------------------
+# Regressão logística: não precisa de dados
+# ---------------------------------------------------------------------------
 
 
-def test_ridge_aprende_uma_reta_conhecida():
+def test_logistica_aprende_o_sinal_dos_pesos():
+    """Dados sintéticos: o 1º número ajuda a vencer, o 2º atrapalha, o 3º é ruído."""
     sorteio = np.random.default_rng(0)
-    X = sorteio.normal(size=(200, 3))
-    y = 2 * X[:, 0] - 3 * X[:, 1] + 5  # a 3ª coluna não importa
-    modelo = treinar_ridge(X, y, alpha=0.001)
-    assert np.allclose(prever(modelo, X), y, atol=0.01)
-    assert abs(modelo["pesos"][2]) < 0.01
+    X = sorteio.normal(size=(2000, 3))
+    y = (sorteio.random(2000) < sigmoide(2 * X[:, 0] - 1 * X[:, 1])).astype(float)
+    pesos = treinar_logistica(X, y)
+    assert pesos[0] > 1 and pesos[1] < -0.5 and abs(pesos[2]) < 0.2
+    assert avaliar(y, sigmoide(X @ pesos))["acuracia"] > 0.7
 
 
-def test_caracteristicas_sao_numeros_de_todas_as_chaves():
-    numeros = caracteristicas(time_exemplo("Meta"))
-    assert list(numeros) == list(CARACTERISTICAS)
-    assert all(isinstance(v, float) for v in numeros.values())
-    assert numeros["funcao_fake_out"] == 2  # Rillaboom e Incineroar
-    assert numeros["sem_ataques"] == 0
+def test_avaliar():
+    y = np.array([1.0, 0.0, 1.0, 0.0])
+    assert avaliar(y, np.array([0.9, 0.1, 0.8, 0.2]))["acuracia"] == 1.0
+    assert avaliar(y, np.array([0.5, 0.5, 0.5, 0.5]))["log_loss"] == pytest.approx(np.log(2), abs=1e-3)
 
 
-def test_time_com_problemas_tem_mais_tipos_perigosos():
-    meta = caracteristicas(time_exemplo("Meta"))
-    problemas = caracteristicas(time_exemplo("Time com problemas"))
-    assert problemas["tipos_perigosos"] > meta["tipos_perigosos"]
+# ---------------------------------------------------------------------------
+# Pontos de análise e modelo: precisam dos dados
+# ---------------------------------------------------------------------------
 
 
-def test_coesao_do_meta_maior_que_de_time_aleatorio():
-    sorteio = random.Random(1)
-    pool = pool_do_meta()
-    meta = [coesao_no_meta(montar_time([membro_do_meta(p) for p in time_do_meta(sorteio, pool)]))
-            for _ in range(10)]
-    aleatorio = [coesao_no_meta(montar_time([membro_do_meta(p) for p in time_aleatorio(sorteio, pool)]))
-                 for _ in range(10)]
-    assert sum(meta) > sum(aleatorio)
+@precisa_dados
+def test_pontos_de_analise_dos_exemplos():
+    meta = pontos_de_analise(time_exemplo("Meta"))
+    chuva = pontos_de_analise(time_exemplo("Chuva"))
+    sol_tr = pontos_de_analise(time_exemplo("Sol + Trick Room"))
+    assert list(meta) == list(PONTOS)
+    assert 0 <= meta["cobertura_ataque"] <= 1 and 0 <= meta["cobrem_fraquezas"] <= 1
+    assert meta["fake_out"] >= 1
+    assert chuva["clima_a_favor"] >= 1          # Pelipper + Swift Swim
+    assert sol_tr["trick_room"] >= 1            # lentos com quem usa Trick Room
+    assert meta["clima_a_favor"] == meta["clima_contra"] == 0  # sem clima
+    assert meta["aparecem_juntos"] > sol_tr["aparecem_juntos"]
 
 
-def test_times_gerados_respeitam_as_regras():
-    sorteio = random.Random(2)
-    pool = pool_do_meta()
-    for _ in range(20):
-        time = montar_time([membro_do_meta(p) for p in time_do_meta(sorteio, pool)])
-        assert len(time) == config.TEAM_SIZE
-        assert sum(m["forma"] != m["id"] for m in time) <= 1  # no máximo uma Mega
+@precisa_dados
+def test_time_do_replay_e_formas_de_aparencia():
+    assert especie_conhecida("vivillonpokeball") == "vivillon"
+    assert especie_conhecida("naoexiste") is None
+    time = time_do_replay([
+        {"especie": "garchomp", "golpes": ["earthquake"], "item": "garchompite", "habilidade": ""},
+        {"especie": "incineroar", "golpes": [], "item": "", "habilidade": ""},
+    ])
+    assert time[0]["forma"] == "garchompmega"
+    assert len(time[0]["golpes"]) == 4 and time[0]["golpes"][0] == "earthquake"
 
 
-def test_dataset_tem_os_tres_grupos():
-    base = gerar_dataset(times_por_grupo=3, semente=0)
-    assert base["X"].shape == (9, len(CARACTERISTICAS))
-    assert sorted(set(base["grupos"])) == ["aleatorio", "meta", "perturbado"]
+@precisa_dados
+def test_treinar_com_batalhas_pequenas():
+    meta, problemas = time_exemplo("Meta"), time_exemplo("Time com problemas")
+
+    def revelados(time):
+        return [{"especie": m["id"], "golpes": [], "item": "", "habilidade": ""} for m in time]
+
+    batalhas = [{"vencedor": 1 + i % 2, "p1": revelados(meta if i % 2 == 0 else problemas),
+                 "p2": revelados(problemas if i % 2 == 0 else meta)} for i in range(40)]
+    modelo = treinar(batalhas, rating_minimo=0)  # o Meta sempre vence
+    assert modelo["teste"]["acuracia"] == 1.0
+    resultado = analise_da_ia(meta, modelo)
+    assert resultado["nota"] > analise_da_ia(problemas, modelo)["nota"]
+    assert [c["nome"] for c in resultado["categorias"]] == CATEGORIAS
 
 
-def test_treino_pequeno_ja_supera_chutar_a_media():
-    modelo = treinar(times_por_grupo=40, semente=3)
-    assert modelo["teste"]["r2"] > modelo["baseline_media"]["r2"]
-    assert modelo["coesao_media_por_grupo"]["meta"] > modelo["coesao_media_por_grupo"]["aleatorio"]
-    nota = nota_do_time(time_exemplo("Meta"), modelo=modelo)
-    assert 0 <= nota["nota"] <= 10
-    assert len(nota["contribuicoes"]) == len(CARACTERISTICAS)
+@precisa_dados
+def test_modelo_salvo_analisa_os_exemplos():
+    modelo = carregar_modelo()
+    assert modelo is not None, "rode python -m src.replays e python -m src.modelo_nota"
+    assert modelo["batalhas_treino"] > 1000
+    resultado = analise_da_ia(time_exemplo("Meta"), modelo)
+    assert 0 <= resultado["nota"] <= 10 and 0 < resultado["chance"] < 100
+    assert sum(p["impacto"] for p in resultado["pontos"]) == pytest.approx(resultado["forca"], abs=0.01)
+    assert all(0 <= c["nota"] <= 10 for c in resultado["categorias"])
 
 
-def test_modelo_salvo_da_nota_maior_ao_time_do_meta():
-    assert carregar_modelo() is not None, "rode python -m src.modelo_nota"
-    meta = nota_do_time(time_exemplo("Meta"))
-    problemas = nota_do_time(time_exemplo("Time com problemas"))
-    assert meta["nota"] > problemas["nota"]
-    # A explicação vem do maior impacto para o menor.
-    pontos = [abs(c["pontos"]) for c in meta["contribuicoes"]]
-    assert pontos == sorted(pontos, reverse=True)
+@precisa_dados
+def test_dicas_e_respostas_da_ia():
+    resultado = analise_da_ia(time_exemplo("Chuva"), carregar_modelo())
+    dicas = dicas_da_ia(resultado)
+    assert all(d["nivel"] in ("ok", "atencao") for d in dicas)
+    respostas = respostas_da_ia(resultado)
+    assert [r["pergunta"][:5] for r in respostas] == ["Fake ", "Scree", "O cli"]
+    assert "aproveitam" in respostas[2]["resposta"]  # o time da chuva tem clima
+    sem_clima = respostas_da_ia(analise_da_ia(time_exemplo("Meta"), carregar_modelo()))
+    assert "não coloca clima" in sem_clima[2]["resposta"] and sem_clima[2]["impacto"] == 0
+
+
+def _resultado_falso(peso: float, valor: float, impacto: float) -> dict:
+    pontos = [{"chave": c, "nome": c, "peso": peso, "valor": valor, "impacto": impacto,
+               "media_vencedores": 1.0} for c in ("fake_out", "screens", "clima_a_favor", "clima_contra")]
+    return {"pontos": pontos}
+
+
+def test_respostas_seguem_o_sinal_do_peso():
+    # Sem o golpe: a resposta não diz que ele "ajuda" e o ícone fica neutro.
+    sem = respostas_da_ia(_resultado_falso(peso=-0.09, valor=0, impacto=0.1))[0]
+    assert sem["resposta"].startswith("O time não usa") and sem["impacto"] == 0
+    # Com o golpe e peso negativo: prejudica.
+    com = respostas_da_ia(_resultado_falso(peso=-0.09, valor=2, impacto=-0.1))[0]
+    assert com["resposta"].startswith("Não,") and com["impacto"] < 0
+    # Peso negativo e pouco disso: a dica diz "Ter pouco de".
+    dica = dicas_da_ia(_resultado_falso(peso=-0.09, valor=0, impacto=0.1))[0]
+    assert dica["texto"].startswith("Ter pouco de")
