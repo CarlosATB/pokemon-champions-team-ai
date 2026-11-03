@@ -77,34 +77,164 @@ def css_fotos_na_lista(ids_ordenados: list[str]) -> str:
     return "<style>" + "\n".join(regras) + "</style>"
 
 
+def icone(nome: str, classe: str = "") -> str:
+    """Ícone da biblioteca Material Symbols (a mesma que o Streamlit usa) para o HTML.
+    Nos textos do Streamlit usa-se ":material/nome:"; dentro de HTML, este span."""
+    return f'<span class="icone {classe}">{nome}</span>'
+
+
 # CSS colocado uma vez no topo da página (st.markdown com unsafe_allow_html).
-# Os cards são st.container(key="card_N"): o Streamlit dá a classe "st-key-card_N".
-# Cores: fundo cinza escuro (tema) e detalhes em #3a0445.
+# Os cards são st.container(key="card_N") ou key="vidro_..." (classe "st-key-...").
+# Visual: carvão (cinza-escuro) com painéis de "vidro" (fundo translúcido + desfoque).
 CSS = """
 <style>
-/* Barra de cima no estilo de site: logo à esquerda e abas em maiúsculas */
-[data-testid="stHeader"] { background: #18181B; border-bottom: 1px solid #3a0445; }
-[data-testid="stHeaderLogo"] { height: 2.3rem; max-width: none; margin-right: 2rem; }
-/* Sem o título grande, o conteúdo pode começar mais perto da barra */
-.block-container { padding-top: 4rem; }
-[data-testid="stTopNavLink"] p {
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 0.04em;
+:root {
+    --vidro: rgba(38, 38, 42, 0.55);
+    --vidro-forte: rgba(24, 24, 27, 0.85);
+    --borda: rgba(255, 255, 255, 0.08);
+    --borda-forte: rgba(255, 255, 255, 0.16);
+    --destaque: #5B9BFF;
+    --destaque-2: #7C6CFF;
+    --texto-apagado: #9CA3AF;
+    --verde: #34D399;
+    --vermelho: #F87171;
+    --amarelo: #FBBF24;
 }
-[class*="st-key-card_"] {
-    background: #26262B;
-    border: 1px solid #3a0445;
-    border-radius: 10px;
-    padding: 10px 12px;
+
+/* Fundo azul-escuro com brilhos suaves (fica parado ao rolar) */
+.stApp {
+    background:
+        radial-gradient(1100px 600px at 8% -10%, rgba(255, 255, 255, 0.05), transparent 60%),
+        radial-gradient(900px 500px at 100% 0%, rgba(91, 155, 255, 0.06), transparent 60%),
+        radial-gradient(900px 700px at 50% 110%, rgba(255, 255, 255, 0.03), transparent 60%),
+        linear-gradient(180deg, #121214 0%, #18181B 100%);
+    background-attachment: fixed;
 }
-/* Borda em cada seletor do card (golpe, habilidade, item), para ver onde termina */
+
+/* Barra de cima: vidro, logo à esquerda, abas em "pílula" */
+[data-testid="stHeader"] {
+    background: rgba(18, 18, 20, 0.70);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    border-bottom: 1px solid var(--borda);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    height: 4rem;
+}
+[data-testid="stHeader"]::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--destaque), var(--destaque-2), transparent);
+    opacity: 0.55;
+}
+[data-testid="stToolbar"] { height: 4rem; padding: 0 1.5rem; }
+[data-testid="stHeaderLogo"] { height: 2.4rem; max-width: none; margin-right: 1.75rem; }
+[data-testid="stTopNav"] { gap: 4px; }
+[data-testid="stTopNavLink"], [data-testid="stTopNavSection"] {
+    border-radius: 999px;
+    padding: 6px 16px !important;
+    transition: background 0.2s, color 0.2s;
+}
+[data-testid="stTopNavLink"] p, [data-testid="stTopNavSection"] p {
+    font-weight: 600;
+    font-size: 0.92rem;
+    letter-spacing: 0.01em;
+    color: #C4C4CC;
+}
+[data-testid="stTopNavLink"]:hover { background: rgba(91, 155, 255, 0.10); }
+[data-testid="stTopNavLink"]:hover p { color: #FFFFFF; }
+[data-testid="stTopNavLink"][aria-current="page"] {
+    background: linear-gradient(135deg, rgba(91, 155, 255, 0.22), rgba(124, 108, 255, 0.22));
+    box-shadow: inset 0 0 0 1px var(--borda-forte);
+}
+[data-testid="stTopNavLink"][aria-current="page"] p { color: #FFFFFF; }
+.block-container { padding-top: 5.5rem; }
+
+h1, h2, h3, h4 { letter-spacing: -0.01em; }
+h2 { font-weight: 700 !important; }
+
+/* Painéis de vidro: cards do time e containers com key "vidro_..." */
+[class*="st-key-card_"], [class*="st-key-vidro"],
+.veredito, .categoria, .ameaca, .grade {
+    background: var(--vidro) !important;
+    border: 1px solid var(--borda) !important;
+    border-radius: 14px;
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+[class*="st-key-card_"] { padding: 10px 12px; }
+[class*="st-key-vidro"] { padding: 14px 16px; }
 [class*="st-key-card_"] [data-testid="stSelectbox"] [role="group"] {
-    border: 1px solid #5b1f70 !important;
-    border-radius: 6px;
+    border: 1px solid var(--borda-forte) !important;
+    border-radius: 8px;
 }
-/* Cartões com borda (st.container(border=True)) no mesmo tom */
-[data-testid="stVerticalBlockBorderWrapper"] { border-color: #3a0445 !important; }
+
+/* Botões: principal em degradê azul, secundário em vidro */
+[data-testid="stBaseButton-primary"] {
+    background: linear-gradient(135deg, #3B82F6, #6366F1) !important;
+    border: none !important;
+    box-shadow: 0 6px 18px rgba(59, 130, 246, 0.35);
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+[data-testid="stBaseButton-primary"]:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(59, 130, 246, 0.45);
+}
+[data-testid="stBaseButton-secondary"], [data-testid="stPopoverButton"] {
+    background: rgba(42, 42, 46, 0.6) !important;
+    border: 1px solid var(--borda-forte) !important;
+}
+[data-testid="stBaseButton-secondary"]:hover, [data-testid="stPopoverButton"]:hover {
+    border-color: var(--destaque) !important;
+    color: #FFFFFF !important;
+}
+
+/* Seletor das visões (Análise da IA / Melhorar o time / Detalhes) */
+[data-testid="stButtonGroup"] > div {
+    background: var(--vidro-forte);
+    border: 1px solid var(--borda);
+    border-radius: 999px;
+    padding: 4px;
+    display: inline-flex;
+}
+[data-testid="stButtonGroup"] button {
+    padding: 8px 22px;
+    font-size: 0.98rem;
+    border: none !important;
+    border-radius: 999px !important;
+    background: transparent;
+}
+[data-testid="stButtonGroup"] button[kind*="Active"] {
+    background: linear-gradient(135deg, #3B82F6, #6366F1) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.35);
+}
+
+/* Abas */
+[data-baseweb="tab-list"] { gap: 6px; border-bottom: 1px solid var(--borda); }
+[data-baseweb="tab-highlight"] { background: linear-gradient(90deg, var(--destaque), var(--destaque-2)); }
+[data-testid="stExpander"] details {
+    background: var(--vidro);
+    border: 1px solid var(--borda) !important;
+    border-radius: 12px;
+}
+[data-testid="stAlertContainer"] { border-radius: 12px; backdrop-filter: blur(10px); }
+
+/* Ícones Material Symbols dentro do HTML (ver icone()) */
+.icone {
+    font-family: "Material Symbols Rounded";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 1.2em;
+    line-height: 1;
+    vertical-align: -0.22em;
+    letter-spacing: normal;
+    text-transform: none;
+    white-space: nowrap;
+    font-feature-settings: "liga";
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+}
+
 .tipo {
     display: inline-block;
     min-width: 64px;
@@ -122,7 +252,7 @@ CSS = """
 /* Imagens em pixel art: aumentar sem borrar */
 [data-testid="stImage"] img, img.foto { image-rendering: pixelated; }
 img.foto { vertical-align: middle; }
-.vazio { color: #8a7f8f; font-size: 0.85rem; text-align: center; padding: 30px 0; }
+.vazio { color: var(--texto-apagado); font-size: 0.85rem; text-align: center; padding: 30px 0; }
 
 /* Fotinha ao lado do nome na lista de Pokémon (ver css_fotos_na_lista) */
 [role="listbox"][aria-label="Pokémon"] [role="option"] > div {
@@ -138,17 +268,14 @@ img.foto { vertical-align: middle; }
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 6px 8px;
-    background: #26262B;
-    border: 1px solid #3a0445;
-    border-radius: 10px;
     padding: 12px;
 }
 @media (max-width: 700px) { .grade { grid-template-columns: repeat(3, 1fr); } }
 .celula { position: relative; text-align: center; cursor: default; }
 .numero { font-weight: 600; margin-top: 2px; }
-.numero.verde { color: #4cd964; }
-.numero.vermelho { color: #ff5c5c; }
-.numero.neutro { color: #ECE6EF; }
+.numero.verde { color: var(--verde); }
+.numero.vermelho { color: var(--vermelho); }
+.numero.neutro { color: #E7E7EA; }
 .detalhe {
     display: none;
     position: absolute;
@@ -157,12 +284,12 @@ img.foto { vertical-align: middle; }
     z-index: 100;
     min-width: 280px;
     text-align: left;
-    background: #2A2A30;
-    border: 1px solid #3a0445;
-    border-radius: 8px;
+    background: #1F1F23;
+    border: 1px solid var(--borda-forte);
+    border-radius: 10px;
     padding: 10px 12px;
     font-size: 0.85rem;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
 }
 .celula:hover .detalhe { display: block; }
 /* As caixinhas das 2 últimas colunas abrem para a esquerda, para não sair da tela */
@@ -170,5 +297,75 @@ img.foto { vertical-align: middle; }
 .detalhe table { border: none; margin: 6px 0 0 0; width: 100%; }
 .detalhe td { border: none; padding: 2px 4px; }
 .detalhe .tipo.pequena { width: auto; min-width: 56px; }
+
+/* Veredito da IA: nota num anel colorido */
+.veredito {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    line-height: 1.7;
+}
+.anel {
+    flex: none;
+    width: 116px;
+    height: 116px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: conic-gradient(var(--cor) var(--pct), rgba(255, 255, 255, 0.08) 0);
+    box-shadow: 0 0 32px color-mix(in srgb, var(--cor) 35%, transparent);
+}
+.anel > div {
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    background: #1A1A1D;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    line-height: 1.1;
+}
+.anel b { font-size: 1.9rem; }
+.anel small { color: var(--texto-apagado); }
+.veredito .rotulo {
+    color: var(--destaque); font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+}
+.veredito .titulo { font-size: 1.55rem; font-weight: 800; }
+.apagado { color: var(--texto-apagado); font-size: 0.85rem; }
+
+/* Cards das categorias e das ameaças do meta */
+.categorias, .ameacas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 14px;
+    margin-bottom: 16px;
+}
+.ameacas { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.categoria, .ameaca { padding: 14px 16px; }
+.categoria .cabecalho, .ameaca .cabecalho { display: flex; align-items: center; gap: 8px; font-size: 1.05rem; }
+.categoria .cabecalho .icone { color: var(--destaque); }
+.categoria .ordem {
+    width: 24px; height: 24px; border-radius: 50%; flex: none;
+    background: linear-gradient(135deg, #3B82F6, #6366F1);
+    display: grid; place-items: center; font-size: 0.78rem; font-weight: 700;
+}
+.categoria .nota { margin-left: auto; font-size: 1.45rem; font-weight: 800; }
+.categoria .selo, .ameaca .selo {
+    font-size: 0.7rem; padding: 1px 9px; border-radius: 10px;
+    background: rgba(255, 255, 255, 0.07); color: #C4C4CC;
+}
+.ameaca .selo { margin-left: auto; }
+.ameaca img.foto { background: rgba(255, 255, 255, 0.04); border-radius: 12px; }
+.barra { height: 8px; border-radius: 4px; background: rgba(255, 255, 255, 0.08); margin: 8px 0 6px 0; overflow: hidden; }
+.barra > div { height: 100%; border-radius: 4px; }
+.motivos { list-style: none; padding: 0; margin: 8px 0 0 0; font-size: 0.88rem; }
+.motivos li { margin: 5px 0; padding-left: 22px; text-indent: -22px; }
+.motivos li > .icone:first-child { display: inline-block; width: 22px; text-indent: 0; }
+.motivos li.verde > .icone:first-child { color: var(--verde); }
+.motivos li.vermelho > .icone:first-child { color: var(--vermelho); }
+.motivos li.neutro > .icone:first-child { color: var(--texto-apagado); }
 </style>
 """

@@ -55,6 +55,8 @@ SHOWDOWN_GITHUB_BASE = "https://raw.githubusercontent.com/smogon/pokemon-showdow
 # Imagens: espelhos da PokéAPI no GitHub (funcionam até de onde a pokeapi.co é bloqueada).
 POKEAPI_INDICE_BASE = "https://raw.githubusercontent.com/PokeAPI/api-data/master/data/api/v2"
 SPRITES_BASE = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites"
+# Replays (batalhas gravadas) públicos do Pokémon Showdown: times + quem venceu.
+REPLAYS_BASE = "https://replay.pokemonshowdown.com"
 
 
 def smogon_chaos_url(
@@ -101,6 +103,8 @@ GOLPES_FILE = PROCESSED_DATA_DIR / "golpes.json"     # tipo, categoria e poder d
 MOVEPOOL_FILE = PROCESSED_DATA_DIR / "movepool.json" # golpes que cada Pokémon aprende
 ITENS_FILE = PROCESSED_DATA_DIR / "itens.json"       # itens legais e Pedras Mega
 HABILIDADES_FILE = PROCESSED_DATA_DIR / "habilidades.json"  # nome bonito das habilidades
+MODELO_FILE = PROCESSED_DATA_DIR / "modelo_nota.json"  # modelo de ML da nota do time (src/modelo_nota.py)
+REPLAYS_FILE = PROCESSED_DATA_DIR / "replays.json"    # batalhas reais (src/replays.py), treino do modelo
 # As imagens ficam em static/: o Streamlit serve essa pasta no endereço app/static/
 # (enableStaticServing em .streamlit/config.toml), e o navegador busca cada imagem por lá.
 SPRITES_DIR = ROOT_DIR / "static" / "sprites"  # imagem de cada Pokémon ({id}.png)

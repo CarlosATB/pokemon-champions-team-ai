@@ -23,7 +23,7 @@ from src.opcoes import (
 )
 from src.recomendacao import NOMES_EVS, sugerir_para_pokemon
 from src.times_exemplo import TIMES_EXEMPLO
-from src.visual import CATEGORIAS, css_fotos_na_lista, etiqueta_tipo, etiquetas
+from src.visual import CATEGORIAS, css_fotos_na_lista, etiqueta_tipo, etiquetas, icone
 
 VAGAS = range(config.TEAM_SIZE)
 
@@ -91,6 +91,22 @@ def _ao_limpar() -> None:
     st.session_state["avisos_importar"] = []
 
 
+def _ao_auto_build() -> None:
+    """Auto build: cada Pokémon do time recebe a montagem recomendada (a mais usada).
+
+    Vai de card em card guardando os itens já usados, para não repetir item (regra do VGC).
+    """
+    ocupados = {}
+    for vaga in VAGAS:
+        pid = st.session_state.get(f"especie_{vaga}")
+        if not pid:
+            continue
+        card = card_recomendado(pid, ocupados)
+        preencher_card(vaga, card)
+        if card.get("item"):
+            ocupados[card["item"]] = pid
+
+
 def _ao_sortear(vaga: int) -> None:
     """Dado: um Pokémon do meta que não está no time, já montado com a recomendação."""
     outros = {v: st.session_state.get(f"especie_{v}") for v in VAGAS if v != vaga}
@@ -104,8 +120,12 @@ def _ao_sortear(vaga: int) -> None:
 # ---------------------------------------------------------------------------
 
 def _barra_de_botoes(cards: list[dict]) -> None:
-    importar_, exportar_, limpar_ = st.columns([1, 1, 1])
-    with importar_.popover("📥 Importar", width="stretch"):
+    auto_, importar_, exportar_, limpar_ = st.columns([1, 1, 1, 1])
+    auto_.button("Auto build", icon=":material/auto_fix_high:", type="primary",
+                 on_click=_ao_auto_build, width="stretch", disabled=not cards,
+                 help="Monta todos os Pokémon do time com a build recomendada: item, "
+                      "habilidade, 4 golpes, natureza e EVs mais usados (sem repetir item).")
+    with importar_.popover("Importar", icon=":material/file_download:", width="stretch"):
         st.selectbox("Time de exemplo", list(TIMES_EXEMPLO), key="exemplo_escolhido")
         st.button("Carregar este exemplo", on_click=_ao_carregar_exemplo, width="stretch")
         st.divider()
@@ -113,23 +133,23 @@ def _barra_de_botoes(cards: list[dict]) -> None:
                      key="texto_importar", height=250,
                      placeholder="Incineroar @ Sitrus Berry\nAbility: Intimidate\n- Fake Out\n...")
         st.button("Importar", type="primary", on_click=_ao_importar, width="stretch")
-    with exportar_.popover("📤 Exportar", width="stretch"):
+    with exportar_.popover("Exportar", icon=":material/file_upload:", width="stretch"):
         if cards:
             st.caption("Copie (botão no canto) e cole no Showdown: Teambuilder → "
                        "New Team → Import from text.")
             st.code(exportar(cards), language=None)
         else:
             st.info("Escolha pelo menos um Pokémon para exportar.")
-    limpar_.button("🗑️ Limpar o time", on_click=_ao_limpar, width="stretch")
+    limpar_.button("Limpar o time", icon=":material/delete_sweep:", on_click=_ao_limpar, width="stretch")
     avisos = st.session_state.get("avisos_importar", [])
     if avisos:
         st.warning("Algumas coisas do texto não entraram no time:\n\n"
-                   + "\n".join(f"- {aviso}" for aviso in avisos), icon="⚠️")
+                   + "\n".join(f"- {aviso}" for aviso in avisos), icon=":material/warning:")
 
 
 def _ajustes(vaga: int, pid: str) -> None:
     """Botão de ajustes do card: natureza e pontos de status (os "EVs" do Champions)."""
-    with st.popover("⚙️", help="Natureza e pontos de status (EVs)"):
+    with st.popover(":material/tune:", help="Natureza e pontos de status (EVs)"):
         st.selectbox("Natureza", [None] + NATUREZAS, key=f"natureza_{vaga}_{pid}",
                      placeholder="(nenhuma)",
                      format_func=lambda n: "(nenhuma)" if n is None else n)
@@ -160,9 +180,9 @@ def _card(vaga: int, nomes: dict, ids_ordenados: list[str]) -> dict | None:
                            format_func=lambda p: "Escolha um Pokémon" if p is None else nomes[p])
     if pid is None:
         with direita:
-            st.markdown('<div class="vazio">Escolha na lista ou jogue o dado 🎲</div>',
+            st.markdown(f'<div class="vazio">Escolha na lista ou jogue o dado {icone("casino")}</div>',
                         unsafe_allow_html=True)
-        esquerda.button("🎲", key=f"dado_{vaga}", on_click=_ao_sortear, args=(vaga,),
+        esquerda.button(":material/casino:", key=f"dado_{vaga}", on_click=_ao_sortear, args=(vaga,),
                         help="Pokémon aleatório do meta, já montado")
         return None
 
@@ -175,7 +195,7 @@ def _card(vaga: int, nomes: dict, ids_ordenados: list[str]) -> dict | None:
             col_imagem.image(str(imagem), width=120)
         # Dado e ajustes embaixo da imagem
         col_dado, col_ajustes = st.columns(2)
-        col_dado.button("🎲", key=f"dado_{vaga}", on_click=_ao_sortear, args=(vaga,),
+        col_dado.button(":material/casino:", key=f"dado_{vaga}", on_click=_ao_sortear, args=(vaga,),
                         help="Trocar por um Pokémon aleatório do meta, já montado")
         with col_ajustes:
             _ajustes(vaga, pid)
@@ -191,9 +211,9 @@ def _card(vaga: int, nomes: dict, ids_ordenados: list[str]) -> dict | None:
                 item = st.selectbox("Item", [None] + opcoes_de_itens(pid), key=f"item_{vaga}_{pid}",
                                     label_visibility="collapsed", placeholder="Sem item",
                                     format_func=lambda i: "Sem item" if i is None else itens[i])
-        icone = config.ITEM_SPRITES_DIR / f"{item}.png"
-        if item and icone.exists():
-            col_icone.image(str(icone), width=28)
+        sprite_item = config.ITEM_SPRITES_DIR / f"{item}.png"
+        if item and sprite_item.exists():
+            col_icone.image(str(sprite_item), width=28)
 
     with direita:
         escolhidos = []

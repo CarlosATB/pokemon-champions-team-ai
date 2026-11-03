@@ -21,7 +21,7 @@ def mostrar_mais_usados() -> None:
 
     colunas = st.columns(4)
     for posicao, (pokemon_id, info) in enumerate(list(uso["pokemon"].items())[:QUANTOS], start=1):
-        with colunas[(posicao - 1) % 4].container(border=True):
+        with colunas[(posicao - 1) % 4].container(key=f"vidro_uso_{pokemon_id}"):
             col_imagem, col_nome = st.columns([1, 2], vertical_alignment="center")
             if imagem(pokemon_id):
                 col_imagem.image(imagem(pokemon_id), width=72)

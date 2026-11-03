@@ -76,7 +76,8 @@ A IA precisa usar algoritmos que o grupo consiga explicar. **Não** é "mandar o
    - **funções de duplas:** controle de velocidade (Tailwind, Trick Room, Icy Wind), Fake Out, Intimidate, redirecionamento (Follow Me, Rage Powder), golpes que acertam os dois alvos, proteção (Protect, Wide Guard);
    - ameaças do meta: os Pokémon mais usados que o time tem dificuldade de enfrentar;
    - validação das regras do formato.
-3. **Algoritmo Genético (opcional)** — "evolui" o time testando trocas e mantendo as melhores, como seleção natural, para melhorar cobertura e sinergia.
+3. **Análise do time com Machine Learning** — regressão logística treinada com batalhas reais do Showdown (quem venceu?): avalia 12 pontos em 5 categorias com pesos em ordem (cobertura contra o top 10 > sinergia > winrate > controle de velocidade > situacionais: Fake Out, Screens, clima) + alerta de físicos demais, dá nota 0–10 e mostra gráficos do time e do treinamento.
+4. **Algoritmo Genético (opcional)** — "evolui" o time testando trocas e mantendo as melhores, como seleção natural, para melhorar cobertura e sinergia.
 
 ### B5. Tecnologias e dados
 
@@ -193,6 +194,45 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 - [x] Meowsticite: Pedra Mega que serve a duas formas (Meowstic-M e Meowstic-F) agora é lida (`megas` em `itens.json`; 81 Pedras Mega)
 - [x] Floette-Eternal e Floette-Mega sem golpes (e o Exportar dava erro): o bloco dela no `learnsets.ts` tem `inherit: true` e a Floette comum não existe no Champions. Movepool corrigido e `opcoes.forma_normal` (a Mega usa a forma que segura a pedra)
 
+### Fase 5.1 — Nota do time com Machine Learning (pedido do usuário em 02/11)
+- [x] Características numéricas tiradas de `analisar()` (15: tipos perigosos, fraquezas, 4x, resistências, tipos sem resposta, cobertura 2x, sem ataques, 6 funções de duplas, ameaças) — `src/modelo_nota.py`
+- [x] Rótulo vindo do uso real: coesão no meta (confiança média entre os pares, pelos parceiros do `uso.json`)
+- [x] Dataset: 400 times do meta (por co-ocorrência), 400 perturbados (1 a 3 trocas) e 400 aleatórios
+- [x] Regressão Ridge feita com numpy (sem dependência nova); 80/20 treino/teste: R² 0,68 contra 0 de chutar a média
+- [x] Modelo salvo em `data/processed/modelo_nota.json` (`python -m src.modelo_nota` treina de novo)
+- [x] Aba "Nota da IA" na análise: nota 0–10, coesão prevista × real, quanto cada característica somou/tirou e os pesos do modelo
+- [x] Testes — 8 novos; 94 passando
+
+### Fase 5.2 — Análise do time feita pela IA, com gráficos (pedido do usuário em 03/11)
+- [x] Batalhas reais: `src/replays.py` baixa e lê replays do Showdown (12.000 batalhas em `data/processed/replays.json`; times, golpes, item, habilidade e vencedor)
+- [x] 11 pontos da análise pedidos pelo usuário: cobertura contra o top 10 (ataque/defesa), controle de velocidade (breakers rápidos, Trick Room, Tailwind), sinergia (aparecem juntos, cobrem fraquezas), Fake Out, Screens, clima (a favor/contra)
+- [x] Regressão logística com numpy (time 1 − time 2 → chance de o time 1 vencer), só batalhas de rating 1200+; teste 53,5% e validação cruzada 53,1% ± 1,9% (chute = 50%) — o resultado depende muito do jogador, e o site explica isso
+- [x] Análise da tela trocada pela da IA: nota 0–10, chance contra um time médio, dicas e respostas (Fake Out / Screens / clima) a partir dos pesos — `src/dicas_ia.py`; nota só com o time completo
+- [x] Aba "Gráficos": nota por categoria, impacto de cada ponto, seu time × vencedores × perdedores, pesos aprendidos, acurácia e histograma da força dos times reais
+- [x] Testes — `tests/test_modelo_nota.py` reescrito e `tests/test_replays.py`; 97 passando
+- [x] "Trocar um Pokémon" com a IA (`src/trocas_ia.py`): testa cada candidato do meta no lugar de quem sai, ordena pelo ganho de força, explica pelos pontos que mudam e mostra gráfico do ganho; a IA também escolhe quem sai. Regra antiga só com time incompleto. 3 testes (`tests/test_trocas_ia.py`); 100 passando
+
+### Fase 5.3 — Pesos em ordem de importância (pedido do usuário em 03/11)
+- [x] Ordem pedida: Cobertura (top 10) > Sinergia > Winrate > Controle de velocidade > Situacionais; o treino (descida do gradiente com projeção) garante cada peso ≥ o de baixo + 0,01
+- [x] Novo ponto Winrate (média suavizada dos Pokémon, sem contar a própria batalha no treino)
+- [x] Situacionais só contam se o time se beneficia: Fake Out (+1 com setup/preparo de campo, −1 com Psychic Terrain), Screens (+1 com setup ou Trick Room), clima (aproveitam − prejudicados); ficam fora da "melhor/pior categoria"
+- [x] Ponto de alerta: físicos demais × especiais contra ameaças bulky do top 10 (peso ≤ 0, aviso na tela)
+- [x] Validação cruzada 51,7% ± 1,1% (sem a ordem seria ≈ 56%, quase só pelo winrate — explicado na tela); 103 testes passando
+
+### Fase 5.4 — Visual e navegação (pedido do usuário em 03/11)
+- [x] Página em 2 partes: "1. Seu time" e "2. O que a IA achou", com seletor de 3 visões (`src/navegacao.py`): 📊 Análise da IA, 🛠️ Melhorar o time, 🔎 Detalhes
+- [x] Análise da IA: veredito com anel da nota, um card por categoria (ordem, nota, barra, ▲/▼ comparando com os vencedores) e "Próximo passo" com botão que leva às trocas sugeridas
+- [x] Melhorar o time: abas na ordem certa (time completo → trocas primeiro; incompleto → completar o time primeiro); cada troca mostra nota antes → depois e o que melhora/piora
+- [x] Detalhes: gráficos, pontos, fraquezas, cobertura, funções, ameaças e como a IA aprendeu
+- [x] Testes de tela (`tests/test_telas.py`, `AppTest`); 111 passando
+
+### Fase 5.5 — Visual premium (pedido do usuário em 03/11)
+- [x] Ameaças do meta dentro da "Análise da IA" (cards com foto, tipos, % de uso, quem elas acertam forte e as respostas do time)
+- [x] Emojis trocados por ícones da biblioteca **Material Symbols** (`:material/nome:` no Streamlit e `icone()` no HTML)
+- [x] Barra de cima refinada (logo compacto, abas em "pílula", aba ativa em degradê) e fundo azul-escuro com painéis de vidro (`src/visual.py`, `.streamlit/config.toml`, fonte Inter)
+- [x] Fundo trocado para carvão (cinza-escuro); o azul ficou só como cor de destaque
+- [x] Botão **Auto build**: monta todos os Pokémon do time com a build recomendada (item, habilidade, golpes, natureza e EVs mais usados), sem repetir item
+
 ### Fase 6 — Algoritmo Genético (opcional)
 - [ ] Função de "nota" do time (cobertura + funções + sinergia)
 - [ ] Geração, cruzamento e mutação de times
@@ -224,3 +264,9 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 | 27/10/2026 | PRs #7 e #8 mergeados: Fase 4 concluída. Fase 5 (branch `fase-5-revisao`): Meowsticite corrigida (Pedras Mega com mais de uma forma), 1ª revisão do código. Falta o teste completo no site publicado (pelo Carlos). 81 testes passando. |
 | 28/10/2026 | Fase 4.3 (branch `fase-4-3-visual`): estética minimalista (fundo cinza escuro + detalhes #3a0445), bordas nos seletores, fotinha na lista de Pokémon, cobertura e fraquezas em grade de tipos com detalhes ao passar o mouse, abas no topo (Montar o time, Mais usados, Sobre). 83 testes passando. |
 | 28/10/2026 | Correção (branch `corrige-floette`): Floette-Eternal e Floette-Mega agora têm golpes e o Exportar não quebra mais com a Floette-Mega. 86 testes passando (com a Fase 4.3). |
+| 03/11/2026 | Fase 5.1 (branch `valiinn-ml-pontuacao-times`): nota do time com Machine Learning (`src/modelo_nota.py`, Regressão Ridge com numpy). Entradas = números da análise; rótulo = coesão no meta (parceiros do Smogon). R² 0,68 no teste. Aba "Nota da IA" com explicação. 94 testes passando. |
+| 03/11/2026 | Fase 5.2 (mesma branch): a análise passou a ser feita pela IA, treinada com 12.000 batalhas reais do Showdown (`src/replays.py`): 11 pontos pedidos pelo usuário, regressão logística (≈ 53% de acerto contra 50% do chute — o jogador pesa mais que o time), dicas/respostas a partir dos pesos e aba "Gráficos". 97 testes passando. |
+| 03/11/2026 | "Trocar um Pokémon" passou a usar a IA (`src/trocas_ia.py`): testa as trocas e sugere as que mais aumentam a força do time, com gráfico e explicação. 100 testes passando. |
+| 03/11/2026 | Fase 5.3: a IA aprende respeitando a ordem pedida (cobertura > sinergia > winrate > velocidade > situacionais), novo ponto winrate, situacionais só quando o time se beneficia (Fake Out × Psychic Terrain, Screens, clima) e alerta de físicos demais. 103 testes passando. |
+| 03/11/2026 | Fase 5.4: visual e navegação — "O que a IA achou" com 3 visões (Análise da IA em cards por categoria, Melhorar o time, Detalhes) e botões que levam de uma à outra. 111 passando. |
+| 03/11/2026 | Fase 5.5: visual premium — ameaças do meta na Análise da IA, ícones Material Symbols no lugar dos emojis, barra de cima refinada e fundo azul-escuro com vidro. 111 testes passando. |

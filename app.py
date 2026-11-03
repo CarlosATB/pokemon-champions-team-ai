@@ -5,10 +5,11 @@ Para rodar localmente:
     streamlit run app.py
 
 O site tem três abas no topo:
-- Montar o time -> as três partes principais, cada uma desenhada por um arquivo de src/:
-    1. Seu time      -> tela_montar.py        (6 cards, dado, Importar/Exportar do Showdown)
-    2. Análise       -> tela_analise.py       (usa analise.py, dicas.py e validacao.py)
-    3. Recomendações -> tela_recomendacoes.py (usa recomendacao.py: o Sistema de Recomendação)
+- Montar o time -> 1. Seu time (tela_montar.py: 6 cards, dado, Importar/Exportar do Showdown)
+                   2. O que a IA achou, com um seletor de 3 visões (navegacao.py):
+                      Análise da IA   -> tela_analise.py       (nota, categorias, ameaças, próximo passo)
+                      Melhorar o time -> tela_recomendacoes.py (trocas da IA, parceiros, montagem)
+                      Detalhes        -> tela_analise.py       (gráficos, tabelas, como a IA aprendeu)
 - Mais usados   -> tela_mais_usados.py (os 20 mais usados no meta)
 - Sobre         -> tela_sobre.py
 """
@@ -17,7 +18,8 @@ import streamlit as st
 
 from src import config
 from src.leitor import montar_time
-from src.tela_analise import mostrar_analise
+from src.navegacao import ANALISE, MELHORAR, escolher_visao
+from src.tela_analise import mostrar_analise, mostrar_detalhes, mostrar_validacao, reconhecidos
 from src.tela_mais_usados import mostrar_mais_usados
 from src.tela_montar import tela_montar_o_time
 from src.tela_recomendacoes import mostrar_recomendacoes
@@ -43,23 +45,30 @@ def pagina_montar_o_time() -> None:
     st.header("1. Seu time")
     time = montar_time(tela_montar_o_time())
     if not time:
-        st.info("Monte o time nos cards acima (ou use 📥 Importar → Time de exemplo) "
-                "para ver a análise e as recomendações.")
+        st.info("Monte o time nos cards acima (ou use **Importar → Time de exemplo**) "
+                "para ver o que a IA acha dele.", icon=":material/info:")
         return
-    st.header("2. Análise")
-    time_ok = mostrar_analise(time)
-    if time_ok:
-        st.header("3. Recomendações")
+    st.header("2. O que a IA achou")
+    mostrar_validacao(time)
+    time_ok = reconhecidos(time)
+    if not time_ok:
+        return
+    visao = escolher_visao()
+    if visao == ANALISE:
+        mostrar_analise(time_ok)
+    elif visao == MELHORAR:
         mostrar_recomendacoes(time_ok)
+    else:
+        mostrar_detalhes(time_ok)
 
 
-st.set_page_config(page_title="Pokémon Champions Team AI", page_icon="⚔️", layout="wide")
+st.set_page_config(page_title="Pokémon Champions Team AI", page_icon=":material/sports_esports:", layout="wide")
 st.markdown(CSS, unsafe_allow_html=True)
 st.logo("static/logo.svg", size="large")  # o nome do site vira logo na barra de cima
 manter_o_time()
 pagina = st.navigation([
-    st.Page(pagina_montar_o_time, title="Montar o time", default=True),
-    st.Page(mostrar_mais_usados, title="Mais usados", url_path="mais-usados"),
-    st.Page(mostrar_sobre, title="Sobre", url_path="sobre"),
+    st.Page(pagina_montar_o_time, title="Montar o time", icon=":material/groups:", default=True),
+    st.Page(mostrar_mais_usados, title="Mais usados", icon=":material/leaderboard:", url_path="mais-usados"),
+    st.Page(mostrar_sobre, title="Sobre", icon=":material/info:", url_path="sobre"),
 ], position="top")
 pagina.run()
