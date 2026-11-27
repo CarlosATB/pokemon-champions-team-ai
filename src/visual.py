@@ -367,5 +367,20 @@ img.foto { vertical-align: middle; }
 .motivos li.verde > .icone:first-child { color: var(--verde); }
 .motivos li.vermelho > .icone:first-child { color: var(--vermelho); }
 .motivos li.neutro > .icone:first-child { color: var(--texto-apagado); }
+/* Chat com o agente de IA (src/tela_chat.py): bolinha presa no canto inferior direito */
+.st-key-chat_flutuante {
+    position: fixed; right: 24px; bottom: 24px; z-index: 1000; width: auto !important;
+}
+.st-key-chat_flutuante [data-testid="stPopoverButton"] {
+    width: 60px; height: 60px; min-height: 60px; padding: 0; border-radius: 50% !important;
+    border: none !important; color: #FFFFFF !important;
+    background: linear-gradient(135deg, var(--destaque), var(--destaque-2)) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    transition: transform 0.15s ease;
+}
+.st-key-chat_flutuante [data-testid="stPopoverButton"]:hover { transform: scale(1.07); }
+.st-key-chat_flutuante [data-testid="stPopoverButton"] p { font-size: 28px; line-height: 1; }
+.st-key-chat_flutuante [data-testid="stPopoverButton"] div[aria-hidden="true"] { display: none; }
+[data-testid="stPopoverBody"]:has(.st-key-chat_conversa) { width: min(400px, calc(100vw - 32px)); }
 </style>
 """
