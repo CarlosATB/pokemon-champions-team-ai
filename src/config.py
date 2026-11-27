@@ -93,8 +93,9 @@ def showdown_url(arquivo: str, mod: str | None = SHOWDOWN_MOD) -> str:
 # Para usar outra API compatível (ex.: Grok da xAI, "https://api.x.ai/v1/chat/completions"),
 # basta trocar o endereço, o modelo e o nome da chave aqui.
 CHAT_API_URL = "https://api.groq.com/openai/v1/chat/completions"
-CHAT_MODELO = "openai/gpt-oss-20b"           # rápido e com limite grátis generoso
-CHAT_MODELO_RESERVA = "openai/gpt-oss-120b"  # usado se o primeiro sair do ar
+CHAT_MODELO = "openai/gpt-oss-120b"          # o maior: erra menos (o 20b inventava fraquezas)
+CHAT_MODELO_RESERVA = "openai/gpt-oss-20b"   # usado se o primeiro sair do ar
+CHAT_TEMPERATURA = 0.2      # baixa = respostas mais "certinhas", menos criativas
 # Nome da chave nos Secrets do Streamlit (ou variável de ambiente). NUNCA colocar a chave no código.
 CHAT_NOME_DA_CHAVE = "GROQ_API_KEY"
 CHAT_MAX_MENSAGENS = 10     # quantas mensagens anteriores o agente "lembra"
