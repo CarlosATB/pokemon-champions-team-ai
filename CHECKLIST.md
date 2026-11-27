@@ -233,6 +233,15 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 - [x] Fundo trocado para carvão (cinza-escuro); o azul ficou só como cor de destaque
 - [x] Botão **Auto build**: monta todos os Pokémon do time com a build recomendada (item, habilidade, golpes, natureza e EVs mais usados), sem repetir item
 
+### Fase 5.6 — Chat com agente de IA (pedido do professor, 27/11)
+- [x] Botão redondo no canto inferior direito, em todas as abas, que abre o chat (`src/tela_chat.py`, `st.popover` + CSS em `src/visual.py`); `@st.fragment`: perguntar não roda a análise de novo
+- [x] Agente = modelo de linguagem da **Groq** (API gratuita, compatível com a OpenAI), chamado com `requests` (sem dependência nova) — `src/chat_ia.py`; modelo `openai/gpt-oss-20b` com reserva `openai/gpt-oss-120b` (os Llama da Groq saíram do ar em 16/08/2026), configuráveis em `src/config.py`
+- [x] 1ª parte: chat genérico (Pokémon e VGC), que conhece só as regras do formato
+- [ ] 2ª parte (entrega de 10/12): ligar o chat ao projeto: responder sobre o time montado e montar times a pedido (ex.: "quero um time com Umbreon"). Rascunho do contexto do time guardado na branch `chat-parte-2-contexto`
+- [x] Chave da API fora do repositório: `GROQ_API_KEY` nos Secrets do Streamlit ou variável de ambiente; sem chave, o chat explica como configurar. Erros (chave errada, limite grátis, sem conexão) viram mensagens amigáveis
+- [x] Testes — `tests/test_chat_ia.py` (9, com API falsa); 121 passando
+- [ ] Carlos: criar a chave na Groq e cadastrar nos Secrets do Streamlit Cloud; testar no site publicado
+
 ### Fase 6 — Algoritmo Genético (opcional)
 - [ ] Função de "nota" do time (cobertura + funções + sinergia)
 - [ ] Geração, cruzamento e mutação de times
@@ -270,3 +279,4 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 | 03/11/2026 | Fase 5.3: a IA aprende respeitando a ordem pedida (cobertura > sinergia > winrate > velocidade > situacionais), novo ponto winrate, situacionais só quando o time se beneficia (Fake Out × Psychic Terrain, Screens, clima) e alerta de físicos demais. 103 testes passando. |
 | 03/11/2026 | Fase 5.4: visual e navegação — "O que a IA achou" com 3 visões (Análise da IA em cards por categoria, Melhorar o time, Detalhes) e botões que levam de uma à outra. 111 passando. |
 | 03/11/2026 | Fase 5.5: visual premium — ameaças do meta na Análise da IA, ícones Material Symbols no lugar dos emojis, barra de cima refinada e fundo azul-escuro com vidro. 111 testes passando. |
+| 27/11/2026 | Fase 5.6 (branch `chat-agente-ia`), pedido do professor: chat flutuante no canto inferior direito com um agente de IA da Groq (grátis), 1ª parte: chat genérico sobre Pokémon/VGC (a 2ª parte liga ao time). Chave nos Secrets do Streamlit. 121 testes passando. |

@@ -12,6 +12,7 @@ O site tem três abas no topo:
                       Detalhes        -> tela_analise.py       (gráficos, tabelas, como a IA aprendeu)
 - Mais usados   -> tela_mais_usados.py (os 20 mais usados no meta)
 - Sobre         -> tela_sobre.py
+Em todas as abas: o chat com o agente de IA no canto inferior direito (tela_chat.py).
 """
 
 import streamlit as st
@@ -19,6 +20,7 @@ import streamlit as st
 from src import config
 from src.leitor import montar_time
 from src.navegacao import ANALISE, MELHORAR, escolher_visao
+from src.tela_chat import mostrar_chat
 from src.tela_analise import mostrar_analise, mostrar_detalhes, mostrar_validacao, reconhecidos
 from src.tela_mais_usados import mostrar_mais_usados
 from src.tela_montar import tela_montar_o_time
@@ -66,6 +68,9 @@ st.set_page_config(page_title="Pokémon Champions Team AI", page_icon=":material
 st.markdown(CSS, unsafe_allow_html=True)
 st.logo("static/logo.svg", size="large")  # o nome do site vira logo na barra de cima
 manter_o_time()
+# O chatzinho flutuante, em todas as abas. Fica no topo do código para ter sempre o mesmo
+# lugar na página (o CSS o prende no canto inferior direito da tela).
+mostrar_chat()
 pagina = st.navigation([
     st.Page(pagina_montar_o_time, title="Montar o time", icon=":material/groups:", default=True),
     st.Page(mostrar_mais_usados, title="Mais usados", icon=":material/leaderboard:", url_path="mais-usados"),
