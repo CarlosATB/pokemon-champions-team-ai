@@ -46,7 +46,6 @@ def pagina_montar_o_time() -> None:
 
     st.header("1. Seu time")
     time = montar_time(tela_montar_o_time())
-    st.session_state["time_para_chat"] = reconhecidos(time)  # o chat conversa sobre este time
     if not time:
         st.info("Monte o time nos cards acima (ou use **Importar → Time de exemplo**) "
                 "para ver o que a IA acha dele.", icon=":material/info:")

@@ -5,19 +5,18 @@ O chatzinho flutuante no canto inferior direito (em todas as abas do site).
   o CSS em src/visual.py prende esse container no canto da tela.
 - É um @st.fragment: mandar uma mensagem só redesenha o chat, não o site inteiro
   (a análise do time não roda de novo a cada pergunta).
-- A conversa fica em st.session_state["chat_historico"]; o time vem de
-  st.session_state["time_para_chat"], que a página "Montar o time" atualiza.
-A lógica (contexto e chamada da API) está em src/chat_ia.py.
+- A conversa fica em st.session_state["chat_historico"].
+A lógica (papel do agente e chamada da API) está em src/chat_ia.py.
 """
 
 import streamlit as st
 
 from src import config
-from src.chat_ia import ErroDoChat, chave_da_api, contexto_do_time, montar_mensagens, perguntar
+from src.chat_ia import ErroDoChat, chave_da_api, montar_mensagens, perguntar
 
 HISTORICO = "chat_historico"
-BOAS_VINDAS = ("Oi! Sou o assistente do site. Pergunte sobre o seu time, por exemplo: "
-               "*\"Qual o maior problema do meu time?\"* ou *\"Quem posso colocar contra Fogo?\"*")
+BOAS_VINDAS = ("Oi! Sou o assistente do site. Pergunte sobre Pokémon e duplas (VGC), por exemplo: "
+               "*\"O que faz o Trick Room?\"* ou *\"Quem é bom contra Incineroar?\"*")
 
 
 def _ler_secrets():
@@ -39,7 +38,7 @@ def mostrar_chat() -> None:
     historico = st.session_state.setdefault(HISTORICO, [])
     with st.container(key="chat_flutuante"):
         with st.popover(":material/chat:"):
-            st.markdown("**Agente de IA** · pergunte sobre o seu time")
+            st.markdown("**Agente de IA** · pergunte sobre Pokémon e VGC")
             chave = chave_da_api(_ler_secrets())
             if not chave:
                 _sem_chave()
@@ -56,9 +55,8 @@ def mostrar_chat() -> None:
                 conversa.chat_message("user").markdown(pergunta)
                 with conversa.chat_message("assistant"):
                     with st.spinner("Pensando..."):
-                        contexto = contexto_do_time(st.session_state.get("time_para_chat", []))
                         try:
-                            resposta = perguntar(montar_mensagens(historico, contexto), chave)
+                            resposta = perguntar(montar_mensagens(historico), chave)
                         except ErroDoChat as erro:
                             historico.pop()  # a pergunta não foi respondida: não entra no histórico
                             st.warning(str(erro), icon=":material/error:")

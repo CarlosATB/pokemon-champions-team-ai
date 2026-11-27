@@ -1,13 +1,10 @@
 """
-Chat com um agente de IA (modelo de linguagem da Groq) que conversa sobre o time.
+Chat com um agente de IA (modelo de linguagem da Groq).
 
-Intuição: o agente NÃO faz a análise. Quem analisa são os nossos algoritmos
-(regras, recomendação por co-ocorrência e o modelo de ML). O agente recebe,
-escondido no "prompt de sistema", um resumo do que esses algoritmos acharam
-do time montado, e usa isso para responder em linguagem natural.
-
-    time montado -> analisar() + analise_da_ia() -> texto de contexto
-    contexto + histórico + pergunta -> API da Groq -> resposta
+1ª parte (esta): um chat genérico que responde perguntas sobre Pokémon e VGC.
+    papel do agente (prompt de sistema) + histórico + pergunta -> API da Groq -> resposta
+2ª parte (depois): ligar o chat ao time montado e às análises do site
+    (ex.: "quero um time com Umbreon" -> o agente devolve um time).
 
 A interface (a bolinha no canto inferior direito) fica em src/tela_chat.py.
 Este arquivo não usa o Streamlit, para poder ser testado sem o site.
@@ -28,13 +25,8 @@ leva {config.TEAM_SIZE} e escolhe {config.PICK_SIZE}. Não pode repetir espécie
 Só {config.MAX_MEGA_PER_BATTLE} Mega Evolução por batalha. Não existe Terastalização. \
 Pontos de status (EVs do Champions): até {config.EV_MAX} por status e {config.EV_TOTAL} no total.
 
-Use os dados do site (abaixo) como fonte principal. Se não souber algo do Champions, diga que \
-não tem certeza em vez de inventar. Não sugira Tera nem Pokémon/itens repetidos. Para mudar o \
-time, explique o que fazer nos cards da aba "Montar o time" (você não consegue mexer neles).
-Se perguntarem como o site funciona: a análise vem de regras de tipos e funções de duplas, a \
-recomendação vem de estatísticas de uso do Smogon ("quem usa X também usa Y") e a nota vem de \
-uma regressão logística treinada com batalhas reais do Showdown. Você (o chat) só explica os \
-resultados."""
+Se não souber algo do Champions, diga que não tem certeza em vez de inventar. \
+Não sugira Tera nem Pokémon/itens repetidos."""
 
 
 def chave_da_api(secrets=None) -> str | None:
@@ -49,81 +41,10 @@ def chave_da_api(secrets=None) -> str | None:
     return os.environ.get(nome, "").strip() or None
 
 
-def _membro_em_texto(membro: dict) -> str:
-    partes = [membro["especie"]]
-    if membro.get("item"):
-        partes.append(f"@ {membro['item']}")
-    linha = " ".join(partes)
-    detalhes = []
-    if membro.get("habilidade"):
-        detalhes.append(f"habilidade {membro['habilidade']}")
-    if membro.get("natureza"):
-        detalhes.append(f"natureza {membro['natureza']}")
-    evs = {s: v for s, v in (membro.get("evs") or {}).items() if v}
-    if evs:
-        detalhes.append("EVs " + ", ".join(f"{v} {s}" for s, v in evs.items()))
-    golpes = membro.get("golpes") or []
-    detalhes.append("golpes: " + (", ".join(golpes) if golpes else "nenhum escolhido"))
-    return f"- {linha} ({'; '.join(detalhes)})"
-
-
-def contexto_do_time(time: list[dict]) -> str:
-    """Resumo do time e do que os algoritmos do site acharam dele, em texto."""
-    if not time:
-        return "O usuário ainda não montou nenhum Pokémon no time."
-
-    linhas = [f"Time montado agora ({len(time)} de {config.TEAM_SIZE}):"]
-    linhas += [_membro_em_texto(m) for m in time]
-
-    # Cada parte é opcional: se uma análise falhar, o chat continua funcionando.
-    try:
-        from src.analise import analisar, tipos_perigosos
-        analise = analisar(time)
-        perigosos = tipos_perigosos(analise)
-        if perigosos:
-            linhas.append("Tipos perigosos (muitos fracos, poucos seguram): " + ", ".join(
-                f"{p['tipo']} ({p['fracos']} fracos, {p['seguram']} seguram)" for p in perigosos))
-        sem_2x = [c["tipo"] for c in analise["cobertura"] if not c.get("supereficazes")]
-        if sem_2x and not len(sem_2x) == len(analise["cobertura"]):
-            linhas.append("Tipos que o time não acerta com dano dobrado: " + ", ".join(sem_2x))
-        if analise["sem_ataques"]:
-            linhas.append("Sem golpes de ataque escolhidos: " + ", ".join(analise["sem_ataques"]))
-        funcoes = [f"{nome}: {', '.join(quem) if quem else 'ninguém'}"
-                   for nome, quem in analise["funcoes"].items()]
-        linhas.append("Funções de duplas -> " + "; ".join(funcoes))
-        if analise["ameacas"]:
-            linhas.append("Ameaças do meta: " + "; ".join(
-                f"{a['nome']} (acerta forte {', '.join(a['acerta'])})" for a in analise["ameacas"]))
-    except Exception:
-        pass
-
-    try:
-        if len(time) == config.TEAM_SIZE:
-            from src.modelo_nota import analise_da_ia
-            ia = analise_da_ia(time)
-            if ia:
-                linhas.append(f"Nota da IA do site: {ia['nota']}/10; chance de vencer um time "
-                              f"médio do meta: {ia['chance']}%.")
-                linhas.append("Notas por categoria: " + ", ".join(
-                    f"{c['nome']} {c['nota']}" for c in ia["categorias"]))
-        else:
-            linhas.append("A nota da IA do site só sai com o time completo (6 Pokémon).")
-            from src.recomendacao import sugerir_parceiros
-            parceiros = sugerir_parceiros(time)
-            if parceiros:
-                linhas.append("Parceiros que a recomendação do site sugere (co-ocorrência no meta): "
-                              + "; ".join(f"{p['nome']} ({p['confianca']}% dos times com o seu)"
-                                          for p in parceiros))
-    except Exception:
-        pass
-    return "\n".join(linhas)
-
-
-def montar_mensagens(historico: list[dict], contexto: str) -> list[dict]:
-    """[prompt de sistema com o contexto] + as últimas mensagens da conversa."""
-    sistema = f"{PAPEL_DO_AGENTE}\n\nDados do site neste momento:\n{contexto}"
+def montar_mensagens(historico: list[dict]) -> list[dict]:
+    """[prompt de sistema com o papel do agente] + as últimas mensagens da conversa."""
     recentes = historico[-config.CHAT_MAX_MENSAGENS:]
-    return [{"role": "system", "content": sistema}] + [
+    return [{"role": "system", "content": PAPEL_DO_AGENTE}] + [
         {"role": m["role"], "content": m["content"]} for m in recentes]
 
 

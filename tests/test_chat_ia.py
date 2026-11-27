@@ -1,11 +1,10 @@
 """Testes do chat com o agente de IA (sem chamar a API de verdade)."""
 
 import pytest
-from apoio import precisa_dados, time_exemplo
 from streamlit.testing.v1 import AppTest
 
 from src import config
-from src.chat_ia import ErroDoChat, chave_da_api, contexto_do_time, montar_mensagens, perguntar
+from src.chat_ia import ErroDoChat, chave_da_api, montar_mensagens, perguntar
 
 
 class RespostaFalsa:
@@ -30,10 +29,10 @@ def test_chave_vem_dos_secrets_ou_do_ambiente(monkeypatch):
     assert chave_da_api(None) == "do-ambiente"
 
 
-def test_mensagens_tem_contexto_e_limitam_o_historico():
+def test_mensagens_tem_o_papel_do_agente_e_limitam_o_historico():
     historico = [{"role": "user", "content": str(n)} for n in range(30)]
-    mensagens = montar_mensagens(historico, "CONTEXTO DO TIME")
-    assert mensagens[0]["role"] == "system" and "CONTEXTO DO TIME" in mensagens[0]["content"]
+    mensagens = montar_mensagens(historico)
+    assert mensagens[0]["role"] == "system" and "português" in mensagens[0]["content"]
     assert "Terastalização" in mensagens[0]["content"]  # conhece as regras do formato
     assert len(mensagens) == 1 + config.CHAT_MAX_MENSAGENS
     assert mensagens[-1]["content"] == "29"
@@ -69,20 +68,6 @@ def test_modelo_fora_do_ar_usa_o_reserva():
 def test_erros_viram_mensagens_amigaveis(status, trecho):
     with pytest.raises(ErroDoChat, match=trecho):
         perguntar([], "k", post=lambda *a, **k: RespostaFalsa(status, texto="erro"))
-
-
-def test_contexto_sem_time():
-    assert "ainda não montou" in contexto_do_time([])
-
-
-@precisa_dados
-def test_contexto_do_time_traz_o_time_e_a_analise():
-    time = time_exemplo("Meta")
-    contexto = contexto_do_time(time)
-    for membro in time:
-        assert membro["especie"] in contexto
-    assert "Funções de duplas" in contexto
-    assert "Nota da IA do site" in contexto
 
 
 def _so_o_chat():
