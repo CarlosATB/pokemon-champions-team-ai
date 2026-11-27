@@ -113,6 +113,7 @@ pytest
 ### Chat com o agente de IA (`src/chat_ia.py`)
 
 1. **Prompt** — a mensagem de sistema diz ao agente as regras do formato (sem Tera, sem repetir espécie/item…) e pede para responder em português, curto, sem inventar. Vão também as últimas 10 mensagens da conversa.
+   - **Contra a "alucinação":** modelos de linguagem às vezes inventam (ex.: "Fada toma 4x de Dragão", quando Fada é imune). Por isso o código manda junto **fatos calculados**: a tabela de tipos do projeto (`src/tipos.py`) e, para cada Pokémon citado na conversa, tipos, status base, habilidades e as fraquezas/resistências/imunidades já calculadas (inclusive Levitate e afins). O agente é instruído a usar só esses fatos; se um Pokémon não está nos dados, ele avisa que não é da regulamentação. Modelo maior (`openai/gpt-oss-120b`) e temperatura baixa (0,2).
 2. **Resposta** — a conversa é enviada para a API da Groq (compatível com a da OpenAI) pelo `requests`; sem biblioteca nova. Modelo em `src/config.py` (`CHAT_MODELO`), com um reserva caso ele saia do ar.
 3. **Chave** — fica nos **Secrets** do Streamlit Cloud (ou em `.streamlit/secrets.toml` no PC, que não vai para o GitHub). Sem chave, o chat mostra como configurar.
 

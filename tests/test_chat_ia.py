@@ -4,7 +4,12 @@ import pytest
 from streamlit.testing.v1 import AppTest
 
 from src import config
-from src.chat_ia import ErroDoChat, chave_da_api, montar_mensagens, perguntar
+from apoio import precisa_dados
+
+from src.chat_ia import (
+    ErroDoChat, chave_da_api, fatos_do_pokemon, montar_mensagens, perguntar, pokemon_citados,
+    tabela_de_tipos_em_texto,
+)
 
 
 class RespostaFalsa:
@@ -68,6 +73,47 @@ def test_modelo_fora_do_ar_usa_o_reserva():
 def test_erros_viram_mensagens_amigaveis(status, trecho):
     with pytest.raises(ErroDoChat, match=trecho):
         perguntar([], "k", post=lambda *a, **k: RespostaFalsa(status, texto="erro"))
+
+
+def test_tabela_de_tipos_no_prompt_tem_as_imunidades():
+    tabela = tabela_de_tipos_em_texto()
+    assert "- Dragão: 2x em Dragão; 0,5x em Aço; 0x/imune em Fada" in tabela
+    assert "- Terrestre:" in tabela and "0x/imune em Voador" in tabela
+    assert tabela in montar_mensagens([])[0]["content"]
+
+
+def test_temperatura_baixa_e_modelo_maior():
+    corpos = []
+
+    def post(url, json, timeout, headers):
+        corpos.append(json)
+        return _resposta("ok")
+
+    perguntar([], "k", post=post)
+    assert corpos[0]["temperature"] == config.CHAT_TEMPERATURA <= 0.3
+    assert corpos[0]["model"] == "openai/gpt-oss-120b"
+
+
+@precisa_dados
+def test_pokemon_citados_e_as_megas_deles():
+    citados = pokemon_citados("o garchomp e o Rotom-Wash aguentam? e o xerneas?")
+    assert "garchomp" in citados and "rotomwash" in citados
+    assert any(pid.startswith("garchompmega") for pid in citados)  # a Mega vem junto
+    assert all("xerneas" not in pid for pid in citados)  # não está nos dados da regulamentação
+    assert pokemon_citados("oi, tudo bem?") == []
+
+
+@precisa_dados
+def test_fatos_calculados_pela_tabela():
+    garchomp = fatos_do_pokemon("garchomp")
+    assert "toma 4x de Gelo" in garchomp and "IMUNE (0x) a Elétrico" in garchomp
+    assert "Levitate: Terrestre vira 0x" in fatos_do_pokemon("rotomwash")
+
+
+@precisa_dados
+def test_fatos_vao_no_prompt():
+    sistema = montar_mensagens([{"role": "user", "content": "Garchomp é fraco a quê?"}])[0]["content"]
+    assert "Fatos dos Pokémon citados" in sistema and "toma 4x de Gelo" in sistema
 
 
 def _so_o_chat():

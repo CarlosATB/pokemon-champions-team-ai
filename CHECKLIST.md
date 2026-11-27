@@ -237,6 +237,7 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 - [x] Botão redondo no canto inferior direito, em todas as abas, que abre o chat (`src/tela_chat.py`, `st.popover` + CSS em `src/visual.py`); `@st.fragment`: perguntar não roda a análise de novo
 - [x] Agente = modelo de linguagem da **Groq** (API gratuita, compatível com a OpenAI), chamado com `requests` (sem dependência nova) — `src/chat_ia.py`; modelo `openai/gpt-oss-20b` com reserva `openai/gpt-oss-120b` (os Llama da Groq saíram do ar em 16/08/2026), configuráveis em `src/config.py`
 - [x] 1ª parte: chat genérico (Pokémon e VGC), que conhece só as regras do formato
+- [x] Precisão (pedido do Carlos em 27/11, o chat disse que Xerneas toma 4x de Dragão): tabela de tipos do projeto + fatos calculados dos Pokémon citados (tipos, status, habilidades, fraquezas/imunidades) no prompt; modelo maior `openai/gpt-oss-120b` e temperatura 0,2 — `fatos_da_conversa` em `src/chat_ia.py`
 - [ ] 2ª parte (entrega de 10/12): ligar o chat ao projeto: responder sobre o time montado e montar times a pedido (ex.: "quero um time com Umbreon"). Rascunho do contexto do time guardado na branch `chat-parte-2-contexto`
 - [x] Chave da API fora do repositório: `GROQ_API_KEY` nos Secrets do Streamlit ou variável de ambiente; sem chave, o chat explica como configurar. Erros (chave errada, limite grátis, sem conexão) viram mensagens amigáveis
 - [x] Testes — `tests/test_chat_ia.py` (9, com API falsa); 121 passando
@@ -280,3 +281,4 @@ Legenda: `[ ]` a fazer · `[~]` em andamento · `[x]` feito e funcionando
 | 03/11/2026 | Fase 5.4: visual e navegação — "O que a IA achou" com 3 visões (Análise da IA em cards por categoria, Melhorar o time, Detalhes) e botões que levam de uma à outra. 111 passando. |
 | 03/11/2026 | Fase 5.5: visual premium — ameaças do meta na Análise da IA, ícones Material Symbols no lugar dos emojis, barra de cima refinada e fundo azul-escuro com vidro. 111 testes passando. |
 | 27/11/2026 | Fase 5.6 (branch `chat-agente-ia`), pedido do professor: chat flutuante no canto inferior direito com um agente de IA da Groq (grátis), 1ª parte: chat genérico sobre Pokémon/VGC (a 2ª parte liga ao time). Chave nos Secrets do Streamlit. 121 testes passando. |
+| 27/11/2026 | Chat mais preciso (branch `chat-precisao`): o código manda ao agente a tabela de tipos e os fatos calculados dos Pokémon citados, e o agente usa o modelo maior com temperatura baixa. 126 testes passando. |
